@@ -1,0 +1,11 @@
+appdirs==1.4.3
+dj-database-url==0.4.1
+Django==1.10.4
+django-discover-runner==1.0
+django-role-permissions==2.0.1
+gunicorn==19.6.0
+packaging==16.8
+psycopg2==2.6.2
+pyparsing==2.2.0
+six==1.10.0
+whitenoise==3.2

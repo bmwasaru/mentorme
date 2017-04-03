@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 
-from choices import ROLE_CHOICES, GENDER_CHOICES
+from .choices import ROLE_CHOICES, GENDER_CHOICES
 
 
 def generate_activation_key(email):

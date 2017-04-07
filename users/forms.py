@@ -22,4 +22,5 @@ class ProfileForm(UserChangeForm):
 
     class Meta:
         model = Profile
-        fields = ('bio', 'phone_number', 'expectations', 'current_occupation')
+        fields = ('bio', 'gender', 'phone_number',
+                  'expectations', 'current_occupation')

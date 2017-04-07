@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Account Profile{% endblock %}
+
+
+{% block content %}
+
+    <h3>User Profile</h3>
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-error">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-error">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}" />
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}<br>
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+        {% if field.help_text %}
+          <p><small style="color: grey">{{ field.help_text }}</small></p>
+        {% endif %}
+      </p>
+    {% endfor %}
+    <button type="submit">Update Profile</button>
+
+{% endblock content %}

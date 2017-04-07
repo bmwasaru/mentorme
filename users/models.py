@@ -3,12 +3,11 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from .choices import ROLE_CHOICES, GENDER_CHOICES
+from .choices import GENDER_CHOICES
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User)
-    role = models.CharField(max_length=12, blank=False, choices=ROLE_CHOICES)
     bio = models.TextField(blank=True, default='')
     email_confirmed = models.BooleanField(default=False)
     gender = models.CharField(

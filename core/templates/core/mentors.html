@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block title %}{% trans 'Mentors' %}{% endblock %}
+
+{% block head %}
+  <link href="{% static 'css/mentors.css' %}" rel="stylesheet">
+{% endblock head %}
+
+{% block main %}
+  <div class="page-header">
+    <h1>Mentors</h1>
+  </div>
+  <div class="users">
+
+    <div class="row">
+      {% for user in users %}
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <a href="{% url 'profile' user.username %}">{{ user.profile.get_screen_name }}</a>
+            </div>
+            <div class="panel-body">
+            <img class="img-responsive picture" src="{{ user.profile.get_gravatar }}" style="">
+              <p><strong>{% trans 'Username' %}: </strong> {{ user.username }}</p>
+              {% if user.profile.location %}
+                <p><strong>{% trans 'Location' %}:</strong> {{ user.profile.location }}</p>
+              {% endif %}
+              {% if user.profile.url %}
+                <p><strong>{% trans 'Url' %}:</strong> {{ user.profile.get_url }}</p>
+              {% endif %}
+                {% if user.profile.bio %}
+                <p><strong>{% trans 'Bio' %}:</strong> {{ user.profile.bio }}</p>
+              {% endif %}
+              {% if user.profile.get_interests %}
+                {% for interest in user.profile.get_interests %}
+                  <span class="label label-primary">{{ interest }}</span>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        {% include 'paginator.html' with paginator=users %}
+      </div>
+    </div>
+
+  </div>
+{% endblock main %}

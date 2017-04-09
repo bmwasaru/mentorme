@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block title %}{{ page_user.profile.get_screen_name }}{% endblock %}
+
+{% block head %}
+  <link href="{% static 'css/profile.css' %}" rel="stylesheet">
+  <link href="{% static 'css/feeds.css' %}" rel="stylesheet">
+  <script src="{% static 'js/jquery.bullseye-1.0-min.js' %}"></script>
+  <script src="{% static 'js/feeds.js' %}"></script>
+{% endblock head %}
+
+{% block main %}
+  <div class="page-header">
+    <h1>{{ page_user.profile.get_screen_name }} {% if page_user.get_full_name %}<small>({{ page_user.username }})</small>{% endif %}</h1>
+  </div>
+  <div class="profile">
+    <div class="row">
+      <div class="col-md-3 user-profile">
+        <img class="img-responsive picture" src="{{ user.profile.get_gravatar }}" style="">
+        <ul>
+          <li><span class="glyphicon glyphicon-calendar"></span> {{ page_user.date_joined }}</li>
+          {% if page_user.profile.bio %}
+          <li><span class="glyphicon glyphicon-briefcase"></span> {{ page_user.profile.bio }}</li>
+          {% endif %}
+          {% if page_user.profile.location %}
+          <li><span class="glyphicon glyphicon-map-marker"></span> {{ page_user.profile.location }}</li>
+          {% endif %}
+        {% if user.profile.get_interests %}
+                {% for interest in user.profile.get_interests %}
+                  <span class="label label-primary">{{ interest }}</span>
+                {% endfor %}
+              {% endif %}
+        </ul>
+      </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock main %}

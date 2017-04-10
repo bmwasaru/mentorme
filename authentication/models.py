@@ -1,18 +1,14 @@
-from __future__ import unicode_literals
-
 import hashlib
-import urllib
 from urllib.parse import urlencode
 
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
-from django.utils.encoding import python_2_unicode_compatible
 
 from .choices import GENDER_CHOICES, ROLE_CHOICES
+from activities.models import Notification
 
 
-@python_2_unicode_compatible
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=50, null=True, blank=True)
@@ -58,6 +54,42 @@ class Profile(models.Model):
                 return self.user.username
         except:
             return self.user.username
+
+    def notify_favorited(self, question):
+        if self.user != question.user:
+            Notification(notification_type=Notification.FAVORITED,
+                         from_user=self.user, to_user=question.user,
+                         question=question).save()
+
+    def unotify_favorited(self, question):
+        if self.user != question.user:
+            Notification.objects.filter(
+                notification_type=Notification.FAVORITED,
+                from_user=self.user,
+                to_user=question.user,
+                question=question).delete()
+
+    def notify_answered(self, question):
+        if self.user != question.user:
+            Notification(notification_type=Notification.ANSWERED,
+                         from_user=self.user,
+                         to_user=question.user,
+                         question=question).save()
+
+    def notify_accepted(self, answer):
+        if self.user != answer.user:
+            Notification(notification_type=Notification.ACCEPTED_ANSWER,
+                         from_user=self.user,
+                         to_user=answer.user,
+                         answer=answer).save()
+
+    def unotify_accepted(self, answer):
+        if self.user != answer.user:
+            Notification.objects.filter(
+                notification_type=Notification.ACCEPTED_ANSWER,
+                from_user=self.user,
+                to_user=answer.user,
+                answer=answer).delete()
 
 
 class Interest(models.Model):

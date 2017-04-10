@@ -66,7 +66,7 @@ def settings(request):
             'role': user.profile.role,
             'bio': user.profile.bio,
             'location': user.profile.location,
-            'interests': list(user.profile.get_interests()),
+            'interests': user.profile.get_interests(),
             })
     return render(request, 'core/settings.html', {'form': form})
 

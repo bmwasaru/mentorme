@@ -19,11 +19,15 @@ class ProfileForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=50,
         required=False)
+    interests = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        max_length=50,
+        required=False)
     phone_number = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=50,
         required=False)
-    email = forms.CharField(
+    email = forms.EmailField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=75,
         required=False)
@@ -32,7 +36,7 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['first_name', 'last_name', 'email', 'phone_number', 'gender', 'role', 'location', 'bio']
+        fields = ['first_name', 'last_name', 'interests', 'email', 'phone_number', 'gender', 'role', 'location', 'bio']
         widgets = {
             'bio': forms.Textarea(attrs={'cols': 30, 'rows': 10, 'class': 'form-control'}),
         }

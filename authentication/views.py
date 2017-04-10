@@ -20,7 +20,7 @@ def signup(request):
                                      email=email)
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect('/')
+            return redirect('/settings/')
 
     else:
         return render(request, 'authentication/signup.html',

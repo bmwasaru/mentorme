@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', core_views.home, name='home'),
     url(r'^mentors/$', core_views.mentors, name='mentors'),
+    url(r'^mentees/$', core_views.mentees, name='mentees'),
     # User URLs
     url(r'^login', auth_views.login, {'template_name': 'core/cover.html'},
         name='login'),
@@ -18,7 +19,7 @@ urlpatterns = [
     url(r'^signup/$', mentor_auth_views.signup, name='signup'),
     url(r'^settings/$', core_views.settings, name='settings'),
     url(r'^settings/password/$', core_views.password, name='password'),
-    url(r'^questions/', include('questions.urls')),
+    url(r'^questions/', include('questions.urls'), name='questions'),
     url(r'^notifications/$', activities_views.notifications,
         name='notifications'),
     url(r'^notifications/last/$', activities_views.last_notifications,

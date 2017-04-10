@@ -7,7 +7,6 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
 
 from .forms import ChangePasswordForm, ProfileForm
-from authentication.models import Profile
 
 
 def home(request):
@@ -30,6 +29,20 @@ def mentors(request):
     except EmptyPage:
         users = paginator.page(paginator.num_pages)
     return render(request, 'core/mentors.html', {'users': users})
+
+
+@login_required
+def mentees(request):
+    users_list = User.objects.filter(profile__role='mentee').order_by('username')
+    paginator = Paginator(users_list, 100)
+    page = request.GET.get('page')
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
+    return render(request, 'core/mentees.html', {'users': users})
 
 
 @login_required

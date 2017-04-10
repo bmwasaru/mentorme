@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load i18n %}
 
-{% block title %}{% trans 'Mentors' %}{% endblock %}
+{% block title %}{% trans 'Mentees' %}{% endblock %}
 
 {% block head %}
   <link href="{% static 'css/mentors.css' %}" rel="stylesheet">
@@ -10,7 +10,7 @@
 
 {% block main %}
   <div class="page-header">
-    <h1>Mentors</h1>
+    <h1>Mentees</h1>
   </div>
   <div class="users">
 
@@ -37,9 +37,6 @@
                 {% for interest in user.profile.get_interests %}
                   <span class="label label-primary">{{ interest }}</span>
                 {% endfor %}
-              {% endif %}
-              {% if user.profile.is_mentee %}
-                <a href="{%  url 'request-mentorship' user.id %}"><button type="button" class="btn btn-default glyphicon glyphicon-plus">Request Mentorship</button></a>
               {% endif %}
             </div>
           </div>

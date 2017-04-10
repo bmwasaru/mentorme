@@ -2,7 +2,7 @@
 
 ## Set up for local development
 
-### 1 Install Python 2.7, Django and PostgreSQL
+### 1 Install Python 3.5.*, Django and PostgreSQL
 
 **Python 3.5.x**
 https://www.python.org/downloads/

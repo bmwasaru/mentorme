@@ -28,7 +28,7 @@
           <li><span class="glyphicon glyphicon-map-marker"></span> {{ page_user.profile.location }}</li>
           {% endif %}
         {% if user.profile.get_interests %}
-                {% for interest in user.profile.get_interests %}
+                {% for interest in page_user.profile.get_interests %}
                   <span class="label label-primary">{{ interest }}</span>
                 {% endfor %}
               {% endif %}

@@ -18,7 +18,7 @@
   <div class="profile">
     <div class="row">
       <div class="col-md-3 user-profile">
-        <img class="img-responsive picture" src="{{ user.profile.get_gravatar }}" style="">
+        <img class="img-responsive picture" src="{{ page_user.profile.get_gravatar }}" style="">
         <ul>
           <li><span class="glyphicon glyphicon-calendar"></span> {{ page_user.date_joined }}</li>
           {% if page_user.profile.bio %}

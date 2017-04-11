@@ -17,9 +17,14 @@ SECRET_KEY = os.environ.get('SECRET_KEY', config('SECRET_KEY'))
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('LOCAL_DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'mentor001',
+        'USER': 'mentor001',
+        'PASSWORD': 'quWvLLmXjfglifWD',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
 }
 
 # Application definition

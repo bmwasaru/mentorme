@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404, redirect, render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 from .forms import ChangePasswordForm, ProfileForm
 
@@ -12,7 +12,7 @@ from .forms import ChangePasswordForm, ProfileForm
 def home(request):
     if request.user.is_authenticated():
         # TODO: return milestones
-        return HttpResponse("Hello World!")
+        return HttpResponseRedirect('/questions/')
     else:
         return render(request, 'core/cover.html')
 

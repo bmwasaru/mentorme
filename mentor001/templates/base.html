@@ -33,9 +33,7 @@
             </div>
             <div class="collapse navbar-collapse" id="menu">
               <ul class="nav navbar-nav">
-                <li><a href="{% url 'mentors' %}">{% trans 'Mentors' %}</a></li>
-                  <li><a href="{% url 'mentees' %}">{% trans 'Mentees' %}</a></li>
-                  <li><a href="{% url 'questions' %}">{% trans 'Forum' %}</a></li>
+
               </ul>
 {#              {% if not hide_search %}#}
 {#                <form class="navbar-form navbar-left" role="search" action="{% url 'search' %}">#}
@@ -48,6 +46,10 @@
 {#                </form>#}
 {#              {% endif %}#}
               <ul class="nav navbar-nav navbar-right">
+                  <li><a href="{% url 'mentors' %}">{% trans 'Mentors' %}</a></li>
+                  <li><a href="{% url 'mentees' %}">{% trans 'Mentees' %}</a></li>
+                  <li><a href="{% url 'questions' %}">{% trans 'Forum' %}</a></li>
+                  <li><a href="{% url 'inbox' %}"><sup><span class="badge pull-right" id="unread-count">0</span></sup> Inbox </a></li>
                   <li>
                   <a href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
                     <span class="glyphicon glyphicon-bell"></span>

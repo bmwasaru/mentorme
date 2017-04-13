@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'mentorship',
     'activities',
     'questions',
+    'messenger',
 ]
 
 MIDDLEWARE = [

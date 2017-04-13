@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^settings/$', core_views.settings, name='settings'),
     url(r'^settings/password/$', core_views.password, name='password'),
     url(r'^questions/', include('questions.urls'), name='questions'),
+    url(r'^messages/', include('messenger.urls')),
     url(r'^notifications/$', activities_views.notifications,
         name='notifications'),
     url(r'^notifications/last/$', activities_views.last_notifications,

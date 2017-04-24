@@ -46,7 +46,7 @@ urlpatterns = [
         name='last_notifications'),
     url(r'^notifications/check/$', activities_views.check_notifications,
         name='check_notifications'),
-    url(r'^(?P<username>[^/]+)/$', core_views.profile, name='profile'),
+    url(r'^u/(?P<username>[^/]+)/$', core_views.profile, name='profile'),
 ]
 
 admin.site.site_title = 'Mentor001 Adminstration'

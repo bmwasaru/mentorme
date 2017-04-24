@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication',
     'core',
-    'mentorship',
     'activities',
     'questions',
     'messenger',
@@ -132,3 +131,12 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/questions/'
+
+if DEBUG is True:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    EMAIL_HOST = 'smtp.sendgrid.net'
+    EMAIL_HOST_USER = 'bmwasaru'
+    EMAIL_HOST_PASSWORD = '@GeekfellaB029'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True

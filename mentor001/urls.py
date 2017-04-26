@@ -36,6 +36,7 @@ urlpatterns = [
     url(r'^forgot_pass_confirm/(?P<uidb64>[^/]+)/(?P<token>[^/]+)/$',
         auth_views.password_reset_confirm,
         {'template_name': 'authentication/password_reset_confirm.html'}, name='password_reset_confirm'),
+    url(r'^u/(?P<username>[^/]+)/$', core_views.profile, name='profile'),
     url(r'^settings/$', core_views.settings, name='settings'),
     url(r'^settings/password/$', core_views.password, name='password'),
     url(r'^questions/', include('questions.urls'), name='questions'),
@@ -46,7 +47,6 @@ urlpatterns = [
         name='last_notifications'),
     url(r'^notifications/check/$', activities_views.check_notifications,
         name='check_notifications'),
-    url(r'^u/(?P<username>[^/]+)/$', core_views.profile, name='profile'),
 ]
 
 admin.site.site_title = 'Mentor001 Adminstration'

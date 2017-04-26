@@ -47,6 +47,7 @@ urlpatterns = [
     url(r'^notifications/check/$', activities_views.check_notifications,
         name='check_notifications'),
     url(r'^u/(?P<username>[^/]+)/$', core_views.profile, name='profile'),
+    url(r'^i18n/', include('django.conf.urls.i18n', namespace='i18n')),
 ]
 
 admin.site.site_title = 'Mentor001 Adminstration'

@@ -31,7 +31,7 @@ class Question(models.Model):
         return Question.objects.filter(has_accepted_answer=True)
 
     def get_answers(self):
-        return Answer.objects.filter(question=self)
+        return Answer.objects.filter(question=self).order_by('-update_date')
 
     def get_answers_count(self):
         return Answer.objects.filter(question=self).count()

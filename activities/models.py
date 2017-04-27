@@ -13,7 +13,7 @@ class Activity(models.Model):
         (LIKE, 'Like'),
         (UP_VOTE, 'Up Vote'),
         (DOWN_VOTE, 'Down Vote'),
-        )
+    )
 
     user = models.ForeignKey(User)
     activity_type = models.CharField(max_length=1, choices=ACTIVITY_TYPES)
@@ -33,15 +33,18 @@ class Notification(models.Model):
     FAVORITED = 'F'
     ANSWERED = 'A'
     ACCEPTED_ANSWER = 'W'
+    ALSO_ANSWERED = 'S'
     NOTIFICATION_TYPES = (
         (FAVORITED, 'Favorited'),
         (ANSWERED, 'Answered'),
         (ACCEPTED_ANSWER, 'Accepted Answer'),
-        )
+        (ALSO_ANSWERED, 'Also Answered'),
+    )
 
     _FAVORITED_TEMPLATE = '<a href="/{0}/">{1}</a> favorited your question: <a href="/questions/{2}/">{3}</a>'  # noqa: E501
     _ANSWERED_TEMPLATE = '<a href="/{0}/">{1}</a> answered your question: <a href="/questions/{2}/">{3}</a>'  # noqa: E501
     _ACCEPTED_ANSWER_TEMPLATE = '<a href="/{0}/">{1}</a> accepted your answer: <a href="/questions/{2}/">{3}</a>'  # noqa: E501
+    _ALSO_ANSWERED_TEMPLATE = '<a href="/{0}/">{1}</a> also answered question:: <a href="/questions/{2}/">{3}</a>'
 
     from_user = models.ForeignKey(User, related_name='+')
     to_user = models.ForeignKey(User, related_name='+')
@@ -64,21 +67,28 @@ class Notification(models.Model):
                 escape(self.from_user.profile.get_screen_name()),
                 self.question.pk,
                 escape(self.get_summary(self.question.title))
-                )
+            )
         elif self.notification_type == self.ANSWERED:
             return self._ANSWERED_TEMPLATE.format(
                 escape(self.from_user.username),
                 escape(self.from_user.profile.get_screen_name()),
                 self.question.pk,
                 escape(self.get_summary(self.question.title))
-                )
+            )
         elif self.notification_type == self.ACCEPTED_ANSWER:
             return self._ACCEPTED_ANSWER_TEMPLATE.format(
                 escape(self.from_user.username),
                 escape(self.from_user.profile.get_screen_name()),
                 self.answer.question.pk,
                 escape(self.get_summary(self.answer.description))
-                )
+            )
+        elif self.notification_type == self.ALSO_ANSWERED:
+            return self._ALSO_ANSWERED_TEMPLATE.format(
+                escape(self.from_user.username),
+                escape(self.from_user.profile.get_screen_name()),
+                self.question.pk,
+                escape(self.get_summary(self.question.title))
+            )
         else:
             return 'Ooops! Something went wrong.'
 

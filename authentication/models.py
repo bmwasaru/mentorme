@@ -15,7 +15,8 @@ class Profile(models.Model):
     bio = models.TextField(blank=True, default='')
     gender = models.CharField(
         max_length=6, blank=True, choices=GENDER_CHOICES)
-    role = models.CharField(max_length=6, blank=False, default='mentee', choices=ROLE_CHOICES)
+    role = models.CharField(max_length=6, blank=False,
+                            default='mentee', choices=ROLE_CHOICES)
     phone_number = models.CharField(max_length=32, blank=True)
 
     def is_mentor(self):
@@ -41,7 +42,8 @@ class Profile(models.Model):
         interest = interest.strip()
         interests_list = interest.split(',')
         for interest in interests_list:
-            e, created = Interest.objects.get_or_create(interest=interest.lower(), profile=self)
+            e, created = Interest.objects.get_or_create(
+                interest=interest.lower(), profile=self)
 
     def get_interests(self):
         return Interest.objects.filter(profile=self)
@@ -74,6 +76,18 @@ class Profile(models.Model):
             Notification(notification_type=Notification.ANSWERED,
                          from_user=self.user,
                          to_user=question.user,
+                         question=question).save()
+
+    def notify_also_answered(self, question):
+        answers = question.get_answers()
+        users = []
+        for answer in answers:
+            if answer.user != self.user and answer.user != question.user:
+                users.append(answer.user.pk)
+        users = list(set(users))
+        for user in users:
+            Notification(notification_type=Notification.ALSO_ANSWERED,
+                         from_user=self.user, to_user=User(id=user),
                          question=question).save()
 
     def notify_accepted(self, answer):

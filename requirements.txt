@@ -1,8 +1,10 @@
 appdirs==1.4.3
+beautifulsoup4==4.5.3
 dj-database-url==0.4.1
 Django==1.10.4
 django-discover-runner==1.0
 django-role-permissions==2.0.1
+django-webtest==1.9.1
 gunicorn==19.6.0
 Markdown==2.6.8
 packaging==16.8
@@ -10,4 +12,7 @@ psycopg2==2.6.2
 pyparsing==2.2.0
 python-decouple==3.0
 six==1.10.0
+waitress==1.0.2
+WebOb==1.7.2
+WebTest==2.0.27
 whitenoise==3.2

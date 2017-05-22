@@ -5,6 +5,7 @@ from django.contrib.auth import views as auth_views
 from core import views as core_views
 from authentication import views as mentor_auth_views
 from activities import views as activities_views
+from search import views as search_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -12,41 +13,56 @@ urlpatterns = [
     url(r'^mentors/$', core_views.mentors, name='mentors'),
     url(r'^mentees/$', core_views.mentees, name='mentees'),
     # User URLs
-    url(r'^login', auth_views.login, {'template_name': 'core/cover.html'},
+    url(
+        r'^account/login',
+        auth_views.login, {'template_name': 'core/cover.html'},
         name='login'),
-    url(r'^logout', auth_views.logout, {'next_page': '/'}, name='logout'),
-    url(r'^signup/$', mentor_auth_views.signup, name='signup'),
-    url(r'^forgot_pass/$',
-        auth_views.password_reset, {
-            'template_name': 'authentication/password_reset.html',
-            'email_template_name': 'authentication/password_reset_email.html'
+    url(
+        r'^account/logout',
+        auth_views.logout, {'next_page': '/'},
+        name='logout'),
+    url(r'^account/signup/$', mentor_auth_views.signup, name='signup'),
+    url(r'^account/forgot_pass/$', auth_views.password_reset, {
+        'template_name': 'authentication/password_reset.html',
+        'email_template_name': 'authentication/password_reset_email.html'
+    }, "forgot_password"),
+    url(
+        r'^account/forgot_pass_confirm/(?P<uidb64>[^/]+)/(?P<token>[^/]+)/$',
+        auth_views.password_reset_confirm, {
+            'template_name': 'authentication/password_reset_confirm.html',
+            'post_reset_redirect': '/account/forgot_pass_complete/'
         },
-        "forgot_password"),
-    url(r'^forgot_pass_confirm/(?P<uidb64>[^/]+)/(?P<token>[^/]+)/$',
-        auth_views.password_reset_confirm,
-        {'template_name': 'authentication/password_reset_confirm.html',
-         'post_reset_redirect': '/account/forgot_pass_complete/'}, name='password_reset_confirm'),
-
-    url(r'^forgot_pass_done/', auth_views.password_reset_done,
-        {'template_name': 'authentication/password_reset_done.html'}, name='password_reset_done'),
-
+        name='password_reset_confirm'),
+    url(
+        r'^account/forgot_pass_done/',
+        auth_views.password_reset_done,
+        {'template_name': 'authentication/password_reset_done.html'},
+        name='password_reset_done'),
     url(r'^account/forgot_pass_complete/', auth_views.password_reset_complete,
         {'template_name': 'authentication/password_reset_complete.html'}),
-
-    url(r'^forgot_pass_confirm/(?P<uidb64>[^/]+)/(?P<token>[^/]+)/$',
+    url(
+        r'^account/forgot_pass_confirm/(?P<uidb64>[^/]+)/(?P<token>[^/]+)/$',
         auth_views.password_reset_confirm,
-        {'template_name': 'authentication/password_reset_confirm.html'}, name='password_reset_confirm'),
+        {'template_name': 'authentication/password_reset_confirm.html'},
+        name='password_reset_confirm'),
     url(r'^settings/$', core_views.settings, name='settings'),
     url(r'^settings/password/$', core_views.password, name='password'),
     url(r'^questions/', include('questions.urls'), name='questions'),
     url(r'^messages/', include('messenger.urls')),
-    url(r'^notifications/$', activities_views.notifications,
+    url(
+        r'^notifications/$',
+        activities_views.notifications,
         name='notifications'),
-    url(r'^notifications/last/$', activities_views.last_notifications,
+    url(
+        r'^notifications/last/$',
+        activities_views.last_notifications,
         name='last_notifications'),
-    url(r'^notifications/check/$', activities_views.check_notifications,
+    url(
+        r'^notifications/check/$',
+        activities_views.check_notifications,
         name='check_notifications'),
-    url(r'^u/(?P<username>[^/]+)/$', core_views.profile, name='profile'),
+    url(r'^search/$', search_views.search, name='search'),
+    url(r'^u/(?P<username>[\w@.-]+)/$', core_views.profile, name='profile'),
     url(r'^i18n/', include('django.conf.urls.i18n', namespace='i18n')),
 ]
 

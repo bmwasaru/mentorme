@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'activities',
     'questions',
     'messenger',
+    'search',
 ]
 
 MIDDLEWARE = [

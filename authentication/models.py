@@ -32,7 +32,7 @@ class Profile(models.Model):
         return self.user.username
 
     def get_gravatar(self):
-        gravatar_url = 'http://www.gravatar.com/avatar/{0}?{1}'.format(
+        gravatar_url = 'https://www.gravatar.com/avatar/{0}?{1}'.format(
             hashlib.md5(self.user.email.lower().encode('utf-8')).hexdigest(),
             urlencode({'s': '256'})
         )
@@ -49,12 +49,9 @@ class Profile(models.Model):
         return Interest.objects.filter(profile=self)
 
     def get_screen_name(self):
-        try:
-            if self.user.get_full_name():
-                return self.user.get_full_name()
-            else:
-                return self.user.username
-        except:
+        if self.user.get_full_name():
+            return self.user.get_full_name()
+        else:
             return self.user.username
 
     def notify_favorited(self, question):

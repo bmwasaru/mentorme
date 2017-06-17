@@ -11,7 +11,6 @@ def signup(request):
         if not form.is_valid():
             return render(request, 'authentication/signup.html',
                           {'form': form})
-
         else:
             username = form.cleaned_data.get('username')
             email = form.cleaned_data.get('email')
@@ -21,7 +20,6 @@ def signup(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             return redirect('/settings/')
-
     else:
         return render(request, 'authentication/signup.html',
                       {'form': SignUpForm()})

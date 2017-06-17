@@ -39,18 +39,13 @@
             </div>
           </div>
         {% endfor %}
-        {% comment %}
-        <div class="form-group">
-          <label for="language" class="col-sm-2 control-label">Language</label>
-          <div class="col-sm-10">
-            <select id="language" name="language" class="form-control">
-              {% for lang in LANGUAGES %}
-                <option value="{{ lang.0 }}">{{ lang.1 }}</option>
-              {% endfor %}
-            </select>
-          </div>
-        </div>
-        {% endcomment %}
+        {% if user.profile.get_interests %}
+          <p>
+            {% for interest in user.profile.get_interests %}
+              <span class="label label-primary">{{ interest }}</span>
+            {% endfor %}
+          </p>
+        {% endif %}
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-primary">{% trans 'Save' %}</button>

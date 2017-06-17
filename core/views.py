@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 
 from .forms import ChangePasswordForm, ProfileForm
+from authentication.models import Profile
 
 
 def home(request):
@@ -79,7 +80,7 @@ def settings(request):
             'role': user.profile.role,
             'bio': user.profile.bio,
             'location': user.profile.location,
-            'interests': user.profile.get_interests(),
+            'interests': user.profile.get_interests,
             })
     return render(request, 'core/settings.html', {'form': form})
 

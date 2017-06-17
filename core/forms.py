@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
-from authentication.models import Profile
+from authentication.models import Profile, MentorProfile, MenteeProfile
 from authentication.choices import GENDER_CHOICES, ROLE_CHOICES
 
 
@@ -31,14 +31,51 @@ class ProfileForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=75,
         required=False)
-    gender = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=GENDER_CHOICES)
-    role = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=ROLE_CHOICES)
+    gender = forms.ChoiceField(
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        choices=GENDER_CHOICES)
+    role = forms.ChoiceField(
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        choices=ROLE_CHOICES)
 
     class Meta:
         model = Profile
-        fields = ['first_name', 'last_name', 'interests', 'email', 'phone_number', 'gender', 'role', 'location', 'bio']
+        fields = [
+            'first_name', 'last_name', 'interests', 'email', 'phone_number',
+            'gender', 'role', 'location', 'bio'
+        ]
         widgets = {
-            'bio': forms.Textarea(attrs={'cols': 30, 'rows': 10, 'class': 'form-control'}),
+            'bio':
+            forms.Textarea(
+                attrs={'cols': 30,
+                       'rows': 10,
+                       'class': 'form-control'}),
+        }
+
+
+class MentorProfileForm(forms.ModelForm):
+
+    occupation = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        max_length=30,
+        required=True)
+
+    class Meta:
+        model = MentorProfile
+        fields = ['occupation']
+
+
+class MenteeProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = MenteeProfile
+        fields = ['expectations']
+        widgets = {
+            'expectations':
+            forms.Textarea(
+                attrs={'cols': 30,
+                       'rows': 10,
+                       'class': 'form-control'}),
         }
 
 
@@ -70,9 +107,9 @@ class ChangePasswordForm(forms.ModelForm):
         id = self.cleaned_data.get('id')
         user = User.objects.get(pk=id)
         if not user.check_password(old_password):
-            self._errors['old_password'] = self.error_class([
-                'Old password don\'t match'])
+            self._errors['old_password'] = self.error_class(
+                ['Old password don\'t match'])
         if new_password and new_password != confirm_password:
-            self._errors['new_password'] = self.error_class([
-                'Passwords don\'t match'])
+            self._errors['new_password'] = self.error_class(
+                ['Passwords don\'t match'])
         return self.cleaned_data

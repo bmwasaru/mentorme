@@ -125,5 +125,16 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
+
 post_save.connect(create_user_profile, sender=User)
 post_save.connect(save_user_profile, sender=User)
+
+
+class MentorProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    occupation = models.CharField(max_length=255)
+
+
+class MenteeProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    expectations = models.TextField()

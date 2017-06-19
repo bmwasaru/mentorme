@@ -21,7 +21,7 @@ or via ssh
     git clone git@github.com:mentor001/platform.git
 
 ### 3 Install dependencies
-On the project root there is a requirements.pip file. Make sure you install all the required dependencies before running Bootcamp
+On the project root there is a requirements.pip file. Make sure you install all the required dependencies before running Mentor001
 
     pip install -U -r requirements.txt
 

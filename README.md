@@ -25,7 +25,7 @@ On the project root there is a requirements.pip file. Make sure you install all 
 
     pip install -U -r requirements.txt
 
-### Set up local development
+### 4 Set up local development
 Copy the contents of `mentor001/local_settings.example` to a new file `mentor001/local_settings.py` and fill in the respective local database settings and generate a SECRET_KEY
 
 

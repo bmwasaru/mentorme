@@ -25,12 +25,9 @@ On the project root there is a requirements.pip file. Make sure you install all 
 
     pip install -U -r requirements.txt
 
-### 4 Python Decouple
-As the project uses **[python-decouple][0]** you will need to create a file named **.env** on the root of the project with three values, as following:
+### Set up local development
+Copy the contents of `mentor001/local_settings.example` to a new file `mentor001/local_settings.py` and fill in the respective local database settings and generate a SECRET_KEY
 
-    DEBUG=True
-    SECRET_KEY='mys3cr3tk3y'
-    DATABASE_URL='postgres://mentor001db_user:p4ssw0rd@localhost:5432/mentor001db'
 
 **Note:** You can use Django methods to create a new SECRET_KEY https://github.com/django/django/blob/master/django/core/management/commands/startproject.py
 
@@ -41,5 +38,3 @@ As the project uses **[python-decouple][0]** you will need to create a file name
 ### 6 Run
 
     python manage.py runserver
-
-[0]: https://github.com/henriquebastos/python-decouple

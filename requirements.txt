@@ -4,8 +4,8 @@ certifi==2017.4.17
 chardet==3.0.4
 dj-database-url==0.4.1
 Django==1.10.4
+django-anymail==0.10
 django-discover-runner==1.0
-django-mailgun==0.9.1
 django-role-permissions==2.0.1
 django-webtest==1.9.1
 gunicorn==19.6.0

@@ -66,5 +66,9 @@ urlpatterns = [
     url(r'^u/(?P<username>[\w@.-]+)/$', core_views.profile, name='profile'),
 ]
 
+urlpatterns += [
+    url(r'^interests/', include('interests.urls')),
+]
+
 admin.site.site_title = 'Mentor001 Adminstration'
 admin.site.site_header = 'Mentor001 Adminstration'

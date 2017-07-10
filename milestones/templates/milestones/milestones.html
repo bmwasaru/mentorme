@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block title %}Milestones{% endblock %}
+
+{% block head %}
+  <link href="{% static 'css/questions.css' %}" rel="stylesheet">
+  <script src="{% static 'js/questions.js' %}"></script>
+{% endblock head %}
+
+{% block main %}
+  <div class="page-header">
+    <a href="{% url 'add' %}" class="btn btn-primary pull-right">
+      <span class="glyphicon glyphicon-bullhorn"></span> {% trans "Add Milestone" %}
+    </a>
+    <h1>{% trans "Milestones" %}</h1>
+  </div>
+  <div class="questions">
+    <ul class="nav nav-tabs" style="margin-bottom: 1.4em">
+      <li{% if active == 'pending' %} class="active"{% endif %}><a href="{% url 'pending' %}">{% trans "Pending Milestones" %}</a></li>
+      <li{% if active == 'completed' %} class="active"{% endif %}><a href="{% url 'completed' %}">{% trans "Completed Milestones" %}</a></li>
+      <li{% if active == 'all_milestones' %} class="active"{% endif %}><a href="{% url 'all_milestones' %}">{% trans "All Milestones" %}</a></li>
+    </ul>
+    {% for milestone in milestones %}
+      {% include 'milestones/partial_milestone.html' with milestone=milestone %}
+    {% empty %}
+      <h4 class="no-data">{% trans "No milestone to display" %}</h4>
+    {% endfor %}
+    {% include 'paginator.html' with paginator=milestones %}
+  </div>
+{% endblock main %}
+
+<li{% if active == 'unanswered' %} class="active"{% endif %}><a href="{% url 'unanswered' %}">{% trans "Unanswered" %}</a></li>

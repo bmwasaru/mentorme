@@ -8,6 +8,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 from .forms import ChangePasswordForm, ProfileForm
 from authentication.models import Profile
+from interests.models import Interest
 
 
 def home(request):

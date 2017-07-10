@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'messenger',
     'search',
     'interests',
+    'milestones',
 ]
 
 MIDDLEWARE = [

@@ -17,7 +17,7 @@
     <div class="row">
       <div class="col-md-3 user-profile">
         <img class="img-responsive picture" src="{{ page_user.profile.get_gravatar }}" style="">
-        <ul>
+        <!-- <ul>
           <li><span class="glyphicon glyphicon-calendar"></span> {{ page_user.date_joined }}</li>
           {% if page_user.profile.bio %}
           <li><span class="glyphicon glyphicon-briefcase"></span> {{ page_user.profile.bio }}</li>
@@ -25,12 +25,53 @@
           {% if page_user.profile.location %}
           <li><span class="glyphicon glyphicon-map-marker"></span> {{ page_user.profile.location }}</li>
           {% endif %}
-        {% if user.profile.get_interests %}
+          {% if user.profile.get_interests %}
+            {% for interest in page_user.profile.get_interests %}
+              <span class="label label-primary">{{ interest }}</span>
+            {% endfor %}
+          {% endif %}
+        </ul>
+ -->      </div>
+      <div class="col-md-9 user-profile">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Date joined
+          </div>
+          <div class="panel-body">
+            {{ page_user.date_joined }}
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Biography
+          </div>
+          <div class="panel-body">
+            {{ page_user.profile.bio|linebreaks}}
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Location
+          </div>
+          <div class="panel-body">
+            {{ page_user.profile.location }}
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            tags
+          </div>
+          <div class="panel-body">
+            {% if user.profile.get_interests %}
                 {% for interest in page_user.profile.get_interests %}
                   <span class="label label-primary">{{ interest }}</span>
                 {% endfor %}
               {% endif %}
-        </ul>
+          </div>
+        </div>
       </div>
         </form>
       </div>

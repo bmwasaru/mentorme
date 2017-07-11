@@ -17,13 +17,31 @@
     <![endif]-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="{% static 'js/mentor001.js' %}"></script>                                                      
+    <script src="{% static 'js/mentor001.js' %}"></script>        
+    <style>
+      panel-body{
+        padding: 10px;
+      }
+      .panel > .panel-heading {
+        color: #fff;
+        background-color: #31708f;
+      }
+      /*a{
+        color: #fff;
+      }*/
+      .btn-primary{
+        background-color: #31708f;
+      }
+      .navbar-brand{
+        color: #fff;
+      }
+    </style>                                              
     {% block head %}{% endblock %}
   </head>
   <body>
     {% block body %}
       <header>
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background-color:#006389;">
           <div class="container">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">

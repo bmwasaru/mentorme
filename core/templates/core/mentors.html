@@ -16,14 +16,15 @@
 
     <div class="row">
       {% for user in users %}
-        <div class="col-md-4">
+        <div class="col-md-3">
+          <a href="{% url 'profile' user.username %}">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <a href="{% url 'profile' user.username %}">{{ user.profile.get_screen_name }}</a>
+              {{ user.profile.get_screen_name }}
             </div>
             <div class="panel-body">
             <img class="img-responsive picture" src="{{ user.profile.get_gravatar }}" style="">
-              <p><strong>{% trans 'Username' %}: </strong> {{ user.username }}</p>
+              <!-- <p><strong>{% trans 'Username' %}: </strong> {{ user.username }}</p>
               {% if user.profile.location %}
                 <p><strong>{% trans 'Location' %}:</strong> {{ user.profile.location }}</p>
               {% endif %}
@@ -37,12 +38,13 @@
                 {% for interest in user.profile.get_interests %}
                   <span class="label label-primary">{{ interest }}</span>
                 {% endfor %}
-              {% endif %}
+              {% endif %} -->
               {% if user.profile.is_mentee %}
                 <a href="{%  url 'request-mentorship' user.id %}"><button type="button" class="btn btn-default glyphicon glyphicon-plus">Request Mentorship</button></a>
               {% endif %}
             </div>
           </div>
+          </a>
         </div>
         {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
       {% endfor %}

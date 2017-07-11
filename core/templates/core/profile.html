@@ -16,22 +16,34 @@
   <div class="profile">
     <div class="row">
       <div class="col-md-3 user-profile">
-        <img class="img-responsive picture" src="{{ page_user.profile.get_gravatar }}" style="">
-        <!-- <ul>
-          <li><span class="glyphicon glyphicon-calendar"></span> {{ page_user.date_joined }}</li>
-          {% if page_user.profile.bio %}
-          <li><span class="glyphicon glyphicon-briefcase"></span> {{ page_user.profile.bio }}</li>
-          {% endif %}
-          {% if page_user.profile.location %}
-          <li><span class="glyphicon glyphicon-map-marker"></span> {{ page_user.profile.location }}</li>
-          {% endif %}
-          {% if user.profile.get_interests %}
-            {% for interest in page_user.profile.get_interests %}
-              <span class="label label-primary">{{ interest }}</span>
-            {% endfor %}
-          {% endif %}
-        </ul>
- -->      </div>
+        <img class="img-responsive picture" src="{{ page_user.profile.get_gravatar }}" style=""><br>
+        <a class="btn btn-primary" data-toggle="modal" data-target="#myModal" >Message this person</a><br><br>
+        <a class="btn btn-primary" data-toggle="modal" data-target="#myModal" >Create milestone for this person</a><br><br>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+              <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+
+
       <div class="col-md-9 user-profile">
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -62,7 +74,7 @@
 
         <div class="panel panel-default">
           <div class="panel-heading">
-            tags
+            Interests
           </div>
           <div class="panel-body">
             {% if user.profile.get_interests %}

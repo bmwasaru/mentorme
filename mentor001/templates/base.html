@@ -24,24 +24,30 @@
       }
       .panel > .panel-heading {
         color: #fff;
-        background-color: #31708f;
+        background-color: #4267b2;
       }
       /*a{
         color: #fff;
       }*/
       .btn-primary{
-        background-color: #31708f;
+        background-color: #29487d;
       }
       .navbar-brand{
         color: #fff;
       }
+      body{
+        background-color: #f3f3f3;
+      }
+      /*.navbar-default.navbar-nav>li>a {
+          color: #777;
+      }*/
     </style>                                              
     {% block head %}{% endblock %}
   </head>
   <body>
     {% block body %}
       <header>
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background-color:#006389;">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background-color:#4267b2;">
           <div class="container">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
@@ -50,7 +56,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="{% url 'questions' %}">Mentor001</a>
+              <a style="color: #fff" class="navbar-brand" href="{% url 'questions' %}">Mentor001</a>
             </div>
             <div class="collapse navbar-collapse" id="menu">
               <ul class="nav navbar-nav">
@@ -67,20 +73,20 @@
                   </form>
               {% endif %}
               <ul class="nav navbar-nav navbar-right">
-                  <li><a href="{% url 'mentors' %}">{% trans 'Mentors' %}</a></li>
-                  <li><a href="{% url 'mentees' %}">{% trans 'Mentees' %}</a></li>
-                  <li><a href="{% url 'questions' %}">{% trans 'Forum' %}</a></li>
-                  <li><a href="{% url 'inbox' %}"><sup><span class="badge pull-right" id="unread-count">0</span></sup> Inbox </a></li>
+                  <li><a style="color: #fff" href="{% url 'mentors' %}">{% trans 'Mentors' %}</a></li>
+                  <li><a style="color: #fff" href="{% url 'mentees' %}">{% trans 'Mentees' %}</a></li>
+                  <li><a style="color: #fff" href="{% url 'questions' %}">{% trans 'Forum' %}</a></li>
+                  <li><a style="color: #fff" href="{% url 'inbox' %}"><sup><span class="badge pull-right" id="unread-count">0</span></sup> Inbox </a></li>
                   <li>
                   <a href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
                     <span class="glyphicon glyphicon-bell"></span>
                   </a>
                 </li>
                 <li>
-                  <a href="{% url 'profile' username=user.username %}">{{ user.profile.get_screen_name }}</a>
+                  <a style="color: #fff" href="{% url 'profile' username=user.username %}">{{ user.profile.get_screen_name }}</a>
                 </li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
+                  <a style="color: #fff" href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
                   <ul class="dropdown-menu">
 {#                    <li><a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span> Inbox</a></li>#}
                     <li><a href="{% url 'settings' %}">{% trans 'Account Settings' %}</a></li>

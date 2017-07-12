@@ -7,12 +7,12 @@
 
 {% block container %}
   {% if messages %}
-  <ul class="conversation">
+  <div class="conversation">
     {% for message in messages %}
       {% include 'messenger/includes/partial_message.html' with message=message %}
     {% endfor %}
-    <li class="send-message">
-      <img src="{{ user.profile.get_picture }}" class="picture">
+    <div class="send-message">
+      <!-- <img src="{{ user.profile.get_picture }}" class="picture"> -->
       <div style="margin-top: .3em">
         <form role="form" method="post" action="{% url 'send_message' %}" id="send">
           {% csrf_token %}
@@ -20,8 +20,8 @@
           <input class="form-control" type="text" name="message" placeholder="Write a message..." maxlength="1000" autocomplete="off">
         </form>
       </div>
-    </li>
-  </ul>
+    </div>
+  </div>
   {% else %}
     <h4>Your inbox is empty!</h4>
   {% endif %}

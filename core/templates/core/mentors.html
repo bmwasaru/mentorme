@@ -19,9 +19,9 @@
         <div class="col-md-3 col-sm-4 col-xs-6">
           <a href="{% url 'profile' user.username %}">
           <div class="panel panel-default">
-            <div class="panel-heading">
+            <!-- <div class="panel-heading">
               {{ user.profile.get_screen_name }}
-            </div>
+            </div> -->
             <div class="panel-body">
             <img class="img-responsive picture" src="{{ user.profile.get_gravatar }}" style="">
               <!-- <p><strong>{% trans 'Username' %}: </strong> {{ user.username }}</p>

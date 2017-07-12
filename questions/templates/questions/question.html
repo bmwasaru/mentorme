@@ -24,7 +24,7 @@
       {% endif %}
       <span class="favorite-count">{{ question.favorites }}</span>
     </div>
-    <div class="col-md-11">
+    <div class="col-md-7">
       <h2>{{ question.title }}</h2>
       <div class="question-user">
         <a href="{% url 'profile' question.user.username %}"><img src="{{ question.user.profile.get_gravatar }}" class="user"></a>
@@ -43,8 +43,9 @@
       {% endif %}
     </div>
   </div>
-  <h4 class="page-header">Answers</h4>
-  <div class="answers">
+ 
+  <div class="answers col-md-8">
+   <h4 class="page-header">Answers</h4>
     {% for answer in question.get_answers %}
       {% include 'questions/partial_answer.html' with question=question answer=answer %}
     {% endfor %}

@@ -16,7 +16,7 @@
     </a>
     <h1>{% trans "Questions" %}</h1>
   </div>
-  <div class="questions">
+  <div class="col-md-8 questions">
     <ul class="nav nav-tabs" style="margin-bottom: 1.4em">
       <li{% if active == 'unanswered' %} class="active"{% endif %}><a href="{% url 'unanswered' %}">{% trans "Unanswered" %}</a></li>
       <li{% if active == 'answered' %} class="active"{% endif %}><a href="{% url 'answered' %}">{% trans "Answered" %}</a></li>

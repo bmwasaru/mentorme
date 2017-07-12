@@ -8,6 +8,7 @@
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <link href="{% static 'css/mentor.css' %}?v=1" rel="stylesheet">
+    <link href="{% static 'css/chatbubble.css' %}?v=1" rel="stylesheet">
     <!-- link href="{% static 'css/bootstrap.min.css' %}?v=1" rel="stylesheet">
     <link href="{% static 'css/material-kit.css' %}?v=1" rel="stylesheet">
     <link href="{% static 'css/material-dashboard.css' %}?v=1" rel="stylesheet"> -->
@@ -41,10 +42,14 @@
       /*.navbar-default.navbar-nav>li>a {
           color: #777;
       }*/
+      .tab-pane{
+          height:10px;
+          overflow-y:scroll;
+      }
     </style>                                              
     {% block head %}{% endblock %}
   </head>
-  <body>
+  <body style="overflow:auto; padding-bottom: 50px;">
     {% block body %}
       <header>
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background-color:#4267b2;">
@@ -108,5 +113,25 @@
       <script src="{% static 'js/notifications.js' %}"></script>
       <script src="{% static 'js/check_messages.js' %}"></script>
     {% endblock body %}
+
+<!-- <div style="margin-top: 20px">
+  <div class="copyright">
+      <div class="container">
+        <div class="col-md-6">
+          <p>© 2016 - All Rights with Mentor001</p>
+        </div>
+        <div class="col-md-6">
+          <ul class="bottom_ul">
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Faq's</a></li>
+            <li><a href="#">Contact us</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+</div> -->
+    
+
   </body>
 </html>

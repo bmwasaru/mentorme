@@ -1,6 +1,7 @@
 <li>
-  <img src="{{ message.from_user.profile.get_picture }}" class="picture">
-  <div>
+<div class="talk-bubble tri-right round left-top" style="margin-left: 2px;">
+  <!-- <img src="{{ message.from_user.profile.get_picture }}" class="picture"> -->
+  <div class="talktext" style="margin-left: 10px">
     <h5>
       <small class="pull-right">
         {{ message.date|date:'N d G:i' }}
@@ -9,6 +10,6 @@
         {{ message.from_user.profile.get_screen_name }}
       </a>
     </h5>
-    {{ message.message }}
-  </div>
+    {{ message.message | linebreaks }}</div>
+</div>
 </li>

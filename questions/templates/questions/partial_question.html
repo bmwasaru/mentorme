@@ -26,7 +26,7 @@
       <span class="asked">asked {{ question.update_date|naturaltime }}</span>
     </div>
     <div class="question-description">
-      {{ question.get_description_preview_as_markdown|safe }}
+      {{ question.get_description_preview_as_markdown|safe | linebreaks }}
     </div>
     {% if question.get_tags %}
       <p>

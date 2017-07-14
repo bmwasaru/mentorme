@@ -16,7 +16,7 @@ urlpatterns = [
     # User URLs
     url(
         r'^account/login',
-        auth_views.login, {'template_name': 'core/cover.html'},
+        auth_views.login, {'template_name': 'core/includes/initial_setup.html'},
         name='login'),
     url(
         r'^account/logout',

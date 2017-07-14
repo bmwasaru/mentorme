@@ -18,6 +18,7 @@ class Profile(models.Model):
     role = models.CharField(max_length=6, blank=False,
                             default='mentee', choices=ROLE_CHOICES)
     phone_number = models.CharField(max_length=32, blank=True)
+    is_previously_logged_in = models.CharField(max_length=5, default=False)
 
     def is_mentor(self):
         return self.role == 'mentor'

@@ -124,7 +124,7 @@ STATICFILES_DIRS = [
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_URL = '/'
-LOGIN_REDIRECT_URL = '/questions/'
+LOGIN_REDIRECT_URL = '/initial_setup/'
 
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 

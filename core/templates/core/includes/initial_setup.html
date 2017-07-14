@@ -7,48 +7,26 @@
 {% endblock head %}
 
 {% block body %}
-
-<div class="col-md-2">
-  
-</div>
-
+<h1 class="logo"><a href="{% url 'home' %}">Mentor 001</a></h1>
 <div class="signup">
-{% if messages %}
-  {% for message in messages %}
-    <div class="alert alert-success alert-dismissable">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      {{ message }}
-    </div>
-  {% endfor %}
-{% endif %}
-
-<h3 style="margin-top: 0">{% trans 'Initial Account Setup' %}</h3>
-<form role="form" class="form-horizontal" method="post" action="{% url 'initial_setup' %}">
-  {% csrf_token %}
-  {% for field in form.visible_fields %}
-    <div class="form-group{% if field.errors %} has-error{% endif %}">
-      <label for="{{ field.label }}" class="col-sm-2 control-label">{{ field.label }}</label>
-      <div class="col-sm-10">
-        {{ field }}
-        {% if field.help_text %}
-          <span class="help-block">{{ field.help_text }}</span>
-        {% endif %}
-        {% for error in field.errors %}
-          <label class="control-label">{{ error }}</label>
-        {% endfor %}
+  <h2>{% trans 'Initial Account Setup' %}</h2>
+  <form role="form" method="post" action="{% url 'initial_setup' %}">
+    {% csrf_token %}
+    {% for field in form.visible_fields %}
+      <div class="form-group{% if field.errors %} has-error{% endif %}">
+        <label for="{{ field.label }}">{{ field.label }}</label>
+          {{ field }}
+          {% if field.help_text %}
+            <span class="help-block">{{ field.help_text }}</span>
+          {% endif %}
+          {% for error in field.errors %}
+            <label class="control-label">{{ error }}</label>
+          {% endfor %}
       </div>
+    {% endfor %}
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-lg">{% trans 'Save' %}</button>
     </div>
-  {% endfor %}
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-primary">{% trans 'Save' %}</button>
-    </div>
-  </div>
-</form>
+  </form>
 </div>
-
-<div class="col-md-2">
-  
-</div>
-
 {% endblock body %}

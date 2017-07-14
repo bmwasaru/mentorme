@@ -58,27 +58,38 @@ def profile(request, username):
 @login_required
 def initial_setup(request):
     user = request.user
-    if request.method == 'POST':
-        form = ProfileForm(request.POST)
-        if form.is_valid():
-            user.first_name = form.cleaned_data.get('first_name')
-            user.last_name = form.cleaned_data.get('last_name')
-            user.profile.gender = form.cleaned_data.get('gender')
-            user.profile.role = form.cleaned_data.get('role')
-            user.profile.phone_number = form.cleaned_data.get('phone_number')
-            user.email = form.cleaned_data.get('email')
-            user.profile.bio = form.cleaned_data.get('bio')
-            user.profile.location = form.cleaned_data.get('location')
-            user.profile.create_interests(form.cleaned_data.get('interests'))
-            user.save()
-            messages.add_message(request,
-                                 messages.SUCCESS,
-                                 'Your account was successfully setup.')
-            return redirect('questions')
-
+    if Profile.objects.filter(is_previously_logged_in=True, user=user):
+        return HttpResponseRedirect('/questions/')
     else:
-        form = ProfileForm(instance=user)
-    return render(request, 'core/includes/initial_setup.html', {'form': form})
+        if request.method == 'POST':
+            form = ProfileForm(request.POST)
+            if form.is_valid():
+                user.first_name = form.cleaned_data.get('first_name')
+                user.last_name = form.cleaned_data.get('last_name')
+                user.profile.gender = form.cleaned_data.get('gender')
+                user.profile.role = form.cleaned_data.get('role')
+                user.profile.phone_number = form.cleaned_data.get('phone_number')
+                user.email = form.cleaned_data.get('email')
+                user.profile.bio = form.cleaned_data.get('bio')
+                user.profile.location = form.cleaned_data.get('location')
+                user.profile.create_interests(form.cleaned_data.get('interests'))
+                user.profile.is_previously_logged_in = True
+                user.save()
+                messages.add_message(request,
+                                     messages.SUCCESS,
+                                     'Your account was successfully setup.')
+                return redirect('questions')
+
+        else:
+            form = ProfileForm(instance=user, initial={
+            'phone_number': user.profile.phone_number,
+            'role': user.profile.role,
+            'bio': user.profile.bio,
+            'location': user.profile.location,
+            'interests': user.profile.get_interests,
+            })
+        return render(request, 'core/includes/initial_setup.html', {'form': form})
+        
 
 
 @login_required

@@ -19,7 +19,7 @@ def signup(request):
                                      email=email)
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect('/settings/')
+            return redirect('/account/login/')
     else:
         return render(request, 'authentication/signup.html',
                       {'form': SignUpForm()})

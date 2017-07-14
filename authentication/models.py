@@ -11,13 +11,13 @@ from activities.models import Notification
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    location = models.CharField(max_length=50, null=True, blank=True)
+    location = models.CharField(max_length=50)
     bio = models.TextField(blank=True, default='')
     gender = models.CharField(
-        max_length=6, blank=True, choices=GENDER_CHOICES)
+        max_length=6, choices=GENDER_CHOICES)
     role = models.CharField(max_length=6, blank=False,
                             default='mentee', choices=ROLE_CHOICES)
-    phone_number = models.CharField(max_length=32, blank=True)
+    phone_number = models.CharField(max_length=32)
     is_previously_logged_in = models.CharField(max_length=5, default=False)
 
     def is_mentor(self):

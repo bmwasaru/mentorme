@@ -12,11 +12,11 @@
   <div class="page-header">
     <h1>Mentors</h1>
   </div>
-  <div class="users">
+  <!-- <div class="users"> -->
 
     <div class="row">
       {% for user in users %}
-        <div class="col-md-3 col-sm-4 col-xs-6">
+        <div class="col-md-2 col-sm-3 col-xs-4">
           <a href="{% url 'profile' user.username %}">
           <div class="panel panel-default">
             <!-- <div class="panel-heading">
@@ -24,21 +24,6 @@
             </div> -->
             <div class="panel-body">
             <img class="img-responsive picture" src="{{ user.profile.get_gravatar }}" style="">
-              <!-- <p><strong>{% trans 'Username' %}: </strong> {{ user.username }}</p>
-              {% if user.profile.location %}
-                <p><strong>{% trans 'Location' %}:</strong> {{ user.profile.location }}</p>
-              {% endif %}
-              {% if user.profile.url %}
-                <p><strong>{% trans 'Url' %}:</strong> {{ user.profile.get_url }}</p>
-              {% endif %}
-                {% if user.profile.bio %}
-                <p><strong>{% trans 'Bio' %}:</strong> {{ user.profile.bio }}</p>
-              {% endif %}
-              {% if user.profile.get_interests %}
-                {% for interest in user.profile.get_interests %}
-                  <span class="label label-primary">{{ interest }}</span>
-                {% endfor %}
-              {% endif %} -->
               {% if user.profile.is_mentee %}
                 <a href="{%  url 'request-mentorship' user.id %}"><button type="button" class="btn btn-default glyphicon glyphicon-plus">Request Mentorship</button></a>
               {% endif %}
@@ -56,5 +41,5 @@
       </div>
     </div>
 
-  </div>
+ <!--  </div> -->
 {% endblock main %}

@@ -16,72 +16,33 @@
   <div class="profile">
     <div class="row">
       <div class="col-md-3 user-profile">
-        <img class="img-responsive picture" src="{{ page_user.profile.get_gravatar }}" style=""><br>
-        <a class="btn btn-primary" data-toggle="modal" data-target="#myModal" >Message this person</a><br><br>
-        <a class="btn btn-primary" data-toggle="modal" data-target="#myModal" >Create milestone for this person</a><br><br>
-      </div>
-
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-        
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Modal Header</h4>
-            </div>
-            <div class="modal-body">
-              <p>Some text in the modal.</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-          
-        </div>
+        <img class="img-responsive picture" src="{{ page_user.profile.get_gravatar }}" style=""><br></a><br><br>
       </div>
 
       <div class="col-md-9 user-profile">
+        <a class="btn btn-primary" data-toggle="modal" data-target="#myModal" >Message this person</a><br><br>
+        <!-- Modal -->
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Messages</h4>
+                </div>
+                <div class="modal-body">
+                  My name is Aisha Simons and I am a licensed therapist (license number LPC 004784). Welcome to the online counseling room, which will be our private and secure place to communicate. 
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
 
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            Date joined
-          </div>
-          <div class="panel-body">
-            {{ page_user.date_joined }}
-          </div>
-        </div>
-
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            Biography
-          </div>
-          <div class="panel-body">
-            {{ page_user.profile.bio|linebreaks}}
-          </div>
-        </div>
-
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            Location
-          </div>
-          <div class="panel-body">
-            {{ page_user.profile.location }}
-          </div>
-        </div>
-
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            Interests
-          </div>
-          <div class="panel-body">
-            {% if user.profile.get_interests %}
-                {% for interest in page_user.profile.get_interests %}
-                  <span class="label label-primary">{{ interest }}</span>
-                {% endfor %}
-              {% endif %}
-          </div>
+          {% include 'core/includes/partial_profile.html' %}
         </div>
       </div>
         </form>

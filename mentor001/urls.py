@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^$', core_views.home, name='home'),
     url(r'^mentors/$', core_views.mentors, name='mentors'),
     url(r'^mentees/$', core_views.mentees, name='mentees'),
+    url(r'^initial_setup/$', core_views.initial_setup, name='initial_setup'),
     # User URLs
     url(
         r'^account/login',

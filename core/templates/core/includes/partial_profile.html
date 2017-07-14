@@ -1,0 +1,29 @@
+<div class="talk-bubble col-md-12">
+  <div class="talktext">
+    <ul>
+      <li>
+        <b>Date joined</b><br>
+        {{ page_user.date_joined }}<br><br>
+      </li>
+
+      <li>
+      <b>Biography</b><br>
+      {{ page_user.profile.bio|linebreaks}}
+      </li>
+
+      <li>
+      <b>Location</b><br>
+      {{ page_user.profile.location }}<br><br>
+      </li>
+
+      <li>
+      <b>Interests</b><br>
+      {% if user.profile.get_interests %}
+        {% for interest in page_user.profile.get_interests %}
+          <span class="label label-primary">{{ interest }}</span>
+        {% endfor %}
+      {% endif %}
+      </li>
+     </ul> 
+  </div>
+</div>

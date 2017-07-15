@@ -20,7 +20,7 @@
       </div>
 
       <div class="col-md-9 user-profile">
-        <a class="btn btn-primary" data-toggle="modal" data-target="#myModal" >Message this person</a><br><br>
+
         <!-- Modal -->
           <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog">
@@ -43,6 +43,18 @@
           </div>
 
           {% include 'core/includes/partial_profile.html' %}
+
+            <!-- <div class="send-message">
+              <img src="{{ user.profile.get_picture }}" class="picture">
+              <div style="margin-top: .3em">
+                <form role="form" method="post" action="{% url 'send_message' %}" id="send">
+                  {% csrf_token %}
+                  <input type="hidden" name="to" value="{{ page_user.profile.get_screen_name }}">
+                  <input class="form-control" type="text" name="message" placeholder="Write a message..." maxlength="1000" autocomplete="off">
+                </form>
+              </div>
+            </div> -->
+          <a class="btn btn-primary" data-toggle="modal" data-target="#myModal" >Message this person</a><br><br>
         </div>
       </div>
         </form>

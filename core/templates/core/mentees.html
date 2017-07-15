@@ -12,23 +12,18 @@
   <div class="page-header">
     <h1>Mentees</h1>
   </div>
-  <!-- <div class="users"> -->
 
     <div class="row">
       {% for user in users %}
         <div class="col-md-2 col-sm-4 col-xs-6">
-        <a href="{% url 'profile' user.username %}">
+        <a href="{% url 'profile' user.username %}" data-toggle="tooltip" data-placement="auto" title="{{ user.profile.get_screen_name }}" class="blue-tooltip">
           <div class="panel panel-default">
-            <!-- <div class="panel-heading">
-              {{ user.profile.get_screen_name }}
-            </div> -->
             <div class="panel-body">
-            <img class="img-responsive picture" src="{{ user.profile.get_gravatar }}">
+              <img class="img-responsive picture" src="{{ user.profile.get_gravatar }}">
             </div>
           </div>
           </a>
         </div>
-        {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
       {% endfor %}
     </div>
 
@@ -38,5 +33,4 @@
       </div>
     </div>
 
- <!--  </div> -->
 {% endblock main %}

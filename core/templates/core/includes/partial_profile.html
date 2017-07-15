@@ -1,19 +1,9 @@
-<div class="talk-bubble col-md-12">
+<div class="talk-bubble col-md-12" style="height: 300px; overflow-y:scroll;">
   <div class="talktext">
     <ul>
       <li>
         <b>Date joined</b><br>
         {{ page_user.date_joined }}<br><br>
-      </li>
-
-      <li>
-        <b>Phone Number</b><br>
-        {{ page_user.profile.phone_number }}<br><br>
-      </li>
-
-      <li>
-        <b>Email</b><br>
-        {{ page_user.email }}<br><br>
       </li>
 
       <li>
@@ -27,18 +17,32 @@
       </li>
 
       <li>
+        <b>Education</b><br>
+        {{ page_user.profile.education }} : {{ page_user.profile.education_description }}<br><br>
+      </li> 
+
+      <li>
       <b>Biography</b><br>
       {{ page_user.profile.bio|linebreaks}}
       </li>
 
       <li>
+        <b>Areas I would like mentorship in</b><br>
+        {% for item in page_user.profile.mentorship_areas %}
+        <li>
+          {{ item }}
+        </li> 
+        {% endfor %} <br><br>
+      </li>
+
+      <!-- <li>
       <b>Interests</b><br>
       {% if user.profile.get_interests %}
         {% for interest in page_user.profile.get_interests %}
           <span class="label label-primary">{{ interest }}</span>
         {% endfor %}
       {% endif %}
-      </li>
+      </li> -->
      </ul> 
   </div>
 </div>

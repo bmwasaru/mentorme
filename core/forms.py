@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 from authentication.models import Profile
-from authentication.choices import GENDER_CHOICES, ROLE_CHOICES
+from authentication.choices import (GENDER_CHOICES, ROLE_CHOICES, 
+    EDUCATION_CHOICES, MENTORSHIP_AREAS_CHOICES)
 
 
 class ProfileForm(forms.ModelForm):
@@ -19,10 +20,10 @@ class ProfileForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=50,
         required=False)
-    interests = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control'}),
-        max_length=50,
-        required=False)
+    # interests = forms.CharField(
+    #     widget=forms.TextInput(attrs={'class': 'form-control'}),
+    #     max_length=50,
+    #     required=False)
     phone_number = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=50,
@@ -31,14 +32,23 @@ class ProfileForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=75,
         required=False)
-    gender = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=GENDER_CHOICES)
-    role = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=ROLE_CHOICES)
+    gender = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), 
+        choices=GENDER_CHOICES)
+    role = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), 
+        choices=ROLE_CHOICES)
+    education = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), 
+        choices=EDUCATION_CHOICES)
+    mentorship_areas = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, 
+        choices=MENTORSHIP_AREAS_CHOICES)
 
     class Meta:
         model = Profile
-        fields = ['first_name', 'last_name', 'interests', 'email', 'phone_number', 'gender', 'role', 'location', 'bio']
+        fields = ['first_name', 'last_name', 'email', 'phone_number', 
+                  'gender', 'location', 'role', 'education', 
+                  'education_description', 'bio', 'mentorship_areas']
         widgets = {
             'bio': forms.Textarea(attrs={'cols': 30, 'rows': 10, 'class': 'form-control'}),
+            'education_description': forms.Textarea(attrs={'cols': 30, 'rows': 4, 'class': 'form-control'}),
         }
 
 

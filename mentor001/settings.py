@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'search',
     'interests',
     'milestones',
+    'multiselectfield',
 ]
 
 MIDDLEWARE = [
@@ -124,7 +125,7 @@ STATICFILES_DIRS = [
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_URL = '/'
-LOGIN_REDIRECT_URL = '/initial_setup/'
+LOGIN_REDIRECT_URL = '/setup/'
 
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 

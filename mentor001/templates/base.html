@@ -30,6 +30,7 @@
         color: #fff;
       }
       body{
+        /*background-image: url("{% static 'img/sidebar-3.jpg' %}");*/
         background-color: #f3f3f3;
       }
       /*.navbar-default.navbar-nav>li>a {
@@ -38,6 +39,9 @@
       .tab-pane{
           height:10px;
           overflow-y:scroll;
+      }
+      /*.tooltip-arrow,*/ .blue-tooltip + .tooltip > .tooltip-inner {
+        background-color: #4267b2;
       }
     </style>                                              
     {% block head %}{% endblock %}
@@ -126,6 +130,11 @@
     </div>
 </div> -->
     
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    </script>
 
   </body>
 </html>

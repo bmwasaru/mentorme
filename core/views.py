@@ -72,7 +72,10 @@ def initial_setup(request):
                 user.email = form.cleaned_data.get('email')
                 user.profile.bio = form.cleaned_data.get('bio')
                 user.profile.location = form.cleaned_data.get('location')
-                user.profile.create_interests(form.cleaned_data.get('interests'))
+                user.profile.education = form.cleaned_data.get('education')
+                user.profile.education_description = form.cleaned_data.get('education_description')
+                user.profile.mentorship_areas = form.cleaned_data.get('mentorship_areas')
+                # user.profile.create_interests(form.cleaned_data.get('interests'))
                 user.profile.is_previously_logged_in = True
                 user.save()
                 messages.add_message(request,
@@ -86,7 +89,10 @@ def initial_setup(request):
             'role': user.profile.role,
             'bio': user.profile.bio,
             'location': user.profile.location,
-            'interests': user.profile.get_interests,
+            'education': user.profile.education,
+            'education_description': user.profile.education_description,
+            'mentorship_areas': user.profile.mentorship_areas,
+            # 'interests': user.profile.get_interests,
             })
         return render(request, 'core/includes/initial_setup.html', {'form': form})
         
@@ -106,7 +112,10 @@ def settings(request):
             user.email = form.cleaned_data.get('email')
             user.profile.bio = form.cleaned_data.get('bio')
             user.profile.location = form.cleaned_data.get('location')
-            user.profile.create_interests(form.cleaned_data.get('interests'))
+            user.profile.education = form.cleaned_data.get('education')
+            user.profile.education_description = form.cleaned_data.get('education_description')
+            user.profile.mentorship_areas = form.cleaned_data.get('mentorship_areas')
+            # user.profile.create_interests(form.cleaned_data.get('interests'))
             user.save()
             messages.add_message(request,
                                  messages.SUCCESS,
@@ -118,7 +127,10 @@ def settings(request):
             'role': user.profile.role,
             'bio': user.profile.bio,
             'location': user.profile.location,
-            'interests': user.profile.get_interests,
+            'education': user.profile.education,
+            'education_description': user.profile.education_description,
+            'mentorship_areas': user.profile.mentorship_areas,
+            # 'interests': user.profile.get_interests,
             })
     return render(request, 'core/settings.html', {'form': form})
 

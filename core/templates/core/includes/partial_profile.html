@@ -16,24 +16,24 @@
       {{ page_user.profile.location }}<br><br>
       </li>
 
-      <li>
+      <!-- <li>
         <b>Education</b><br>
         {{ page_user.profile.education }} : {{ page_user.profile.education_description }}<br><br>
-      </li> 
+      </li>  -->
 
       <li>
       <b>Biography</b><br>
       {{ page_user.profile.bio|linebreaks}}
       </li>
 
-      <li>
+      <!-- <li>
         <b>Areas I would like mentorship in</b><br>
         {% for item in page_user.profile.mentorship_areas %}
         <li>
           {{ item }}
         </li> 
         {% endfor %} <br><br>
-      </li>
+      </li> -->
 
       <!-- <li>
       <b>Interests</b><br>

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load staticfiles i18n %}
+
+{% block head %}
+  <link href="{% static 'css/signup.css' %}" rel="stylesheet">
+{% endblock head %}
+
+{% block body %}
+<h1 class="logo"><a href="{% url 'login' %}">Mentor 001</a></h1>
+<div class="signup">
+  <h2>{% trans 'Mentorship Areas' %}</h2>
+    <form role="form" class="form-horizontal" method="post" action="{% url 'mentorship_areas' %}">
+      {% csrf_token %}
+      {% for field in form.visible_fields %}
+        <div class="form-group{% if field.errors %} has-error{% endif %}">
+          <label for="{{ field.label }}" class="col-sm-2 control-label">{{ field.label }}</label>
+          <div class="col-sm-10">
+            {{ field }}
+            {% if field.help_text %}
+              <span class="help-block">{{ field.help_text }}</span>
+            {% endif %}
+            {% for error in field.errors %}
+              <label class="control-label">{{ error }}</label>
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-primary">{% trans 'Next' %}</button>
+        </div>
+      </div>
+    </form>
+</div>
+{% endblock body %}

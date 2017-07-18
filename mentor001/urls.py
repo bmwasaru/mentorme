@@ -13,6 +13,9 @@ urlpatterns = [
     url(r'^mentors/$', core_views.mentors, name='mentors'),
     url(r'^mentees/$', core_views.mentees, name='mentees'),
     url(r'^setup/$', core_views.initial_setup, name='initial_setup'),
+    url(r'^education/$', core_views.education, name='education'),
+    url(r'^experience/$', core_views.experience, name='experience'),
+    url(r'^mentorship_areas/$', core_views.mentorship_areas, name='mentorship_areas'),
     # User URLs
     url(
         r'^account/login',

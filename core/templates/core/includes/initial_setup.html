@@ -101,7 +101,7 @@
           {% endfor %}
       </div> -->
 
-      <div class="form-group{% if form.errors %} has-error{% endif %}">
+      <!-- <div class="form-group{% if form.errors %} has-error{% endif %}">
         <label for="{{ form.label }}">{{ form.education.label }}</label>
           {{ form.education }}
           {% if form.education.help_text %}
@@ -121,7 +121,7 @@
           {% for error in form.education_description.errors %}
             <label class="control-label">{{ error }}</label>
           {% endfor %}
-      </div>
+      </div> -->
 
       <div class="form-group{% if form.errors %} has-error{% endif %}">
         <label for="{{ form.label }}">{{ form.bio.label }}</label>
@@ -134,7 +134,7 @@
           {% endfor %}
       </div>
 
-      <div class="form-group{% if form.errors %} has-error{% endif %}" style="margin-left: 10px;">
+      <!-- <div class="form-group{% if form.errors %} has-error{% endif %}" style="margin-left: 10px;">
       <label for="{{ form.label }}">What areas would you like to be mentored in?</label>
       {% for value, text in form.mentorship_areas.field.choices %}
         <div class="checkbox" >
@@ -142,7 +142,7 @@
           <label>{{ text }}</label>
         </div>
       {% endfor %}
-      </div>
+      </div> -->
     <div class="form-group">
         <button type="submit" class="btn btn-primary btn-lg">{% trans 'Save' %}</button>
     </div>

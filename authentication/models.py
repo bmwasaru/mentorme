@@ -5,7 +5,8 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 
-from .choices import GENDER_CHOICES, ROLE_CHOICES, EDUCATION_CHOICES, MENTORSHIP_AREAS_CHOICES
+from .choices import GENDER_CHOICES, ROLE_CHOICES
+from core.choices import EDUCATION_CHOICES, MENTORSHIP_AREAS_CHOICES
 from activities.models import Notification
 
 from multiselectfield import MultiSelectField
@@ -21,13 +22,6 @@ class Profile(models.Model):
         default='mentee', 
         choices=ROLE_CHOICES)
     phone_number = models.CharField(max_length=32)
-    education = models.CharField(max_length=50, 
-        choices=EDUCATION_CHOICES, 
-        default='secondary')
-    education_description = models.TextField(default='')
-    mentorship_areas = MultiSelectField(choices=MENTORSHIP_AREAS_CHOICES, 
-        max_choices=3,
-        default='')
     is_previously_logged_in = models.CharField(max_length=5, default=False)
 
     def is_mentor(self):
@@ -48,16 +42,6 @@ class Profile(models.Model):
             urlencode({'s': '256'})
         )
         return gravatar_url
-
-    def create_interests(self, interest):
-        interest = interest.strip()
-        interests_list = interest.split(',')
-        for interest in interests_list:
-            e, created = Interest.objects.get_or_create(
-                interest=interest.lower(), profile=self)
-
-    # def get_interests(self):
-    #     return Interest.objects.filter(profile=self)
 
     def get_screen_name(self):
         if self.user.get_full_name():
@@ -112,20 +96,6 @@ class Profile(models.Model):
                 from_user=self.user,
                 to_user=answer.user,
                 answer=answer).delete()
-
-
-# class Interest(models.Model):
-#     interest = models.CharField(max_length=255)
-#     profile = models.ForeignKey(Profile)
-
-#     def __str__(self):
-#         return self.interest
-
-#     class Meta:
-#         verbose_name = 'Interest'
-#         verbose_name_plural = 'Interests'
-#         unique_together = ('interest', 'profile')
-#         index_together = ['interest', 'profile']
 
 
 def create_user_profile(sender, instance, created, **kwargs):

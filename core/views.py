@@ -6,7 +6,8 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 
-from .forms import ChangePasswordForm, ProfileForm
+from .forms import (ChangePasswordForm, ProfileForm, 
+    EducationForm, ExperienceForm, MentorshipAreaForm)
 from authentication.models import Profile
 from interests.models import Interest
 
@@ -72,16 +73,12 @@ def initial_setup(request):
                 user.email = form.cleaned_data.get('email')
                 user.profile.bio = form.cleaned_data.get('bio')
                 user.profile.location = form.cleaned_data.get('location')
-                user.profile.education = form.cleaned_data.get('education')
-                user.profile.education_description = form.cleaned_data.get('education_description')
-                user.profile.mentorship_areas = form.cleaned_data.get('mentorship_areas')
-                # user.profile.create_interests(form.cleaned_data.get('interests'))
                 user.profile.is_previously_logged_in = True
                 user.save()
                 messages.add_message(request,
                                      messages.SUCCESS,
                                      'Your account was successfully setup.')
-                return redirect('questions')
+                return redirect('education')
 
         else:
             form = ProfileForm(instance=user, initial={
@@ -89,13 +86,63 @@ def initial_setup(request):
             'role': user.profile.role,
             'bio': user.profile.bio,
             'location': user.profile.location,
-            'education': user.profile.education,
-            'education_description': user.profile.education_description,
-            'mentorship_areas': user.profile.mentorship_areas,
-            # 'interests': user.profile.get_interests,
             })
         return render(request, 'core/includes/initial_setup.html', {'form': form})
-        
+
+
+@login_required
+def education(request):
+    user = request.user
+    if request.method == 'POST':
+        form = EducationForm(request.POST)
+        if form.is_valid():
+            level_of_study = form.cleaned_data.get('level_of_study')
+            institution_name = form.cleaned_data.get('institution_name')
+            field_of_study = form.cleaned_data.get('field_of_study')
+            ed = form.save(commit=False)
+            ed.user = user
+            ed.save()
+            return redirect('experience')
+    else:
+        form = EducationForm(instance=user, )
+    return render(request, 'core/includes/education.html', {'form': form})
+
+
+@login_required
+def experience(request):
+    user = request.user
+    if request.method == 'POST':
+        form = ExperienceForm(request.POST)
+        if form.is_valid():
+            employer = form.cleaned_data.get('employer')
+            industry = form.cleaned_data.get('industry')
+            job_title = form.cleaned_data.get('job_title')
+            job_description = form.cleaned_data.get('job_description')
+            ex = form.save(commit=False)
+            ex.user = user
+            ex.save()
+            return redirect('mentorship_areas')
+    else:
+        form = ExperienceForm(instance=user, )
+    return render(request, 'core/includes/experience.html', {'form': form})
+
+
+@login_required
+def mentorship_areas(request):
+    user = request.user
+    if request.method == 'POST':
+        form = MentorshipAreaForm(request.POST)
+        if form.is_valid():
+            mentorship_areas = form.cleaned_data.get('mentorship_areas')
+            m = form.save(commit=False)
+            m.user = user
+            m.save()
+            messages.add_message(request, messages.SUCCESS,
+                                 'Your account profile was successfully setup.')
+            return redirect('questions')
+    else:
+        form = MentorshipAreaForm(instance=user, )
+    return render(request, 'core/includes/mentorship_areas.html', {'form': form})
 
 
 @login_required
@@ -112,10 +159,6 @@ def settings(request):
             user.email = form.cleaned_data.get('email')
             user.profile.bio = form.cleaned_data.get('bio')
             user.profile.location = form.cleaned_data.get('location')
-            user.profile.education = form.cleaned_data.get('education')
-            user.profile.education_description = form.cleaned_data.get('education_description')
-            user.profile.mentorship_areas = form.cleaned_data.get('mentorship_areas')
-            # user.profile.create_interests(form.cleaned_data.get('interests'))
             user.save()
             messages.add_message(request,
                                  messages.SUCCESS,
@@ -127,10 +170,6 @@ def settings(request):
             'role': user.profile.role,
             'bio': user.profile.bio,
             'location': user.profile.location,
-            'education': user.profile.education,
-            'education_description': user.profile.education_description,
-            'mentorship_areas': user.profile.mentorship_areas,
-            # 'interests': user.profile.get_interests,
             })
     return render(request, 'core/settings.html', {'form': form})
 

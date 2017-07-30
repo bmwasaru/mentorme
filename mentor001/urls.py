@@ -71,13 +71,8 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    url(r'^interests/', include('interests.urls')),
-]
-
-urlpatterns += [
     url(r'^milestones/', include('milestones.urls')),
 ]
-
 
 admin.site.site_title = 'Mentor001 Adminstration'
 admin.site.site_header = 'Mentor001 Adminstration'

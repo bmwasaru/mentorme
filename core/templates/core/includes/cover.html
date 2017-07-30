@@ -1,0 +1,310 @@
+{% load staticfiles %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>{% block title %}Mentor 001{% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href=" {% static 'css/bootstrap.css' %} ">
+	<link rel="stylesheet" type="text/css" href=" {% static 'css/style1.css' %} ">
+
+	<style>
+	a.signup{
+		text-decoration:none;
+		color:inherit;
+	}
+	a.signup:hover{
+		text-decoration:none;
+		color:inherit;
+	}
+	body{
+		background-image:
+		linear-gradient(
+		rgba(0, 0, 0, 0.7),
+		rgba(255, 193, 7, 0.3)
+			),	url(" {% static 'images/body_bg.jpg' %} ");
+		background-attachment:fixed;
+		background-repeat:no-repeat;
+		background-size:cover;
+		width:100%;
+		height:100%;
+		top:0;
+		bottom:0;
+		left:0;
+		right:0;
+	}
+	.main{
+		position:absolute;
+		top:140px;
+		height:auto;
+		padding:0px;
+		margin-left:64px;
+	}
+	.content{
+		display:flex;
+		justify-content:space-between;
+
+	}
+	.card{
+	    padding:0px;
+		position: relative;
+		box-sizing: border-box;
+		background: #fff;
+		border:0;
+		margin:0 50px 25px 0px;
+		border-radius: 5.5px;
+		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+
+	}
+	.card:hover {
+		box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+	}
+	.card_up{
+		height:120px;
+		border-radius:4px 4px 0px 0px;
+		overflow:hidden;
+	}
+	.card img{
+		display: block;
+		max-width: 100%;
+		height: auto;
+		border-radius: 50%;
+	}
+	.card-title {
+		margin-bottom: .75rem;
+	}
+	.card-block {
+		text-align:center;
+		-webkit-box-flex: 1;
+		-webkit-flex: 1 1 auto;
+		-ms-flex: 1 1 auto;
+		flex: 1 1 auto;
+		padding: 1.25rem;
+	}
+	.dark_cover_bg{
+		background-color: #00695c !important;
+	}
+	.brick_cover_bg{
+		background-color: #993124 !important;
+	}
+	.avatar{
+		border-radius: 50%;
+		width: 120px;
+		margin: -65px auto 0;
+		border: 5px solid #fff;
+		background: #FFF;
+	}
+	.highlighted{
+		color:#ffc107;
+	}
+	.signin_div{
+		text-align:center;
+		color:#03a9f4;
+	}
+	h5{
+		font-size:16px !important;
+	}
+	</style>
+</head>
+<body>
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" rel="home" href="{% url 'home' %}" title="Logo">
+					Mentor001
+				</a>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="main">
+	<div class="content">
+			<div class="col-md-5">
+				<div class="card">
+					<div class="card_up dark_cover_bg"></div>
+					<div class="avatar">
+						<img src=" {% static 'images/man_avatar.jpg' %} " alt="Sample avatar image.">
+					</div>
+					<div class="card-block">
+						<h4 class="card_title">John Doe</h4>
+						<hr/>
+						<p>
+						<i style="font-size:20px;">"</i> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Eos, adipisci ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						<i style="font-size:20px;">"</i>
+						</p>
+						<hr />
+						<p>
+							<button class="btn btn-primary" data-toggle="modal" data-target="#signin-modal-mentor" >Join Us. Become a <strong>Mentor </strong> </h5></button>
+							<button class="btn btn-primary" data-toggle="modal" data-target="#login-modal-mentor" >SIGN IN</button>
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-5">
+				<div class="card right" >
+					<div class="card_up brick_cover_bg"></div>
+					<div class="avatar">
+						<img src="{% static 'images/girl_avatar.jpg' %} " alt="Sample avatar image.">
+					</div>
+					<div class="card-block">
+						<h4 class="card_title">Jane Doe</h4>
+						<hr/>
+						<p>
+						<i style="font-size:20px;">"</i> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Eos, adipisci ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+						<i style="font-size:20px;">"</i>
+						</p>
+						<hr/>
+						<p>
+						    <button class="btn btn-primary" data-toggle="modal" data-target="#signin-modal-mentee">Join Us. Become a <strong>Mentee</strong></h5></button>
+
+	                       <button class="btn btn-primary" data-toggle="modal" data-target="#login-modal-mentee" >SIGN IN</button>
+						</p>
+					</div>
+				</div>
+			</div>
+	</div>
+
+		<div class="modal fade" id="login-modal-mentee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	  <div class="modal-dialog" style="margin-top:160px;">
+				<div class="loginmodal-container">
+				<h1>Login to Your Mentee Account</h1><br>
+				  <form method="post" action="{% url 'login' %}" role="form">
+				  {% csrf_token %}
+                    <div class="md-input {% if form.username.errors %} has-error{% endif %}">
+                        <input class="md-form-control" required="" type="text" name="username">
+                        {% for error in form.username.errors %}
+				            <label class="control-label">{{ error }}</label>
+				          {% endfor %}
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label for="username">{% trans 'Username' %}</label>
+                    </div>
+
+                    <div class="md-input {% if form.password.errors %} has-error{% endif %}">
+                        <input class="md-form-control" required="" type="password" name="password" id="password">
+                        {% for error in form.password.errors %}
+				            <label class="control-label">{{ error }}</label>
+				          {% endfor %}
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>{% trans 'Password' %}</label>
+                    </div>
+					<div class="signin_div">
+						<button class="btn btn-primary" type="submit">{% trans 'SIGN IN' %}</button>
+					</div>
+				  </form>
+
+				  <div class="login-help">
+					 <a href="#" style="float:right;">Forgot Password? </a>
+				  </div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="login-modal-mentor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	  <div class="modal-dialog" style="margin-top:160px;">
+				<div class="loginmodal-container">
+				<h1>Login to Your Mentor Account</h1><br>
+				<form method="post" action="{% url 'login' %}" role="form">
+				  {% csrf_token %}
+                    <div class="md-input {% if form.username.errors %} has-error{% endif %}">
+                        <input class="md-form-control" required="" type="text" name="username">
+                        {% for error in form.username.errors %}
+				            <label class="control-label">{{ error }}</label>
+				          {% endfor %}
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label for="username">{% trans 'Username' %}</label>
+                    </div>
+
+                    <div class="md-input {% if form.password.errors %} has-error{% endif %}">
+	                    <input class="md-form-control" required="" type="password" name="password" id="password">
+	                    {% for error in form.password.errors %}
+				            <label class="control-label">{{ error }}</label>
+				          {% endfor %}
+	                    <span class="highlight"></span>
+	                    <span class="bar"></span>
+	                    <label>{% trans 'Password' %}</label>
+                    </div>
+					<div class="signin_div">
+						<button class="btn btn-primary" type="submit">{% trans 'SIGN IN' %}</button>
+					</div>
+				  </form>
+
+				  <div class="login-help">
+					 <a href="#" style="float:right;">Forgot Password? </a>
+				  </div>
+				</div>
+			</div>
+		</div>
+		
+		{% include 'core/includes/signup.html' %}
+
+		<div class="modal fade" id="signin-modal-mentee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	  <div class="modal-dialog" style="margin-top:160px;">
+				<div class="loginmodal-container">
+				<h1 class="highlighted">Join Us. Become a <strong>Mentee </strong> </h1><br>
+
+				  <form action="{% url 'signup' %}" method="post" role="form">
+				  	{% csrf_token %}
+				  	<div class="md-input {% if form.username.errors %} has-error{% endif %}">
+	                    <input class="md-form-control" required="" type="username" name="username" id="username">
+	                    {% for error in form.username.errors %}
+				            <label class="control-label">{{ error }}</label>
+				          {% endfor %}
+	                    <span class="highlight"></span>
+	                    <span class="bar"></span>
+	                    <label>{% trans 'Username' %}</label>
+                    </div>
+
+                    <div class="md-input {% if form.email.errors %} has-error{% endif %}">
+	                    <input class="md-form-control" required="" type="email" name="email" id="username">
+	                    {% for error in form.email.errors %}
+				            <label class="control-label">{{ error }}</label>
+				          {% endfor %}
+	                    <span class="highlight"></span>
+	                    <span class="bar"></span>
+	                    <label>{% trans 'Email' %}</label>
+                    </div>
+
+                    <div class="md-input {% if form.password.errors %} has-error{% endif %}">
+	                    <input class="md-form-control" required="" type="password" name="password" id="password">
+	                    {% for error in form.password.errors %}
+				            <label class="control-label">{{ error }}</label>
+				          {% endfor %}
+	                    <span class="highlight"></span>
+	                    <span class="bar"></span>
+	                    <label>{% trans 'Password' %}</label>
+                    </div>
+
+                    <div class="md-input {% if form.confirm_password.errors %} has-error{% endif %}">
+	                    <input class="md-form-control" required="" type="password" name="confirm_password" id="confirm_password">
+	                    {% for error in form.confirm_password.errors %}
+				            <label class="control-label">{{ error }}</label>
+				          {% endfor %}
+	                    <span class="highlight"></span>
+	                    <span class="bar"></span>
+	                    <label>{% trans 'Confirm Password' %}</label>
+                    </div>
+					<div class="signin_div">
+						<button class="btn btn-primary" type="submit">SIGN IN</button>
+					</div>
+
+				  </form>
+
+				  <div class="login-help">
+					 <a href="#" style="float:right;">Forgot Password? </a>
+				  </div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+<script src=" {% static 'js/jquery-1.10.2.min.js' %}"></script>
+<script src=" {% static 'js/bootstrap.js' %} "></script>
+</body>
+</html>

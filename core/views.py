@@ -9,7 +9,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .forms import (ChangePasswordForm, ProfileForm, 
     EducationForm, ExperienceForm, MentorshipAreaForm)
 from authentication.models import Profile
-from interests.models import Interest
 
 
 def home(request):
@@ -17,7 +16,7 @@ def home(request):
         # TODO: return milestones
         return HttpResponseRedirect('/questions/')
     else:
-        return render(request, 'core/cover.html')
+        return render(request, 'core/includes/cover.html')
 
 
 @login_required

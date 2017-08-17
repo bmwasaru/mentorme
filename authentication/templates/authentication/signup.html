@@ -1,30 +1,76 @@
-{% extends 'base.html' %}
+{% extends 'core/includes/cover_base.html' %}
 
 {% load staticfiles i18n %}
 
-{% block head %}
-  <link href="{% static 'css/signup.css' %}" rel="stylesheet">
-{% endblock head %}
-
 {% block body %}
-  <h1 class="logo"><a href="{% url 'home' %}">Mentor 001</a></h1>
-  <div class="signup">
-    <h2>{% trans 'Sign up for Mentor001' %}</h2>
-    <form action="{% url 'signup' %}" method="post" role="form">
-      {% csrf_token %}
-      {% for field in form.visible_fields %}
-        <div class="form-group{% if field.errors %} has-error{% endif %}">
-          <label for="{{ field.label }}">{{ field.label }}</label>
-          {{ field }}
-          {% if field.help_text %}
-            <span class="help-block">{{ field.help_text|safe }}</span>
+<div class="main" style="width: 40%; ">
+    <div class="card">
+      <div class="card_up dark_cover_bg"></div>
+      <div class="avatar">
+        <img src=" {% static 'images/mentors.jpg' %} " alt="Sample avatar image.">
+      </div>
+      <div class="card-block">
+        <h1 class="card_title">Mentor001 Signup</h1>
+        <hr/>
+
+          {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+              <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ error }}
+              </div>
+            {% endfor %}
           {% endif %}
-          {% for error in field.errors %}
-            <label class="control-label">{{ error }}</label>
-          {% endfor %}
-        </div>
-      {% endfor %}
-      <button type="submit" class="btn btn-primary btn-lg">{% trans 'Create an account' %}</button>
-    </form>
-  </div>
+
+          <form action="{% url 'signup' %}" method="post" role="form">
+        {% csrf_token %}
+        <div class="md-input {% if form.username.errors %} has-error{% endif %}">
+                <input class="md-form-control" required="" type="username" name="username" id="username">
+                {% for error in form.username.errors %}
+                <label class="control-label">{{ error }}</label>
+              {% endfor %}
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>{% trans 'Username' %}</label>
+            </div>
+
+            <div class="md-input {% if form.email.errors %} has-error{% endif %}">
+                <input class="md-form-control" required="" type="email" name="email" id="username">
+                {% for error in form.email.errors %}
+                <label class="control-label">{{ error }}</label>
+              {% endfor %}
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>{% trans 'Email' %}</label>
+            </div>
+
+            <div class="md-input {% if form.password.errors %} has-error{% endif %}">
+                <input class="md-form-control" required="" type="password" name="password" id="password">
+                {% for error in form.password.errors %}
+                <label class="control-label">{{ error }}</label>
+              {% endfor %}
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>{% trans 'Password' %}</label>
+            </div>
+
+            <div class="md-input {% if form.confirm_password.errors %} has-error{% endif %}">
+                <input class="md-form-control" required="" type="password" name="confirm_password" id="confirm_password">
+                {% for error in form.confirm_password.errors %}
+                <label class="control-label">{{ error }}</label>
+              {% endfor %}
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>{% trans 'Confirm Password' %}</label>
+            </div>
+      <div class="signin_div">
+        <button class="btn btn-primary" type="submit">SIGN IN</button>
+      </div>
+
+      </form>
+
+      </div>
+    </div>
+</div>
 {% endblock body %}
+

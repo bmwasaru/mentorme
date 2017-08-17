@@ -1,151 +1,39 @@
-{% extends 'base.html' %}
+{% extends 'core/includes/cover_base.html' %}
 
 {% load staticfiles i18n %}
 
-{% block head %}
-  <link href="{% static 'css/signup.css' %}" rel="stylesheet">
-{% endblock head %}
-
 {% block body %}
-<h1 class="logo"><a href="{% url 'login' %}">Mentor 001</a></h1>
-<div class="signup">
-  <h2>{% trans 'Initial Account Setup' %}</h2>
-  <form role="form" method="post" action="{% url 'initial_setup' %}">
-    {% csrf_token %}
-
-      <div class="form-group{% if form.errors %} has-error{% endif %}">
-        <label for="{{ form.label }}">{{ form.first_name.label }}</label>
-          {{ form.first_name }}
-          {% if form.first_name.help_text %}
-            <span class="help-block">{{ form.first_name.help_text }}</span>
-          {% endif %}
-          {% for error in form.first_name.errors %}
-            <label class="control-label">{{ error }}</label>
-          {% endfor %}
+<div class="main center" style="width: 60%">
+    <div class="card">
+      <div class="card_up dark_cover_bg"></div>
+      <div class="avatar">
+        <img src=" {% static 'images/mentors.jpg' %} " alt="Sample avatar image.">
       </div>
-
-      <div class="form-group{% if form.errors %} has-error{% endif %}">
-        <label for="{{ form.label }}">{{ form.last_name.label }}</label>
-          {{ form.last_name }}
-          {% if form.last_name.help_text %}
-            <span class="help-block">{{ form.last_name.help_text }}</span>
-          {% endif %}
-          {% for error in form.last_name.errors %}
-            <label class="control-label">{{ error }}</label>
-          {% endfor %}
+      <div class="card-block">
+        <h2>{% trans 'Initial Account Setup' %}</h2>
+        <hr/>
+          <form role="form" class="form-horizontal" method="post" action="{% url 'initial_setup' %}">
+            {% csrf_token %}
+            {% for field in form.visible_fields %}
+              <div class="form-group{% if field.errors %} has-error{% endif %} ">
+                <label for="{{ field.label }}" class="col-md-3 control-label">{{ field.label }}:</label>
+                <div class="col-md-9">
+                  {{ field }}
+                  {% if field.help_text %}
+                    <span class="help-block">{{ field.help_text }}</span>
+                  {% endif %}
+                  {% for error in field.errors %}
+                    <label class="control-label">{{ error }}</label>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endfor %}
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">{% trans 'Next' %}</button>
+            </div>
+          </form>
       </div>
-
-      <div class="form-group{% if form.errors %} has-error{% endif %}">
-        <label for="{{ form.label }}">{{ form.email.label }}</label>
-          {{ form.email }}
-          {% if form.email.help_text %}
-            <span class="help-block">{{ form.email.help_text }}</span>
-          {% endif %}
-          {% for error in form.email.errors %}
-            <label class="control-label">{{ error }}</label>
-          {% endfor %}
-      </div>
-
-      <div class="form-group{% if form.errors %} has-error{% endif %}">
-        <label for="{{ form.label }}">{{ form.phone_number.label }}</label>
-          {{ form.phone_number }}
-          {% if form.phone_number.help_text %}
-            <span class="help-block">{{ form.phone_number.help_text }}</span>
-          {% endif %}
-          {% for error in form.phone_number.errors %}
-            <label class="control-label">{{ error }}</label>
-          {% endfor %}
-      </div>
-
-      <div class="form-group{% if form.errors %} has-error{% endif %}">
-        <label for="{{ form.label }}">{{ form.gender.label }}</label>
-          {{ form.gender }}
-          {% if form.gender.help_text %}
-            <span class="help-block">{{ form.gender.help_text }}</span>
-          {% endif %}
-          {% for error in form.gender.errors %}
-            <label class="control-label">{{ error }}</label>
-          {% endfor %}
-      </div>
-      
-      <div class="form-group{% if form.errors %} has-error{% endif %}">
-        <label for="{{ form.label }}">{{ form.location.label }}</label>
-          {{ form.location }}
-          {% if form.location.help_text %}
-            <span class="help-block">{{ form.location.help_text }}</span>
-          {% endif %}
-          {% for error in form.location.errors %}
-            <label class="control-label">{{ error }}</label>
-          {% endfor %}
-      </div>
-
-      <div class="form-group{% if form.errors %} has-error{% endif %}">
-        <label for="{{ form.label }}">{{ form.role.label }}</label>
-          {{ form.role }}
-          {% if form.role.help_text %}
-            <span class="help-block">{{ form.role.help_text }}</span>
-          {% endif %}
-          {% for error in form.role.errors %}
-            <label class="control-label">{{ error }}</label>
-          {% endfor %}
-      </div>
-
-      <!-- <div class="form-group{% if form.errors %} has-error{% endif %}">
-        <label for="{{ form.label }}">{{ form.interests.label }}</label>
-          {{ form.interests }}
-          {% if form.interests.help_text %}
-            <span class="help-block">{{ form.interests.help_text }}</span>
-          {% endif %}
-          {% for error in form.interests.errors %}
-            <label class="control-label">{{ error }}</label>
-          {% endfor %}
-      </div> -->
-
-      <!-- <div class="form-group{% if form.errors %} has-error{% endif %}">
-        <label for="{{ form.label }}">{{ form.education.label }}</label>
-          {{ form.education }}
-          {% if form.education.help_text %}
-            <span class="help-block">{{ form.education.help_text }}</span>
-          {% endif %}
-          {% for error in form.education.errors %}
-            <label class="control-label">{{ error }}</label>
-          {% endfor %}
-      </div>
-
-      <div class="form-group{% if form.errors %} has-error{% endif %}">
-        <label for="{{ form.label }}">{{ form.education_description.label }}</label>
-          {{ form.education_description }}
-          {% if form.education_description.help_text %}
-            <span class="help-block">{{ form.education_description.help_text }}</span>
-          {% endif %}
-          {% for error in form.education_description.errors %}
-            <label class="control-label">{{ error }}</label>
-          {% endfor %}
-      </div> -->
-
-      <div class="form-group{% if form.errors %} has-error{% endif %}">
-        <label for="{{ form.label }}">{{ form.bio.label }}</label>
-          {{ form.bio }}
-          {% if form.bio.help_text %}
-            <span class="help-block">{{ form.bio.help_text }}</span>
-          {% endif %}
-          {% for error in form.bio.errors %}
-            <label class="control-label">{{ error }}</label>
-          {% endfor %}
-      </div>
-
-      <!-- <div class="form-group{% if form.errors %} has-error{% endif %}" style="margin-left: 10px;">
-      <label for="{{ form.label }}">What areas would you like to be mentored in?</label>
-      {% for value, text in form.mentorship_areas.field.choices %}
-        <div class="checkbox" >
-          <input id="id_mentorship_areas_{{ forloop.counter0 }}" name="{{ form.mentorship_areas.name }}" type="checkbox" value="{{ value }}"{% if value in checked_mentorship_areas %} checked="checked"{% endif %}>
-          <label>{{ text }}</label>
-        </div>
-      {% endfor %}
-      </div> -->
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-lg">{% trans 'Save' %}</button>
     </div>
-  </form>
 </div>
 {% endblock body %}
+

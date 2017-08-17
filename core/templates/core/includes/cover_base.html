@@ -1,0 +1,129 @@
+{% load staticfiles %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>{% block title %}Mentor 001{% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href=" {% static 'css/bootstrap.css' %} ">
+	<link rel="stylesheet" type="text/css" href=" {% static 'css/style1.css' %} ">
+
+	<style>
+	a.signup{
+		text-decoration:none;
+		color:inherit;
+	}
+	a.signup:hover{
+		text-decoration:none;
+		color:inherit;
+	}
+	body{
+		background-image:
+		linear-gradient(
+		rgba(0, 0, 0, 0.7),
+		rgba(255, 193, 7, 0.3)
+			),	url(" {% static 'images/body_bg.jpg' %} ");
+		background-attachment:fixed;
+		background-repeat:no-repeat;
+		background-size:cover;
+		width:100%;
+		height:100%;
+		top:0;
+		bottom:0;
+		left:0;
+		right:0;
+	}
+	.main{
+		position:absolute;
+		top:140px;
+		height:auto;
+		padding:0px;
+		margin-left:64px;
+	}
+	.content{
+		display:flex;
+		justify-content:space-between;
+
+	}
+	.card{
+	    padding:0px;
+		position: relative;
+		box-sizing: border-box;
+		background: #fff;
+		border:0;
+		margin:0 50px 25px 0px;
+		border-radius: 5.5px;
+		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+
+	}
+	.card:hover {
+		box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+	}
+	.card_up{
+		height:120px;
+		border-radius:4px 4px 0px 0px;
+		overflow:hidden;
+	}
+	.card img{
+		display: block;
+		max-width: 100%;
+		height: auto;
+		border-radius: 50%;
+	}
+	.card-title {
+		margin-bottom: .75rem;
+	}
+	.card-block {
+		text-align:center;
+		-webkit-box-flex: 1;
+		-webkit-flex: 1 1 auto;
+		-ms-flex: 1 1 auto;
+		flex: 1 1 auto;
+		padding: 1.25rem;
+	}
+	.dark_cover_bg{
+		background-color: #00695c !important;
+	}
+	.brick_cover_bg{
+		background-color: #993124 !important;
+	}
+	.avatar{
+		border-radius: 50%;
+		width: 120px;
+		margin: -65px auto 0;
+		border: 5px solid #fff;
+		background: #FFF;
+	}
+	.highlighted{
+		color:#ffc107;
+	}
+	.signin_div{
+		text-align:center;
+		color:#03a9f4;
+	}
+	h5{
+		font-size:16px !important;
+	}
+	</style>
+</head>
+	<body>
+		<div class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" rel="home" href="{% url 'home' %}" title="Logo">
+						Mentor001
+					</a>
+				</div>
+
+			</div>
+		</div>
+		
+		{% block body %}
+
+		{% endblock %}
+
+
+		<script src=" {% static 'js/jquery-1.10.2.min.js' %}"></script>
+		<script src=" {% static 'js/bootstrap.js' %} "></script>
+	</body>
+</html>

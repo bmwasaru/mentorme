@@ -26,29 +26,10 @@ urlpatterns = [
         auth_views.logout, {'next_page': '/'},
         name='logout'),
     url(r'^account/signup/$', mentor_auth_views.signup, name='signup'),
-    url(r'^account/forgot_pass/$', auth_views.password_reset, {
-        'template_name': 'authentication/password_reset.html',
-        'email_template_name': 'authentication/password_reset_email.html'
-    }, "forgot_password"),
-    url(
-        r'^account/forgot_pass_confirm/(?P<uidb64>[^/]+)/(?P<token>[^/]+)/$',
-        auth_views.password_reset_confirm, {
-            'template_name': 'authentication/password_reset_confirm.html',
-            'post_reset_redirect': '/account/forgot_pass_complete/'
-        },
-        name='password_reset_confirm'),
-    url(
-        r'^account/forgot_pass_done/',
-        auth_views.password_reset_done,
-        {'template_name': 'authentication/password_reset_done.html'},
-        name='password_reset_done'),
+    url(r'^account/forgot_pass/$', mentor_auth_views.forgot_password, name="forgot_password"),
+    url(r'^account/forgot_pass_confirm/$',mentor_auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^account/forgot_pass_complete/', auth_views.password_reset_complete,
         {'template_name': 'authentication/password_reset_complete.html'}),
-    url(
-        r'^account/forgot_pass_confirm/(?P<uidb64>[^/]+)/(?P<token>[^/]+)/$',
-        auth_views.password_reset_confirm,
-        {'template_name': 'authentication/password_reset_confirm.html'},
-        name='password_reset_confirm'),
     url(r'^settings/$', core_views.settings, name='settings'),
     url(r'^settings/password/$', core_views.password, name='password'),
     url(r'^questions/', include('questions.urls'), name='questions'),

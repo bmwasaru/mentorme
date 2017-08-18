@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
+from authentication.models import Profile
+
 
 def forbidden_usernames_validator(value):
     forbidden_usernames = ['admin', 'settings', 'news', 'about', 'help',
@@ -77,3 +79,26 @@ class SignUpForm(forms.ModelForm):
             self._errors['password'] = self.error_class(
                 ['Passwords don\'t match'])
         return self.cleaned_data
+
+
+class ForgotPasswordForm(forms.Form):
+    phone_number = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        max_length=13,
+        required=True,
+        help_text='Enter phone number to send verification code.')
+
+    def clean(self):
+        super(ForgotPasswordForm, self).clean()
+        phone_number = self.cleaned_data.get('phone_number')
+        if Profile.objects.filter(phone_number=phone_number) is None:
+            self._errors['phone_number'] = self.error_class(
+              ['No user with that phone number.'])
+        return self.cleaned_data
+
+
+class VerifyPasswordForm(forms.Form):
+    code = forms.IntegerField(
+            widget=forms.TextInput(attrs={'class': 'form-control'}),
+            required=True,
+            help_text='Enter phone number to send verification code.')

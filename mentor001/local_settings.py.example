@@ -16,3 +16,7 @@ DATABASES = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# AFRICASTALKING SETTINGS
+AFRICASTALKING_USERNAME = ""
+AFRICASTALKING_API_KEY = ""

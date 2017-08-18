@@ -12,14 +12,19 @@ from activities.models import Notification
 from multiselectfield import MultiSelectField
 
 
+class UserCode(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    code = models.IntegerField()
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=50)
     bio = models.TextField(blank=True, default='')
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES)
-    role = models.CharField(max_length=6, 
-        blank=False, 
-        default='mentee', 
+    role = models.CharField(max_length=6,
+        blank=False,
+        default='mentee',
         choices=ROLE_CHOICES)
     phone_number = models.CharField(max_length=32)
     is_previously_logged_in = models.CharField(max_length=5, default=False)

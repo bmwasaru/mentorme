@@ -28,8 +28,7 @@ urlpatterns = [
     url(r'^account/signup/$', mentor_auth_views.signup, name='signup'),
     url(r'^account/forgot_pass/$', mentor_auth_views.forgot_password, name="forgot_password"),
     url(r'^account/forgot_pass_confirm/$',mentor_auth_views.password_reset_confirm, name='password_reset_confirm'),
-    url(r'^account/forgot_pass_complete/', auth_views.password_reset_complete,
-        {'template_name': 'authentication/password_reset_complete.html'}),
+    url(r'^account/password_reset/(?P<id>[\d+])/$', mentor_auth_views.password_reset, name='password_reset'),
     url(r'^settings/$', core_views.settings, name='settings'),
     url(r'^settings/password/$', core_views.password, name='password'),
     url(r'^questions/', include('questions.urls'), name='questions'),
@@ -48,7 +47,7 @@ urlpatterns = [
         name='check_notifications'),
     url(r'^search/$', search_views.search, name='search'),
     url(r'^i18n/', include('django.conf.urls.i18n', namespace='i18n')),
-    url(r'^u/(?P<username>[\w@.-]+)/$', core_views.profile, name='profile'),
+    url(r'^u/(?P<user>[\w@.-]+)/$', core_views.profile, name='profile'),
 ]
 
 urlpatterns += [

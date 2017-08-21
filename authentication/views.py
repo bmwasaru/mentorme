@@ -1,10 +1,12 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
+from django.core.urlresolvers import reverse
 
 from authentication.forms import SignUpForm, ForgotPasswordForm, VerifyPasswordForm
 from authentication.sms import send_sms_code
 from authentication.models import UserCode
+from core.forms import ChangePasswordForm
 
 
 def signup(request):
@@ -43,15 +45,26 @@ def forgot_password(request):
 def password_reset_confirm(request):
     if request.method == 'POST':
         form = VerifyPasswordForm(request.POST)
-        code = form.cleaned_data.get('code')
-        user_code = UserCode.objects.get(code=code)
-        if user_code:
-            user = user_code.user
-            #TODO: Redirect to change password
+        if form.is_valid():
+            code = form.cleaned_data.get('code')
+            user_code = UserCode.objects.get(code=code)
+            print(user_code.id)
+            if user_code:
+                return redirect(password_reset, id=user_code.id)
         else:
             render(request, 'authentication/password_reset_confirm.html', {'error': 'Code is wrong.'})
-    return render(request, 'authentication/password_reset_confirm.html', {'fotm': VerifyPasswordForm})
+    return render(request, 'authentication/password_reset_confirm.html', {'form': VerifyPasswordForm})
 
 
-def password_reset_complete(request):
-    return render('authentication/password_reset_complete.html')
+def password_reset(request, id):
+    new_user_password = User.objects.get(id=int(id))
+    if request.method == 'POST':
+        form = ChangePasswordForm(request.POST)
+        new_password = form.cleaned_data.get('new_password1')
+        new_password2 = form.cleaned_data.get('new_password2')
+        new_user_password.set_password(new_password)
+        new_user_password.save()
+        return render('authentication/password_reset_complete.html')
+    else:
+        form = ChangePasswordForm()
+    return render(request, 'authentication/password.html', {'form': form})

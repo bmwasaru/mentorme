@@ -6,7 +6,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 
-from .forms import (ChangePasswordForm, ProfileForm, 
+from .forms import (ChangePasswordForm, ProfileForm,
     EducationForm, ExperienceForm, MentorshipAreaForm)
 from authentication.models import Profile
 

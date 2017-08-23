@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'search',
     'milestones',
     'multiselectfield',
+    'taggit',
+    'articles',
 ]
 
 MIDDLEWARE = [

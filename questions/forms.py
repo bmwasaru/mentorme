@@ -1,6 +1,7 @@
 from django import forms
 
 from questions.models import Answer, Question
+from core.choices import CATEGORY_CHOICES
 
 
 class QuestionForm(forms.ModelForm):
@@ -15,6 +16,12 @@ class QuestionForm(forms.ModelForm):
         max_length=255,
         required=False,
         help_text='Use spaces to separate the tags, such as "asp.net mvc5 javascript"')  # noqa: E501
+    category = forms.ChoiceField(
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        choices = CATEGORY_CHOICES, 
+        label="", 
+        initial='', 
+        required=True)
 
     class Meta:
         model = Question

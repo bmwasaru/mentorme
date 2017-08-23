@@ -38,6 +38,12 @@ def answered(request):
 
 
 @login_required
+def user_answered(request):
+    questions = Question.get_answered().filter(user=request.user)
+    return _questions(request, questions, 'answered')
+
+
+@login_required
 def unanswered(request):
     questions = Question.get_unanswered()
     return _questions(request, questions, 'unanswered')
@@ -50,6 +56,20 @@ def all(request):
 
 
 @login_required
+def category(request, category):
+    questions = Question.objects.filter(category=category)
+    return _questions(request, questions, {'questions': questions})
+
+
+# @login_required
+# def profile(request, username):
+#     page_user = get_object_or_404(User, username=username)
+#     return render(request, 'core/profile.html', {
+#         'page_user': page_user
+#         })
+
+
+@login_required
 def ask(request):
     if request.method == 'POST':
         form = QuestionForm(request.POST)
@@ -58,6 +78,7 @@ def ask(request):
             question.user = request.user
             question.title = form.cleaned_data.get('title')
             question.description = form.cleaned_data.get('description')
+            question.category = form.cleaned_data.get('category')
             question.save()
             tags = form.cleaned_data.get('tags')
             question.create_tags(tags)

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'search',
     'milestones',
     'multiselectfield',
+    'mentoring',
 ]
 
 MIDDLEWARE = [

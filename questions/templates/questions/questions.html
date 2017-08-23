@@ -10,13 +10,23 @@
 {% endblock head %}
 
 {% block main %}
+<div class="col-md-2" style="margin-top: 50px">
+  <h4>Resent questions</h4>
+  <p>
+    {% for question in questions %}
+      <li><a href="{% url 'question' question.pk %}">{{ question.title }}</a></li>
+    {% endfor %}
+  </p>
+</div>
+
+<div class="col-md-7">
   <div class="page-header">
     <a href="{% url 'ask' %}" class="btn btn-primary pull-right">
       <span class="glyphicon glyphicon-bullhorn"></span> {% trans "Ask Question" %}
     </a>
     <h1>{% trans "Questions" %}</h1>
   </div>
-  <div class="col-md-8 questions">
+  <div class="questions">
     <ul class="nav nav-tabs" style="margin-bottom: 1.4em">
       <li{% if active == 'unanswered' %} class="active"{% endif %}><a href="{% url 'unanswered' %}">{% trans "Unanswered" %}</a></li>
       <li{% if active == 'answered' %} class="active"{% endif %}><a href="{% url 'answered' %}">{% trans "Answered" %}</a></li>
@@ -29,9 +39,11 @@
     {% endfor %}
     {% include 'paginator.html' with paginator=questions %}
   </div>
+</div>
 
+<div class="col-md-3" style="margin-top: 50px">
   {% include 'questions/sidebar.html' %}
-  
+</div>
 {% endblock main %}
 
 

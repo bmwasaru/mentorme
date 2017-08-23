@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
 from core import views as core_views
+from mentoring import views as mentoring_views
 from authentication import views as mentor_auth_views
 from activities import views as activities_views
 from search import views as search_views
@@ -16,6 +17,11 @@ urlpatterns = [
     url(r'^education/$', core_views.education, name='education'),
     url(r'^experience/$', core_views.experience, name='experience'),
     url(r'^mentorship_areas/$', core_views.mentorship_areas, name='mentorship_areas'),
+    
+    url(r'^landing/$', core_views.landing, name='landing'),
+    url(r'^mentoring/$', mentoring_views.mentoring, name='mentoring'),
+    url(r'^contact/$', mentoring_views.contact, name='contact'),
+    url(r'^request_mentorship/$', mentoring_views.request_mentorship, name='request_mentorship'),
     # User URLs
     url(
         r'^account/login',

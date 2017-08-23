@@ -41,6 +41,9 @@
           {% endfor %}
         </p>
       {% endif %}
+      <div>
+        <a href="{% url 'category' question.category %}">{{ question.category }}</a>
+      </div>
     </div>
   </div>
  

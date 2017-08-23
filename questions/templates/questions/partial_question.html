@@ -35,5 +35,9 @@
         {% endfor %}
       </p>
     {% endif %}
+      <span class="label label-primary">
+        <a href="{% url 'category' question.category %}" style="color: white">{{ question.category }}</a>
+      </span>
+    
   </div>
 </div>

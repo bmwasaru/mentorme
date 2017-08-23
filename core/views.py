@@ -11,6 +11,10 @@ from .forms import (ChangePasswordForm, ProfileForm,
 from authentication.models import Profile
 
 
+def landing(request): 
+    return render(request, 'landing.html')  
+
+
 def home(request):
     if request.user.is_authenticated():
         # TODO: return milestones

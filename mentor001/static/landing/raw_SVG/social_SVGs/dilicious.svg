@@ -1,0 +1,26 @@
+<svg xmlns='http://www.w3.org/2000/svg' class='svg_long_shadow dilicious_long_shadow' width='134' height='138' viewBox='0 0 134 138'>
+<defs>
+<linearGradient id='icon_circle_gradient' gradientUnits='userSpaceOnUse' x1='132.9' y1='-120.7' x2='220.1' y2='-208' gradientTransform='matrix(1 0 0 -1 -122.6001 -110.4722)'>
+	<stop offset='0' class='offset0'/>
+	<stop offset='0.4329' class='offset1'/>
+	<stop offset='0.5008' class='offset2'/>
+	<stop offset='0.936' class='offset3'/>
+</linearGradient>
+<linearGradient id='icon_shape_gradient' gradientUnits='userSpaceOnUse' x1='155.0332' y1='-139.2104' x2='188.2848' y2='-172.462' gradientTransform='matrix(1 0 0 -1 -122.6001 -106.9902)'>
+	<stop  offset='0' class='offset4'/>
+	<stop  offset='0.7899' class='offset5'/>
+	<stop  offset='0.9199' class='offset6'/>
+	<stop  offset='1'  class='offset3'/>
+</linearGradient>
+</defs>
+<path class='icon_circle_shadow' d='
+	M9.418,59.563l77,78l49.332-50.409L63.418,15.563L51.355,7.847L36.75,5.529l-21,10.625l-9.375,19.25L5.878,46.563L7.5,50.654
+	l2.918,5.909L9.418,59.563z'/>
+<path class='icon_shape_shadow' d='M41.458,27.559v12.507L66.27,64.877l10.042-14.029
+	l-21.349-23.29H41.458z M27.955,52.574l23.121,21.564l15.194-9.26L41.458,40.066H27.955V52.574z'/>
+<path class='icon_circle' d='
+	M41.459,6.5c19.054,0,34.5,15.446,34.5,34.5s-15.446,34.5-34.5,34.5c-23.163,0-34.5-15.445-34.5-34.5
+	C6.959,21.946,22.405,6.5,41.459,6.5z'/>
+<path class='icon_shape' d='M41.458,27.559v12.507h13.505V27.559H41.458z
+	 M27.955,52.574h13.504V40.066H27.955V52.574z'/>
+</svg>

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block title %}{% trans 'Mentors' %}{% endblock %}
+
+{% block head %}
+  <link href="{% static 'css/mentors.css' %}" rel="stylesheet">
+{% endblock head %}
+
+{% block main %}
+  <div class="page-header">
+    <h1>Here are the Mentees availlable</h1>
+  </div>
+
+    <div class="row">
+      {% for user in users_list %}
+        <div class="col-md-2 col-sm-3 col-xs-6">
+          <a href="{% url 'profile' user.username %}" data-toggle="tooltip" data-placement="auto" title="{{ user.profile.get_screen_name }}" style="background-color: green">
+          <div class="panel panel-default">
+            <div class="panel-body">
+            <img class="img-responsive picture" src="{{ user.profile.get_gravatar }}" style="">
+              {% if user.profile.is_mentee %}
+                <a href="{%  url 'request_mentorship'%}"><button type="button" class="btn btn-default glyphicon glyphicon-plus">Request Mentorship</button></a>
+              {% endif %}
+            </div>
+          </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+
+{% endblock main %}

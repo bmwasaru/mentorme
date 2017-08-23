@@ -1,0 +1,25 @@
+<svg xmlns='http://www.w3.org/2000/svg' class='svg_long_shadow facebook_long_shadow' width='134' height='138' viewBox='0 0 134 138'>
+<defs>
+<linearGradient id='icon_circle_gradient' gradientUnits='userSpaceOnUse' x1='132.9' y1='-120.7' x2='220.1' y2='-208' gradientTransform='matrix(1 0 0 -1 -122.6001 -110.4722)'>
+	<stop offset='0' class='offset0'/>
+	<stop offset='0.4329' class='offset1'/>
+	<stop offset='0.5008' class='offset2'/>
+	<stop offset='0.936' class='offset3'/>
+</linearGradient>
+<linearGradient id='icon_shape_gradient' gradientUnits='userSpaceOnUse' x1='155.0332' y1='-139.2104' x2='188.2848' y2='-172.462' gradientTransform='matrix(1 0 0 -1 -122.6001 -106.9902)'>
+	<stop  offset='0' class='offset4'/>
+	<stop  offset='0.7899' class='offset5'/>
+	<stop  offset='0.9199' class='offset6'/>
+	<stop  offset='1'  class='offset3'/>
+</linearGradient>
+</defs>
+<path class='icon_shape_shadow' d='M46.85,28.657h-3.358c0,0-5.253-0.55-5.253,4.916c0,1.169,0,2.265,0,2.265h-2.136
+	l-0.034,4.301h2.17v11.447l19.717,19.721l14.252-18.144L46.85,28.657z'/>
+<path class='icon_circle_shadow' opacity='0.7' fill='url(#icon_circle_shadow_1_)' enable-background='new    ' d='
+	M9.418,59.659l77,78l49.332-50.41l-72.332-71.59L51.355,7.943L36.75,5.625l-21,10.625L6.375,35.5L5.878,46.659L7.5,50.75
+	l2.918,5.909L9.418,59.659z'/>
+<path class='icon_circle' d='M41.459,6.5
+	c19.054,0,34.5,15.446,34.5,34.5s-15.446,34.5-34.5,34.5c-23.163,0-34.5-15.444-34.5-34.5C6.959,21.946,22.405,6.5,41.459,6.5z'/>
+<path class='icon_shape' fill='#FFFFFF' d='M46.85,28.657h-3.358c0,0-5.253-0.55-5.253,4.916c0,1.169,0,2.265,0,2.265h-2.136
+	l-0.034,4.301h2.17v11.447h4.98V40.138h2.876l0.699-4.301h-3.575v-1.749c0,0-0.307-1.478,1.464-1.478h2.133L46.85,28.657z'/>
+</svg>

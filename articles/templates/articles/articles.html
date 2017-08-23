@@ -9,20 +9,22 @@
 {% endblock head %}
 
 {% block main %}
-  <div class="page-header">
-    <a href="{% url 'write' %}" class="btn btn-primary pull-right">
-      <span class="glyphicon glyphicon-pencil"></span> {% trans 'Write Article' %}
-    </a>
-    <a href="{% url 'drafts' %}" class="btn btn-default pull-right" style="margin-right: .8em">{% trans 'Drafts' %}</a>
-    <h1>{% trans 'Articles' %}</h1>
-  </div>
+  {% if user.profile.role == 'mentor' %}
+    <div class="page-header">
+      <a href="{% url 'write' %}" class="btn btn-primary pull-right">
+        <span class="glyphicon glyphicon-pencil"></span> {% trans 'Write Article' %}
+      </a>
+      <a href="{% url 'drafts' %}" class="btn btn-default pull-right" style="margin-right: .8em">{% trans 'Drafts' %}</a>
+  {% endif %}
+      <h1>{% trans 'Articles' %}</h1>
+    </div>
   <div class="row">
     <div class="col-md-10">
       <section class="articles">
         {% for article in articles %}
           {% include 'articles/partial_article.html' with article=article %}
         {% empty %}
-          <h4 class="no-data">{% trans 'There is no published article yet' %}. <a href="{% url 'write' %}">{% trans 'Be the first one to publish' %}!</a></h4>
+          <h4 class="no-data">{% trans 'There is no published article yet' %}. {% if user.profile.role == 'mentor' %}<a href="{% url 'write' %}">{% trans 'Be the first one to publish' %}!</a>{% endif %}</h4>
         {% endfor %}
       </section>
     </div>

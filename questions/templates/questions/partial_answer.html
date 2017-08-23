@@ -17,7 +17,7 @@
   </div>
   <div class="col-md-11">
     <div class="answer-user">
-      <a href="{% url 'profile' answer.user.username %}"><img src="{{ answer.user.profile.get_gravatar }}" class="user"></a>
+      <a href="{% url 'profile' answer.user.username %}"><img src="{{ answer.user.profile.profile_picture.url }}" class="user"></a>
       <a href="{% url 'profile' answer.user.username %}" class="username">{{ answer.user.profile.get_screen_name }}</a>
       <small class="answered">{% trans "answered" %} {{ answer.create_date|naturaltime }}</small>
     </div>

@@ -27,7 +27,7 @@
     <div class="col-md-7">
       <h2>{{ question.title }}</h2>
       <div class="question-user">
-        <a href="{% url 'profile' question.user.username %}"><img src="{{ question.user.profile.get_gravatar }}" class="user"></a>
+        <a href="{% url 'profile' question.user.username %}"><img src="{{ question.user.profile.profile_picture.url }}" class="user"></a>
         <a href="{% url 'profile' question.user.username %}" class="username">{{ question.user.profile.get_screen_name }}</a>
         <small class="asked">asked {{ question.update_date|naturaltime }}</small>
       </div>

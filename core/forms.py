@@ -46,12 +46,10 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['first_name', 'last_name', 'email', 'phone_number', 
-                  'gender', 'location', 'role', 'bio']
+                  'gender', 'location', 'role', 'bio', 'profile_picture']
         widgets = {
             'bio': forms.Textarea(
                 attrs={'cols': 30, 'rows': 10, 'class': 'form-control'}),
-            # 'education_description': forms.Textarea(
-            #     attrs={'cols': 30, 'rows': 4, 'class': 'form-control'}),
         }
 
 

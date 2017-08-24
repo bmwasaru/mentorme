@@ -6,11 +6,11 @@ from authentication.models import Profile
 
 class UserIsMentorMixin(AccessMixin):
     """Verify that the current user is a mentor"""
-    def dispatch(self, request):
+    def dispatch(self, request, *args, **kwargs):
         user = Profile.objects.get(user=request.user)
         if user.role != 'mentor':
             return self.handle_no_permission()
-        return super().dispatch(request)
+        return super().dispatch(request, *args, **kwargs)
 
 
 

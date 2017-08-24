@@ -76,6 +76,7 @@ urlpatterns = [
         name='check_notifications'),
     url(r'^search/$', search_views.search, name='search'),
     url(r'^i18n/', include('django.conf.urls.i18n', namespace='i18n')),
+    url(r'^articles/', include('articles.urls')),
     url(r'^u/(?P<username>[\w@.-]+)/$', core_views.profile, name='profile'),
 ]
 

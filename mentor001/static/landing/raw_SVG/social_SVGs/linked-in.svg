@@ -1,0 +1,30 @@
+<svg xmlns='http://www.w3.org/2000/svg' class='svg_long_shadow linkedin_long_shadow' width='134' height='138' viewBox='0 0 134 138'>
+<defs>
+<linearGradient id='icon_circle_gradient' gradientUnits='userSpaceOnUse' x1='132.9' y1='-120.7' x2='220.1' y2='-208' gradientTransform='matrix(1 0 0 -1 -122.6001 -110.4722)'>
+	<stop offset='0' class='offset0'/>
+	<stop offset='0.4329' class='offset1'/>
+	<stop offset='0.5008' class='offset2'/>
+	<stop offset='0.936' class='offset3'/>
+</linearGradient>
+<linearGradient id='icon_shape_gradient' gradientUnits='userSpaceOnUse' x1='155.0332' y1='-139.2104' x2='188.2848' y2='-172.462' gradientTransform='matrix(1 0 0 -1 -122.6001 -106.9902)'>
+	<stop  offset='0' class='offset4'/>
+	<stop  offset='0.7899' class='offset5'/>
+	<stop  offset='0.9199' class='offset6'/>
+	<stop  offset='1'  class='offset3'/>
+</linearGradient>
+</defs>
+<path class='icon_circle_shadow' d='
+	M9.418,59.563l77,78l49.332-50.409L63.418,15.563L51.355,7.847L36.75,5.529l-21,10.625l-9.375,19.25L5.878,46.563L7.5,50.654
+	l2.918,5.909L9.418,59.563z'/>
+<path class='icon_shape_shadow' d='M34.128,27.516c-1.468,0-3.298,2.312-3.298,3.773c0,1.463,34.542,33.58,34.542,33.58
+	l2.194-3.11C67.566,61.758,35.593,27.516,34.128,27.516z M30.825,49.325l27.96,23.378l6.81-7.892L35.407,34.623L30.825,49.325z
+	 M49.654,34.809c-2.308,0-6.739,0.692-7.373,1.845h-0.065V34.65h-4.55v14.675h4.551L65.86,65.63c0-1.914,7.304-11.007,7.304-11.007
+	S52.815,36.227,49.654,34.809z'/>
+<path class='icon_circle' d='
+	M41.459,6.5c19.054,0,34.5,15.446,34.5,34.5s-15.446,34.5-34.5,34.5c-23.163,0-34.5-15.445-34.5-34.5
+	C6.959,21.946,22.405,6.5,41.459,6.5z'/>
+<path class='icon_shape'  d='M33.116,27.314c-1.468,0-2.655,1.187-2.655,2.648c0,1.463,1.187,2.65,2.655,2.65
+	c1.464,0,2.654-1.187,2.654-2.65C35.771,28.501,34.581,27.314,33.116,27.314z M30.825,49.325h4.582V34.623h-4.582V49.325z
+	 M46.77,34.284c-2.308,0-3.855,1.217-4.488,2.37h-0.065V34.65h-4.55v14.675h4.551v-7.337c0-1.914,0.567-3.691,3.036-3.691
+	c2.431,0,2.653,2.355,2.653,4.058v6.97h4.55v-8.049C52.456,37.323,51.569,34.284,46.77,34.284z'/>
+</svg>

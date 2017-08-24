@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="question-user">
-      <a href="{% url 'profile' question.user.username %}"><img src="{{ question.user.profile.get_gravatar }}" class="user"></a>
+      <a href="{% url 'profile' question.user.username %}"><img src="{{ question.user.profile.profile_picture.url }}" class="user"></a>
       <a href="{% url 'profile' question.user.username %}" class="username">{{ question.user.profile.get_screen_name }}</a>
       <span class="asked">asked {{ question.update_date|naturaltime }}</span>
     </div>
@@ -35,5 +35,9 @@
         {% endfor %}
       </p>
     {% endif %}
+      <span class="label label-primary">
+        <a href="{% url 'category' question.category %}" style="color: white">{{ question.category }}</a>
+      </span>
+    
   </div>
 </div>

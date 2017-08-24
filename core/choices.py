@@ -14,3 +14,13 @@ MENTORSHIP_AREAS_CHOICES = (
 	('addictions', 'Coping with addictions'),
 	('abuse', 'Trauma and Abuse'),
 	('no_preference', 'Prefere not to answer'),)
+
+CATEGORY_CHOICES = (
+	('tech', 'Tech'),
+	('arts', 'Arts'),
+	('programming', 'Programming'),
+	('web_development', 'Web Development'),
+	('actor', 'Actor'),
+	('actress', 'Actress'),
+	('law', 'Law'),
+	('medicine', 'Medicine'))

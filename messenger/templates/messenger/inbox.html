@@ -9,12 +9,12 @@
   {% if messages %}
   <div class="conversation">
   <div class="talk-bubble" style="height: 300px; overflow-y:scroll; background-color: #f3f3f3">
-  <div class="talktext">
+  <div class="talktext" style="width: 100%">
     {% for message in messages %}
       {% include 'messenger/includes/partial_message.html' with message=message %}
     {% endfor %}
-  </div>
-  </div>
+  <!-- </div>
+  </div> -->
     {% include 'messenger/includes/partial_send_message.html' %}
   </div>
   {% else %}

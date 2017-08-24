@@ -19,7 +19,7 @@
           <a href="{% url 'profile' user.username %}" data-toggle="tooltip" data-placement="auto" title="{{ user.profile.get_screen_name }}" style="background-color: green">
           <div class="panel panel-default">
             <div class="panel-body">
-            <img class="img-responsive picture" src="{{ user.profile.get_gravatar }}" style="">
+            <img class="img-responsive picture" src="{{ user.profile.profile_picture.url }}" style="">
               {% if user.profile.is_mentee %}
                 <a href="{%  url 'request-mentorship' user.id %}"><button type="button" class="btn btn-default glyphicon glyphicon-plus">Request Mentorship</button></a>
               {% endif %}

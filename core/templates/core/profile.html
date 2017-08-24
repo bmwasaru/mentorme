@@ -16,7 +16,7 @@
   <div class="profile">
     <div class="row">
       <div class="col-md-3 user-profile">
-        <img class="img-responsive picture" src="{{ page_user.profile.get_gravatar }}" style=""><br></a><br><br>
+        <img class="img-responsive picture" src="{{ page_user.profile.profile_picture.url }}" style=""><br></a><br><br>
       </div>
 
       <div class="col-md-9 user-profile">
@@ -27,44 +27,19 @@
             
               <!-- Modal content-->
               <div class="modal-content">
-                <div class="send-message">
-                  <!-- <img src="{{ user.profile.get_picture }}" class="picture"> -->
-                  <div style="margin-top: .3em">
-                    <form role="form" method="post" action="{% url 'send_message' %}" id="send">
-                      {% csrf_token %}
-                      <input type="hidden" name="to" value="{{ user.profile.get_screen_name }}">
-                      <input class="form-control" type="text" name="message" placeholder="Write a message..." maxlength="1000" autocomplete="off">
-                    </form>
-                  </div>
-                </div>
+                {% include 'mentoring/contact.html' %}
               </div>
               
             </div>
           </div>
 
-          <ul class="nav nav-tabs" >
-            <li class="active"><a data-toggle="pill" href="#home">Bio</a></li>
-            <li><a data-toggle="pill" href="#menu1">Messages</a></li>
-            <li><a data-toggle="pill" href="#menu2">Milestones</a></li>
-          </ul>
-
-          <div class="tab-content">
-            <div id="home" class="tab-pane fade in active">
-              <h3>HOME</h3>
-            </div>
-            <div id="menu1" class="tab-pane fade">
-              <h3>Menu 1</h3>
-              
-            </div>
-            <div id="menu2" class="tab-pane fade">
-              <h3>Menu 2</h3>
-              <p>Some content in menu 2.</p>
-            </div>
-          </div>
+          
           
           {% include 'core/includes/partial_profile.html' %}
+          <a class="btn btn-primary" href="{% url 'request_mentorship' %}">Request Mentorship from {{ page_user.profile.get_screen_name }}</a>
 
-          <!-- <a class="btn btn-primary" data-toggle="modal" data-target="#myModal" >Message this person</a><br><br> -->
+          <a class="btn btn-primary" data-toggle="modal" data-target="#myModal" >Message this person</a><br><br>
+
         </div>
       </div>
         </form>

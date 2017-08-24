@@ -11,6 +11,7 @@ from activities.models import Notification
 
 from multiselectfield import MultiSelectField
 
+DEFAULT = 'images/default.jpg'
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -22,6 +23,7 @@ class Profile(models.Model):
         default='mentee', 
         choices=ROLE_CHOICES)
     phone_number = models.CharField(max_length=32)
+    profile_picture = models.ImageField(upload_to='images/', default=DEFAULT)
     is_previously_logged_in = models.CharField(max_length=5, default=False)
 
     def is_mentor(self):

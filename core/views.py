@@ -11,6 +11,10 @@ from .forms import (ChangePasswordForm, ProfileForm,
 from authentication.models import Profile
 
 
+def landing(request): 
+    return render(request, 'landing.html')  
+
+
 def home(request):
     if request.user.is_authenticated():
         # TODO: return milestones
@@ -148,7 +152,7 @@ def mentorship_areas(request):
 def settings(request):
     user = request.user
     if request.method == 'POST':
-        form = ProfileForm(request.POST)
+        form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             user.first_name = form.cleaned_data.get('first_name')
             user.last_name = form.cleaned_data.get('last_name')
@@ -158,6 +162,7 @@ def settings(request):
             user.email = form.cleaned_data.get('email')
             user.profile.bio = form.cleaned_data.get('bio')
             user.profile.location = form.cleaned_data.get('location')
+            user.profile.profile_picture = form.cleaned_data.get('profile_picture')
             user.save()
             messages.add_message(request,
                                  messages.SUCCESS,

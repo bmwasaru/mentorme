@@ -1,0 +1,748 @@
+/*=============================================
+[ Inactive Styles ]
+==============================================*/
+
+
+
+ 
+@-moz-document url-prefix() { 
+    .social-line:hover .icon_shape_shadow {
+        fill: url("firefix.svg/#icon_shape_gradient");
+        fill-opacity: 0.9;
+    }
+    .social-line:hover .icon_circle_shadow {
+        fill: url("firefix.svg/#icon_circle_gradient");
+        fill-opacity: 0.7;
+    }
+    .social-shadow .icon_circle_shadow {
+        fill: url("firefix.svg/#icon_circle_gradient");
+        fill-opacity: 0.7;
+    }
+    .social-shadow .icon_shape_shadow { fill: url("firefix.svg/#icon_shape_gradient") }
+    .social-filled:hover .icon_circle_shadow {
+        fill: url("firefix.svg/#icon_circle_gradient");
+        fill-opacity: 0.7;
+        opacity: 1;
+    }
+    .social-filled:hover .icon_shape_shadow {
+        fill: url("firefix.svg/#icon_shape_gradient");
+        fill-opacity: 0.9;
+    }
+} 
+
+
+
+/*Genral*/
+.flat-filled .icon > path {
+    -moz-transform: translate(0px ,0px) scale(1,1);
+    -webkit-transform: translate(0px ,0px) scale(1,1);
+    transform: translate(0px, 0px) scale(1,1);
+}
+.flat-filled .icon > .lightning {
+    -webkit-transform: translate(0px ,0px) scale(1,1);
+    -moz-transform: translate(0px ,0px) scale(1,1);
+    transform: translate(0px, 0px) scale(1,1);
+}
+.flat-filled .circle {
+    fill: #fff;
+    transform: translate(0px, 0px) scale(1,1);
+    -webkit-transform: translate(0px ,0px) scale(1,1);
+    -moz-transform: translate(0px ,0px) scale(1,1);
+}
+/*Exceptions*/
+#filled-user .collar_right {
+    fill: #f26c63;
+    -webkit-transform: translate(0px ,0px) scale(1,1);
+    -moz-transform: translate(0px ,0px) scale(1,1);
+    transform: translate(0px, 0px) scale(1,1);
+}
+#filled-user .collar_left {
+    fill: #f26c63;
+    -webkit-transform: translate(0px ,0px) scale(1,1);
+    -moz-transform: translate(0px ,0px) scale(1,1);
+    transform: translate(0px, 0px) scale(1,1);
+}
+#filled-lightning .bolt {
+    fill: #f26c63;
+    -webkit-transform: translate(0px ,0px) scale(1,1);
+    -moz-transform: translate(0px ,0px) scale(1,1);
+    transform: translate(0px, 0px) scale(1,1);
+}
+#filled-lightning .highlight {
+    fill: #f26c63;
+    -webkit-transform: translate(0px ,0px) scale(1,1);
+    -moz-transform: translate(0px ,0px) scale(1,1);
+    transform: translate(0px, 0px) scale(1,1);
+}
+#filled-mic .bars_right rect {
+    fill: #f26c63;
+    -webkit-transform: translate(0px ,0px) scale(1,1);
+    -moz-transform: translate(0px ,0px) scale(1,1);
+    transform: translate(0px, 0px) scale(1,1);
+}
+#filled-coffee .top {
+    fill: #f26c63;
+    -webkit-transform: translate(0px ,0px) scale(1,1);
+    -moz-transform: translate(0px ,0px) scale(1,1);
+    transform: translate(0px, 0px) scale(1,1);
+    : ;
+}
+/*Specifics*/
+#filled-browser .green { fill: #FFF }
+#filled-browser .orange { fill: #FFF }
+#filled-browser .red { fill: #FFF }
+#filled-brush .brush_silver { fill: #FFF }
+#filled-calander .number { fill: #FFF }
+#filled-camera .lens_inner { fill: #FFF }
+#filled-clock .seconds { fill: #FFF }
+#filled-clock .middle { fill: #FFF }
+#filled-clock .hour { fill: #FFF }
+#filled-clock .minute { fill: #FFF }
+#filled-coffee .middle { fill: #FFF }
+#filled-diamond .middle { fill: #FFF }
+#filled-diamond .top_3 { fill: #FFF }
+#filled-disk .top { fill: #FFF }
+#filled-disk .top_right { fill: #FFF }
+#filled-disk .text { fill: #FFF }
+#filled-email .paper { fill: #FFF }
+#filled-home .hole { fill: #FFF }
+#filled-location .inner { fill: #FFF }
+#filled-lock .keyhole { fill: #FFF }
+#filled-message .dots { fill: #FFF }
+#filled-picture .sun { fill: #FFF }
+#filled-picture .mountain { fill: #FFF }
+#filled-mic .bars_left { fill: #FFF }
+#filled-mic .bars_right rect { fill: #FFF }
+#filled-paper .text { fill: #FFF }
+#filled-paper .corner { fill: #FFF }
+#filled-pencil .metal { fill: #FFF }
+#filled-phone .screen { fill: #FFF }
+#filled-phone .details { fill: #FFF }
+#filled-robot .eyes { fill: #FFFFFF }
+#filled-suitcase .buttons { fill: #FFF }
+#filled-tag .dot { fill: #FFF }
+#filled-thumbsdown .dot { fill: #FFFFFF }
+#filled-thumbsup .dot { fill: #FFFFFF }
+#filled-trash .details { fill: #FFF }
+#filled-winner .text { fill: #FFFFFF }
+/*=============================================
+[ Hover Styles ]
+==============================================*/
+#filled-browser:hover .circle { fill: #B1EB5B }
+#filled-browser:hover .screen { fill: #d6d6d6 }
+#filled-browser:hover .base { fill: #b0b0b0 }
+#filled-browser:hover .top { fill: #8F8F8F }
+#filled-browser:hover .green { fill: #AEE42D }
+#filled-browser:hover .orange { fill: #FFD02C }
+#filled-browser:hover .red { fill: #E64545 }
+.services-offer:hover #filled-brush .brush_base { fill: #00A3C6 }
+.services-offer:hover #filled-brush .brush_highlight { fill: #43C1DC }
+.services-offer:hover #filled-brush .brush_silver { fill: #C8C8C8 }
+.services-offer:hover #filled-brush .brush_tip { fill: #917152 }
+.services-offer:hover #filled-brush .circle { fill: #fff }
+#filled-calander:hover .circle { fill: #F3CF3F }
+#filled-calander:hover .base_top { fill: #5B3F89 }
+#filled-calander:hover .left { fill: #848484 }
+#filled-calander:hover .right { fill: #848484 }
+#filled-calander:hover .number { fill: #fff }
+#filled-calander:hover .base_bottom { fill: #644892 }
+#filled-camera:hover  .circle { fill: #F39C12 }
+#filled-camera:hover .base { fill: #E0DECD }
+#filled-camera:hover .strip { fill: #3376D2 }
+#filled-camera:hover .lens { fill: #CAC8B7 }
+#filled-camera:hover .lens_inner { fill: #A6A495 }
+#filled-camera:hover .flash { fill: #FFF }
+#filled-camera:hover .red { fill: #D25133 }
+#filled-camera:hover .button { fill: #A6A496 }
+.services-offer:hover #filled-clock .circle { fill: #fff }
+.services-offer:hover #filled-clock .base { fill: #FF8933 }
+.services-offer:hover #filled-clock .face { fill: #FFF }
+.services-offer:hover #filled-clock .seconds { fill: #FF725F }
+.services-offer:hover #filled-clock .middle { fill: #808080 }
+.services-offer:hover #filled-clock .hour { fill: #808080 }
+.services-offer:hover #filled-clock .minute { fill: #808080 }
+#filled-coffee:hover .circle { fill: #82D8B5 }
+#filled-coffee:hover .base { fill: #8F6349 }
+#filled-coffee:hover .middle { fill: #9C8679 }
+#filled-coffee:hover .top { fill: #F1F1F1 }
+#filled-diamond:hover .circle { fill: #02BD85 }
+#filled-diamond:hover .middle { fill: #D87598 }
+#filled-diamond:hover .top_3 { fill: #FFC8DB }
+#filled-diamond:hover .top_2 { fill: #F2A0BD }
+#filled-diamond:hover .top_1 { fill: #F2A0BD }
+#filled-diamond:hover .top_left { fill: #D87598 }
+#filled-diamond:hover .top_right { fill: #D87598 }
+#filled-diamond:hover .right { fill: #C15179 }
+#filled-diamond:hover .left { fill: #FFC8DB }
+#filled-disk:hover .circle { fill: #F3CF3F }
+#filled-disk:hover .base { fill: #5D699B }
+#filled-disk:hover .top { fill: #B2B2B2 }
+#filled-disk:hover .top_right { fill: #747A90 }
+#filled-disk:hover .bottom { fill: #D9D9C2 }
+#filled-disk:hover .text { fill: #747A90 }
+.services-offer:hover #filled-email .circle { fill: #fff }
+.services-offer:hover #filled-email .top { fill: #3DD97F }
+.services-offer:hover #filled-email .paper { fill: #FFFFFF }
+.services-offer:hover #filled-email .base { fill: #2DB466 }
+.services-offer:hover #filled-email .text { fill: #BBBBBB }
+#filled-film:hover .circle { fill: #8DD0BE }
+#filled-film:hover .base { fill: #6E6E6E }
+#filled-film:hover .bottom { fill: #515151 }
+#filled-film:hover .top { fill: #8C8C8C }
+#filled-flag:hover .circle { fill: #8DD0BE }
+#filled-flag:hover .bottom { fill: #FF5400 }
+#filled-flag:hover .shadow { fill: #C03F00 }
+#filled-flag:hover .top { fill: #FF5400 }
+#filled-flag:hover .pole { fill: #676767 }
+#filled-folder:hover .circle { fill: #82D8B5 }
+#filled-folder:hover .back { fill: #9C4588 }
+#filled-folder:hover .paper_back { fill: #D9D9D9 }
+#filled-folder:hover .paper_front { fill: #fff }
+#filled-folder:hover .front { fill: #BF67AB }
+#filled-graph:hover .circle { fill: #E3A7C0 }
+#filled-graph:hover .bar_left { fill: #7BC156 }
+#filled-graph:hover .bar_middle { fill: #92D76C }
+#filled-graph:hover .bar_right { fill: #64A242 }
+#filled-graph:hover .front { fill:  }
+#filled-graph:hover .dot_4,
+#filled-graph:hover .dot_3,
+#filled-graph:hover .dot_2,
+#filled-graph:hover .dot_1 { fill: #fff }
+.services-offer:hover #filled-heart .circle { fill: #fff }
+.services-offer:hover #filled-heart .base { fill: #BC4B36 }
+.services-offer:hover #filled-heart .left { fill: #db5940 }
+#filled-home:hover .circle { fill: #02BD85 }
+#filled-home:hover .base { fill: #F1F1F1 }
+#filled-home:hover .hole { fill: #C3C3C3 }
+#filled-home:hover .roof { fill: #D34141 }
+#filled-lightning:hover .circle { fill: #423D5B }
+#filled-lightning:hover .bolt { fill: #FFD928 }
+#filled-lightning:hover .highlight { fill: #FFF3B9 }
+#filled-location:hover .circle { fill: #4890A8 }
+#filled-location:hover .base { fill: #B6351B }
+#filled-location:hover .inner { fill: #7E2412 }
+#filled-lock:hover .circle { fill: #02AF7E }
+#filled-lock:hover .base { fill: #C9A80D }
+#filled-lock:hover .baselight { fill: #D9BC36 }
+#filled-lock:hover .keyhole { fill: #8A7200 }
+#filled-lock:hover .bar { fill: #C6C6C6 }
+#filled-magnify:hover .circle { fill: #F2D65F }
+#filled-magnify:hover .base { fill: #34B9F1 }
+#filled-magnify:hover .glass { fill: #8DDDFF }
+.services-offer:hover #filled-message .circle { fill: #fff }
+.services-offer:hover #filled-message .back { fill: #FFAD10 }
+.services-offer:hover #filled-message .front { fill: #00A3C6 }
+.services-offer:hover #filled-message .dots { fill: #006A81 }
+#filled-mic:hover .circle { fill: #F3CF3F }
+#filled-mic:hover .base { fill: #40979F }
+#filled-mic:hover .stand { fill: #5F8083 }
+#filled-mic:hover .bars_left { fill: #267178 }
+#filled-mic:hover .bars_right rect { fill: #267178 }
+#filled-paper:hover .circle { fill: #D6D6B8 }
+#filled-paper:hover .base { fill: #929292 }
+#filled-paper:hover .front { fill: #FFFFFF }
+#filled-paper:hover .corner { fill: #D6D6D6 }
+#filled-paper:hover .text { fill: #BBBBBB }
+#filled-pencil:hover .circle { fill: #CDEFE1 }
+#filled-pencil:hover .wood { fill: #FFC833 }
+#filled-pencil:hover .base_top { fill: #456FD8 }
+#filled-pencil:hover .base_bottom { fill: #3258B6 }
+#filled-pencil:hover .base_middle { fill: #567FE5 }
+#filled-pencil:hover .tip { fill: #567FE5 }
+#filled-pencil:hover .eraser { fill: #FF72B1 }
+#filled-pencil:hover .metal { fill: #C6C6C6 }
+.services-offer:hover #filled-phone .circle { fill: #fff }
+.services-offer:hover #filled-phone .base { fill: #6F82A4 }
+.services-offer:hover #filled-phone .screen { fill: #A5B5D3 }
+.services-offer:hover #filled-phone .details { fill: #516078 }
+#filled-picture:hover .circle { fill: #B1EB5B }
+#filled-picture:hover .back { fill: #A46B49 }
+#filled-picture:hover .front { fill: #CE8A61 }
+#filled-picture:hover .sky { fill: #DCF5FF }
+#filled-picture:hover .sun { fill: #FF7800 }
+#filled-picture:hover .mountain { fill: #3B8C1E }
+#filled-plane:hover .circle { fill: #E88D70 }
+#filled-plane:hover .bottom { fill: #007D7E }
+#filled-plane:hover .right { fill: #4ED0D1 }
+#filled-plane:hover .middle { fill: #3AAAAB }
+#filled-plane:hover .left { fill: #4ED0D1 }
+#filled-present:hover .circle { fill: #4890A8 }
+#filled-present:hover .base { fill: #F1F1F1 }
+#filled-present:hover .top { fill: #C3C3C3 }
+#filled-present:hover .ribbon { fill: #D34141 }
+#filled-robot:hover .circle { fill: #E88D70 }
+#filled-robot:hover .ears { fill: #39517A }
+#filled-robot:hover .base { fill: #4C70AF }
+#filled-robot:hover .highlight { fill: #6384BE }
+#filled-robot:hover .antenna { fill: #A0ABBD }
+#filled-robot:hover .eyes { fill: #FFFFFF }
+#filled-rocket:hover .circle { fill: #4BAE97 }
+#filled-rocket:hover .engine { fill: #7D7D7D }
+#filled-rocket:hover .base { fill: #B0CED8 }
+#filled-rocket:hover .window { fill: #8BABB6 }
+#filled-rocket:hover .glass { fill: #FFFFFF }
+#filled-rocket:hover .flame { fill: #FF5400 }
+#filled-screen:hover .circle { fill: #F8B243 }
+#filled-screen:hover .stand { fill: #516078 }
+#filled-screen:hover .base { fill: #6F82A4 }
+#filled-screen:hover .highlight { fill: #A5B5D3 }
+#filled-screen:hover .logo { fill: #516078 }
+#filled-settings:hover .circle { fill: #E3A7C0 }
+#filled-settings:hover .base { fill: #8BAE5D }
+#filled-settings:hover .top { fill: #698741 }
+#filled-spaceship:hover .circle { fill: #02BD85 }
+#filled-spaceship:hover .light { fill: #FFF3B9 }
+#filled-spaceship:hover .glass { fill: #8DDDFF }
+#filled-spaceship:hover .base { fill: #7E8CA6 }
+#filled-spaceship:hover .circles { fill: #56627A }
+#filled-storm:hover .circle { fill: #90C0D8 }
+#filled-storm:hover .cloud { fill: #858585 }
+#filled-storm:hover .lightning { fill: #FFAD10 }
+#filled-suitcase:hover .circle { fill: #02BD85 }
+#filled-suitcase:hover .top { fill: #9A4C1D }
+#filled-suitcase:hover .bottom { fill: #B75B24 }
+#filled-suitcase:hover .buttons { fill: #C89211 }
+#filled-tag:hover .circle { fill: #D6D6B8 }
+#filled-tag:hover .base { fill: #FFBA00 }
+#filled-tag:hover .dot { fill: #C38E00 }
+#filled-thumbsdown:hover .circle { fill: #E74C3C }
+#filled-thumbsdown:hover .base { fill: #F1CDB0 }
+#filled-thumbsdown:hover .sleeve { fill: #E1AF45 }
+#filled-thumbsdown:hover .cuff { fill: #339FA9 }
+#filled-thumbsdown:hover .dot { fill: #FFFFFF }
+#filled-thumbsup:hover .circle { fill: #02BD85 }
+#filled-thumbsup:hover .base { fill: #F1CDB0 }
+#filled-thumbsup:hover .sleeve { fill: #854D37 }
+#filled-thumbsup:hover .cuff { fill: #C24C28 }
+#filled-thumbsup:hover .dot { fill: #FFFFFF }
+#filled-trash:hover .circle { fill: #90C0D8 }
+#filled-trash:hover .base { fill: #8C8C8C }
+#filled-trash:hover .details { fill: #515151 }
+#filled-trash:hover .lid { fill: #6E6E6E }
+#filled-user:hover .circle { fill: #D1F274 }
+#filled-user:hover .body { fill: #44B2B6 }
+#filled-user:hover .collar_right { fill: #FFFFFF }
+#filled-user:hover .collar_left { fill: #FFFFFF }
+#filled-user:hover .head { fill: #F1CDB0 }
+#filled-user:hover .hair { fill: #AB6125 }
+#filled-winner:hover .circle { fill: #F8B243 }
+#filled-winner:hover .ribbon { fill: #5BB3F0 }
+#filled-winner:hover .base { fill: #1983CD }
+#filled-winner:hover .text { fill: #FFFFFF }
+/*=============================================
+[ Animation Styles ]
+==============================================*/
+/*LEFT*/
+.services-offer:hover #filled-winner .text,
+.services-offer:hover #filled-user .hair,
+.services-offer:hover #filled-trash .lid,
+.services-offer:hover #filled-thumbsdown .base,
+.services-offer:hover #filled-thumbsup .base,
+.services-offer:hover #filled-suitcase .buttons,
+.services-offer:hover #filled-spaceship .light,
+.services-offer:hover #filled-screen .highlight,
+.services-offer:hover #filled-rocket .glass,
+.services-offer:hover #filled-robot .eyes,
+.services-offer:hover #filled-robot .ears,
+.services-offer:hover #filled-present .ribbon,
+.services-offer:hover #filled-plane .middle,
+.services-offer:hover #filled-picture .sun,
+.services-offer:hover #filled-phone .screen,
+.services-offer:hover #filled-pencil .metal,
+.services-offer:hover #filled-mic .bars_left,
+.services-offer:hover #filled-message .dots,
+.services-offer:hover #filled-lock .keyhole,
+.services-offer:hover #filled-lightning .highlight,
+.services-offer:hover #filled-home .hole,
+.services-offer:hover #filled-heart .left,
+.services-offer:hover #filled-graph .bar_left,
+.services-offer:hover #filled-folder .paper_front,
+.services-offer:hover #filled-flag .pole,
+.services-offer:hover #filled-film .bottom,
+.services-offer:hover #filled-email .text,
+.services-offer:hover #filled-disk .bottom,
+.services-offer:hover #filled-disk .text,
+.services-offer:hover #filled-diamond .middle,
+.services-offer:hover #filled-coffee .middle,
+.services-offer:hover #filled-clock .seconds,
+.services-offer:hover #filled-camera .strip,
+.services-offer:hover #filled-calander .left,
+.services-offer:hover  #filled-brush .brush_silver,
+.services-offer:hover #filled-browser .screen {
+    -webkit-animation-delay: .2s;
+    -moz-animation-delay: 0.2s;
+    -ms-animation-delay: 0.2s;
+    -o-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+    /*animation-timing-function*/
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    -ms-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
+    /*animation-iteration-count*/
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    /*transform-origin*/
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50px 50px;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-animation-duration: .4s;
+    -moz-animation-duration: .4s;
+    -ms-animation-duration: .4s;
+    -o-animation-duration: .4s;
+    animation-duration: .4s;
+    -webkit-animation-name: left;
+    -moz-animation-name: left;
+    -ms-animation-name: left;
+    -o-animation-name: left;
+    animation-name: left;
+}
+/*RIGHT*/
+.services-offer:hover #filled-winner .base,
+.services-offer:hover #filled-user .body,
+.services-offer:hover #filled-trash .base,
+.services-offer:hover #filled-thumbsdown .sleeve,
+.services-offer:hover #filled-thumbsup .sleeve,
+.services-offer:hover #filled-tag .base,
+.services-offer:hover #filled-storm .cloud,
+.services-offer:hover #filled-spaceship .base,
+.services-offer:hover #filled-screen .base,
+.services-offer:hover #filled-rocket .base,
+.services-offer:hover #filled-robot .base,
+.services-offer:hover #filled-present .base,
+.services-offer:hover #filled-picture .mountain,
+.services-offer:hover #filled-phone .base,
+.services-offer:hover #filled-pencil .base_middle,
+.services-offer:hover #filled-paper .base,
+.services-offer:hover #filled-mic .bars_right rect,
+.services-offer:hover #filled-magnify .glass,
+.services-offer:hover #filled-lock .base,
+.services-offer:hover #filled-location .inner,
+.services-offer:hover #filled-home .base,
+.services-offer:hover #filled-graph .bar_middle,
+.services-offer:hover #filled-folder .paper_back,
+.services-offer:hover #filled-flag .top,
+.services-offer:hover #filled-film .base,
+.services-offer:hover #filled-email .base,
+.services-offer:hover #filled-disk .base,
+.services-offer:hover #filled-diamond .right,
+.services-offer:hover #filled-coffee .base,
+.services-offer:hover #filled-clock .base,
+.services-offer:hover #filled-camera .base,
+.services-offer:hover #filled-calander .base_top,
+.services-offer:hover #filled-browser .base {
+    /*animation-timing-function*/
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    -ms-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
+    /*animation-iteration-count*/
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    /*transform-origin*/
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50px 50px;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-animation-duration: .4s;
+    -moz-animation-duration: .4s;
+    -ms-animation-duration: .4s;
+    -o-animation-duration: .4s;
+    animation-duration: .4s;
+    -webkit-animation-name: right;
+    -moz-animation-name: right;
+    -ms-animation-name: right;
+    -o-animation-name: right;
+    animation-name: right;
+}
+/*TOP RIGHT*/
+.services-offer:hover #filled-user .head,
+.services-offer:hover #filled-thumbsdown .cuff,
+.services-offer:hover #filled-thumbsdown .cuff,
+.services-offer:hover #filled-suitcase .top,
+.services-offer:hover #filled-storm .lightning,
+.services-offer:hover #filled-spaceship .circles,
+.services-offer:hover #filled-spaceship .glass,
+.services-offer:hover #filled-settings .top,
+.services-offer:hover #filled-rocket .engine,
+.services-offer:hover #filled-robot .highlight,
+.services-offer:hover #filled-present .top,
+.services-offer:hover #filled-plane .right,
+.services-offer:hover #filled-picture .sky,
+.services-offer:hover #filled-phone .details,
+.services-offer:hover #filled-pencil .eraser,
+.services-offer:hover #filled-pencil .base_bottom,
+.services-offer:hover #filled-paper .front,
+.services-offer:hover #filled-mic .base,
+.services-offer:hover #filled-mic .stand,
+.services-offer:hover #filled-lock .baselight,
+.services-offer:hover #filled-location .base,
+.services-offer:hover #filled-lightning .bolt,
+.services-offer:hover #filled-home .roof,
+.services-offer:hover #filled-heart .base,
+.services-offer:hover #filled-graph .bar_right,
+.services-offer:hover #filled-graph .dot_4,
+.services-offer:hover #filled-flag .bottom,
+.services-offer:hover #filled-film .top,
+.services-offer:hover #filled-disk .top_right,
+.services-offer:hover #filled-diamond .top_right,
+.services-offer:hover #filled-diamond .left,
+.services-offer:hover #filled-coffee .top,
+.services-offer:hover #filled-clock .face,
+.services-offer:hover #filled-calander .right,
+.services-offer:hover #filled-brush .brush_base,
+.services-offer:hover #filled-browser .top {
+    -webkit-animation-delay: .1s;
+    -moz-animation-delay: 0.1s;
+    -ms-animation-delay: 0.1s;
+    -o-animation-delay: 0.1s;
+    animation-delay: 0.1s;
+    /*animation-timing-function*/
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    -ms-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
+    /*animation-iteration-count*/
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    /*transform-origin*/
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50px 50px;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-animation-duration: .4s;
+    -moz-animation-duration: .4s;
+    -ms-animation-duration: .4s;
+    -o-animation-duration: .4s;
+    animation-duration: .4s;
+    -webkit-animation-name: right-top;
+    -moz-animation-name: right-top;
+    -ms-animation-name: right-top;
+    -o-animation-name: right-top;
+    animation-name: right-top;
+}
+/*TOP LEFT*/
+.services-offer:hover #filled-winner .ribbon,
+.services-offer:hover #filled-trash .details,
+.services-offer:hover #filled-thumbsdown .dot,
+.services-offer:hover #filled-thumbsup .dot,
+.services-offer:hover #filled-tag .dot,
+.services-offer:hover #filled-suitcase .bottom,
+.services-offer:hover #filled-settings .base,
+.services-offer:hover #filled-screen .stand,
+.services-offer:hover #filled-rocket .window,
+.services-offer:hover #filled-robot .antenna,
+.services-offer:hover #filled-plane .left,
+.services-offer:hover #filled-picture .front,
+.services-offer:hover #filled-pencil .base_top,
+.services-offer:hover #filled-paper .corner,
+.services-offer:hover #filled-magnify .base,
+.services-offer:hover #filled-lock .bar,
+.services-offer:hover #filled-graph .dot_3,
+.services-offer:hover #filled-flag .shadow,
+.services-offer:hover #filled-email .paper,
+.services-offer:hover #filled-disk .top,
+.services-offer:hover #filled-diamond .top_left,
+.services-offer:hover #filled-diamond .top_3,
+.services-offer:hover #filled-clock .minute,
+.services-offer:hover #filled-camera .flash,
+.services-offer:hover #filled-calander .number,
+.services-offer:hover #filled-brush .brush_highlight,
+.services-offer:hover #filled-browser .green {
+    /*animation-timing-function*/
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    -ms-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
+    /*animation-iteration-count*/
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    /*transform-origin*/
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50px 50px;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-animation-duration: .4s;
+    -moz-animation-duration: .4s;
+    -ms-animation-duration: .4s;
+    -o-animation-duration: .4s;
+    animation-duration: .4s;
+    -webkit-animation-name: left-top;
+    -moz-animation-name: left-top;
+    -ms-animation-name: left-top;
+    -o-animation-name: left-top;
+    animation-name: left-top;
+}
+.services-offer:hover #filled-user .collar_left,
+.services-offer:hover #filled-screen .logo,
+.services-offer:hover #filled-rocket .flame,
+.services-offer:hover #filled-picture .back,
+.services-offer:hover #filled-pencil .tip,
+.services-offer:hover #filled-paper .text,
+.services-offer:hover #filled-message .front,
+.services-offer:hover #filled-graph .dot_2,
+.services-offer:hover #filled-folder .front,
+.services-offer:hover #filled-email .top,
+.services-offer:hover #filled-diamond .top_2,
+.services-offer:hover #filled-clock .hour,
+.services-offer:hover #filled-camera .red,
+.services-offer:hover #filled-calander .base_bottom,
+.services-offer:hover #filled-browser .orange {
+    -webkit-animation-delay: .05s;
+    -moz-animation-delay: 0.05s;
+    -ms-animation-delay: 0.05s;
+    -o-animation-delay: 0.05s;
+    animation-delay: 0.05s;
+    /*animation-timing-function*/
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    -ms-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
+    /*animation-iteration-count*/
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
+    -ms-animation-iteration-count: 1;
+    -o-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    /*transform-origin*/
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50px 50px;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-animation-duration: .4s;
+    -moz-animation-duration: .4s;
+    -ms-animation-duration: .4s;
+    -o-animation-duration: .4s;
+    animation-duration: .4s;
+    -webkit-animation-name: left-top;
+    -moz-animation-name: left-top;
+    -ms-animation-name: left-top;
+    -o-animation-name: left-top;
+    animation-name: left-top;
+    -webkit-animation-name: left-top;
+    -moz-animation-name: left-top;
+    -ms-animation-name: left-top;
+    -o-animation-name: left-top;
+    animation-name: left-top;
+}
+.services-offer:hover #filled-user .collar_right,
+.services-offer:hover #filled-plane .bottom,
+.services-offer:hover #filled-pencil .wood,
+.services-offer:hover #filled-message .back,
+.services-offer:hover #filled-graph .dot_1,
+.services-offer:hover #filled-folder .back,
+.services-offer:hover #filled-diamond .top_1,
+.services-offer:hover #filled-clock .middle,
+.services-offer:hover #filled-camera .button,
+.services-offer:hover #filled-camera .lens,
+.services-offer:hover #filled-camera .lens_inner,
+.services-offer:hover #filled-brush .brush_tip,
+.services-offer:hover #filled-browser .red {
+    /*animation-timing-function*/
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    -ms-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
+    /*animation-iteration-count*/
+    /*transform-origin*/
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50px 50px;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-animation-duration: .4s;
+    -moz-animation-duration: .4s;
+    -ms-animation-duration: .4s;
+    -o-animation-duration: .4s;
+    animation-duration: .4s;
+    -webkit-animation-name: left-top;
+    -moz-animation-name: left-top;
+    -ms-animation-name: left-top;
+    -o-animation-name: left-top;
+    animation-name: left-top;
+}
+/*Keyframes*/
+@-moz-keyframes left-top { 
+    0% { -webki-transform: translate(-100px, -100px) scale(3,3) }
+    1% { -webkit-transform: translate(-100px, -100px) scale(3,3) }
+    100% { -webkit-transform: translate(0px ,0px) scale(1,1) }
+}
+@-webkit-keyframes left-top { 
+    0% { -webki-transform: translate(-100px, -100px) scale(3,3) }
+    1% { -webkit-transform: translate(-100px, -100px) scale(3,3) }
+    100% { -webkit-transform: translate(0px ,0px) scale(1,1) }
+}
+@keyframes left-top { 
+    0% { transform: translate(-100px, -100px) scale(3,3) }
+    1% { transform: translate(-100px, -100px) scale(3,3) }
+    100% { transform: translate(0px, 0px) scale(1,1) }
+}
+@-moz-keyframes right-top { 
+    0% { -webki-transform: translate(100px, -200px) scale(3,3) }
+    1% { -webkit-transform: translate(100px, -200px) scale(3,3) }
+    100% { -webkit-transform: translate(0px ,0px) scale(1,1) }
+}
+@-webkit-keyframes right-top { 
+    0% { -webki-transform: translate(100px, -200px) scale(3,3) }
+    1% { -webkit-transform: translate(100px, -200px) scale(3,3) }
+    100% { -webkit-transform: translate(0px ,0px) scale(1,1) }
+}
+@keyframes right-top { 
+    0% { transform: translate(100px, -200px) scale(3,3) }
+    1% { transform: translate(100px, -200px) scale(3,3) }
+    100% { transform: translate(0px, 0px) scale(1,1) }
+}
+@-moz-keyframes right { 
+    0% { -webki-transform: translate(100px, 0px) }
+    1% { -webkit-transform: translate(100px, 0px) }
+    100% { -webkit-transform: translate(0px ,0px) }
+}
+@-webkit-keyframes right { 
+    0% { -webki-transform: translate(100px, 0px) }
+    1% { -webkit-transform: translate(100px, 0px) }
+    100% { -webkit-transform: translate(0px ,0px) }
+}
+@keyframes right { 
+    0% { transform: translate(100px, 0px) }
+    1% { transform: translate(100px, 0px) }
+    100% { transform: translate(0px, 0px) }
+}
+@-moz-keyframes left { 
+    0% { -webki-transform: translate(-100px, 0px) }
+    1% { -webkit-transform: translate(-100px, 0px) }
+    100% { -webkit-transform: translate(0px ,0px) }
+}
+@-webkit-keyframes left { 
+    0% { -webki-transform: translate(-100px, 0px) }
+    1% { -webkit-transform: translate(-100px, 0px) }
+    100% { -webkit-transform: translate(0px ,0px) }
+}
+@keyframes left { 
+    0% { transform: translate(-100px, 0px) }
+    1% { transform: translate(-100px, 0px) }
+    100% { transform: translate(0px, 0px) }
+}

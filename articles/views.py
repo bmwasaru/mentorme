@@ -102,27 +102,25 @@ def preview(request):
 @login_required
 @ajax_required
 def comment(request):
-    try:
-        if request.method == 'POST':
-            article_id = request.POST.get('article')
-            article = Article.objects.get(pk=article_id)
-            comment = request.POST.get('comment')
-            comment = comment.strip()
-            if len(comment) > 0:
-                article_comment = ArticleComment(user=request.user,
-                                                 article=article,
-                                                 comment=comment)
-                article_comment.save()
-            html = ''
-            for comment in article.get_comments():
-                html = '{0}{1}'.format(html, render_to_string(
-                    'articles/partial_article_comment.html',
-                    {'comment': comment}))
+    if request.method == 'POST':
+        article_id = request.POST.get('article')
+        article = Article.objects.get(pk=article_id)
+        comment = request.POST.get('comment')
+        comment = comment.strip()
+        if len(comment) > 0:
+            article_comment = ArticleComment(user=request.user,
+                                                article=article,
+                                                comment=comment)
+            article_comment.save()
+            user = request.user
+            user.profile.notify_article_commented(article)
+        html = ''
+        for comment in article.get_comments():
+            html = '{0}{1}'.format(html, render_to_string(
+                'articles/partial_article_comment.html',
+                {'comment': comment}))
 
-            return HttpResponse(html)
+        return HttpResponse(html)
 
-        else:
-            return HttpResponseBadRequest()
-
-    except Exception:
+    else:
         return HttpResponseBadRequest()

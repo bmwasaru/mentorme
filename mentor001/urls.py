@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^mentorship_areas/$', core_views.mentorship_areas, name='mentorship_areas'),
     
     url(r'^landing/$', core_views.landing, name='landing'),
+    url(r'^index/$', core_views.index, name='index'),
     url(r'^mentoring/$', mentoring_views.mentoring, name='mentoring'),
     url(r'^contact/$', mentoring_views.contact, name='contact'),
     url(r'^request_mentorship/$', mentoring_views.request_mentorship, name='request_mentorship'),

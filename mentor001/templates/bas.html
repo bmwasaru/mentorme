@@ -1,0 +1,147 @@
+{% load staticfiles i18n %}<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="ThemeStarz">
+
+    <link href="{% static 'assets/fonts/font-awesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/fonts/elegant-fonts.css' %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/css/zabuto_calendar.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-select.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/revolution/css/settings.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/revolution/css/layers.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/revolution/css/navigation.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" type="text/css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/mentor001.js' %}"></script> 
+    <link href="{% static 'css/mentor.css' %}?v=1" rel="stylesheet">
+    <link href="{% static 'css/chatbubble.css' %}?v=1" rel="stylesheet">
+
+    <title>{% block title %}Mentor 001{% endblock %}</title>
+
+    {% block head %}{% endblock %}
+
+    <style type="">
+        .platform-body{
+            padding-top: 0px; 
+            background-color: #f3f3f3;
+        }
+        .platform-btn{
+            background-color: #ffbe00;
+        }
+        .platform-panel{
+            border-left-color: #ff0000; 
+            border-left-style: solid; 
+            border-left-width:thick;
+        }
+        .platform-tag{
+            background-color: #000;
+        }
+        .platform-category{
+            background-color: #ffbe00;
+        }
+    </style>
+
+</head>
+
+<body class="homepage platform-body" style="">
+{% block body %}
+<div class="overlay"></div>
+
+<div class="outer-wrapper">
+<div class="page-wrapper">
+
+    <header class="navigation" id="top" style="padding-top: 10px; max-height: 100px; background-color: #ffbe00; margin-bottom: 10px; ">
+        <div class="container">
+            <!--/.secondary-nav-->
+            <div class="main-nav" >
+                <div class="brand"><a href="{% url 'questions' %}"><img src="{% static 'assets/img/logo.png' %}" alt=""></a></div><!--/.brand-->
+                <nav>
+                    <ul>
+                        <li><a href="{% url 'mentoring' %}">Mentorship</a></li>
+                        <li><a href="{% url 'articles' %}">Blog</a></li>
+                        <li><a href="{% url 'questions' %}">Forum</a></li>
+                        <li><a href="{% url 'inbox' %}">Inbox</a></li>
+                        <li>
+                            <a href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
+                              <span class="glyphicon glyphicon-bell"></span>
+                            </a>
+                          </li>
+                        <li><a href="{% url 'profile' username=user.username %}">{{ user.profile.get_screen_name }}</a></li>
+                        <li class="dropdown">
+                          <a style="" href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
+                          <ul class="dropdown-menu">
+        {#                    <li><a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span> Inbox</a></li>#}
+                            <li><a href="{% url 'settings' %}">{% trans 'Account Settings' %}</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
+                          </ul>
+                        </li>
+                    </ul>
+                    <div class="nav-toggle"><i class="icon_menu"></i></div>
+                </nav>
+            </div>
+            <!--/.main-nav-->
+        </div>
+        <!--/.container-->
+    </header>
+    <!--/.header-->
+    {% block main %}
+    {% endblock main %}
+
+
+    <footer id="footer" style="background-color: rgb(51, 51, 51); color: #fff">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-8">
+                    <div class="left">
+                        <span>(C) 2017 mentor001. All Right Reserved</span>
+                        <div class="bg-left"></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="right">
+                        <span><a href="#top" class="scroll">To Top<i class="arrow_carrot-up_alt2"></i></a></span>
+                        <div class="bg-right"><img src="{% static 'assets/img/footer-bg.png' %}" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ .container-->
+    </footer>
+
+    </div>
+    </div>
+
+
+    <script type="text/javascript" src="{% static 'assets/js/jquery-2.1.4.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery-migrate-1.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/bootstrap-select.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/zabuto_calendar.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery.validate.min.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'assets/revolution/js/jquery.themepunch.tools.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/revolution/js/jquery.themepunch.revolution.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.video.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.slideanims.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.actions.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.layeranimation.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.kenburn.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.navigation.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.migration.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.parallax.min.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'assets/js/custom.js' %}"></script>
+
+    <script src="{% static 'js/notifications.js' %}"></script>
+    <script src="{% static 'js/check_messages.js' %}"></script>
+
+{% endblock body %}
+</body>

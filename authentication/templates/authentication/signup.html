@@ -24,8 +24,8 @@
 
           <form action="{% url 'signup' %}" method="post" role="form">
         {% csrf_token %}
-        <div class="md-input {% if form.username.errors %} has-error{% endif %}">
-                <input class="md-form-control" required="" type="username" name="username" id="username">
+            <div class="md-input {% if form.username.errors %} has-error{% endif %}">
+                <input class="md-form-control" required="true" type="username" name="username" id="username">
                 {% for error in form.username.errors %}
                 <label class="control-label">{{ error }}</label>
               {% endfor %}
@@ -35,7 +35,7 @@
             </div>
 
             <div class="md-input {% if form.email.errors %} has-error{% endif %}">
-                <input class="md-form-control" required="" type="email" name="email" id="username">
+                <input class="md-form-control" required="true" type="email" name="email" id="username">
                 {% for error in form.email.errors %}
                 <label class="control-label">{{ error }}</label>
               {% endfor %}
@@ -45,7 +45,7 @@
             </div>
 
             <div class="md-input {% if form.password.errors %} has-error{% endif %}">
-                <input class="md-form-control" required="" type="password" name="password" id="password">
+                <input class="md-form-control" required="true" type="password" name="password" id="password">
                 {% for error in form.password.errors %}
                 <label class="control-label">{{ error }}</label>
               {% endfor %}
@@ -55,7 +55,7 @@
             </div>
 
             <div class="md-input {% if form.confirm_password.errors %} has-error{% endif %}">
-                <input class="md-form-control" required="" type="password" name="confirm_password" id="confirm_password">
+                <input class="md-form-control required" required="true" type="password" name="confirm_password" id="confirm_password">
                 {% for error in form.confirm_password.errors %}
                 <label class="control-label">{{ error }}</label>
               {% endfor %}

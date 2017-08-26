@@ -1,0 +1,64 @@
+.block { padding: 60px 0; overflow: hidden; position: relative; }
+
+.bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+  &.bg-color-neutral { background-color: $color-neutral; }
+  &.bg-color-default { background-color: $color-default; }
+  &.bg-color-default-darker { background-color: darken( $color-default, 10% ); }
+  &.bg-color-black { background-color: $color-black; }
+  img { max-width: inherit; height: 100%; }
+}
+
+.box { @include shadow; padding: 30px; position: relative; }
+
+.center { text-align: center; }
+
+.circle { @include border-radius(50%); border: 2px solid rgba(0,0,0,.05); overflow: hidden }
+
+.no-margin { margin: 0; }
+
+.no-bottom-margin { margin-bottom: 0; }
+
+.half-bottom-margin { margin-bottom: 30px; }
+
+.row.no-gutters { margin-right: 0; margin-left: 0; }
+.row.no-gutters > [class^="col-"], .row.no-gutters > [class*=" col-"] { padding-right: 0; padding-left: 0; }
+
+.opacity-90 { @include opacity(.9); }
+.opacity-80 { @include opacity(.8); }
+.opacity-70 { @include opacity(.7); }
+.opacity-60 { @include opacity(.6); }
+.opacity-50 { @include opacity(.5); }
+.opacity-40 { @include opacity(.4); }
+.opacity-30 { @include opacity(.3); }
+.opacity-20 { @include opacity(.2); }
+.opacity-10 { @include opacity(.1); }
+.opacity-5 { @include opacity(.05); }
+
+.text-color-white { color: #fff !important;
+  a { color: #fff; }
+}
+
+.width-10 { width: 10%; }
+.width-20 { width: 20%; }
+.width-25 { width: 25%; }
+.width-30 { width: 30%; }
+.width-33 { width: 33%; }
+.width-40 { width: 40%; }
+.width-50 { width: 50%; }
+.width-60 { width: 60%; }
+.width-70 { width: 70%; }
+.width-80 { width: 80%; }
+.width-90 { width: 90%; }
+
+.height-10 { height: 10%; }
+.height-20 { height: 20%; }
+.height-30 { height: 30%; }
+.height-40 { height: 40%; }
+.height-50 { height: 50%; }
+.height-60 { height: 60%; }
+.height-70 { height: 70%; }
+.height-80 { height: 80%; }
+.height-90 { height: 90%; }
+.height-100 { height: 100%; }
+
+.space { height: 60px; }

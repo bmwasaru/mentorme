@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'bas.html' %}
 {% load staticfiles %}
 {% load i18n %}
 
@@ -10,6 +10,7 @@
 {% endblock head %}
 
 {% block main %}
+<div class="container">
   <ol class="breadcrumb">
     <li><a href="{% url 'articles' %}">{% trans 'Articles' %}</a></li>
     <li class="active">{% trans 'Article' %}</li>
@@ -23,4 +24,5 @@
   {% endif %}
   {% include 'articles/partial_article.html' with article=article %}
   {% include 'articles/partial_article_comments.html' with article=article %}
+</div>
 {% endblock main %}

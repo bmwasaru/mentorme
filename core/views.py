@@ -11,6 +11,10 @@ from .forms import (ChangePasswordForm, ProfileForm,
 from authentication.models import Profile
 
 
+def index(request): 
+    return render(request, 'index.html')  
+
+
 def landing(request): 
     return render(request, 'landing.html')  
 

@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from activities.models import Activity
 from mentor001.decorators import ajax_required
 from questions.forms import AnswerForm, QuestionForm
-from questions.models import Answer, Question
+from questions.models import Answer, Question, Tag
 
 
 @login_required
@@ -61,12 +61,10 @@ def category(request, category):
     return _questions(request, questions, {'questions': questions})
 
 
-# @login_required
-# def profile(request, username):
-#     page_user = get_object_or_404(User, username=username)
-#     return render(request, 'core/profile.html', {
-#         'page_user': page_user
-#         })
+@login_required
+def tag(request, tag):
+    questions = Tag.objects.filter(tag__icontains=tag)
+    return _questions(request, questions, {'questions': questions})
 
 
 @login_required

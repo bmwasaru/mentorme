@@ -16,8 +16,8 @@
     {% csrf_token %}
     {{ form.status }}
     {% for field in form.visible_fields %}
-      <div class="form-group{% if field.errors %} has-error{% endif %}">
-        <label for="{{ field.label }}" class="control-label">{{ field.label }}</label>
+      <div class="form-group{% if field.errors %} has-error{% endif %} required">
+        <label for="{{ field.label }}" class="control-label" required="required">{{ field.label }}</label>
         {% if field.label == 'Content' %}
           {% include 'markdown_editor.html' with textarea='id_content' %}
         {% endif %}

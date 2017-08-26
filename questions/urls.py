@@ -13,6 +13,6 @@ urlpatterns = [
     url(r'^answer/accept/$', views.accept, name='accept'),
     url(r'^answer/vote/$', views.vote, name='vote'),
     url(r'^(\d+)/$', views.question, name='question'),
-    # url(r'^category/$', views.category, name='category'),
     url(r'^category/(?P<category>[\w@.-]+)/$', views.category, name='category'),
+    url(r'^tag/(?P<tag>[\w@.-]+)/$', views.tag, name='tag'),
 ]

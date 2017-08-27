@@ -15,7 +15,7 @@
     </span>
   </div>
   <div class="content">
-    {{ article.get_content_as_markdown|safe }}
+    {{ article.get_content_as_markdown|safe|linebreaks }}
   </div>
   {% if article.tags.names %}
     <div class="tags">

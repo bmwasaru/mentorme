@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'bas.html' %}
 {% load i18n %}
 {% get_available_languages as LANGUAGES %}
 {% get_current_language as CURRENT_LANGUAGE %}
@@ -6,6 +6,8 @@
 {% block title %}Account Settings{% endblock %}
 
 {% block main %}
+<div class="container">
+  <div class="row">
   <div class="page-header">
     <h1>{% trans 'Account Settings' %}</h1>
   </div>
@@ -53,5 +55,7 @@
         </div>
       </form>
     </div>
+  </div>
+  </div>
   </div>
 {% endblock main %}

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'bas.html' %}
 {% load staticfiles %}
 {% load i18n %}
 
@@ -12,6 +12,13 @@
     <li><a href="{% url 'drafts' %}">{% trans 'Drafts' %}</a></li>
     <li class="active">{% trans 'Edit' %}</li>
   </ol>
+
+  <div class="row">
+  <div class="col-md-2 col-sm-2">
+
+  </div>
+
+  <div class="col-md-8 col-sm-8">
   <form action="{% url 'edit_article' form.instance.pk %}" method="post" role="form">
     {% csrf_token %}
     {{ form.status }}
@@ -36,4 +43,10 @@
       <a href="{% url 'drafts' %}" class="btn btn-default">{% trans 'Cancel' %}</a>
     </div>
   </form>
+  </div>
+
+  <div class="col-md-2 col-sm-2">
+
+  </div>
+  </div>
 {% endblock main %}

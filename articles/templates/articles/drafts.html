@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'bas.html' %}
 {% load staticfiles %}
 {% load i18n %}
 
@@ -11,6 +11,13 @@
     <li><a href="{% url 'articles' %}">{% trans 'Articles' %}</a></li>
     <li class="active">{% trans 'Drafts' %}</li>
   </ol>
+
+<div class="row">
+  <div class="col-md-1 col-sm-1">
+    
+  </div>
+
+  <div class="col-md-10 col-sm-10">
   <table class="table table-striped">
     <thead>
       <tr>
@@ -39,4 +46,11 @@
       {% endfor %}
     </tbody>
   </table>
+  </div>
+
+  <div class="col-md-1 col-sm-1">
+    
+  </div>
+
+</div>
 {% endblock main %}

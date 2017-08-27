@@ -17,11 +17,13 @@
     <link rel="stylesheet" href="{% static 'assets/revolution/css/navigation.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" type="text/css">
 
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="{% static 'js/mentor001.js' %}"></script> 
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
     <link href="{% static 'css/mentor.css' %}?v=1" rel="stylesheet">
     <link href="{% static 'css/chatbubble.css' %}?v=1" rel="stylesheet">
+    <script src="{% static 'js/mentor001.js' %}"></script> 
+    
 
     <title>{% block title %}Mentor 001{% endblock %}</title>
 
@@ -65,7 +67,7 @@
                 <nav>
                     <ul>
                         <li><a href="{% url 'mentoring' %}">Mentorship</a></li>
-                        <li><a href="{% url 'articles' %}">Blog</a></li>
+                        <li><a href="{% url 'articles' %}">Articles</a></li>
                         <li><a href="{% url 'questions' %}">Forum</a></li>
                         <li><a href="{% url 'inbox' %}">Inbox</a></li>
                         <li>
@@ -120,7 +122,7 @@
     </div>
 
 
-    <script type="text/javascript" src="{% static 'assets/js/jquery-2.1.4.min.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'assets/js/jquery-2.1.4.min.js' %}"></script> -->
     <script type="text/javascript" src="{% static 'assets/js/jquery-migrate-1.2.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'assets/js/bootstrap-select.min.js' %}"></script>

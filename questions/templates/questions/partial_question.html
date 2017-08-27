@@ -12,7 +12,7 @@
             <span class="glyphicon glyphicon-comment"></span> 
             <span>{{ question.get_answers_count }} comments</span> &nbsp&nbsp
             <span class="glyphicon glyphicon-star"></span> 
-            <span>{{ question.favorites }} likes</span>
+            <span>{{ question.favorites }} stars</span>
           </p>
           </div>
         </div>
@@ -25,7 +25,7 @@
           {% if question.has_accepted_answer %}
             <span class="glyphicon glyphicon-ok"></span>
           {% endif %}
-          <a href="{% url 'question' question.pk %}">{{ question.title }}</a>
+          <b><a href="{% url 'question' question.pk %}">{{ question.title }}</a></b>
         </h3>
     </figure>
     <div class="question-description">

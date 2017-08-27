@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'bas.html' %}
 {% load staticfiles %}
 {% load i18n %}
 
@@ -11,6 +11,13 @@
     <li><a href="{% url 'articles' %}">{% trans 'Articles' %}</a></li>
     <li class="active">{% trans 'Write Article' %}</li>
   </ol>
+
+  <div class="row">
+  <div class="col-md-2 col-sm-2">
+    
+  </div>
+
+  <div class="col-md-8 col-sm-8">
   <form action="{% url 'write' %}" method="post" role="form">
     {% csrf_token %}
     {{ form.status }}
@@ -36,6 +43,7 @@
       <a href="{% url 'articles' %}" class="btn btn-default">{% trans 'Cancel' %}</a>
     </div>
   </form>
+  </div>
 
   <div class="modal fade" id="preview">
     <div class="modal-dialog">
@@ -50,6 +58,10 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>  
 
+  <div class="col-md-2 col-sm-2">
+    
+  </div>
+  </div>
 {% endblock main %}

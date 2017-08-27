@@ -12,21 +12,15 @@
 <div class="container">
     <div class="row">
           <div class="page-header">
+            {% if user.profile.role == 'mentor' %}
+              <a href="{% url 'write' %}" class="btn btn-primary pull-right">
+                <span class="glyphicon glyphicon-pencil"></span> {% trans 'Write Article' %}
+              </a>
+              <a href="{% url 'drafts' %}" class="btn btn-default pull-right" style="margin-right: .8em">{% trans 'Drafts' %}</a>
+            {% endif %}
             <h1>{% trans "Articles" %}</h1>
           </div>
-          <div class="col-md-8 col-sm-8">
-            <section id="content">
-              {% if user.profile.role == 'mentor' %}
-              <div class="page-header">
-                <a href="{% url 'write' %}" class="btn btn-primary pull-right">
-                  <span class="glyphicon glyphicon-pencil"></span> {% trans 'Write Article' %}
-                </a>
-                <a href="{% url 'drafts' %}" class="btn btn-default pull-right" style="margin-right: .8em">{% trans 'Drafts' %}</a>
-                {% endif %}
-                <!-- <h1>{% trans 'Articles' %}</h1> -->
-              </div>
-            </section>
-          </div>
+
           <div class="col-md-8 col-sm-8">
           <section id="content">
             {% for article in articles %}
@@ -37,6 +31,7 @@
             {% include 'paginator.html' with paginator=articles %}
           </section>
           </div>
+
           <section id="sidebar" class="sidebar">
             <aside id="categories">
               <h4>{% trans 'Popular Tags' %}</h4>
@@ -45,7 +40,7 @@
               {% endfor %}
             </aside>
           </section>
-      </div>
-      {% endblock main %}
     </div>
 </div>
+{% endblock main %}
+    

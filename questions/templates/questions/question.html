@@ -22,7 +22,7 @@
                 <section id="content">
                   <div class=" question" question-id="{{ question.id }}">
                     {% csrf_token %}
-                    <div class="col-md-1 options">
+                    <div class="col-md-1 col-sm-1 options">
                       {% if user in question.get_favoriters %}
                         <span class="glyphicon glyphicon-star favorite favorited" title="Click to mark this question as favorite; click again to toggle"></span>
                       {% else %}
@@ -30,15 +30,15 @@
                       {% endif %}
                       <span class="favorite-count">{{ question.favorites }}</span>
                     </div>
-                    <div class="11">
-                      <h3>{{ question.title }}</h3>
+                    <div class="col-md-11 col-sm-11">
                       <div class="question-user">
                         <a href="{% url 'profile' question.user.username %}"><img src="{{ question.user.profile.profile_picture.url }}" class="user"></a>
                         <a href="{% url 'profile' question.user.username %}" class="username">{{ question.user.profile.get_screen_name }}</a>
                         <small class="asked">asked {{ question.update_date|naturaltime }}</small>
+                        <h3>{{ question.title }}</h3>
                       </div>
                       <div class="question-description">
-                        {{ question.get_description_as_markdown|safe }}
+                        {{ question.get_description_as_markdown|safe|linebreaks }}
                       </div>
                       {% if question.get_tag_list %}
                         <p>
@@ -66,7 +66,7 @@
                       {{ form.question }}
                       
                       {% include 'markdown_editor.html' with textarea='id_description' %}
-                      <div class="form-group required" style="border-style: solid;">
+                      <div class="form-group required">
                         {{ form.description }}
                       </div>
                       <div class="form-group">

@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^mentoring/$', mentoring_views.mentoring, name='mentoring'),
     url(r'^contact/$', mentoring_views.contact, name='contact'),
     url(r'^request_mentorship/$', mentoring_views.request_mentorship, name='request_mentorship'),
+    url(r'^u_inbox/$', mentoring_views.u_inbox, name='u_inbox'),
     # User URLs
     url(
         r'^account/login',

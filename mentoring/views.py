@@ -16,6 +16,47 @@ from django.template.loader import get_template
 
 from mentoring.forms import ContactForm
 
+
+@login_required
+def u_inbox(request):
+    conversations = Message.get_conversations(user=request.user)
+    active_conversation = None
+    messages = None
+    if conversations:
+        conversation = conversations[0]
+        active_conversation = conversation['user'].username
+        messages = Message.objects.filter(user=request.user,
+                                          conversation=conversation['user'])
+        messages.update(is_read=True)
+        for conversation in conversations:
+            if conversation['user'].username == active_conversation:
+                conversation['unread'] = 0
+
+    return render(request, 'mentor001/profile.html', {
+        'messages': messages,
+        'conversations': conversations,
+        'active': active_conversation
+        })
+
+
+@login_required
+def u_messages(request, username):
+    conversations = Message.get_conversations(user=request.user)
+    active_conversation = username
+    messages = Message.objects.filter(user=request.user,
+                                      conversation__username=username)
+    messages.update(is_read=True)
+    for conversation in conversations:
+        if conversation['user'].username == username:
+            conversation['unread'] = 0
+
+    return render(request, 'mentoring/_inbox.html', {
+        'messages': messages,
+        'conversations': conversations,
+        'active': active_conversation
+        })
+
+
 # our view
 @login_required
 def contact(request):

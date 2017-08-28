@@ -4,28 +4,23 @@
   <div class="talktext">
     <ul>
       <li>
-        <b>Date joined</b><br>
-        {{ page_user.date_joined }}<br><br>
+        <b>Date joined</b>: {{ page_user.date_joined }}<br><br>
       </li>
 
       <li>
-        <b>Gender</b><br>
-        {{ page_user.profile.gender }}<br><br>
+        <b>Gender</b>: {{ page_user.profile.gender }}<br><br>
       </li>
 
       <li>
-      <b>Location</b><br>
-      {{ page_user.profile.location }}<br><br>
+      <b>Location</b>: {{ page_user.profile.location }}<br><br>
       </li>
 
       <li>
-        <b>Education</b><br>
-        {{ page_user.profile.education }} : {{ page_user.profile.education_description }}<br><br>
+        <b>Education</b>: {{ page_user.profile.education }} <br> {{ page_user.profile.education_description }}<br><br>
       </li> 
 
       <li>
-      <b>Biography</b><br>
-      {{ page_user.profile.bio|linebreaks}}
+      <b>Biography</b>: {{ page_user.profile.bio|linebreaks}}
       </li>
 
       <!-- <li>

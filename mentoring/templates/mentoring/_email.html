@@ -1,12 +1,4 @@
-<!-- {% extends 'bas.html' %} -->
-<!-- {% load staticfiles %} -->
 {% load i18n %}
-
-<!-- {% block title %}{% trans 'Request Mentoring' %}{% endblock %} -->
-
-<!-- {% block page_header %}{% trans 'Request Mentoring' %}{% endblock %}
-
-{% block main %} -->
   <form class="form-horizontal" role="form" method="post">
     {% csrf_token %}
     <div class="form-group">
@@ -28,4 +20,3 @@
     </div>
   </form>
   <script src="{% static 'js/messages.typehead.js' %}"></script>
-<!-- {% endblock %} -->

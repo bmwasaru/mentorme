@@ -4,4 +4,4 @@ staticfiles
 .env
 .idea
 mentor001/local_settings.py
-media
+media/

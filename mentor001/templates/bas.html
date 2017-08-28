@@ -48,6 +48,10 @@
         .platform-category{
             background-color: #ffbe00;
         }
+        .platform-glyphicon {
+            font-size: 25px;
+            margin: 0.5em;
+        }
     </style>
 
 </head>
@@ -66,25 +70,26 @@
                 <div class="brand"><a href="{% url 'questions' %}"><img src="{% static 'assets/img/logo.png' %}" alt=""></a></div><!--/.brand-->
                 <nav>
                     <ul>
-                        <li><a href="{% url 'mentoring' %}">Mentorship</a></li>
-                        <li><a href="{% url 'articles' %}">Articles</a></li>
-                        <li><a href="{% url 'questions' %}">Forum</a></li>
-                        <li><a href="{% url 'inbox' %}">Inbox</a></li>
+                        <li><a href="{% url 'mentoring' %}"><span class="glyphicon glyphicon-home platform-glyphicon"></span></a></li>
+                        <li><a href="{% url 'articles' %}"><span class="glyphicon glyphicon-folder-open platform-glyphicon"></span></a></li>
+                        <li><a href="{% url 'questions' %}"><span class="glyphicon glyphicon-globe platform-glyphicon"></span></a></li>
+                        <li><a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span><span class="glyphicon glyphicon-comment platform-glyphicon" style="margin-right: 0em"></span></a></li>
                         <li>
                             <a href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
-                              <span class="glyphicon glyphicon-bell"></span>
+                              <span class="glyphicon glyphicon-bell platform-glyphicon"></span>
                             </a>
                           </li>
-                        <li><a href="{% url 'profile' username=user.username %}">{{ user.username }}</a></li>
+                        <li><a href="{% url 'profile' username=user.username %}"><span class="glyphicon glyphicon glyphicon-user platform-glyphicon"></span></a></li>
                         <li class="dropdown">
-                          <a style="" href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
-                          <ul class="dropdown-menu">
-        {#                    <li><a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span> Inbox</a></li>#}
+                          <a style="" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog platform-glyphicon"></span><b class="caret"></b></a>
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span> Inbox</a></li>
                             <li><a href="{% url 'settings' %}">{% trans 'Account Settings' %}</a></li>
                             <li class="divider"></li>
                             <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
                           </ul>
                         </li>
+                        
                     </ul>
                     <div class="nav-toggle"><i class="icon_menu"></i></div>
                 </nav>

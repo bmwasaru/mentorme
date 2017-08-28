@@ -56,7 +56,7 @@
                   </div>
                  
                   <div class="answers">
-                   <h4 class="page-header">Answers</h4>
+                   <h4 class="heading">Answers</h4>
                     {% for answer in question.get_answers %}
                       {% include 'questions/partial_answer.html' with question=question answer=answer %}
                     {% endfor %}

@@ -15,10 +15,6 @@ def index(request):
     return render(request, 'index.html')  
 
 
-def landing(request): 
-    return render(request, 'landing.html')  
-
-
 def home(request):
     if request.user.is_authenticated():
         # TODO: return milestones

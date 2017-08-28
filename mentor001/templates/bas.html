@@ -1,5 +1,5 @@
-{% load staticfiles i18n %}<!DOCTYPE html>
-
+{% load staticfiles i18n %}
+<!DOCTYPE html>
 <html lang="en-US">
 <head>
     <meta charset="UTF-8"/>
@@ -10,7 +10,7 @@
     <link href="{% static 'assets/fonts/elegant-fonts.css' %}" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'assets/css/zabuto_calendar.min.css' %}" type="text/css">
+    <!-- <link rel="stylesheet" href="{% static 'assets/css/zabuto_calendar.min.css' %}" type="text/css"> -->
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap-select.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'assets/revolution/css/settings.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'assets/revolution/css/layers.css' %}" type="text/css">
@@ -18,13 +18,13 @@
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" type="text/css">
 
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <link href="{% static 'css/mentor.css' %}?v=1" rel="stylesheet">
     <link href="{% static 'css/chatbubble.css' %}?v=1" rel="stylesheet">
     <script src="{% static 'js/mentor001.js' %}"></script> 
     
-
     <title>{% block title %}Mentor 001{% endblock %}</title>
 
     {% block head %}{% endblock %}
@@ -75,7 +75,7 @@
                               <span class="glyphicon glyphicon-bell"></span>
                             </a>
                           </li>
-                        <li><a href="{% url 'profile' username=user.username %}">{{ user.profile.get_screen_name }}</a></li>
+                        <li><a href="{% url 'profile' username=user.username %}">{{ user.username }}</a></li>
                         <li class="dropdown">
                           <a style="" href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
                           <ul class="dropdown-menu">
@@ -124,14 +124,14 @@
 
     <!-- <script type="text/javascript" src="{% static 'assets/js/jquery-2.1.4.min.js' %}"></script> -->
     <script type="text/javascript" src="{% static 'assets/js/jquery-migrate-1.2.1.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script> -->
     <script type="text/javascript" src="{% static 'assets/js/bootstrap-select.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'assets/js/zabuto_calendar.min.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'assets/js/zabuto_calendar.min.js' %}"></script> -->
     <script type="text/javascript" src="{% static 'assets/js/jquery.validate.min.js' %}"></script>
 
     <script type="text/javascript" src="{% static 'assets/revolution/js/jquery.themepunch.tools.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'assets/revolution/js/jquery.themepunch.revolution.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.video.min.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.video.min.js' %}"></script> -->
     <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.slideanims.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.actions.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.layeranimation.min.js' %}"></script>

@@ -12,70 +12,15 @@
 {% block main %}
 <div class="container">
   <div class="row">
-  <div class="page-header">
-    <h1>{{ page_user.profile.get_screen_name }} {% if page_user.get_full_name %}<small>({{ page_user.username }})</small>{% endif %}</h1>
-  </div>
-  <div class="profile">
-      <div class="col-md-3 col-sm-3 user-profile">
-        <img class="img-responsive picture" src="{{ page_user.profile.profile_picture.url }}" style=""><br></a><br><br>
+      <div class="page-header">
+        <h1>{{ page_user.profile.get_screen_name }} {% if page_user.get_full_name %}<small>({{ page_user.username }})</small>{% endif %}</h1>
       </div>
-
-      <div class="col-md-9 col-sm-9 user-profile">
-
-        <!-- Modal -->
-          <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-            
-              <!-- Modal content-->
-              <div class="modal-content">
-                <!-- {% if messages %}
-                <div class="conversation">
-                  <div class="talk-bubble" style="height: 300px; overflow-y:scroll; background-color: #f3f3f3">
-                    <div class="talktext" style="width: 100%">
-                      {% for message in messages %}
-                        <li>
-                          <div class="talk-bubble tri-right round left-top" style="margin-left: 2px; ">
-                            <div class="talktext" style="margin-left: 10px; padding-bottom: 0px;">
-                              <h5>
-                                <small class="pull-right">
-                                  {{ message.date|date:'N d G:i' }}
-                                </small>
-                                <a href="{% url 'profile' message.from_user.username %}">
-                                  {{ message.from_user.profile.get_screen_name }}
-                                </a>
-                              </h5>
-                              {{ message.message | linebreaks }}</div>
-                          </div>
-                          </li>
-                      {% endfor %}
-
-                      <div class="send-message">
-                        <div style="margin-top: .3em">
-                          <form role="form" method="post" action="{% url 'send_message' %}" id="send">
-                            {% csrf_token %}
-                            <input type="hidden" name="to" value="{{ page_user.username }}">
-                            <input class="form-control" type="text" name="message" placeholder="Write a message..." maxlength="1000" autocomplete="off">
-                          </form>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div> 
-                </div>
-                {% else %}
-                  <h4>Your inbox is empty!</h4>
-                {% endif %} -->
-              </div>
-              
-            </div>
-          </div>
-          
-          {% include 'core/includes/partial_profile.html' %}
-          
-          <a class="btn btn-primary" href="{% url 'request_mentorship' %}">Request Mentorship from {{ page_user.profile.get_screen_name }}</a>
-
-          <a class="btn btn-primary" data-toggle="modal" data-target="#myModal" >Message this person</a><br><br>
-
+      <div class="profile">
+        <div class="col-md-3 col-sm-3 user-profile">
+          <img class="img-responsive picture" src="{{ page_user.profile.profile_picture.url }}" style=""><br></a><br><br>
+        </div>
+        <div class="col-md-9 col-sm-9 user-profile" style="margin-bottom: 2em;">
+            {% include 'core/includes/partial_profile.html' %}
         </div>
       </div>
     </div>

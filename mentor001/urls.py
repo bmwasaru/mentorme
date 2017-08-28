@@ -21,12 +21,8 @@ urlpatterns = [
     url(r'^experience/$', core_views.experience, name='experience'),
     url(r'^mentorship_areas/$', core_views.mentorship_areas, name='mentorship_areas'),
     
-    url(r'^landing/$', core_views.landing, name='landing'),
     url(r'^index/$', core_views.index, name='index'),
-    url(r'^mentoring/$', mentoring_views.mentoring, name='mentoring'),
-    url(r'^contact/$', mentoring_views.contact, name='contact'),
-    url(r'^request_mentorship/$', mentoring_views.request_mentorship, name='request_mentorship'),
-    url(r'^u_inbox/$', mentoring_views.u_inbox, name='u_inbox'),
+    
     # User URLs
     url(
         r'^account/login',
@@ -84,6 +80,10 @@ urlpatterns = [
 
 urlpatterns += [
     url(r'^milestones/', include('milestones.urls')),
+]
+
+urlpatterns += [
+    url(r'^mentoring/', include('mentoring.urls')),
 ]
 
 admin.site.site_title = 'Mentor001 Adminstration'

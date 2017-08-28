@@ -21,7 +21,7 @@
                   <div class="story" style="border-style: groove;">
                       <div class="image" style="height: 100px; width: 100px"><img src="{{ user.profile.profile_picture.url }}" alt=""></div>
                       <blockquote style="margin-left: 50px;">
-                          <h4><a href="{% url 'profile' user.username %}">{{ user.profile.get_screen_name }}</a></h4>
+                          <h4><a href="{% url 'u_profile' user.username %}">{{ user.profile.get_screen_name }}</a></h4>
                           <h4>Needs Mentoship in:</h4>
                           <li>{{ user.profile.role }} </li>
                           <!-- <footer>Jane Doe</footer> -->

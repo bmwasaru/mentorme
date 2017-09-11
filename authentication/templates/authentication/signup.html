@@ -23,7 +23,7 @@
           {% endif %}
 
           <form action="{% url 'signup' %}" method="post" role="form">
-        {% csrf_token %}
+          {% csrf_token %}
             <div class="md-input {% if form.username.errors %} has-error{% endif %}">
                 <input class="md-form-control" required="true" type="username" name="username" id="username">
                 {% for error in form.username.errors %}
@@ -42,6 +42,16 @@
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>{% trans 'Email' %}</label>
+            </div>
+
+            <div class="md-input {% if form.role.errors %} has-error{% endif %}">
+                {{ form.role }}
+                {% for error in form.role.errors %}
+                <label class="control-label">{{ error }}</label>
+              {% endfor %}
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>{% trans 'Role' %}</label>
             </div>
 
             <div class="md-input {% if form.password.errors %} has-error{% endif %}">

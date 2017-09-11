@@ -9,7 +9,8 @@
     <link href="{% static 'assets/fonts/font-awesome.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'assets/fonts/elegant-fonts.css' %}" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}" type="text/css"> -->
     <!-- <link rel="stylesheet" href="{% static 'assets/css/zabuto_calendar.min.css' %}" type="text/css"> -->
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap-select.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'assets/revolution/css/settings.css' %}" type="text/css">
@@ -18,7 +19,6 @@
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" type="text/css">
 
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <link href="{% static 'css/mentor.css' %}?v=1" rel="stylesheet">
@@ -49,8 +49,11 @@
             background-color: #ffbe00;
         }
         .platform-glyphicon {
-            font-size: 25px;
+            font-size: 20px;
             margin: 0.5em;
+        }
+        .a{
+            color: red !important;
         }
     </style>
 
@@ -63,7 +66,7 @@
 <div class="outer-wrapper">
 <div class="page-wrapper">
 
-    <header class="navigation" id="top" style="padding-top: 10px; max-height: 100px; background-color: #ffbe00; margin-bottom: 10px; ">
+    <header class="navigation" id="top" style="padding-top: ; background-color: #ffbe00; ">
         <div class="container">
             <!--/.secondary-nav-->
             <div class="main-nav" >
@@ -145,7 +148,7 @@
     <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.migration.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.parallax.min.js' %}"></script>
 
-    <script type="text/javascript" src="{% static 'assets/js/custom.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'assets/js/custom.js' %}"></script> -->
 
     <script src="{% static 'js/notifications.js' %}"></script>
     <script src="{% static 'js/check_messages.js' %}"></script>

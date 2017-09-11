@@ -17,6 +17,8 @@ from django.template.loader import get_template
 from mentoring.forms import ContactForm
 from messenger.models import Message
 
+from articles.decorators import user_is_mentor
+
 
 @login_required
 def u_profile(request, username):
@@ -28,8 +30,8 @@ def u_profile(request, username):
 
 @login_required
 def u_education(request):
-    count = Education.objects.filter(user=request.user)
-    return redirect(request, 'core/includes/partial_profile.html', {'count': count})
+    users = Education.objects.filter(user=request.user)
+    return redirect(request, 'mentoring/_education.html', {'users': users})
 
 
 @login_required

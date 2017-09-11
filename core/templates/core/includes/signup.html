@@ -28,6 +28,16 @@
 	                    <label>{% trans 'Email' %}</label>
                     </div>
 
+                    <div class="md-input {% if form.role.errors %} has-error{% endif %}">
+	                    <input class="md-form-control" required="" type="hidden" name="role" id="role" value="mentor">
+	                    {% for error in form.role.errors %}
+				            <label class="control-label">{{ error }}</label>
+				          {% endfor %}
+	                    <span class="highlight"></span>
+	                    <span class="bar"></span>
+	                    <label>{% trans 'Role' %}</label>
+                    </div>
+
                     <div class="md-input {% if form.password.errors %} has-error{% endif %}">
 	                    <input class="md-form-control" required="" type="password" name="password" id="password">
 	                    {% for error in form.password.errors %}

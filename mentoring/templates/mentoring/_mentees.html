@@ -22,10 +22,10 @@
                       <div class="image" style="height: 100px; width: 100px"><img src="{{ user.profile.profile_picture.url }}" alt=""></div>
                       <blockquote style="margin-left: 50px;">
                           <h4><a href="{% url 'u_profile' user.username %}">{{ user.profile.get_screen_name }}</a></h4>
-                          <h4>Needs Mentoship in:</h4>
+                          <h4>Mentorship areas:</h4>
                           <li>{{ user.profile.role }} </li>
                           <!-- <footer>Jane Doe</footer> -->
-                          <a href="" class="btn btn-small btn-default">Request Mentorship</a>
+                          <!-- <a href="" class="btn btn-small btn-default">Request Mentorship</a> -->
                       </blockquote>
                       <!--/ blockquote-->
                   </div>

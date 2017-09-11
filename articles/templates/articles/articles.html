@@ -11,7 +11,7 @@
 {% block main %}
 <div class="container">
     <div class="row">
-          <div class="page-header">
+          <div class="heading">
             {% if user.profile.role == 'mentor' %}
               <a href="{% url 'write' %}" class="btn btn-primary pull-right">
                 <span class="glyphicon glyphicon-pencil"></span> {% trans 'Write Article' %}

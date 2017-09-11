@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
+from .choices import ROLE_CHOICES
 
 def forbidden_usernames_validator(value):
     forbidden_usernames = ['admin', 'settings', 'news', 'about', 'help',
@@ -45,21 +46,28 @@ class SignUpForm(forms.ModelForm):
         max_length=30,
         required=True,
         help_text='Usernames may contain <strong>alphanumeric</strong>, <strong>_</strong> and <strong>.</strong> characters')  # noqa: E261
+    email = forms.CharField(
+        widget=forms.EmailInput(attrs={'class': 'md-form-control'}),
+        help_text='Required. Inform a valid email address.',
+        required=True,
+        max_length=75)
+    role = forms.ChoiceField(
+        choices=ROLE_CHOICES,
+        initial='',
+        widget=forms.Select(),
+        required=True,
+        )
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'md-form-control'}))
     confirm_password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'md-form-control'}),
         label="Confirm your password",
         required=True)
-    email = forms.CharField(
-        widget=forms.EmailInput(attrs={'class': 'md-form-control'}),
-        required=True,
-        max_length=75)
 
     class Meta:
         model = User
         exclude = ['last_login', 'date_joined']
-        fields = ['username', 'email', 'password', 'confirm_password', ]
+        fields = ['username', 'email', 'role', 'password', 'confirm_password', ]
 
     def __init__(self, *args, **kwargs):
         super(SignUpForm, self).__init__(*args, **kwargs)

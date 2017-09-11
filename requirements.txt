@@ -12,6 +12,7 @@ chardet==3.0.4
 dj-database-url==0.4.1
 django-anymail==0.10
 django-autoslug==1.9.3
+django-debug-toolbar==1.8
 django-discover-runner==1.0
 django-multiselectfield==0.1.7
 django-role-permissions==2.0.1
@@ -28,6 +29,7 @@ pytz==2017.2
 redis==2.10.6
 requests==2.18.1
 six==1.10.0
+sqlparse==0.2.3
 urllib3==1.21.1
 vine==1.1.4
 waitress==1.0.2

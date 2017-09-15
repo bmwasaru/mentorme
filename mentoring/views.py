@@ -19,6 +19,7 @@ from messenger.models import Message
 
 from articles.decorators import user_is_mentor
 
+from django.db.models import Q
 
 @login_required
 def u_profile(request, username):
@@ -76,17 +77,21 @@ def u_messages(request, username):
 
 @login_required
 def mentoring(request):
-	if request.user.profile.role=='mentor':
-		users_list = User.objects.filter(
-            profile__role='mentee').order_by('username')[:3]
-		return render(request, 
+    strings = list(request.user.profile.mentorship_areas)
+    condition = Q(profile__mentorship_areas__icontains=strings[0])
+    for string in strings[1:]:
+            condition |= Q(profile__mentorship_areas__icontains=string)
+
+    if request.user.profile.role=='mentor':
+        users_list = User.objects.filter(condition,
+            profile__role='mentor').order_by('username')[:6]
+        return render(request, 
             'mentoring/_mentors.html', 
             {'users_list': users_list})
-	else:
-		users_list = User.objects.filter(
-            profile__role='mentor').order_by('username')[:3]
-		return render(request, 
-            'mentoring/_mentees.html', 
+    else:
+        users_list = User.objects.filter(condition, 
+            profile__role='mentor')[:6]
+        return render(request, 'mentoring/_mentees.html', 
             {'users_list': users_list})
 
 
@@ -120,3 +125,5 @@ def request_mentorship(request):
         conversations = Message.get_conversations(user=request.user)
         return render(request, 'mentoring/_profile.html',
                       {'conversations': conversations})
+
+

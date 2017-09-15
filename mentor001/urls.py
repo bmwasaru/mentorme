@@ -22,7 +22,6 @@ urlpatterns = [
     url(r'^mentorship_areas/$', core_views.mentorship_areas, name='mentorship_areas'),
     
     url(r'^index/$', core_views.index, name='index'),
-    
     # User URLs
     url(
         r'^account/login',

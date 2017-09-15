@@ -23,7 +23,12 @@
                       <blockquote style="margin-left: 50px;">
                           <h4><a href="{% url 'u_profile' user.username %}">{{ user.profile.get_screen_name }}</a></h4>
                           <h4>Mentorship areas:</h4>
-                          <li>{{ user.profile.role }} </li>
+                          <!-- <li>{{ user.profile.role }} </li> -->
+                          {% for item in user.profile.mentorship_areas %}
+                            <li>
+                              {{ item }}
+                            </li> 
+                          {% endfor %}
                           <!-- <footer>Jane Doe</footer> -->
                           <!-- <a href="" class="btn btn-small btn-default">Request Mentorship</a> -->
                       </blockquote>

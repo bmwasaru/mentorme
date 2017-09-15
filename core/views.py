@@ -10,6 +10,7 @@ from .forms import (ChangePasswordForm, ProfileForm,
     EducationForm, ExperienceForm, MentorshipAreaForm)
 from authentication.models import Profile
 
+from django.db.models import Q
 
 def index(request): 
     return render(request, 'index.html')  
@@ -73,9 +74,11 @@ def initial_setup(request):
                 user.profile.gender = form.cleaned_data.get('gender')
                 user.profile.role = form.cleaned_data.get('role')
                 user.profile.phone_number = form.cleaned_data.get('phone_number')
+                user.profile.mentorship_areas = form.cleaned_data.get('mentorship_areas')
                 user.email = form.cleaned_data.get('email')
                 user.profile.bio = form.cleaned_data.get('bio')
                 user.profile.location = form.cleaned_data.get('location')
+                user.profile.highest_level_of_study = form.cleaned_data.get('highest_level_of_study')
                 user.profile.is_previously_logged_in = True
                 user.save()
                 messages.add_message(request,

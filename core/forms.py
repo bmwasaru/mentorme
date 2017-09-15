@@ -36,17 +36,17 @@ class ProfileForm(forms.ModelForm):
     role = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'form-control'}), 
         choices=ROLE_CHOICES)
-    # education = forms.ChoiceField(
-    #     widget=forms.Select(attrs={'class': 'form-control'}), 
-    #     choices=EDUCATION_CHOICES)
-    # mentorship_areas = forms.MultipleChoiceField(
-    #     widget=forms.CheckboxSelectMultiple, 
-    #     choices=MENTORSHIP_AREAS_CHOICES)
+    mentorship_areas = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple, 
+        choices=MENTORSHIP_AREAS_CHOICES)
+    highest_level_of_study = forms.ChoiceField(
+        widget=forms.Select(attrs={'class': 'form-control'}), 
+        choices=EDUCATION_CHOICES)
 
     class Meta:
         model = Profile
         fields = ['first_name', 'last_name', 'email', 'phone_number', 
-                  'gender', 'location', 'role', 'bio', 'profile_picture']
+                  'gender', 'location', 'role', 'mentorship_areas', 'bio','highest_level_of_study', 'profile_picture']
         widgets = {
             'bio': forms.Textarea(
                 attrs={'cols': 30, 'rows': 10, 'class': 'form-control'}),

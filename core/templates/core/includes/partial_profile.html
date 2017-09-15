@@ -3,34 +3,17 @@
 <div class="talk-bubble col-md-12" style="height: 300px; overflow-y:scroll; background-color: #e6e6e6">
   <div class="talktext">
     <ul>
-      <li>
-        <b>Date joined</b>: {{ page_user.date_joined }}<br><br>
-      </li>
-
-      <li>
-        <b>Gender</b>: {{ page_user.profile.gender }}<br><br>
-      </li>
-
-      <li>
-      <b>Location</b>: {{ page_user.profile.location }}<br><br>
-      </li>
-
-      <li>
-        <b>Education</b>: {{ page_user.profile.education }} <br> {{ page_user.profile.education_description }}<br><br>
-      </li> 
-
-      <li>
-      <b>Biography</b>: {{ page_user.profile.bio|linebreaks}}
-      </li>
-
-      <!-- <li>
-        <b>Areas I would like mentorship in</b><br>
+      <b>Date joined</b>: {{ page_user.date_joined }}<br>
+      <b>Gender</b>: {{ page_user.profile.gender }}<br>
+      <b>Location</b>: {{ page_user.profile.location }}<br>
+      <b>Highest level of Education</b>: {{ page_user.profile.highest_level_of_study }}<br>
+      <b>Biography</b>: {{ page_user.profile.bio|linebreaks}}<br>
+      <b>Areas I would like mentorship in</b>
         {% for item in page_user.profile.mentorship_areas %}
         <li>
           {{ item }}
         </li> 
-        {% endfor %} <br><br>
-      </li> -->
+        {% endfor %} <br>
 
       <!-- <li>
       <b>Interests</b><br>

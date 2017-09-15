@@ -54,7 +54,7 @@ class SignUpForm(forms.ModelForm):
     role = forms.ChoiceField(
         choices=ROLE_CHOICES,
         initial='',
-        widget=forms.Select(),
+        widget=forms.Select(attrs={'class': 'md-form-control'}),
         required=True,
         )
     password = forms.CharField(

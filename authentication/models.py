@@ -24,6 +24,12 @@ class Profile(models.Model):
         default='mentee', 
         choices=ROLE_CHOICES)
     phone_number = models.CharField(max_length=32, blank=True)
+    mentorship_areas = MultiSelectField(choices=MENTORSHIP_AREAS_CHOICES, 
+        max_choices=3,
+        default='')
+    highest_level_of_study = models.CharField(max_length=255, 
+        choices=EDUCATION_CHOICES,
+        default='')
     profile_picture = models.ImageField(upload_to='images/', default=DEFAULT)
     is_previously_logged_in = models.CharField(max_length=5, default=False)
 

@@ -8,7 +8,7 @@
 {% block container %}
   {% if messages %}
   <div class="conversation">
-    <div class="talk-bubble" style="height: 300px; overflow-y:scroll; background-color: #f3f3f3">
+    <div class="talk-bubble" style="height: 360px; overflow-y:scroll; background-color: #f3f3f3">
       <div class="talktext" style="width: 100%">
         {% for message in messages %}
           {% include 'messenger/includes/partial_message.html' with message=message %}

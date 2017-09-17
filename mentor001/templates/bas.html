@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="ThemeStarz">
 
-    <link href="{% static 'assets/fonts/font-awesome.css' %}" rel="stylesheet" type="text/css">
+    <!-- <link href="{% static 'assets/fonts/font-awesome.css' %}" rel="stylesheet" type="text/css"> -->
     <link href="{% static 'assets/fonts/elegant-fonts.css' %}" rel="stylesheet" type="text/css">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css'>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}" type="text/css"> -->
@@ -19,8 +20,7 @@
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" type="text/css">
 
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
     <link href="{% static 'css/mentor.css' %}?v=1" rel="stylesheet">
     <link href="{% static 'css/chatbubble.css' %}?v=1" rel="stylesheet">
     
@@ -51,10 +51,13 @@
         .platform-glyphicon {
             font-size: 20px;
             margin: 0.5em;
+            color: black;
+            
         }
         .a{
             color: red !important;
         }
+        .black-glyph{color: black}
     </style>
 
 </head>
@@ -66,14 +69,14 @@
 <div class="outer-wrapper">
 <div class="page-wrapper">
 
-    <header class="navigation" id="top" style="padding-top: ; background-color: ; ">
+    <header class="navigation" id="top" style="padding-top: ; background-color: #ffbe00; ">
         <div class="container">
             <!--/.secondary-nav-->
             <div class="main-nav" >
                 <div class="brand"><a href="{% url 'questions' %}"><img src="{% static 'assets/img/logo.png' %}" alt=""></a></div><!--/.brand-->
                 <nav>
                     <ul>
-                        <li><a href="{% url 'mentoring' %}"><span class="glyphicon glyphicon-home platform-glyphicon"></span></a></li>
+                        <li><a href="{% url 'mentoring' %}"><span class="glyphicon glyphicon-home platform-glyphicon "></span></a></li>
                         <li><a href="{% url 'articles' %}"><span class="glyphicon glyphicon-folder-open platform-glyphicon"></span></a></li>
                         <li><a href="{% url 'questions' %}"><span class="glyphicon glyphicon-globe platform-glyphicon"></span></a></li>
                         <li><a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span><span class="glyphicon glyphicon-comment platform-glyphicon" style="margin-right: 0em"></span></a></li>
@@ -106,7 +109,7 @@
     {% endblock main %}
 
 
-    <footer id="footer" style="background-color: rgb(51, 51, 51); color: #fff">
+    <footer id="footer" style="background-color: rgb(51, 51, 51); color: #fff; ">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-sm-8">
@@ -129,6 +132,8 @@
     </div>
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <!-- <script type="text/javascript" src="{% static 'assets/js/jquery-2.1.4.min.js' %}"></script> -->
     <script type="text/javascript" src="{% static 'assets/js/jquery-migrate-1.2.1.min.js' %}"></script>

@@ -84,7 +84,7 @@ def mentoring(request):
 
     if request.user.profile.role=='mentor':
         users_list = User.objects.filter(condition,
-            profile__role='mentor').order_by('username')[:6]
+            profile__role='mentee').order_by('username')[:6]
         return render(request, 
             'mentoring/_mentors.html', 
             {'users_list': users_list})

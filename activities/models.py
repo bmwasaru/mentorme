@@ -34,10 +34,16 @@ class Notification(models.Model):
     ANSWERED = 'A'
     ACCEPTED_ANSWER = 'W'
     ALSO_ANSWERED = 'S'
+    EDITED_ARTICLE = 'E'
+    ALSO_COMMENTED = 'D'
+    COMMENTED = 'C'
     NOTIFICATION_TYPES = (
         (FAVORITED, 'Favorited'),
         (ANSWERED, 'Answered'),
         (ACCEPTED_ANSWER, 'Accepted Answer'),
+        (EDITED_ARTICLE, 'Edited Article'),
+        (COMMENTED, 'Commented'),
+        (ALSO_COMMENTED, 'Also Commented'),
         (ALSO_ANSWERED, 'Also Answered'),
     )
 
@@ -45,12 +51,15 @@ class Notification(models.Model):
     _ANSWERED_TEMPLATE = '<a href="/{0}/">{1}</a> answered your question: <a href="/questions/{2}/">{3}</a>'  # noqa: E501
     _ACCEPTED_ANSWER_TEMPLATE = '<a href="/{0}/">{1}</a> accepted your answer: <a href="/questions/{2}/">{3}</a>'  # noqa: E501
     _ALSO_ANSWERED_TEMPLATE = '<a href="/{0}/">{1}</a> also answered question:: <a href="/questions/{2}/">{3}</a>'
+    _COMMENTED_TEMPLATE = '<a href="/{0}/">{1}</a> commented on your article: <a href="/articles/{2}/">{3}</a>'
+    _ALSO_COMMENTED_TEMPLATE = '<a href="/{0}/">{1}</a> also commentend your article: <a href="/articles/{2}/">{3}</a>'
 
     from_user = models.ForeignKey(User, related_name='+')
     to_user = models.ForeignKey(User, related_name='+')
     date = models.DateTimeField(auto_now_add=True)
     question = models.ForeignKey('questions.Question', null=True, blank=True)
     answer = models.ForeignKey('questions.Answer', null=True, blank=True)
+    article = models.ForeignKey('articles.Article', null=True, blank=True)
     notification_type = models.CharField(max_length=1,
                                          choices=NOTIFICATION_TYPES)
     is_read = models.BooleanField(default=False)
@@ -89,6 +98,20 @@ class Notification(models.Model):
                 self.question.pk,
                 escape(self.get_summary(self.question.title))
             )
+        elif self.notification_type == self.COMMENTED:
+            return self._COMMENTED_TEMPLATE.format(
+                escape(self.from_user.username),
+                escape(self.from_user.profile.get_screen_name()),
+                self.article.slug,
+                escape(self.get_summary(self.article.title))
+                )
+        elif self.notification_type == self.ALSO_COMMENTED:
+            return self._ALSO_COMMENTED_TEMPLATE.format(
+                escape(self.from_user.username),
+                escape(self.from_user.profile.get_screen_name()),
+                self.article.slug,
+                escape(self.get_summary(self.article.title))
+                )
         else:
             return 'Ooops! Something went wrong.'
 

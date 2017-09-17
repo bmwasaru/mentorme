@@ -106,6 +106,25 @@ class Profile(models.Model):
                 to_user=answer.user,
                 answer=answer).delete()
 
+    def notify_article_commented(self, article):
+        if self.user != article.create_user:
+            Notification(notification_type=Notification.COMMENTED,
+            from_user=self.user,
+            to_user=article.create_user,
+            article=article).save()
+
+    def also_article_commented(self, article):
+        comments = article.get_comments()
+        users = []
+        for comment in comments:
+            if comment.user != self.user and comment.user != article.create_user:
+                users.append(article.create_user.pk)
+        users = list(set(users))
+        for user in users:
+            Notification(notification_type=Notification.ALSO_COMMENTED,
+                         from_user=self.user, to_user=User(id=user),
+                         article=article).save()
+
 
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):

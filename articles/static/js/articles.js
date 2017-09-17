@@ -39,7 +39,7 @@ $(function () {
     if (evt.ctrlKey && (keyCode == 10 || keyCode == 13)) {
       $.ajax({
         url: '/articles/comment/',
-        data: $("#comment-form").serialize(),
+        data: $("form").serialize(),
         cache: false,
         type: 'post',
         success: function (data) {

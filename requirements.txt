@@ -11,8 +11,6 @@ certifi==2017.4.17
 chardet==3.0.4
 dj-database-url==0.4.1
 django-anymail==0.10
-django-autoslug==1.9.3
-django-debug-toolbar==1.8
 django-discover-runner==1.0
 django-multiselectfield==0.1.7
 django-role-permissions==2.0.1

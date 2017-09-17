@@ -6,13 +6,13 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 
-from .forms import (ChangePasswordForm, ProfileForm, 
-    EducationForm, ExperienceForm, MentorshipAreaForm)
+from .forms import (ChangePasswordForm, ProfileForm)
 from authentication.models import Profile
 
+from django.db.models import Q
 
-def landing(request): 
-    return render(request, 'landing.html')  
+def index(request): 
+    return render(request, 'index.html')  
 
 
 def home(request):
@@ -73,79 +73,34 @@ def initial_setup(request):
                 user.profile.gender = form.cleaned_data.get('gender')
                 user.profile.role = form.cleaned_data.get('role')
                 user.profile.phone_number = form.cleaned_data.get('phone_number')
+                user.profile.mentorship_areas = form.cleaned_data.get('mentorship_areas')
                 user.email = form.cleaned_data.get('email')
                 user.profile.bio = form.cleaned_data.get('bio')
                 user.profile.location = form.cleaned_data.get('location')
+                user.profile.highest_level_of_study = form.cleaned_data.get('highest_level_of_study')
+                user.profile.profile_picture = form.cleaned_data.get('profile_picture')
                 user.profile.is_previously_logged_in = True
                 user.save()
                 messages.add_message(request,
                                      messages.SUCCESS,
                                      'Your account was successfully setup.')
-                return redirect('education')
+                return redirect('mentoring')
 
         else:
             form = ProfileForm(instance=user, initial={
-            'phone_number': user.profile.phone_number,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'gender': user.profile.gender,
             'role': user.profile.role,
+            'phone_number': user.profile.phone_number,
+            'mentorship_areas': user.profile.mentorship_areas,
+            'email': user.email,
             'bio': user.profile.bio,
             'location': user.profile.location,
+            'highest_level_of_study': user.profile.highest_level_of_study,
+            'profile_picture': user.profile.profile_picture,
             })
         return render(request, 'core/includes/initial_setup.html', {'form': form})
-
-
-@login_required
-def education(request):
-    user = request.user
-    if request.method == 'POST':
-        form = EducationForm(request.POST)
-        if form.is_valid():
-            level_of_study = form.cleaned_data.get('level_of_study')
-            institution_name = form.cleaned_data.get('institution_name')
-            field_of_study = form.cleaned_data.get('field_of_study')
-            ed = form.save(commit=False)
-            ed.user = user
-            ed.save()
-            return redirect('experience')
-    else:
-        form = EducationForm(instance=user, )
-    return render(request, 'core/includes/education.html', {'form': form})
-
-
-@login_required
-def experience(request):
-    user = request.user
-    if request.method == 'POST':
-        form = ExperienceForm(request.POST)
-        if form.is_valid():
-            employer = form.cleaned_data.get('employer')
-            industry = form.cleaned_data.get('industry')
-            job_title = form.cleaned_data.get('job_title')
-            job_description = form.cleaned_data.get('job_description')
-            ex = form.save(commit=False)
-            ex.user = user
-            ex.save()
-            return redirect('mentorship_areas')
-    else:
-        form = ExperienceForm(instance=user, )
-    return render(request, 'core/includes/experience.html', {'form': form})
-
-
-@login_required
-def mentorship_areas(request):
-    user = request.user
-    if request.method == 'POST':
-        form = MentorshipAreaForm(request.POST)
-        if form.is_valid():
-            mentorship_areas = form.cleaned_data.get('mentorship_areas')
-            m = form.save(commit=False)
-            m.user = user
-            m.save()
-            messages.add_message(request, messages.SUCCESS,
-                                 'Your account profile was successfully setup.')
-            return redirect('questions')
-    else:
-        form = MentorshipAreaForm(instance=user, )
-    return render(request, 'core/includes/mentorship_areas.html', {'form': form})
 
 
 @login_required
@@ -159,9 +114,11 @@ def settings(request):
             user.profile.gender = form.cleaned_data.get('gender')
             user.profile.role = form.cleaned_data.get('role')
             user.profile.phone_number = form.cleaned_data.get('phone_number')
+            user.profile.mentorship_areas = form.cleaned_data.get('mentorship_areas')
             user.email = form.cleaned_data.get('email')
             user.profile.bio = form.cleaned_data.get('bio')
             user.profile.location = form.cleaned_data.get('location')
+            user.profile.highest_level_of_study = form.cleaned_data.get('highest_level_of_study')
             user.profile.profile_picture = form.cleaned_data.get('profile_picture')
             user.save()
             messages.add_message(request,
@@ -170,10 +127,17 @@ def settings(request):
 
     else:
         form = ProfileForm(instance=user, initial={
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'gender': user.profile.gender,
             'phone_number': user.profile.phone_number,
+            'mentorship_areas': user.profile.mentorship_areas,
             'role': user.profile.role,
+            'email': user.email,
             'bio': user.profile.bio,
             'location': user.profile.location,
+            'highest_level_of_study': user.profile.highest_level_of_study,
+            'profile_picture': user.profile.profile_picture,
             })
     return render(request, 'core/settings.html', {'form': form})
 

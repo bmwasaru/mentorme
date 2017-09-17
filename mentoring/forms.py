@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 
-from mentoring.models import RequestMentorship
+from mentoring.models import Mentorship
 
 
 class ContactForm(forms.Form):
@@ -20,7 +20,7 @@ class ContactForm(forms.Form):
         self.fields['content'].label = "What do you want to say?"
 
 
-class RequestMentorshipForm(forms.ModelForm):
+class MentorshipForm(forms.ModelForm):
 	class Meta:
-		model = RequestMentorship
+		model = Mentorship
 		fields = ['mentor', 'mentee', 'status']

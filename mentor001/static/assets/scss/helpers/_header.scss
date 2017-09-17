@@ -1,0 +1,37 @@
+.navigation { position: relative; z-index: 99;
+  a { color: $color-black; }
+  .secondary-nav { font-size: 10px; text-transform: uppercase; text-align: right; font-weight: bold; padding-top: 5px; padding-bottom: 5px;
+    span { @include opacity(.5); @include transit; margin-left: 15px;
+      &:hover { @include opacity(1); }
+      i { margin-right: 5px; }
+    }
+  }
+  .nav-toggle { display: none; font-size: 29px; position: absolute; top: -10px; bottom: 0px; right: 0px; height: 30px; margin: auto;  }
+  .main-nav { display: table; width: 100%; padding-top: 10px; padding-bottom: 20px; position: relative;
+    .brand, nav { display: table-cell; vertical-align: middle; }
+    ul { list-style: none; float: right;
+      li { float: left;
+        &.active {
+          a { @include opacity(1);
+            &:after { visibility: visible; @include opacity(1); }
+          }
+        }
+        a { @include opacity(.6); margin: 5px 15px; text-transform: uppercase; font-weight: bold; font-size: 13px; position: relative;
+          &:last-child { margin-right: 0; }
+          &:hover { @include opacity(1); color: $color-black; }
+          &:after { @include opacity(0); visibility: hidden; content: ""; height: 3px; background-color: $color-default; position: absolute; width: 100%; bottom: -10px; left: 0; }
+        }
+      }
+    }
+    .icon-shortcut { @include shadow; @include border-radius(50%); bottom: -32px; background-color: $color-default; height: 65px; width: 65px; position: absolute; right: 0; color: #fff; text-align: center; line-height: 70px;
+      &:hover { background-color: darken($color-default, 5%);
+        i { @include transform( rotateZ(360deg) scale(.8) ); }
+      }
+      i { @include transition(.5s cubic-bezier(.93,.01,.37,1)); display: inline-block; font-size: 24px; }
+    }
+  }
+}
+
+.subpage {
+  .navigation { background-color: rgba($color-neutral, .3); }
+}

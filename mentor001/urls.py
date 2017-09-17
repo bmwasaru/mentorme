@@ -17,14 +17,8 @@ urlpatterns = [
     url(r'^mentors/$', core_views.mentors, name='mentors'),
     url(r'^mentees/$', core_views.mentees, name='mentees'),
     url(r'^setup/$', core_views.initial_setup, name='initial_setup'),
-    url(r'^education/$', core_views.education, name='education'),
-    url(r'^experience/$', core_views.experience, name='experience'),
-    url(r'^mentorship_areas/$', core_views.mentorship_areas, name='mentorship_areas'),
     
-    url(r'^landing/$', core_views.landing, name='landing'),
-    url(r'^mentoring/$', mentoring_views.mentoring, name='mentoring'),
-    url(r'^contact/$', mentoring_views.contact, name='contact'),
-    url(r'^request_mentorship/$', mentoring_views.request_mentorship, name='request_mentorship'),
+    url(r'^index/$', core_views.index, name='index'),
     # User URLs
     url(
         r'^account/login',
@@ -84,9 +78,18 @@ urlpatterns += [
     url(r'^milestones/', include('milestones.urls')),
 ]
 
+urlpatterns += [
+    url(r'^mentoring/', include('mentoring.urls')),
+]
+
 admin.site.site_title = 'Mentor001 Adminstration'
 admin.site.site_header = 'Mentor001 Adminstration'
 
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+    import debug_toolbar
+    urlpatterns = [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns

@@ -1,0 +1,49 @@
+a { @include transit; color: $color-default;
+  &:hover, &:focus, &:active { color: darken($color-default, 10%); text-decoration: none; outline: none !important; }
+  &.link { font-size: 14px; text-transform: uppercase; font-weight: bold;
+    &.arrow {
+      &:after { @include elegant-font; content: "\$"; color: $color-black; font-size: 21px; vertical-align: middle; margin-left: 10px; }
+    }
+    &.underline { border-bottom: 3px solid $color-default; padding-bottom: 8px; }
+  }
+}
+
+address { @include opacity(.7);
+  a { color: $color-black;
+    &:hover, &:focus, &:active { color: $color-default; }
+  }
+  .info { margin-bottom: 10px;
+    i { color: $color-default; margin-right: 20px; }
+  }
+}
+
+body { color: $color-black; font-size: 16px; font-family: 'Lato', sans-serif; position: relative; }
+
+blockquote { margin-bottom: 0; border: none;
+  p { display: inline-block; font-size: 18px; margin-bottom: 10px; position: relative;
+  }
+  footer { color: $color-default; text-transform: uppercase; font-size: 12px; font-weight: bold; }
+}
+
+dl {
+  dt { float: left; margin-right: 20px; }
+  &.big { font-size: 18px; margin-right: inherit;
+    dd { margin-bottom: 12px; margin-left: 60px; }
+    .promoted { font-size: 36px; }
+  }
+}
+
+h1 { font-size: 60px; font-weight: bold; color: rgba($color-black, .6); margin-bottom: 30px; }
+h2 { font-size: 36px; font-weight: lighter; color: $color-default; margin-bottom: 60px; }
+h3 { font-size: 22px; margin-bottom: 30px; }
+h5 { font-size: 16px; }
+
+hr { border-color: rgba(0,0,0,.1);
+  &.triangle { position: relative;
+    &:after { background-image: url("../img/triangle-down.png"); height: 23px; width: 46px; content: ""; left: 0; right: 0; margin: 0 auto; position: absolute; top: -1px; }
+  }
+}
+
+p { @include opacity(.7); }
+
+img { max-width: 100%; }

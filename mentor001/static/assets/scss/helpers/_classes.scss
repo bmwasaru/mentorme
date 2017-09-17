@@ -1,0 +1,214 @@
+.blog-post { border-bottom: 1px solid rgba($color-black, .1); margin-bottom: 40px; padding-bottom: 20px;
+  h2 { font-size: 30px; margin-bottom: 20px; }
+  .meta { margin-bottom: 20px;
+    .link-icon { display: inline-block; color: $color-black; font-size: 14px; margin-right: 10px;
+      i { color:rgba($color-black, .3); margin-right: 5px; }
+    }
+    .tags { float: right; font-size: 12px;
+      .tag { @include border-radius(20px); border: 2px solid $color-default; padding: 5px 10px; color: $color-black; font-weight: bold; }
+    }
+  }
+}
+
+.calendar {
+  div.zabuto_calendar .table tr.calendar-month-header th { background-color: transparent; border: none; }
+  div.zabuto_calendar .table tr.calendar-month-header th span { text-transform: uppercase; font-size: 18px; }
+  div.zabuto_calendar .table tr.calendar-dow-header th { background-color: transparent; border-top: none; border-bottom: 2px solid rgba(#000, .1); padding-bottom: 15px; font-size: 12px; text-transform: uppercase; font-weight: 900; }
+  div.zabuto_calendar .table tr th, div.zabuto_calendar .table tr td { background-color: transparent; }
+  div.zabuto_calendar .table th, div.zabuto_calendar .table td { padding: 0; }
+  .badge-today { background-color: transparent; border: 2px solid rgba(#000,.2); }
+  .calendar-month-navigation {
+    > span {
+      i { @include border-radius(50%); background-color: $color-default; color: #fff; padding: 10px; }
+    }
+  }
+
+  &.big { font-size: 14px;
+    div.zabuto_calendar .table tr.calendar-month-header th span { color: rgba(#000, .3);  }
+    div.zabuto_calendar .table tr.calendar-dow-header th { border-bottom: 2px solid rgba(#000, .1); padding-bottom: 20px;  }
+    div.zabuto_calendar .table tr td div.day { padding-top: 25px; padding-bottom: 25px; }
+    div.zabuto_calendar .table tr th, div.zabuto_calendar .table tr td { background-color: transparent; }
+    div.zabuto_calendar .table tr:last-child { border-bottom: 2px solid rgba(#000, .1); }
+    .badge-today { background-color: transparent; border: 2px solid rgba(#000,.2); color: $color-black; font-size: 14px; }
+    td { border: none; }
+  }
+  &.small {
+    div.zabuto_calendar .table tr.calendar-dow-header th { border-bottom: 2px solid rgba(#fff, .1);}
+    div.zabuto_calendar .table tr.calendar-month-header th span { color: #fff; }
+    div.zabuto_calendar .table tr:last-child { border-bottom: none; }
+    div.zabuto_calendar .table tr td div.day { padding-top: 10px; padding-bottom: 10px; }
+    .badge-today { background-color: transparent; border: 2px solid rgba(#fff,.2) }
+    .not-available { background-color: transparent; color: rgba(#fff,.2); }
+    td { border: none; }
+    .calendar-month-navigation {
+      > span {
+        i { background-color: transparent; padding: 5px 6px; border: 2px solid #fff; }
+      }
+    }
+  }
+
+  .dow-clickable.event-styled { pointer-events: none; }
+  .not-available { pointer-events: none; background-color: rgba(#000,.05); color: rgba(#000,.4); }
+}
+
+.feature-box {
+  > i { color: $color-default; font-size: 56px; marign-bottom: 90px; }
+  a { //color: $color-default;
+    i { font-size: 24px; color: $color-black; }
+  }
+  h3 { margin-top: 25px; margin-bottom: 20px; }
+}
+
+.feature-circle { text-align: center; width: 100%;
+  .image { @include border-radius(50%); @include shadow; display: inline-block; text-align: center; background-color: rgba($color-neutral, .5); padding: 30px; position: relative;
+    > img { @include border-radius(50%); overflow: hidden; height: 165px; width: 165px; position: relative; }
+    .arrow { position: absolute; top: 0px; bottom: 0px; margin: auto; height: 9px; display: block; right: -90px; }
+  }
+}
+
+#footer {
+  .left { padding: 40px 0; position: relative; margin: 0 -15px; min-height: 110px;
+    .bg-left { background-color: rgba($color-neutral, .5); height: 100%; width: 2000px; right: 0; top: 0; z-index: -1; position: absolute; }
+  }
+  .right { width: 100%; padding: 40px 0; position: relative; margin: 0 -15px; min-height: 110px;
+    a { color: #fff; font-size: 14px; float: right;
+      i { font-size: 18px; vertical-align: middle; margin-left: 10px; }
+    }
+    .bg-right { background-color: $color-default; height: 100%; width: 2000px; top: 0; z-index: -1; position: absolute; overflow: hidden; }
+  }
+}
+
+.heading { border-bottom: 1px solid rgba($color-black, .1); margin-bottom: 40px;
+  h1 { font-size: 24px; color: rgba($color-black, .4); font-weight: normal; margin-bottom: 20px; }
+}
+
+.modal {
+  &.workshop-detail {
+    .modal-header {
+      h3 { @include opacity(.6); font-size: 36px; font-weight: lighter; margin: 0px 0; }
+      h4 { text-transform: uppercase; font-size: 14px; font-weight: bold; }
+      .time {
+        i { color: $color-default; margin-right: 5px; }
+      }
+    }
+
+  }
+}
+
+.modal-dialog { width: 700px; }
+
+.modal-content { @include border-radius(0);
+  .modal-header, .modal-body, .modal-footer { padding: 40px; border: none; }
+  .modal-header { padding-bottom: 0; }
+  .modal-body { padding-top: 20px; }
+  .btn-group { padding-bottom: 30px; }
+}
+
+.numbers { margin: 20px 0;
+  .number { text-align: center;
+    figure { color: $color-default; font-size: 48px; }
+    aside { @include opacity(.5); font-size: 14px; }
+  }
+}
+
+.note { font-size: 14px; color: rgba($color-black, .4); }
+
+.pagination {
+  li {
+    &.active {
+      a, a:hover { @include border-radius(50%); background-color: $color-default; }
+    }
+    a, a:hover { @include border-radius(50%); color: $color-black; border: none; }
+  }
+}
+
+.page-wrapper { overflow: hidden; }
+
+.pricing {
+  h3 { @include opacity(.8); }
+  ul { list-style: none; padding-left: 0;
+    li { border-bottom: 1px solid rgba(#000,.1); padding: 15px 0; color: rgba(#000, .6);
+      &.not-available {
+        i { color: rgba(#000,.5);  }
+      }
+      i { color: $color-default; font-size: 18px; }
+    }
+  }
+  .price-box, .description { padding-top: 20px; padding-bottom: 20px; }
+  .price-box { @include shadow; background-color: rgba($color-neutral, .3); padding-left: 20px; padding-right: 20px; text-align: center; margin-bottom: 30px; position: relative;
+    &.promoted { background-color: $color-default; color: #fff;
+      li, i { color: #fff; }
+    }
+    .price { font-size: 28px; padding: 15px 0; }
+    .best-value { @include shadow; @include border-radius(50%); font-size: 14px; font-weight: bold; background-color: darken($color-default, 10%); color: #fff; text-align: center; width: 60px; height: 60px; position: absolute; top: -30px; right: 10px; line-height: 60px; }
+  }
+}
+
+.rev-slider {
+  .tp-caption { white-space: nowrap; }
+}
+
+.sidebar {
+  h3 { color: $color-default; font-size: 24px; margin-top: 0; }
+  aside { margin-bottom: 30px; }
+  ul { padding-left: 15px; font-size: 14px;
+    li { padding: 5px 0px;
+      a { color: $color-black; }
+    }
+  }
+}
+
+.steps { width: 100%; display: table; margin-bottom: 30px;
+  .step {  padding-right: 20px; display: table-cell;
+    &:last-child { padding-right: 0;
+      figure .arrow { display: none; }
+    }
+    figure { height: 100px; vertical-align: bottom; display: table-cell; width: 100%;
+      aside { @include opacity(.5); font-size: 18px; font-weight: bold; text-align: center; margin-bottom: 10px; }
+      .bar { @include shadow; width: 50px; background-color: $color-default; position: relative; }
+      .arrow { position: absolute; top: -20px; right: -100px; height: 12px; width: 38px; background-image: url("../img/arrow-right.png"); background-repeat: no-repeat; }
+    }
+    h3 { color: $color-default; font-size: 18px; }
+    p { font-size: 14px; }
+  }
+}
+
+.story { background: rgba($color-neutral, .3); position: relative; padding: 40px; margin-bottom: 30px;
+  blockquote { margin-left: 100px; }
+  p { font-size: 16px; }
+  .image { @include shadow; @include border-radius(50%); height: 155px; width: 155px; overflow: hidden; position: absolute; left: -20px; top: 30px; }
+}
+
+.subpage {
+  .page-wrapper {
+    h2 {
+      &:first-child { margin-top: 0; }
+    }
+  }
+}
+
+// Sticky Footer
+/*
+.page-wrapper { display: table; width: 100%; height: 100%; }
+body, html { height: 100%; }
+#footer { display: table-row; height: 1px; }
+.outer-wrapper { height: 100%; overflow-x: hidden; }
+*/
+
+.times {
+  .btn-group { display: table; width: 100%; }
+}
+
+.workshop-list { margin-bottom: 60px;
+  h3 { margin-top: 0; font-weight: bold; }
+  .workshop { margin-bottom: 30px;
+    .date-info { border-bottom: 1px solid rgba(#000, .1); padding-bottom: 15px; margin-bottom: 15px;
+      .date { @include opacity(.6); font-size: 36px; font-weight: lighter; }
+      .place { font-size: 14px; text-transform: uppercase; font-weight: bold; }
+      .time { font-size: 14px; margin-top: 5px;
+        i { color: $color-default; margin-right: 10px; }
+      }
+    }
+    h4 { font-size: 18px; font-weight: bold; color: $color-default; }
+  }
+}

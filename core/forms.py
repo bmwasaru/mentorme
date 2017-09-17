@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
-from core.models import Education, Experience, MentorshipArea
 from core.choices import EDUCATION_CHOICES, MENTORSHIP_AREAS_CHOICES
 
 from authentication.models import Profile
@@ -36,17 +35,19 @@ class ProfileForm(forms.ModelForm):
     role = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'form-control'}), 
         choices=ROLE_CHOICES)
-    # education = forms.ChoiceField(
-    #     widget=forms.Select(attrs={'class': 'form-control'}), 
-    #     choices=EDUCATION_CHOICES)
-    # mentorship_areas = forms.MultipleChoiceField(
-    #     widget=forms.CheckboxSelectMultiple, 
-    #     choices=MENTORSHIP_AREAS_CHOICES)
+    mentorship_areas = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple, 
+        choices=MENTORSHIP_AREAS_CHOICES)
+    highest_level_of_study = forms.ChoiceField(
+        widget=forms.Select(attrs={'class': 'form-control'}), 
+        choices=EDUCATION_CHOICES)
 
     class Meta:
         model = Profile
         fields = ['first_name', 'last_name', 'email', 'phone_number', 
-                  'gender', 'location', 'role', 'bio', 'profile_picture']
+        'gender', 'location', 'role', 'mentorship_areas', 'bio',
+        'highest_level_of_study', 'profile_picture']
+        
         widgets = {
             'bio': forms.Textarea(
                 attrs={'cols': 30, 'rows': 10, 'class': 'form-control'}),
@@ -87,45 +88,3 @@ class ChangePasswordForm(forms.ModelForm):
             self._errors['new_password'] = self.error_class([
                 'Passwords don\'t match'])
         return self.cleaned_data
-
-
-class EducationForm(forms.ModelForm):
-    level_of_study = forms.ChoiceField(
-        widget=forms.Select(attrs={'class': 'form-control'}), 
-        choices=EDUCATION_CHOICES)
-    institution_name = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control'}))
-    field_of_study = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control'}))
-
-    class Meta:
-        model = Education
-        fields = ['level_of_study', 'institution_name', 'field_of_study']
-
-
-class ExperienceForm(forms.ModelForm):
-    employer = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control'}))
-    industry = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control'}))
-    job_title = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control'}))
-
-    class Meta:
-        model = Experience
-        fields = ['employer', 'industry', 'job_title', 'job_description']
-
-    widget = {
-        'job_description': forms.Textarea(
-            attrs={'cols': 30, 'rows': 10, 'class': 'form-control'}),
-    }
-
-
-class MentorshipAreaForm(forms.ModelForm):
-    mentorship_areas = forms.MultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple, 
-        choices=MENTORSHIP_AREAS_CHOICES)
-
-    class Meta:
-        model = MentorshipArea
-        fields = ['mentorship_areas']

@@ -4,6 +4,7 @@ from urllib.parse import urlencode
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 from .choices import GENDER_CHOICES, ROLE_CHOICES
 from core.choices import EDUCATION_CHOICES, MENTORSHIP_AREAS_CHOICES
@@ -15,14 +16,20 @@ DEFAULT = 'images/default.jpg'
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    location = models.CharField(max_length=50)
-    bio = models.TextField(blank=True, default='')
-    gender = models.CharField(max_length=6, choices=GENDER_CHOICES)
+    location = models.CharField(max_length=50, blank=True)
+    bio = models.TextField(blank=True)
+    gender = models.CharField(max_length=6, choices=GENDER_CHOICES, default='')
     role = models.CharField(max_length=6, 
         blank=False, 
         default='mentee', 
         choices=ROLE_CHOICES)
-    phone_number = models.CharField(max_length=32)
+    phone_number = models.CharField(max_length=32, blank=True)
+    mentorship_areas = MultiSelectField(choices=MENTORSHIP_AREAS_CHOICES, 
+        max_choices=3,
+        default='')
+    highest_level_of_study = models.CharField(max_length=255, 
+        choices=EDUCATION_CHOICES,
+        default='')
     profile_picture = models.ImageField(upload_to='images/', default=DEFAULT)
     is_previously_logged_in = models.CharField(max_length=5, default=False)
 
@@ -100,14 +107,8 @@ class Profile(models.Model):
                 answer=answer).delete()
 
 
-def create_user_profile(sender, instance, created, **kwargs):
+@receiver(post_save, sender=User)
+def update_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
-
-
-def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
-
-
-post_save.connect(create_user_profile, sender=User)
-post_save.connect(save_user_profile, sender=User)

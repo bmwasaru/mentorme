@@ -1,0 +1,93 @@
+<!-- {% extends 'messenger/base_messages.html' %} -->
+{% load i18n %}
+
+{% extends 'bas.html' %}
+{% load staticfiles %}
+
+{% block head %}
+  <link href="{% static 'css/messages.css' %}" rel="stylesheet">
+  <script src="{% static 'js/messages.js' %}"></script>
+  <script src="{% static 'js/jquery.typeahead.bundle.js' %}"></script>
+{% endblock head %}
+
+{% block main %}
+<div class="container">
+<div class="row">
+  <!-- <div class="page-header">
+    <a href="{% url 'new_message' %}" class="btn btn-primary pull-right">New message</a>
+    <h1>{% block page_header %}{% endblock %}</h1>
+  </div> -->
+  
+    <div class="col-md-3 col-sm-3">
+      <!-- {% include 'messenger/includes/partial_conversations.html' with conversations=conversations active=active %} -->
+      <div class="list-group">
+        <!-- {% comment %}
+        <a href="{% url 'inbox' %}" class="list-group-item{% if active == 'inbox' %} active{% endif %}">
+          <span>{% trans 'Inbox' %}</span>
+          <span class="badge">0</span>
+        </a>
+        {% endcomment %} -->
+
+        {% for conversation in conversations %}
+          <a href="{% url 'messages' conversation.user.username %}" 
+            class="list-group-item{% if active == conversation.user.username %} active{% endif %}">
+            <!-- <img src="{{ conversation.user.profile.get_picture }}" class="conversation-portrait"> -->
+            {{ conversation.user.profile.get_screen_name }}
+            {% if conversation.unread > 0 %}
+              <span class="badge pull-right">{{ conversation.unread }}</span>
+            {% endif %}
+          </a>
+        {% empty %}
+          <!-- <a href="#" class="list-group-item">{% trans 'Start a conversation' %}</a> -->
+        {% endfor %}
+      </div>
+    </div>
+    
+    <div class="col-md-9 col-sm-9">
+      {% block container %}
+        {% if messages %}
+          <div class="conversation">
+            <div class="talk-bubble" style="height: 300px; overflow-y:scroll; background-color: #f3f3f3">
+              <div class="talktext" style="width: 100%">
+                {% for message in messages %}
+                  <!-- {% include 'messenger/includes/partial_message.html' with message=message %} -->
+                  <li>
+                    <div class="talk-bubble tri-right round left-top" style="margin-left: 2px; ">
+                      <!-- <img src="{{ message.from_user.profile.get_picture }}" class="picture"> -->
+                      <div class="talktext" style="margin-left: 10px; padding-bottom: 0px;">
+                        <h5>
+                          <small class="pull-right">
+                            {{ message.date|date:'N d G:i' }}
+                          </small>
+                          <a href="{% url 'profile' message.from_user.username %}">
+                            {{ message.from_user.profile.get_screen_name }}
+                          </a>
+                        </h5>
+                        {{ message.message | linebreaks }}</div>
+                    </div>
+                    </li>
+                {% endfor %}
+
+                <!-- {% include 'messenger/includes/partial_send_message.html' %} -->
+                <div class="send-message">
+                  <!-- <img src="{{ user.profile.get_picture }}" class="picture"> -->
+                  <div style="margin-top: .3em">
+                    <form role="form" method="post" action="{% url 'send_message' %}" id="send">
+                      {% csrf_token %}
+                      <input type="hidden" name="to" value="{{ active }}">
+                      <input class="form-control" type="text" name="message" placeholder="Write a message..." maxlength="1000" autocomplete="off">
+                    </form>
+                  </div>
+                </div>
+
+              </div>
+            </div> 
+          </div>
+          {% else %}
+            <!-- <h4>Your inbox is empty!</h4> -->
+          {% endif %}
+      {% endblock container %}
+    </div>
+  </div>
+  </div>
+{% endblock main %}

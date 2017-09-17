@@ -43,6 +43,10 @@
       /*.tooltip-arrow,*/ .blue-tooltip + .tooltip > .tooltip-inner {
         background-color: #4267b2;
       }
+      .form-group.required .control-label:after {
+        content:"*";
+        color:red;
+      }
     </style>                                              
     {% block head %}{% endblock %}
   </head>
@@ -80,10 +84,10 @@
                   <li><a style="color: #fff" href="{% url 'questions' %}">{% trans 'Forum' %}</a></li>
                   <li><a style="color: #fff" href="{% url 'inbox' %}"><sup><span class="badge pull-right" id="unread-count">0</span></sup> Inbox </a></li>
                   <li>
-                  <a href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
-                    <span class="glyphicon glyphicon-bell"></span>
-                  </a>
-                </li>
+                    <a href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
+                      <span class="glyphicon glyphicon-bell"></span>
+                    </a>
+                  </li>
                 <li>
                   <a style="color: #fff" href="{% url 'profile' username=user.username %}">{{ user.profile.get_screen_name }}</a>
                 </li>
@@ -112,23 +116,23 @@
       <script src="{% static 'js/check_messages.js' %}"></script>
     {% endblock body %}
 
-<!-- <div style="margin-top: 20px">
-  <div class="copyright">
-      <div class="container">
-        <div class="col-md-6">
-          <p>© 2016 - All Rights with Mentor001</p>
+    <!-- <div style="margin-top: 20px">
+      <div class="copyright">
+          <div class="container">
+            <div class="col-md-6">
+              <p>© 2016 - All Rights with Mentor001</p>
+            </div>
+            <div class="col-md-6">
+              <ul class="bottom_ul">
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Faq's</a></li>
+                <li><a href="#">Contact us</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="col-md-6">
-          <ul class="bottom_ul">
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Faq's</a></li>
-            <li><a href="#">Contact us</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-</div> -->
+    </div> -->
     
     <script>
     $(document).ready(function(){

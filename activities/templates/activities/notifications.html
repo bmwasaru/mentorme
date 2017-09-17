@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'bas.html' %}
 {% load staticfiles %}
 {% load i18n %}
 
@@ -11,7 +11,9 @@
 {% endblock head %}
 
 {% block main %}
-  <div class="page-header">
+<div class="container">
+<div class="row">
+  <div class="heading">
     <h1>Notifications</h1>
   </div>
   <ul class="all-notifications">
@@ -27,4 +29,6 @@
       <li>{% trans 'You have no notification' %}</li>
     {% endfor %}
   </ul>
+  </div>
+</div>
 {% endblock main %}

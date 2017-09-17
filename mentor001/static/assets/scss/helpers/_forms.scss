@@ -1,0 +1,55 @@
+input[type="text"],input[type="email"], input[type="date"], input[type="time"], input[type="search"], input[type="password"], input[type="number"], input[type="tel"], textarea.form-control { @include box-shadow(none); @include border-radius(0px); @include transition(.3s); -webkit-appearance: none; background-color: #fff; border: none;  font-size: 16px; font-weight: 400; outline: none !important; padding-top: 8px; padding-bottom: 8px; width: 100%; height: inherit;
+  &.framed { border: 1px solid rgba(0,0,0,.1) !important;  }
+  &:active, &:focus { @include box-shadow(none); border-color: rgba(0,0,0,0.2);  }
+  &:hover { @include box-shadow(none); border-color: rgba(0,0,0,0.25); }
+}
+
+.input-group {
+  input { min-height: 38px; }
+  button { @include border-radius(0px); border: none; min-height: 38px;
+    i { font-size: 20px;
+       }
+  }
+}
+
+.form-group {
+  button {
+    &.width-100 { width: 100%; }
+  }
+}
+
+form { margin: 10px 0; }
+
+textarea { resize: vertical; }
+
+.btn { @include border-radius(20px); @include transit; text-transform: uppercase; font-size: 14px; font-weight: bold; padding: 8px 15px;
+  &:hover, &:active, &:focus { @include box-shadow(none); outline: none !important; }
+  &.btn-default { border: 2px solid $color-default; color: $color-default; background-color: transparent;
+    &:hover, &:active, &:focus { border: 2px solid $color-default; background-color: $color-default; color: #fff; }
+    &.btn-white { border: 2px solid #fff; color: #fff;
+      &:hover, &:active, &:focus { background-color: #fff; color: $color-default; }
+    }
+    &.btn-black { border: 2px solid $color-black; color: $color-black;
+      &:hover, &:active, &:focus { background-color: $color-default; color: #fff; }
+    }
+    &.btn-grey { border: 2px solid rgba($color-black, .2 ); color: $color-black;
+      &:hover, &:active, &:focus { border: 2px solid rgba($color-black, .2 ); color: $color-black; background-color: rgba($color-black, .1 ); }
+    }
+  }
+  &.btn-primary { background-color: $color-default; color: #fff; border: none; padding: 10px 15px;
+    &:hover, &:active, &:focus { background-color: darken($color-default, 5%); }
+    &.btn-white { background-color: #fff; color: $color-default;
+      &:hover, &:active, &:focus { color: $color-default; }
+    }
+  }
+  &.btn-big { @include border-radius(40px); font-size: 18px; padding: 20px 30px; }
+  &.btn-small { font-size: 12px; padding: 2px 10px; }
+
+  &.time-radio { @include box-shadow(none); @include border-radius(0px); border-bottom: 1px solid rgba(#000, .1); display: block; background-color: transparent; width: 100%; margin-left: 0px !important; text-align: left; position: relative; font-size: 12px; color: rgba(#000, .6); padding: 10px 8px;
+    &.active { background-color: $color-default; color: #fff; }
+    &.not-available { background-color: rgba(#000, .02); color: rgba(#000, .1); pointer-events: none;
+      span { color: rgba(#000, .1); }
+    }
+    span { color: rgba(#000, .2); position: absolute; font-size: 10px; font-weight: bold; top: 0; bottom: 0; margin: auto; height: 15px; right: 5px; }
+  }
+}

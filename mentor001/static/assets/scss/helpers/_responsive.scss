@@ -1,0 +1,106 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 992px - 1199px
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@media (min-width: 992px) and (max-width: 1199px) {
+  body { font-size: 14px; }
+  h1 { font-size: 52px; }
+  .feature-box {
+    i { font-size: 46px; }
+    h3 { font-size: 18px; margin-top: 20px; margin-bottom: 15px; }
+  }
+  h2 { font-size: 32px; }
+  dl {
+    &.big {
+      .promoted { font-size: 28px; }
+    }
+  }
+  .steps .step h3 { min-height: 40px; }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 768px - 979px
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@media (min-width: 768px) and (max-width: 991px) {
+  body { font-size: 14px; }
+  h1 { font-size: 48px; }
+  .block { padding: 40px 0px; }
+  .feature-box { margin-bottom: 30px; }
+  .numbers {
+    .number {
+      figure { font-size: 36px; }
+    }
+  }
+  .bg {
+    img { max-width: inherit; height: 100%; }
+  }
+  .steps .step h3 { min-height: 40px; }
+  .steps .step figure .arrow { right: -60px; }
+  .btn.btn-big { padding: 15px 20px; }
+  .box { padding: 20px; }
+  dl {
+    &.big { font-size: 14px;
+      .promoted { font-size: 24px; }
+    }
+  }
+  h2 { font-size: 32px; }
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// max to 767px
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@media (max-width: 767px) {
+  .block { padding: 20px; }
+  h1 { font-size: 30px; }
+  h2 { font-size: 24px; }
+  .feature-box { text-align: center; }
+  .steps { display: block;
+    .step { display: block; width: 100%; }
+    .arrow { display: none; }
+  }
+  .story { padding: 20px; text-align: center;
+    .image { position: relative; left: inherit; top: inherit; display: inline-block; }
+    blockquote { margin-left: 0; }
+  }
+  dl {
+    &.big {
+      .promoted { font-size: 18px; }
+    }
+  }
+  #footer {
+    .left, .right span a, .right span { text-align: center; float: none; display: block; }
+  }
+  .workshop-list {
+    h3 { margin-top: 20px; }
+  }
+  .modal-dialog { width: 100%; }
+  .blog-post {
+    .meta {
+      .tags { float: none; margin-top: 20px; }
+    }
+  }
+  .navigation {
+    .nav-toggle { display: block; }
+    .main-nav {
+      nav { cursor: pointer;
+        &.show-nav {
+          ul { @include opacity(1); visibility: visible; }
+        }
+        //&:after { @include elegant-font; content: "a"; color: $color-black; font-size: 28px; position: absolute; top: 0px; bottom: 0px; right: 0px; height: 45px; margin: auto; padding: 5px; }
+        ul { @include opacity(0); visibility: hidden; @include transit; background-color: #383838; float: none; display: inline-block; position: absolute; right: 5px; margin-top: 30px; text-align: right; padding-left: 0;
+          &:after { border-style: solid; border-width: 0 0 10px 10px; border-color: transparent transparent #383838 transparent; content: ""; position: absolute; top: -10px; right: 0; }
+          li { display: block; float: none;
+            &.active {
+              a {
+                &:after { display: none; }
+              }
+            }
+            a { display: block; color: #fff; padding: 5px 10px;
+              &:hover { color: #fff; }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .icon-shortcut { display: none; }
+}

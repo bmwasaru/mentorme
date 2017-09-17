@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'bas.html' %}
 {% load i18n %}
 {% get_available_languages as LANGUAGES %}
 {% get_current_language as CURRENT_LANGUAGE %}
@@ -6,6 +6,8 @@
 {% block title %}Account Settings{% endblock %}
 
 {% block main %}
+<div class="container">
+  <div class="row">
   <div class="page-header">
     <h1>{% trans 'Account Settings' %}</h1>
   </div>
@@ -22,7 +24,7 @@
           </div>
         {% endfor %}
       {% endif %}
-      <h3 style="margin-top: 0">{% trans 'Edit Profile' %}</h3>
+      <!-- <h3 style="margin-top: 0">{% trans 'Edit Profile' %}</h3> -->
       <form role="form" class="form-horizontal" method="post" enctype="multipart/form-data" action="{% url 'settings' %}">
         {% csrf_token %}
         {% for field in form.visible_fields %}
@@ -53,5 +55,7 @@
         </div>
       </form>
     </div>
+  </div>
+  </div>
   </div>
 {% endblock main %}

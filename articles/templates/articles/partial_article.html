@@ -1,4 +1,4 @@
-<article>
+<article class="blog-post" style="border-style: groove; padding: 20px;">
   <h2><a href="{% url 'article' article.slug %}">{{ article.title }}</a></h2>
   <div class="info">
     <span class="date">
@@ -15,7 +15,7 @@
     </span>
   </div>
   <div class="content">
-    {{ article.get_content_as_markdown|safe }}
+    {{ article.get_content_as_markdown|safe|linebreaks }}
   </div>
   {% if article.tags.names %}
     <div class="tags">

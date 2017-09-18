@@ -16,14 +16,14 @@ DEFAULT = 'images/default.jpg'
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    location = models.CharField(max_length=50, blank=True, null=True)
-    bio = models.TextField(blank=True, null=True)
+    location = models.CharField(max_length=50, default='')
+    bio = models.TextField(default='')
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES, default='')
     role = models.CharField(max_length=6, 
         blank=False, 
         default='mentee', 
         choices=ROLE_CHOICES)
-    phone_number = models.CharField(max_length=32, blank=True, null=True)
+    phone_number = models.CharField(max_length=32, default='')
     mentorship_areas = MultiSelectField(choices=MENTORSHIP_AREAS_CHOICES, 
         max_choices=3,
         default='')

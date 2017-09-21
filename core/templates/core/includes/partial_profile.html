@@ -1,6 +1,6 @@
 {% load staticfiles %}
 {% load i18n %}
-<div class="talk-bubble col-md-12" style="height: 300px; overflow-y:scroll; background-color: #e6e6e6">
+<div class="talk-bubble col-md-12" style="height: 360px; overflow-y:scroll; background-color: #e6e6e6">
   <div class="talktext">
     <ul>
       <b>Date joined</b>: {{ page_user.date_joined }}<br>
@@ -10,9 +10,9 @@
       <b>Biography</b>: {{ page_user.profile.bio|linebreaks}}<br>
       <b>Areas I would like mentorship in</b>
         {% for item in page_user.profile.mentorship_areas %}
-        <li>
+        <li style="list-style-type: none;">
           {{ item }}
-        </li> 
+          
         {% endfor %} <br>
 
       <!-- <li>

@@ -20,7 +20,7 @@
 
             <div class="col-md-8 col-sm-8">
                 <section id="content">
-                  <div class=" question" question-id="{{ question.id }}">
+                  <div class="question" question-id="{{ question.id }}">
                     {% csrf_token %}
                     <div class="col-md-1 col-sm-1 options">
                       {% if user in question.get_favoriters %}
@@ -70,7 +70,8 @@
                         {{ form.description }}
                       </div>
                       <div class="form-group">
-                        <a type="submit" class="btn btn-primary ">{% trans "Post Your Answer"%}</a>
+                        <button type="submit">{% trans "Post Your Answer"%} </button>
+                        <!-- <a type="submit" class="btn btn-primary">{% trans "Post Your Answer"%}</a> -->
                       </div>
                     </form>
                   </div>

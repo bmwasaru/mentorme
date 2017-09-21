@@ -8,7 +8,7 @@
 
     <!-- <link href="{% static 'assets/fonts/font-awesome.css' %}" rel="stylesheet" type="text/css"> -->
     <link href="{% static 'assets/fonts/elegant-fonts.css' %}" rel="stylesheet" type="text/css">
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css'>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}" type="text/css"> -->
@@ -21,26 +21,26 @@
 
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
     
-    <link href="{% static 'css/mentor.css' %}?v=1" rel="stylesheet">
-    <link href="{% static 'css/chatbubble.css' %}?v=1" rel="stylesheet">
+    <link href="{% static 'css/mentor.css' %}?v=1" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/chatbubble.css' %}?v=1" rel="stylesheet" type="text/css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     
     
     <title>{% block title %}Mentor 001{% endblock %}</title>
 
     {% block head %}{% endblock %}
 
-    <style type="">
+    <style>
         .platform-body{
             padding-top: 0px; 
             background-color: #f3f3f3;
         }
-        .platform-btn{
-            background-color: #ffbe00;
-        }
         .platform-panel{
-            border-left-color: #ff0000; 
+            border-left-color: #ffbe00; 
             border-left-style: solid; 
-            border-left-width:thick;
+            border-left-width: thick;
         }
         .platform-tag{
             background-color: #000;
@@ -49,45 +49,122 @@
             background-color: #ffbe00;
         }
         .platform-glyphicon {
-            font-size: 20px;
+            font-size: 15px;
             margin: 0.5em;
             color: black;
             
         }
-        .a{
-            color: red !important;
+        a{
+            color: #ffbe00;
         }
-        .black-glyph{color: black}
+        .black-glyph{
+            color: black
+        }
+        a:hover{
+            color: #000;
+        }
+        .btn.btn-primary {
+            background-color: #ffbe00;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+        }
+        .btn.btn-primary:hover, .btn.btn-primary:active, .btn.btn-primary:focus {
+            border: 2px solid #ffbe00;
+            background-color: transparent;
+            color: #000;
+        }
+        .btn.btn-default {
+            border: 2px solid #ffbe00;
+            color: #000;
+            background-color: transparent;
+        }
+        .btn.btn-default:hover, .btn.btn-default:active, .btn.btn-default:focus {
+            border: 2px solid #ffbe00;
+            background-color: #ffbe00;
+            color: #fff;
+        }
+        .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+            z-index: 2;
+            color: #fff;
+            background-color: #ffbe00;
+            border-color: #ffbe00;
+        }
+        .heading h1 {
+            color: #000;
+        }
+        .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+            z-index: 2;
+            color: #000;
+            cursor: default;
+            background-color: #fff;
+            border-color: #ffbe00;
+        }
     </style>
 
 </head>
 
-<body class="homepage platform-body" style="">
+<body class="platform-body" style="min-height: 100%;">
 {% block body %}
 <div class="overlay"></div>
 
 <div class="outer-wrapper">
 <div class="page-wrapper">
 
-    <header class="navigation" id="top" style="padding-top: ; background-color: #ffbe00; ">
+    <header class="navigation" id="top" style="background-color: #ffbe00; height: 70px">
         <div class="container">
             <!--/.secondary-nav-->
             <div class="main-nav" >
-                <div class="brand"><a href="{% url 'questions' %}"><img src="{% static 'assets/img/logo.png' %}" alt=""></a></div><!--/.brand-->
+                <div class="brand"><a href="{% url 'questions' %}"><img src="{% static '/img/mentor.png' %}" alt="" height="60" width="100" style="padding-bottom: 10px"></a></div><!--/.brand-->
                 <nav>
                     <ul>
-                        <li><a href="{% url 'mentoring' %}"><span class="glyphicon glyphicon-home platform-glyphicon "></span></a></li>
-                        <li><a href="{% url 'articles' %}"><span class="glyphicon glyphicon-folder-open platform-glyphicon"></span></a></li>
-                        <li><a href="{% url 'questions' %}"><span class="glyphicon glyphicon-globe platform-glyphicon"></span></a></li>
-                        <li><a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span><span class="glyphicon glyphicon-comment platform-glyphicon" style="margin-right: 0em"></span></a></li>
                         <li>
-                            <a href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
-                              <span class="glyphicon glyphicon-bell platform-glyphicon"></span>
-                            </a>
-                          </li>
-                        <li><a href="{% url 'profile' username=user.username %}"><span class="glyphicon glyphicon glyphicon-user platform-glyphicon"></span></a></li>
+                            <div class="nav_icon glyphicon glyphicon-home" ></div> 
+                            <a id="home" class="nav {% if active == 'mentoring' %} active{% endif %}" href="{% url 'mentoring' %}"><small>Home</small></a>
+                        </li>
+
+                        <li>
+                            <div class="nav_icon glyphicon glyphicon-folder-open"></div> 
+                            <a class="nav" href="{% url 'articles' %}"><small>Articles</small></a>
+                        </li>
+
+                        <li>
+                            <div class="nav_icon glyphicon glyphicon-globe"></div> 
+                            <a id="questions" class="nav" href="{% url 'questions' %}"><small>Questions</small></a>
+                        </li>
+                        <!-- <li>
+                            <a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span><span class="glyphicon glyphicon-comment platform-glyphicon" style="margin-right: 0em"></span></a>
+                        </li> -->
+                        <li>
+                            <div class="nav_icon glyphicon glyphicon-bell"></div> 
+                            <a id="nav_help" class="nav" href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications"><small>Alerts</small></a>
+                        </li>
+
+                        <!-- <li>
+                            <div class="glyphicon glyphicon-bell"></div>
+                            <a class="nav" href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
+                            <small>Not</small></a>
+                        </li> -->
+
+                        <li id="nav_help_li" class="nav_item" role="menuitem" aria-labelledby="nav_help">
+                            <div class="nav_icon badge ">
+                                <span>0</span>
+                            </div>
+                            <a id="messages" class="nav" href="{% url 'inbox' %}"><small>Inbox</small></a>
+                        </li>
+
+                        <li class="nav_item" role="menuitem" ">
+                            <div class="nav_icon glyphicon glyphicon-user" style=""></div>
+                            <a id="nav_help" class="nav" href="{% url 'profile' username=user.username  %}"><small>{{ user.username}}</small> </a>               
+                        </li>
+
+                        <!-- <li>
+                            <a href="{% url 'profile' username=user.username %}"><span class="glyphicon glyphicon glyphicon-user platform-glyphicon"></span></a>
+                        </li> -->
+
                         <li class="dropdown">
-                          <a style="" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog platform-glyphicon"></span><b class="caret"></b></a>
+                            <div class="nav_icon glyphicon glyphicon-cog"></div>
+                          <a class="nav" style="" href="#" class="dropdown-toggle" data-toggle="dropdown"><small>Settings</small></a>
                           <ul class="dropdown-menu dropdown-menu-right">
                             <li><a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span> Inbox</a></li>
                             <li><a href="{% url 'settings' %}">{% trans 'Account Settings' %}</a></li>
@@ -109,7 +186,7 @@
     {% endblock main %}
 
 
-    <footer id="footer" style="background-color: rgb(51, 51, 51); color: #fff; ">
+    <footer id="footer" style="background-color: rgb(51, 51, 51); color: #fff; bottom: 0;">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-sm-8">
@@ -132,8 +209,9 @@
     </div>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/mentor001.js' %}"></script> 
+    <script src="{% static 'js/notifications.js' %}"></script>
+    <script src="{% static 'js/check_messages.js' %}"></script>
 
     <!-- <script type="text/javascript" src="{% static 'assets/js/jquery-2.1.4.min.js' %}"></script> -->
     <script type="text/javascript" src="{% static 'assets/js/jquery-migrate-1.2.1.min.js' %}"></script>
@@ -154,9 +232,7 @@
     <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.parallax.min.js' %}"></script>
 
     <!-- <script type="text/javascript" src="{% static 'assets/js/custom.js' %}"></script> -->
-    <script src="{% static 'js/mentor001.js' %}"></script> 
-    <script src="{% static 'js/notifications.js' %}"></script>
-    <script src="{% static 'js/check_messages.js' %}"></script>
+    
 
 {% endblock body %}
 </body>

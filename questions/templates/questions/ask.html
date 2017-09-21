@@ -2,6 +2,8 @@
 {% load i18n %}
 
 {% block main %}
+<div class="container">
+<div class="row">
   <ol class="breadcrumb">
     <li><a href="{% url 'questions' %}">{% trans 'Questions' %}</a></li>
     <li class="active">{% trans 'Ask Question'  %}</li>
@@ -32,4 +34,6 @@
       </div>
     </div>
   </form>
+  </div>
+  </div>
 {% endblock main %}

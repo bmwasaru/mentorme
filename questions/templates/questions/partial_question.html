@@ -1,23 +1,20 @@
 {% load humanize %}
 <article class="platform-panel">
 <div class="panel question" question-id="{{ question.id }}">
-  <div class="panel-heading round">
+  <div class="panel-heading">
     <div class="tags">
-        <div>
-          <a href="{% url 'profile' question.user.username %}"><img src="{{ question.user.profile.profile_picture.url }}" height="30px" width="30px" class="user round"></a>
-          <a href="{% url 'profile' question.user.username %}" class="username">{{ question.user.profile.get_screen_name }}</a>
-          <span class="asked">asked {{ question.update_date|naturaltime }}</span>
-          <div class="pull-right">
+        <a href="{% url 'profile' question.user.username %}"><img src="{{ question.user.profile.profile_picture.url }}" height="30px" width="30px" class="user round"></a>
+        <a href="{% url 'profile' question.user.username %}" class="username">{{ question.user.profile.get_screen_name }}</a>
+        <span class="asked">asked {{ question.update_date|naturaltime }}</span>
+        <div class="pull-right">
           <p>
             <span class="glyphicon glyphicon-comment"></span> 
             <span>{{ question.get_answers_count }} comments</span> &nbsp&nbsp
             <span class="glyphicon glyphicon-star"></span> 
             <span>{{ question.favorites }} favourites</span>
           </p>
-          </div>
         </div>
-      </div>
-    
+    </div>
   </div>
   <div class="panel-body clearfix">
     <figure class="meta">

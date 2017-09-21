@@ -1,5 +1,5 @@
 {% load i18n %}
-
+<div class="panel panel-default" style="padding: 10px;">
 <div class="list-group">
   {% comment %}
   <a href="{% url 'inbox' %}" class="list-group-item{% if active == 'inbox' %} active{% endif %}">
@@ -20,4 +20,5 @@
   {% empty %}
     <a href="#" class="list-group-item">{% trans 'Start a conversation' %}</a>
   {% endfor %}
+</div>
 </div>

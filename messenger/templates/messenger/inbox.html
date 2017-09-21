@@ -7,15 +7,13 @@
 
 {% block container %}
   {% if messages %}
-  <div class="conversation">
-    <div class="talk-bubble" style="height: 360px; overflow-y:scroll; background-color: #f3f3f3">
-      <div class="talktext" style="width: 100%">
+  <div class="panel panel-default" style="height: 380px; overflow-y:scroll;">
+      <div class="talktext" style="width: 100%;  margin-top: 2px;">
         {% for message in messages %}
           {% include 'messenger/includes/partial_message.html' with message=message %}
         {% endfor %}
         {% include 'messenger/includes/partial_send_message.html' %}
       </div>
-    </div> 
   </div>
   {% else %}
     <h4>Your inbox is empty!</h4>

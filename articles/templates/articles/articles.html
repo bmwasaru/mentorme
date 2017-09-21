@@ -22,16 +22,15 @@
           </div>
 
           <div class="col-md-8 col-sm-8">
-          <section id="content">
             {% for article in articles %}
               {% include 'articles/partial_article.html' with article=article %}
             {% empty %}
               <h4 class="no-data">{% trans 'There is no published article yet' %}. {% if user.profile.role == 'mentor' %}<a href="{% url 'write' %}">{% trans 'Be the first one to publish' %}!</a>{% endif %}</h4>
             {% endfor %}
-            {% include 'paginator.html' with paginator=articles %}
-          </section>
+            {% include 'paginator.html' with paginator=articles %}          
           </div>
 
+          <div class="col-md-4 col-sm-4 panel pane-default">
           <section id="sidebar" class="sidebar">
             <aside id="categories">
               <h4>{% trans 'Popular Tags' %}</h4>
@@ -40,6 +39,7 @@
               {% endfor %}
             </aside>
           </section>
+          </div>
     </div>
 </div>
 {% endblock main %}

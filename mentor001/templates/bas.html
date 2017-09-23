@@ -36,6 +36,7 @@
         .platform-body{
             padding-top: 0px; 
             background-color: #f3f3f3;
+            /*min-height: 350px;*/
         }
         .platform-panel{
             border-left-color: #ffbe00; 
@@ -100,6 +101,9 @@
             background-color: #fff;
             border-color: #ffbe00;
         }
+        .story {
+            background: rgb(255, 255, 255);
+        }
     </style>
 
 </head>
@@ -118,10 +122,7 @@
                 <div class="brand"><a href="{% url 'questions' %}"><img src="{% static '/img/mentor.png' %}" alt="" height="60" width="100" style="padding-bottom: 10px"></a></div><!--/.brand-->
                 <nav>
                     <ul>
-                        <li>
-                            <div class="nav_icon glyphicon glyphicon-home" ></div> 
-                            <a id="home" class="nav {% if active == 'mentoring' %} active{% endif %}" href="{% url 'mentoring' %}"><small>Home</small></a>
-                        </li>
+                        {% if user.is_authenticated %}
 
                         <li>
                             <div class="nav_icon glyphicon glyphicon-folder-open"></div> 
@@ -139,7 +140,6 @@
                             <div class="nav_icon glyphicon glyphicon-bell"></div> 
                             <a id="nav_help" class="nav" href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications"><small>Alerts</small></a>
                         </li>
-
                         <!-- <li>
                             <div class="glyphicon glyphicon-bell"></div>
                             <a class="nav" href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
@@ -172,6 +172,7 @@
                             <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
                           </ul>
                         </li>
+                        {% endif %}
                         
                     </ul>
                     <div class="nav-toggle"><i class="icon_menu"></i></div>

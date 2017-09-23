@@ -42,7 +42,7 @@ def unique_username_ignore_case_validator(value):
 
 class SignUpForm(forms.ModelForm):
     username = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        widget=forms.TextInput(attrs={'class': 'md-form-control'}),
         max_length=30,
         required=True,
         help_text='Usernames may contain <strong>alphanumeric</strong>, <strong>_</strong> and <strong>.</strong> characters')  # noqa: E261

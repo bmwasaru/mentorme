@@ -32,6 +32,7 @@ class Profile(models.Model):
         default='')
     profile_picture = models.ImageField(upload_to='images/', default=DEFAULT)
     is_previously_logged_in = models.CharField(max_length=5, default=False)
+    email_confirmed = models.BooleanField(default=False)
 
     def is_mentor(self):
         return self.role == 'mentor'

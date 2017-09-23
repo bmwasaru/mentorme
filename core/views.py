@@ -12,7 +12,7 @@ from authentication.models import Profile
 from django.db.models import Q
 
 def index(request): 
-    return render(request, 'index.html')  
+    return render(request, 'core/includes/cover.html')  
 
 
 def home(request):
@@ -20,7 +20,7 @@ def home(request):
         # TODO: return milestones
         return HttpResponseRedirect('/questions/')
     else:
-        return render(request, 'core/includes/cover.html')
+        return render(request, 'index.html')
 
 
 @login_required

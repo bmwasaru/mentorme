@@ -18,17 +18,21 @@ urlpatterns = [
     url(r'^mentees/$', core_views.mentees, name='mentees'),
     url(r'^setup/$', core_views.initial_setup, name='initial_setup'),
     
-    url(r'^index/$', core_views.index, name='index'),
+    url(r'^index/$', core_views.index, name='index'),   
     # User URLs
-    url(
-        r'^account/login',
+    url(r'^account/login',
         auth_views.login, {'template_name': 'core/cover.html'},
         name='login'),
-    url(
-        r'^account/logout',
+    url(r'^account/logout',
         auth_views.logout, {'next_page': '/'},
         name='logout'),
     url(r'^account/signup/$', mentor_auth_views.signup, name='signup'),
+    url(r'^account/account_activation_sent/$', 
+        mentor_auth_views.account_activation_sent, 
+        name='account_activation_sent'),
+    url(r'^account/activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        mentor_auth_views.activate, name='activate'),
+
     url(r'^account/forgot_pass/$', auth_views.password_reset, {
         'template_name': 'authentication/password_reset.html',
         'email_template_name': 'authentication/password_reset_email.html'

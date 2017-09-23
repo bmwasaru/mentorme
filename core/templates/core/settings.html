@@ -15,7 +15,7 @@
     <div class="col-md-3">
       {% include 'core/partial_settings_menu.html' with active='profile' %}
     </div>
-    <div class="col-md-9">
+    <div class="col-md-9 panel panel-default" style="background-color: transparent;">
       {% if messages %}
         {% for message in messages %}
           <div class="alert alert-success alert-dismissable">

@@ -12,7 +12,7 @@ from activities.models import Notification
 
 from multiselectfield import MultiSelectField
 
-DEFAULT = 'images/default.jpg'
+DEFAULT = 'profiles/default.jpg'
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -30,7 +30,7 @@ class Profile(models.Model):
     highest_level_of_study = models.CharField(max_length=255, 
         choices=EDUCATION_CHOICES,
         default='')
-    profile_picture = models.ImageField(upload_to='images/', default=DEFAULT)
+    profile_picture = models.ImageField(upload_to='profiles/', default=DEFAULT)
     is_previously_logged_in = models.CharField(max_length=5, default=False)
     email_confirmed = models.BooleanField(default=False)
 

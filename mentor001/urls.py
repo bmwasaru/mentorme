@@ -11,9 +11,11 @@ from search import views as search_views
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.views.decorators.cache import cache_page
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', core_views.home, name='home'),
+    url(r'^$', cache_page(60*15)(core_views.home), name='home'),
     url(r'^mentors/$', core_views.mentors, name='mentors'),
     url(r'^mentees/$', core_views.mentees, name='mentees'),
     url(r'^setup/$', core_views.initial_setup, name='initial_setup'),

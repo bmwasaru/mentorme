@@ -50,7 +50,7 @@ def u_inbox(request):
             if conversation['user'].username == active_conversation:
                 conversation['unread'] = 0
 
-    return render(request, 'mentor001/profile.html', {
+    return render(request, 'mentoring/_profile.html', {
         'messages': messages,
         'conversations': conversations,
         'active': active_conversation

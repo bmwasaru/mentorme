@@ -107,6 +107,8 @@
         }
         .story {
             background: rgb(255, 255, 255);
+            height: 220px;
+            padding: 30px;
         }
         .feature-box > i {
             color: #ffbe00; 
@@ -171,6 +173,12 @@
                     <ul>
                         {% if user.is_authenticated %}
 
+                        <li class="nav_item" role="menuitem" ">
+                            <div class="nav_icon glyphicon glyphicon-folder-open" style=""></div>
+                            <a id="nav_help" class="nav" href="{% url 'mentoring' %}"><small>Mentoring</small>
+                            </a>               
+                        </li>
+
                         <li>
                             <div class="nav_icon glyphicon glyphicon-folder-open"></div> 
                             <a class="nav" href="{% url 'articles' %}"><small>Articles</small></a>
@@ -195,7 +203,7 @@
 
                         <li id="nav_help_li" class="nav_item" role="menuitem" aria-labelledby="nav_help">
                             <div class="nav_icon badge ">
-                                <span>0</span>
+                                <span id="unread-count">0</span>
                             </div>
                             <a id="messages" class="nav" href="{% url 'inbox' %}"><small>Inbox</small></a>
                         </li>

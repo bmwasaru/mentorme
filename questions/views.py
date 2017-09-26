@@ -4,6 +4,8 @@ from django.db.models import Q
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect, render
 
+from django.views.decorators.cache import cache_page
+
 from activities.models import Activity
 from mentor001.decorators import ajax_required
 from questions.forms import AnswerForm, QuestionForm
@@ -50,6 +52,7 @@ def unanswered(request):
 
 
 @login_required
+@cache_page(60 * 2)
 def all(request):
     questions = Question.objects.all()
     return _questions(request, questions, 'all')

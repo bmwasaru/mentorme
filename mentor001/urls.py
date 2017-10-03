@@ -1,6 +1,8 @@
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
 
 from core import views as core_views
 from mentoring import views as mentoring_views
@@ -13,9 +15,11 @@ from django.conf.urls.static import static
 
 from django.views.decorators.cache import cache_page
 
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', cache_page(60*15)(core_views.home), name='home'),
+    url(r'^$', cache_page(CACHE_TTL)(core_views.home), name='home'),
     url(r'^mentors/$', core_views.mentors, name='mentors'),
     url(r'^mentees/$', core_views.mentees, name='mentees'),
     url(r'^setup/$', core_views.initial_setup, name='initial_setup'),

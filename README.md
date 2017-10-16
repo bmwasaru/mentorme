@@ -10,6 +10,9 @@ https://www.python.org/downloads/
 **Django 1.11.x**
 https://docs.djangoproject.com/en/1.11/intro/install/
 
+**Redis Server**
+https://redis.io/topics/quickstart
+
 ### 2 Clone the repository
 
 Via https

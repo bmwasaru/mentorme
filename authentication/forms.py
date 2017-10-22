@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 
 from .choices import ROLE_CHOICES
 
+
 def forbidden_usernames_validator(value):
     forbidden_usernames = ['admin', 'settings', 'news', 'about', 'help',
                            'signin', 'signup', 'signout', 'terms', 'privacy',
@@ -56,7 +57,7 @@ class SignUpForm(forms.ModelForm):
         initial='',
         widget=forms.Select(attrs={'class': 'md-form-control'}),
         required=True,
-        )
+    )
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'md-form-control'}))
     confirm_password = forms.CharField(

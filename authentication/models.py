@@ -14,22 +14,23 @@ from multiselectfield import MultiSelectField
 
 DEFAULT = 'profiles/default.jpg'
 
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     location = models.CharField(max_length=50, default='')
     bio = models.TextField(default='')
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES, default='')
-    role = models.CharField(max_length=6, 
-        blank=False, 
-        default='mentee', 
-        choices=ROLE_CHOICES)
+    role = models.CharField(max_length=6,
+                            blank=False,
+                            default='mentee',
+                            choices=ROLE_CHOICES)
     phone_number = models.CharField(max_length=32, default='')
-    mentorship_areas = MultiSelectField(choices=MENTORSHIP_AREAS_CHOICES, 
-        max_choices=3,
-        default='')
-    highest_level_of_study = models.CharField(max_length=255, 
-        choices=EDUCATION_CHOICES,
-        default='')
+    mentorship_areas = MultiSelectField(choices=MENTORSHIP_AREAS_CHOICES,
+                                        max_choices=3,
+                                        default='')
+    highest_level_of_study = models.CharField(max_length=255,
+                                              choices=EDUCATION_CHOICES,
+                                              default='')
     profile_picture = models.ImageField(upload_to='profiles/', default=DEFAULT)
     is_previously_logged_in = models.CharField(max_length=5, default=False)
     email_confirmed = models.BooleanField(default=False)
@@ -110,9 +111,9 @@ class Profile(models.Model):
     def notify_article_commented(self, article):
         if self.user != article.create_user:
             Notification(notification_type=Notification.COMMENTED,
-            from_user=self.user,
-            to_user=article.create_user,
-            article=article).save()
+                         from_user=self.user,
+                         to_user=article.create_user,
+                         article=article).save()
 
     def also_article_commented(self, article):
         comments = article.get_comments()

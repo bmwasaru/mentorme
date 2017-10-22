@@ -23,7 +23,7 @@ def _articles(request, articles):
     except PageNotAnInteger:
         articles = paginator.page(1)
 
-    except EmptyPage:   # pragma: no cover
+    except EmptyPage:  # pragma: no cover
         articles = paginator.page(paginator.num_pages)
 
     popular_tags = Article.get_counted_tags()
@@ -108,8 +108,8 @@ def comment(request):
         comment = comment.strip()
         if len(comment) > 0:
             article_comment = ArticleComment(user=request.user,
-                                                article=article,
-                                                comment=comment)
+                                             article=article,
+                                             comment=comment)
             article_comment.save()
             user = request.user
             user.profile.notify_article_commented(article)

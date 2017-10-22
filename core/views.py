@@ -9,10 +9,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .forms import (ChangePasswordForm, ProfileForm)
 from authentication.models import Profile
 
-from django.db.models import Q
 
-def index(request): 
-    return render(request, 'core/includes/cover.html')  
+def index(request):
+    return render(request, 'core/includes/cover.html')
 
 
 def home(request):
@@ -56,7 +55,7 @@ def profile(request, username):
     page_user = get_object_or_404(User, username=username)
     return render(request, 'core/profile.html', {
         'page_user': page_user
-        })
+    })
 
 
 @login_required
@@ -88,17 +87,17 @@ def initial_setup(request):
 
         else:
             form = ProfileForm(instance=user, initial={
-            'first_name': user.first_name,
-            'last_name': user.last_name,
-            'gender': user.profile.gender,
-            'role': user.profile.role,
-            'phone_number': user.profile.phone_number,
-            'mentorship_areas': user.profile.mentorship_areas,
-            'email': user.email,
-            'bio': user.profile.bio,
-            'location': user.profile.location,
-            'highest_level_of_study': user.profile.highest_level_of_study,
-            'profile_picture': user.profile.profile_picture,
+                'first_name': user.first_name,
+                'last_name': user.last_name,
+                'gender': user.profile.gender,
+                'role': user.profile.role,
+                'phone_number': user.profile.phone_number,
+                'mentorship_areas': user.profile.mentorship_areas,
+                'email': user.email,
+                'bio': user.profile.bio,
+                'location': user.profile.location,
+                'highest_level_of_study': user.profile.highest_level_of_study,
+                'profile_picture': user.profile.profile_picture,
             })
         return render(request, 'core/includes/initial_setup.html', {'form': form})
 
@@ -138,7 +137,7 @@ def settings(request):
             'location': user.profile.location,
             'highest_level_of_study': user.profile.highest_level_of_study,
             'profile_picture': user.profile.profile_picture,
-            })
+        })
     return render(request, 'core/settings.html', {'form': form})
 
 

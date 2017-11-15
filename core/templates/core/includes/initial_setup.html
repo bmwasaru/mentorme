@@ -13,8 +13,8 @@
         <img src=" {% static 'images/mentors.jpg' %} " alt="Sample avatar image.">
       </div> -->
       <div class="panel-body">
-        <h2>{% trans 'Initial Account Setup' %}</h2>
-        <hr/>
+        <h2><strong>{% trans 'Initial Account Setup' %}</strong></h2>
+        <!-- <hr/> -->
           <form role="form" class="form-horizontal" method="post" enctype="multipart/form-data" action="{% url 'initial_setup' %}">
             {% csrf_token %}
             {% for field in form.visible_fields %}

@@ -17,7 +17,7 @@
     </div> -->
     <!--/.hero-slider-->
 
-    <div class="block" id="features" style="background-image: url({% static 'images/office.jpg' %});">
+    <div class="block" id="features" style="background-image: url({% static 'images/office.jpg' %}); background-size: cover;">
         <div class="container">
             <div class="row">
                 <div class="col-md-1 col-sm-1">
@@ -30,8 +30,7 @@
                             <!-- <div class="card img avatar"><img src="{% static 'images/mentors.jpg' %}" alt=""></div> -->
                         </div>
                         <a href=""><h3>Mentors</h3></a><hr>
-                        <p>" We all carry the seeds of greatness within us, but we need an image as a point of focus in order that they may sprout. "</p><p> 
-                        <b>Epictetus</b></p><hr>
+                        <p>People who have been mentored through this platform and feel are capable of mentoring others are given the opportunity to apply fo the mentor status in one simple step</p><hr>
                         <a class="btn btn-primary" data-toggle="modal" data-target="#mentorSignup">Joinn us. Become a Mentor</a>
                         <a class="btn btn-default" data-toggle="modal" data-target="#mentorLogin">Login<i class="arrow_right"></i></a>
                     </div>
@@ -39,12 +38,11 @@
                 <!--/ .col-md-3-->
                 <div class="panel panel-default col-md-5 col-sm-5" style="padding: 20px; margin: 10px">
                     <div class="center">
-                        <div class="card_up dark_cover_bg ">
+                        <div class="card_up dark_cover_bg1 ">
                             <!-- <div class= "avatar card img "><img src="{% static 'images/mentees.png' %}" alt=""></div> -->
                         </div>
                         <a href=""><h3>Mentees</h3></a><hr>
-                        <p>" Nobody can go back and start a new beginning, but anyone can start today and make a new ending. " </p><p>
-                        <b>Maria Robinson</b></p><hr>
+                        <p>This platform allows you to find a mentor in any field in Technology. The possible mentors are vetted and accessed and are matched with you based on you personality.</p><hr>
                         <a class="btn btn-default" data-toggle="modal" data-target="#menteeSignup">Joinn us. Become a Mentee</a>
                         <a class="btn btn-primary" data-toggle="modal" data-target="#menteeLogin">Login<i class="arrow_right"></i></a>
                     </div>
@@ -76,51 +74,51 @@
         <!--/ .container-->
         <div class="bg bg-color-neutral opacity-20"></div><!--/ .bg-->
     </div>
-    <!--/ .block-->
+    <!--/ .block-->  
 
     <div class="page-content">
     <div class="block" id="features">
         <div class="container">
+            <h2 class="center">How it works</h2>
             <div class="row">
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-4 center">
                     <div class="feature-box">
                         <i class="icon_comment_alt"></i>
-                        <a href=""><h3>My Mentoring</h3></a>
-                        <p>Fusce facilisis nec ante et accumsan. Ut malesuada tristique sagittis</p>
+                        <a href=""><h3>Register</h3></a>
+                        <p>Fill the registration form by clicking on the get started of signup button and follow the prompt. Only relevant information for matching are taken together with a personality test.</p>
                         <a href=""><i class="arrow_right"></i></a>
                     </div>
                     <!--/ .feature-box-->
                 </div>
                 <!--/ .col-md-3-->
-                <div class="col-md-3 col-sm-6">
-                    <div class="feature-box">
+                <div class="col-md-4 col-sm-4">
+                    <div class="feature-box center">
                         <i class="icon_id-2"></i>
-                        <a href=""><h3>Successful Stories</h3></a>
-                        <p>Fusce facilisis nec ante et accumsan. Ut malesuada tristique sagittis</p>
+                        <a href=""><h3>Find mentor or Mentee</h3></a>
+                        <p>Once you are registered, you can login and find a mentor by clicking the find a match button and going through the list of possible mentors. The list returned is based on your interest and personality.</p>
                         <a href=""><i class="arrow_right"></i></a>
                     </div>
                     <!--/ .feature-box-->
                 </div>
                 <!--/ .col-md-3-->
-                <div class="col-md-3 col-sm-6">
-                    <div class="feature-box">
+                <div class="col-md-4 col-sm-4">
+                    <div class="feature-box center">
                         <i class="icon_briefcase"></i>
-                        <a href=""><h3>For Companies</h3></a>
-                        <p>Fusce facilisis nec ante et accumsan. Ut malesuada tristique sagittis</p>
+                        <a href=""><h3>Connect</h3></a>
+                        <p>Once you have found a mentor you like, click on the connect button by their names and add a simple note to personalize your request for mentorship. You can begin your mentoring process with your mentor now.</p>
                         <a href=""><i class="arrow_right"></i></a>
                     </div>
                     <!--/ .feature-box-->
                 </div>
                 <!--/ .col-md-3-->
-                <div class="col-md-3 col-sm-6">
+                <!-- <div class="col-md-3 col-sm-6">
                     <div class="feature-box">
                         <i class="icon_box-checked"></i>
                         <a href=""><h3>Kick Up Your Career</h3></a>
                         <p>Fusce facilisis nec ante et accumsan. Ut malesuada tristique sagittis</p>
                         <a href=""><i class="arrow_right"></i></a>
                     </div>
-                    <!--/ .feature-box-->
-                </div>
+                </div> -->
                 <!--/ .col-md-3-->
             </div>
             <!--/ .row-->
@@ -132,11 +130,11 @@
 
     <!-- <div class="block" id="about-me">
         <div class="container">
-            <h2>About Me</h2>
             <div class="row">
                 <div class="col-md-6 col-sm-6">
                     <div class="center">
-                        <img src="{% static 'images/jane.png' %}" class="circle" alt="">
+                        <h3><strong>Our Process</strong></h3>
+                        <img src="{% static 'img/matching.png' %}" class="" alt="">
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6">
@@ -177,105 +175,33 @@
                 </div>
             </div>
         </div>
-    </div>
- -->
-    <div class="block" id="five-steps-to-success" style="background-image: url({% static 'images/body_bg.jpg' %}); opacity: 1;">
-        <div class="container">
-            <h2 class="center">Five Steps to Your Success</h2>
-            <div class="steps">
-                <div class="step width-20">
-                    <figure>
-                        <aside>1.</aside>
-                        <div class="bar height-20">
-                            <div class="arrow"></div>
-                        </div>
-                    </figure>
-                    <h3>Contact Me</h3>
-                    <hr>
-                    <p>Sed iaculis dapibus tellus eget condimentum. Curabitur ut tellus congue, convallis tortor et</p>
-                </div>
-                <!--/ .step-->
-                <div class="step width-20">
-                    <figure>
-                        <aside>2.</aside>
-                        <div class="bar height-40">
-                            <div class="arrow"></div>
-                        </div>
-                    </figure>
-                    <h3>Make an Appointment</h3>
-                    <hr>
-                    <p>Sed iaculis dapibus tellus eget condimentum. Curabitur ut tellus congue, convallis tortor et</p>
-                </div>
-                <!--/ .step-->
-                <div class="step width-20">
-                    <figure>
-                        <aside>3.</aside>
-                        <div class="bar height-60">
-                            <div class="arrow"></div>
-                        </div>
-                    </figure>
-                    <h3>I will Analyze Your Profile</h3>
-                    <hr>
-                    <p>Sed iaculis dapibus tellus eget condimentum. Curabitur ut tellus congue, convallis tortor et</p>
-                </div>
-                <!--/ .step-->
-                <div class="step width-20">
-                    <figure>
-                        <aside>4.</aside>
-                        <div class="bar height-80">
-                            <div class="arrow"></div>
-                        </div>
-                    </figure>
-                    <h3>Apply Changes</h3>
-                    <hr>
-                    <p>Sed iaculis dapibus tellus eget condimentum. Curabitur ut tellus congue, convallis tortor et</p>
-                </div>
-                <!--/ .step-->
-                <div class="step width-20">
-                    <figure>
-                        <aside>5.</aside>
-                        <div class="bar height-100">
-                            <div class="arrow"></div>
-                        </div>
-                    </figure>
-                    <h3>Apply Changes</h3>
-                    <hr>
-                    <p>Sed iaculis dapibus tellus eget condimentum. Curabitur ut tellus congue, convallis tortor et</p>
-                </div>
-                <!--/ .step-->
-            </div>
-            <!--/ .steps-->
-            <div class="center">
-                <a href="meet-me.html" class="btn btn-default btn-big">Contact Me!</a>
-            </div>
-        </div>
-        <!--/ .container-->
-        <div class="bg bg-color-neutral opacity-50"></div><!--/ .bg-->
-    </div>
-    <!--/ .block-->
+    </div> -->
 
-    <div class="block">
-        <div class="container">
-            <h2 class="center">Do You Want a Successful Life?</h2>
-            <hr>
-            <h3 class="center">Enter your name and e-mail and I will tell you for free!</h3>
+    <div class="block" style="background-image: url({% static 'images/body_bg.jpg' %}); background-size: cover; opacity: 0.9">
+        
+        <div class="container" >
+            
             <div class="row">
-                <div class="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1">
+                <!-- <div class="col-md-2"></div> -->
+                <div class="col-md-6 col-sm-6 ">
+                    <h3 class="">We'd love to hear from you!</h3>
                     <form id="form-subscribe">
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="">
                                 <div class="form-group">
                                     <input type="text" class="form-control framed" id="name" name="name" placeholder="Your Name">
                                 </div>
                             </div>
                             <!--/ .col-md-5-->
-                            <div class="col-md-5">
+                            <div class="">
                                 <div class="form-group">
                                     <input type="email" class="form-control framed" id="email" name="email" placeholder="Your E-mail">
                                 </div>
                             </div>
                             <!--/ .col-md-5-->
-                            <div class="col-md-2">
+                             <textarea class="form-group form-control framed" rows="4" cols="50">Your Message...
+                            </textarea> 
+                                <div class="">
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary width-100">Send Me</button>
                                 </div>
@@ -288,15 +214,16 @@
                     <!--/ form-->
                 </div>
                 <!--/ .col-md-10-->
+                <div class="col-md-6 col-sm-6 center">
+                    <h1 class="">Mentor001</h1>
+                    <h3><b>Swahili Cultural Center,</b></h3>
+                    <h3><b>Next to Mombasa Hospital</b></h3>
+                    <h3><b>+254798428055</b></h3>
+                </div>
             </div>
-            <!--/ .row-->
         </div>
-        <!--/ .container-->
-        <div class="bg bg-color-neutral opacity-20"></div><!--/ .bg-->
-    </div>
-    <!--/ .block-->
-
-
+        <div class="bg bg-color-neutral opacity-50"></div>    
+    </div>  
 
     <div class="block" id="successful-stories">
         <div class="container">
@@ -312,6 +239,8 @@
                         <!--/ blockquote-->
                     </div>
                     <!--/ .story-->
+                </div>
+                <div class="col-md-6">
                     <div class="story">
                         <div class="image"><img src="{% static 'images/mary.png' %}" alt=""></div>
                         <blockquote>
@@ -323,26 +252,22 @@
                     <!--/ .story-->
                 </div>
                 <!--/ .col-md-6-->
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                     <div class="story">
                         <div class="image"><img src="{% static 'images/yuna.jpg' %}" alt=""></div>
                         <blockquote>
                             <p>Integer efficitur dictum mi ac lobortis. Sed finibus, diam id mollis auctor, odio ligula sagittis nisl, vitae volutpat metus nisi vitae risus. Donec tempus augue sit amet malesuada pretium. </p>
                             <footer>Catherine Brown</footer>
                         </blockquote>
-                        <!--/ blockquote-->
                     </div>
-                    <!--/ .story-->
                     <div class="story">
                         <div class="image"><img src="{% static 'images/ben.png' %}" alt=""></div>
                         <blockquote>
                             <p>Cras gravida, libero in commodo vehicula, mauris mi finibus leo, quis tincidunt turpis augue vitae lorem. Donec tempus augue sit amet malesuada pretium.</p>
                             <footer>Jack Hayes</footer>
                         </blockquote>
-                        <!--/ blockquote-->
                     </div>
-                    <!--/ .story-->
-                </div>
+                </div> -->
                 <!--/ .col-md-6-->
             </div>
             <!--/ .row-->
@@ -452,8 +377,8 @@
 
                             <div class="col-md-3 col-sm-3"></div>
                             <div class="col-md-9 col-sm-8">
-                              <button type="submit" class="btn btn-primary">{% trans 'Login' %}</button>
-                              <a href="{% url 'signup' %}" class="">{% trans 'Sign up for Mentor001' %}</a>
+                              <button type="submit" class="btn btn-primary">{% trans 'Sign up for Mentor001' %}</button>
+                              <a href="{% url 'login' %}" class="">{% trans 'Login' %}</a>
                             </div>
                           </form>
                         </div>
@@ -591,8 +516,8 @@
 
                                 <div class="col-md-3 col-sm-3"></div>
                                 <div class="col-md-9 col-sm-8">
-                                  <button type="submit" class="btn btn-primary">{% trans 'Login' %}</button>
-                                  <a href="{% url 'signup' %}" class="">{% trans 'Sign up for Mentor001' %}</a>
+                                  <button type="submit" class="btn btn-primary">{% trans 'Sign up for Mentor001' %}</button>
+                                  <a href="{% url 'login' %}" class="">{% trans 'Login' %}</a>
                                 </div>
                               </form>
                             </div>

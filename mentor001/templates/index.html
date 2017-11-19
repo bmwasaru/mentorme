@@ -62,12 +62,8 @@
     <div class="block" style="background-color: white;">
         <div class="container">
             <blockquote class="center">
-            <h2>Why Mentor001?</h2>
-                <p style="font-family: roboto; font-size: 25px">Sed iaculis dapibus tellus eget condimentum. Curabitur ut tellus congue, convallis tortor et,
-                pellentesque diam. Nullam non dolor eu ligula ultrices pellentesque placerat imperdiet metus.
-                Etiam lobortis bibendum egestas. In quis massa a felis molestie consequat rhoncus vitae nisl.
-                In pharetra posuere dictum. In eget metus eu leo rutrum venenatis vitae sit amet elit.
-                Duis luctus enim enim.</p>
+            <h2>About Mentor001</h2>
+                <p style="font-family: roboto; font-size: 22px">Mentor001 is a social organization that aim to bring together Mentors from different parts of Africa for a single goal; to nature Mentees. Mentees are matched with Mentors that have interests as their own. Thereafter, Mentoring process begin and lasts for a period of at least three months. During this period, Mentors can arrange  to meet with their respective Mentees at our offices at Swahilipot Hub.</p>
             </blockquote>
             <!--/ blockquote-->
         </div>
@@ -185,31 +181,20 @@
                 <!-- <div class="col-md-2"></div> -->
                 <div class="col-md-6 col-sm-6 ">
                     <h3 class="">We'd love to hear from you!</h3>
-                    <form id="form-subscribe">
-                        <div class="row">
-                            <div class="">
-                                <div class="form-group">
-                                    <input type="text" class="form-control framed" id="name" name="name" placeholder="Your Name">
-                                </div>
-                            </div>
-                            <!--/ .col-md-5-->
-                            <div class="">
-                                <div class="form-group">
-                                    <input type="email" class="form-control framed" id="email" name="email" placeholder="Your E-mail">
-                                </div>
-                            </div>
-                            <!--/ .col-md-5-->
-                             <textarea class="form-group form-control framed" rows="4" cols="50">Your Message...
-                            </textarea> 
-                                <div class="">
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary width-100">Send Me</button>
-                                </div>
-                            </div>
-                            <!--/ .col-md-2-->
-                            <div class="form-status"></div>
+                    <form id="form-subscribe" action="" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ send_mail_form.sender }}
                         </div>
-                        <!--/ .row-->
+                        <div class="form-group">
+                            {{ send_mail_form.subject }}
+                        </div> 
+                        <div class="form-group">
+                            {{ send_mail_form.message }}
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary width-100">Send Me</button>
+                        </div>
                     </form>
                     <!--/ form-->
                 </div>
@@ -231,10 +216,10 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="story">
-                        <div class="image"><img src="{% static 'images/jane.png' %}" alt=""></div>
+                        <div class="image"><img src="{% static 'images/profile.jpeg' %}" alt=""></div>
                         <blockquote>
-                            <p>Praesent cursus nulla non arcu tempor, ut egestas elit tempus. In ac ex fermentum, gravida felis nec, tincidunt ligula. Sed dapibus mauris ullamcorper.</p>
-                            <footer>Jane Doe</footer>
+                            <p>The people involved are amazing! Friendly environment and are proffessional in what they do. </p>
+                            <footer>Ziri Issa</footer>
                         </blockquote>
                         <!--/ blockquote-->
                     </div>
@@ -244,7 +229,7 @@
                     <div class="story">
                         <div class="image"><img src="{% static 'images/mary.png' %}" alt=""></div>
                         <blockquote>
-                            <p>Etiam pulvinar, urna a iaculis sagittis, purus turpis ornare justo, porta volutpat turpis mi et sapien. Nullam sodales lorem sed pulvinar mattis. Cras gravida, libero in commodo.</p>
+                            <p>The mentor I had was a perfect match for me. Had a great time during my mentorship period.</p>
                             <footer>Nellie Gibson</footer>
                         </blockquote>
                         <!--/ blockquote-->

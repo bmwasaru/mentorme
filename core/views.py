@@ -5,8 +5,9 @@ from django.contrib.auth.models import User
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
+from django.core.mail import send_mail, BadHeaderError
 
-from .forms import (ChangePasswordForm, ProfileForm)
+from .forms import (ChangePasswordForm, ProfileForm, contact_form)
 from authentication.models import Profile
 
 
@@ -19,7 +20,24 @@ def home(request):
         # TODO: return milestones
         return HttpResponseRedirect('/questions/')
     else:
-        return render(request, 'index.html')
+        form = contact_form
+        if request.method == 'POST':
+            form = contact_form(request.POST)
+            if form.is_valid():
+                subject = form.cleaned_data['subject']
+                message = form.cleaned_data['message'] 
+                sender = form.cleaned_data['sender']
+
+            recipient = ['issaziri@gmail.com']
+            try:
+                send_mail(subject, message, sender, recipient)
+            except BadHeaderError:
+                return HttpResponse('invalid header found')
+        
+        context = {
+            "send_mail_form":form
+        }
+        return render(request, 'index.html', context)
 
 
 @login_required

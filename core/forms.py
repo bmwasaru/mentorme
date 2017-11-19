@@ -88,3 +88,20 @@ class ChangePasswordForm(forms.ModelForm):
             self._errors['new_password'] = self.error_class([
                 'Passwords don\'t match'])
         return self.cleaned_data
+
+
+class contact_form(forms.Form):
+    sender = forms.EmailField(max_length = 225, required =True, label = '',
+        widget = forms.EmailInput(attrs={'class': 'form-control', 
+            'placeholder':'Your Email', 'required':'true'}))
+    
+    subject = forms.CharField(max_length = 100, required =True, label='',
+        widget = forms.TextInput(attrs={'class': 'form-control', 
+            'placeholder':'Subject', 'require':'true'}))
+    
+    message = forms.CharField(widget = forms.Textarea(attrs={
+        'class': 'form-control', 
+        'rows': 4,
+        'placeholder':'Enter your Message', 'required':'true'
+        }), 
+        required =True, label='')

@@ -3,20 +3,6 @@
 {% load i18n %}
 
 {% block main %}
-    <!-- <div class="hero-slider" style="height: 50px">
-        <div class="rev-slider">
-           <img src="{% static 'images/body_bg.jpg' %}" alt="">
-           <div class="tp-caption"
-                data-x="left" data-hoffset="150"
-                data-y="top" data-voffset="150"
-                data-transform_idle="o:1;"
-                data-transform_in="x:50px;opacity:0;s:700;e:Power3.easeInOut;"
-                data-start="500"><h4 class="opacity-40">Hi, I’m Jane Doe. A Personal Mentor</h4>
-           </div> 
-        </div>
-    </div> -->
-    <!--/.hero-slider-->
-
     <div class="block" id="features" style="background-image: url({% static 'images/office.jpg' %}); background-size: cover;">
         <div class="container">
             <div class="row">
@@ -26,10 +12,10 @@
                 <!--/ .col-md-3-->
                 <div class="panel panel-default col-md-5 col-sm-5" style="padding: 20px; margin: 10px">
                     <div class="center">
-                        <div class="card_up dark_cover_bg">
-                            <!-- <div class="card img avatar"><img src="{% static 'images/mentors.jpg' %}" alt=""></div> -->
-                        </div>
-                        <a href=""><h3>Mentors</h3></a><hr>
+                        <!-- <div class="card_up dark_cover_bg">
+                            <div class="card img avatar"><img src="{% static 'images/mentors.jpg' %}" alt=""></div>
+                        </div> -->
+                        <h2 style="margin-bottom: 0px;"><b>Mentors</b></h2><hr>
                         <p>People who have been mentored through this platform and feel are capable of mentoring others are given the opportunity to apply fo the mentor status in one simple step</p><hr>
                         <a class="btn btn-primary" data-toggle="modal" data-target="#mentorSignup">Joinn us. Become a Mentor</a>
                         <a class="btn btn-default" data-toggle="modal" data-target="#mentorLogin">Login<i class="arrow_right"></i></a>
@@ -38,11 +24,11 @@
                 <!--/ .col-md-3-->
                 <div class="panel panel-default col-md-5 col-sm-5" style="padding: 20px; margin: 10px">
                     <div class="center">
-                        <div class="card_up dark_cover_bg1 ">
-                            <!-- <div class= "avatar card img "><img src="{% static 'images/mentees.png' %}" alt=""></div> -->
-                        </div>
-                        <a href=""><h3>Mentees</h3></a><hr>
-                        <p>This platform allows you to find a mentor in any field in Technology. The possible mentors are vetted and accessed and are matched with you based on you personality.</p><hr>
+                        <!-- <div class="card_up dark_cover_bg1 ">
+                            <div class= "avatar card img "><img src="{% static 'images/mentees.png' %}" alt=""></div>
+                        </div> -->
+                        <h2 style="margin-bottom: 0px;"><b>Mentees</b></h2><hr>
+                        <p>This platform allows you to find a mentor in any field in Technology. The possible mentors are vetted and assessed and are matched with you based on your personality.</p><hr>
                         <a class="btn btn-default" data-toggle="modal" data-target="#menteeSignup">Joinn us. Become a Mentee</a>
                         <a class="btn btn-primary" data-toggle="modal" data-target="#menteeLogin">Login<i class="arrow_right"></i></a>
                     </div>
@@ -90,7 +76,7 @@
                 <div class="col-md-4 col-sm-4">
                     <div class="feature-box center">
                         <i class="icon_id-2"></i>
-                        <a href=""><h3>Find mentor or Mentee</h3></a>
+                        <a href=""><h3>Find Mentor or Mentee</h3></a>
                         <p>Once you are registered, you can login and find a mentor by clicking the find a match button and going through the list of possible mentors. The list returned is based on your interest and personality.</p>
                         <a href=""><i class="arrow_right"></i></a>
                     </div>
@@ -106,16 +92,6 @@
                     </div>
                     <!--/ .feature-box-->
                 </div>
-                <!--/ .col-md-3-->
-                <!-- <div class="col-md-3 col-sm-6">
-                    <div class="feature-box">
-                        <i class="icon_box-checked"></i>
-                        <a href=""><h3>Kick Up Your Career</h3></a>
-                        <p>Fusce facilisis nec ante et accumsan. Ut malesuada tristique sagittis</p>
-                        <a href=""><i class="arrow_right"></i></a>
-                    </div>
-                </div> -->
-                <!--/ .col-md-3-->
             </div>
             <!--/ .row-->
         </div>
@@ -124,61 +100,11 @@
     </div>
     <!--/ .block-->
 
-    <!-- <div class="block" id="about-me">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-sm-6">
-                    <div class="center">
-                        <h3><strong>Our Process</strong></h3>
-                        <img src="{% static 'img/matching.png' %}" class="" alt="">
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                    <h3 class="no-bottom-margin"><strong>Jane Doe</strong></h3>
-                    <h5>A personal mentor</h5>
-                    <br>
-                    <p>
-                        Sed iaculis dapibus tellus eget condimentum. Curabitur ut tellus congue, convallis tortor et,
-                        pellentesque diam. Nullam non dolor eu ligula ultrices pellentesque placerat imperdiet metus.
-                        Etiam lobortis bibendum egestas. In quis massa a felis molestie consequat rhoncus vitae nisl.
-                        In pharetra posuere dictum. In eget metus eu leo rutrum venenatis vitae sit amet elit.
-                        Duis luctus enim enim.
-                    </p>
-                    <div class="numbers">
-                        <div class="row">
-                            <div class="col-md-4 col-sm-4">
-                                <div class="number">
-                                    <figure>68</figure>
-                                    <aside>Persons Mentored</aside>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-4">
-                                <div class="number">
-                                    <figure>45</figure>
-                                    <aside>Workshops Attended</aside>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-4">
-                                <div class="number">
-                                    <figure>12</figure>
-                                    <aside>Coaching Certificates</aside>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <a href="" class="link arrow">More about me</a>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
     <div class="block" style="background-image: url({% static 'images/body_bg.jpg' %}); background-size: cover; opacity: 0.9">
         
         <div class="container" >
             
             <div class="row">
-                <!-- <div class="col-md-2"></div> -->
                 <div class="col-md-6 col-sm-6 ">
                     <h3 class="">We'd love to hear from you!</h3>
                     <form id="form-subscribe" action="" method="POST">
@@ -237,23 +163,6 @@
                     <!--/ .story-->
                 </div>
                 <!--/ .col-md-6-->
-                <!-- <div class="col-md-6">
-                    <div class="story">
-                        <div class="image"><img src="{% static 'images/yuna.jpg' %}" alt=""></div>
-                        <blockquote>
-                            <p>Integer efficitur dictum mi ac lobortis. Sed finibus, diam id mollis auctor, odio ligula sagittis nisl, vitae volutpat metus nisi vitae risus. Donec tempus augue sit amet malesuada pretium. </p>
-                            <footer>Catherine Brown</footer>
-                        </blockquote>
-                    </div>
-                    <div class="story">
-                        <div class="image"><img src="{% static 'images/ben.png' %}" alt=""></div>
-                        <blockquote>
-                            <p>Cras gravida, libero in commodo vehicula, mauris mi finibus leo, quis tincidunt turpis augue vitae lorem. Donec tempus augue sit amet malesuada pretium.</p>
-                            <footer>Jack Hayes</footer>
-                        </blockquote>
-                    </div>
-                </div> -->
-                <!--/ .col-md-6-->
             </div>
             <!--/ .row-->
         </div>
@@ -262,302 +171,277 @@
     </div>
     <!--/ .block-->
 
-    <!-- <div class="container">
-        <div class="block center">
-            <h2 class="text-color-white half-bottom-margin"><strong>Your Daily Motivation Quote</strong></h2>
-            <div class="row">
-                <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
-                    <form id="form-daily-motivation">
-                        <div class="form-group input-group">
-                            <div class="form-status text-color-white"></div>
-                            <input type="text" class="form-control" name="email" placeholder="Enter your e-mail">
-                            <span class="input-group-btn"><button class="btn btn-white" type="submit"><i class="arrow_right"></i></button></span>
-                        </div>
-                    </form>
-                </div>
+    <!-- Modal -->
+    <div class="modal fade" id="mentorSignup" role="dialog">
+        <div class="modal-dialog panel panel-default">
+        <!-- Modal content-->
+        <div class="" style="background-color: #f3f3f3; padding: 20px;">
+            <div class="panel-heading center" style="background-color: #ffbe00;">
+                <h1>{% trans 'Signup as Mentor' %}</h1>
             </div>
-            <div class="bg">
-                <img src="{% static 'assets/img/bg.jpg' %}" alt="">
+            <div class="panel-body">
+                <form role="form" class="form-horizontal" method="post" action="{% url 'signup' %}">
+                    {% csrf_token %}
+
+                      <div class="form-group{% if form.username.errors %} has-error{% endif %} ">
+                        <label for="{{ form.username.label }}" class="col-md-3 control-label">{% trans 'Username' %}:</label>
+                        <div class="col-md-8">
+                          <input class="form-control" type="text" name="username" id="username">
+                          {% if form.username.help_text %}
+                            <span class="help-block">{{ form.username.help_text }}</span>
+                          {% endif %}
+                          {% for error in form.username.errors %}
+                            <label class="control-label">{{ error }}</label>
+                          {% endfor %}
+                        </div>
+                      </div>
+
+                      <div class="form-group{% if form.email.errors %} has-error{% endif %} ">
+                        <label for="{{ form.email.label }}" class="col-md-3 control-label">{% trans 'Email' %}:</label>
+                        <div class="col-md-8">
+                          <input class="form-control" required="" type="text" name="email" id="email">
+                          {% if form.email.help_text %}
+                            <span class="help-block">{{ form.email.help_text }}</span>
+                          {% endif %}
+                          {% for error in form.email.errors %}
+                            <label class="control-label">{{ error }}</label>
+                          {% endfor %}
+                        </div>
+                      </div>
+
+                      <div class="form-group{% if form.password.errors %} has-error{% endif %} ">
+                        <label for="{{ form.password.label }}" class="col-md-3 control-label">{% trans 'Password' %}:</label>
+                        <div class="col-md-8">
+                          <input class="form-control" required="" type="password" name="password" id="password">
+                          {% if form.password.help_text %}
+                            <span class="help-block">{{ form.password.help_text }}</span>
+                          {% endif %}
+                          {% for error in form.password.errors %}
+                            <label class="control-label">{{ error }}</label>
+                          {% endfor %}
+                        </div>
+                      </div>
+
+                      <div class="form-group{% if form.confirm_password.errors %} has-error{% endif %} ">
+                        <label for="{{ form.confirm_password.label }}" class="col-md-3 control-label">{% trans 'Confirm Password' %}:</label>
+                        <div class="col-md-8">
+                          <input class="form-control" required="" type="password" name="confirm_password" id="confirm_password">
+                          {% if form.confirm_password.help_text %}
+                            <span class="help-block">{{ form.confirm_password.help_text }}</span>
+                          {% endif %}
+                          {% for error in form.confirm_password.errors %}
+                            <label class="control-label">{{ error }}</label>
+                          {% endfor %}
+                        </div>
+                      </div>
+
+                      <div class="form-group{% if form.role.errors %} has-error{% endif %} ">
+                        <div class="col-md-8">
+                          <input class="form-control" required="" type="hidden" name="role" id="role" value="mentor">
+                          {% if form.role.help_text %}
+                            <span class="help-block">{{ form.role.help_text }}</span>
+                          {% endif %}
+                          {% for error in form.role.errors %}
+                            <label class="control-label">{{ error }}</label>
+                          {% endfor %}
+                        </div>
+                      </div>
+
+                    <div class="col-md-3 col-sm-3"></div>
+                    <div class="col-md-9 col-sm-8">
+                      <button type="submit" class="btn btn-primary">{% trans 'Sign up for Mentor001' %}</button>
+                      <a href="{% url 'login' %}" class="">{% trans 'Login' %}</a>
+                    </div>
+                  </form>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="space"></div> -->
-
     <!-- Modal -->
-        <div class="modal fade" id="mentorSignup" role="dialog">
-            <div class="modal-dialog panel panel-default">
-                <!-- Modal content-->
-                <div class="" style="background-color: #f3f3f3; padding: 20px;">
-                    <div class="panel-heading center" style="background-color: #ffbe00;">
-                        <h1>{% trans 'Signup as Mentor' %}</h1>
+    <div class="modal fade" id="mentorLogin" role="dialog">
+        <div class="modal-dialog panel panel-default">
+            <!-- Modal content-->
+            <div class="" style="background-color: #f3f3f3; padding: 20px;">
+                <div class="panel-heading center" style="background-color: #ffbe00;">
+                    <h1>{% trans 'Login as Mentor' %}</h1>
+                </div>
+                <div class="panel-body">
+                <form role="form" class="form-horizontal" method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+
+                  <div class="form-group{% if form.username.errors %} has-error{% endif %} ">
+                    <label for="{{ form.username.label }}" class="col-md-3 col-sm-3 control-label">{% trans 'Username' %}:</label>
+                    <div class="col-md-8 col-sm-8">
+                      <input class="form-control" type="text" name="username" id="username">
+                      {% if form.username.help_text %}
+                        <span class="help-block">{{ form.username.help_text }}</span>
+                      {% endif %}
+                      {% for error in form.username.errors %}
+                        <label class="control-label">{{ error }}</label>
+                      {% endfor %}
                     </div>
-                    <div class="panel-body">
-                        <form role="form" class="form-horizontal" method="post" action="{% url 'signup' %}">
-                            {% csrf_token %}
+                  </div>
 
-                              <div class="form-group{% if form.username.errors %} has-error{% endif %} ">
-                                <label for="{{ form.username.label }}" class="col-md-3 control-label">{% trans 'Username' %}:</label>
-                                <div class="col-md-8">
-                                  <input class="form-control" type="text" name="username" id="username">
-                                  {% if form.username.help_text %}
-                                    <span class="help-block">{{ form.username.help_text }}</span>
-                                  {% endif %}
-                                  {% for error in form.username.errors %}
-                                    <label class="control-label">{{ error }}</label>
-                                  {% endfor %}
-                                </div>
-                              </div>
-
-                              <div class="form-group{% if form.email.errors %} has-error{% endif %} ">
-                                <label for="{{ form.email.label }}" class="col-md-3 control-label">{% trans 'Email' %}:</label>
-                                <div class="col-md-8">
-                                  <input class="form-control" required="" type="text" name="email" id="email">
-                                  {% if form.email.help_text %}
-                                    <span class="help-block">{{ form.email.help_text }}</span>
-                                  {% endif %}
-                                  {% for error in form.email.errors %}
-                                    <label class="control-label">{{ error }}</label>
-                                  {% endfor %}
-                                </div>
-                              </div>
-
-                              <div class="form-group{% if form.password.errors %} has-error{% endif %} ">
-                                <label for="{{ form.password.label }}" class="col-md-3 control-label">{% trans 'Password' %}:</label>
-                                <div class="col-md-8">
-                                  <input class="form-control" required="" type="password" name="password" id="password">
-                                  {% if form.password.help_text %}
-                                    <span class="help-block">{{ form.password.help_text }}</span>
-                                  {% endif %}
-                                  {% for error in form.password.errors %}
-                                    <label class="control-label">{{ error }}</label>
-                                  {% endfor %}
-                                </div>
-                              </div>
-
-                              <div class="form-group{% if form.confirm_password.errors %} has-error{% endif %} ">
-                                <label for="{{ form.confirm_password.label }}" class="col-md-3 control-label">{% trans 'Confirm Password' %}:</label>
-                                <div class="col-md-8">
-                                  <input class="form-control" required="" type="password" name="confirm_password" id="confirm_password">
-                                  {% if form.confirm_password.help_text %}
-                                    <span class="help-block">{{ form.confirm_password.help_text }}</span>
-                                  {% endif %}
-                                  {% for error in form.confirm_password.errors %}
-                                    <label class="control-label">{{ error }}</label>
-                                  {% endfor %}
-                                </div>
-                              </div>
-
-                              <div class="form-group{% if form.role.errors %} has-error{% endif %} ">
-                                <div class="col-md-8">
-                                  <input class="form-control" required="" type="hidden" name="role" id="role" value="mentor">
-                                  {% if form.role.help_text %}
-                                    <span class="help-block">{{ form.role.help_text }}</span>
-                                  {% endif %}
-                                  {% for error in form.role.errors %}
-                                    <label class="control-label">{{ error }}</label>
-                                  {% endfor %}
-                                </div>
-                              </div>
-
-                            <div class="col-md-3 col-sm-3"></div>
-                            <div class="col-md-9 col-sm-8">
-                              <button type="submit" class="btn btn-primary">{% trans 'Sign up for Mentor001' %}</button>
-                              <a href="{% url 'login' %}" class="">{% trans 'Login' %}</a>
-                            </div>
-                          </form>
-                        </div>
+                  <div class="form-group{% if form.password.errors %} has-error{% endif %} ">
+                    <label for="{{ form.password.label }}" class="col-md-3 col-sm-3 control-label">{% trans 'Password' %}:</label>
+                    <div class="col-md-8 col-sm-8">
+                      <input class="form-control" type="password" name="password"8id="password">
+                      {% if form.password.help_text %}
+                        <span class="help-block">{{ form.password.help_text }}</span>
+                      {% endif %}
+                      {% for error in form.password.errors %}
+                        <label class="control-label">{{ error }}</label>
+                      {% endfor %}
                     </div>
+                  </div>
+                  
+                    <div class="col-md-2 col-sm-3"></div>
+                    <div class="col-md-9 col-sm-8">
+                      <button type="submit" class="btn btn-primary">{% trans 'Login' %}</button>
+                      <a href="{% url 'signup' %}" class="">{% trans 'Sign up for Mentor001' %}</a>
+                    </div>
+                </form>
                 </div>
             </div>
+        </div>
+    </div>
 
+    <!-- Mentee signup and login -->
+    <!-- Modal -->
+    <div class="modal fade" id="menteeSignup" role="dialog">
+        <div class="modal-dialog panel panel-default">
+        <!-- Modal content-->
+        <div class="" style="background-color: #f3f3f3; padding: 20px;">
+            <div class="panel-heading center" style="background-color: #ffbe00;">
+                <h1>{% trans 'Signup as Mentee' %}</h1>
+            </div>
+            <div class="panel-body">
+                <form role="form" class="form-horizontal" method="post" action="{% url 'signup' %}">
+                    {% csrf_token %}
 
-               <!-- Modal -->
-                <div class="modal fade" id="mentorLogin" role="dialog">
-                    <div class="modal-dialog panel panel-default">
-                        <!-- Modal content-->
-                        <div class="" style="background-color: #f3f3f3; padding: 20px;">
-                            <div class="panel-heading center" style="background-color: #ffbe00;">
-                                <h1>{% trans 'Login as Mentor' %}</h1>
-                            </div>
-                            <div class="panel-body">
-                            <form role="form" class="form-horizontal" method="post" action="{% url 'login' %}">
-                            {% csrf_token %}
-
-                              <div class="form-group{% if form.username.errors %} has-error{% endif %} ">
-                                <label for="{{ form.username.label }}" class="col-md-3 col-sm-3 control-label">{% trans 'Username' %}:</label>
-                                <div class="col-md-8 col-sm-8">
-                                  <input class="form-control" type="text" name="username" id="username">
-                                  {% if form.username.help_text %}
-                                    <span class="help-block">{{ form.username.help_text }}</span>
-                                  {% endif %}
-                                  {% for error in form.username.errors %}
-                                    <label class="control-label">{{ error }}</label>
-                                  {% endfor %}
-                                </div>
-                              </div>
-
-                              <div class="form-group{% if form.password.errors %} has-error{% endif %} ">
-                                <label for="{{ form.password.label }}" class="col-md-3 col-sm-3 control-label">{% trans 'Password' %}:</label>
-                                <div class="col-md-8 col-sm-8">
-                                  <input class="form-control" type="password" name="password"8id="password">
-                                  {% if form.password.help_text %}
-                                    <span class="help-block">{{ form.password.help_text }}</span>
-                                  {% endif %}
-                                  {% for error in form.password.errors %}
-                                    <label class="control-label">{{ error }}</label>
-                                  {% endfor %}
-                                </div>
-                              </div>
-                              
-                                <div class="col-md-2 col-sm-3"></div>
-                                <div class="col-md-9 col-sm-8">
-                                  <button type="submit" class="btn btn-primary">{% trans 'Login' %}</button>
-                                  <a href="{% url 'signup' %}" class="">{% trans 'Sign up for Mentor001' %}</a>
-                                </div>
-                            </form>
-                            </div>
+                      <div class="form-group{% if form.username.errors %} has-error{% endif %} ">
+                        <label for="{{ form.username.label }}" class="col-md-3 control-label">{% trans 'Username' %}:</label>
+                        <div class="col-md-8">
+                          <input class="form-control" type="text" name="username" id="username">
+                          {% if form.username.help_text %}
+                            <span class="help-block">{{ form.username.help_text }}</span>
+                          {% endif %}
+                          {% for error in form.username.errors %}
+                            <label class="control-label">{{ error }}</label>
+                          {% endfor %}
                         </div>
+                      </div>
+
+                      <div class="form-group{% if form.email.errors %} has-error{% endif %} ">
+                        <label for="{{ form.email.label }}" class="col-md-3 control-label">{% trans 'Email' %}:</label>
+                        <div class="col-md-8">
+                          <input class="form-control" required="" type="text" name="email" id="email">
+                          {% if form.email.help_text %}
+                            <span class="help-block">{{ form.email.help_text }}</span>
+                          {% endif %}
+                          {% for error in form.email.errors %}
+                            <label class="control-label">{{ error }}</label>
+                          {% endfor %}
+                        </div>
+                      </div>
+
+                      <div class="form-group{% if form.password.errors %} has-error{% endif %} ">
+                        <label for="{{ form.password.label }}" class="col-md-3 control-label">{% trans 'Password' %}:</label>
+                        <div class="col-md-8">
+                          <input class="form-control" required="" type="password" name="password" id="password">
+                          {% if form.password.help_text %}
+                            <span class="help-block">{{ form.password.help_text }}</span>
+                          {% endif %}
+                          {% for error in form.password.errors %}
+                            <label class="control-label">{{ error }}</label>
+                          {% endfor %}
+                        </div>
+                      </div>
+
+                      <div class="form-group{% if form.confirm_password.errors %} has-error{% endif %} ">
+                        <label for="{{ form.confirm_password.label }}" class="col-md-3 control-label">{% trans 'Confirm Password' %}:</label>
+                        <div class="col-md-8">
+                          <input class="form-control" required="" type="password" name="confirm_password" id="confirm_password">
+                          {% if form.confirm_password.help_text %}
+                            <span class="help-block">{{ form.confirm_password.help_text }}</span>
+                          {% endif %}
+                          {% for error in form.confirm_password.errors %}
+                            <label class="control-label">{{ error }}</label>
+                          {% endfor %}
+                        </div>
+                      </div>
+
+                      <div class="form-group{% if form.role.errors %} has-error{% endif %} ">
+                        <div class="col-md-8">
+                          <input class="form-control" required="" type="hidden" name="role" id="role" value="mentee">
+                          {% if form.role.help_text %}
+                            <span class="help-block">{{ form.role.help_text }}</span>
+                          {% endif %}
+                          {% for error in form.role.errors %}
+                            <label class="control-label">{{ error }}</label>
+                          {% endfor %}
+                        </div>
+                      </div>
+
+                    <div class="col-md-3 col-sm-3"></div>
+                    <div class="col-md-9 col-sm-8">
+                      <button type="submit" class="btn btn-primary">{% trans 'Sign up for Mentor001' %}</button>
+                      <a href="{% url 'login' %}" class="">{% trans 'Login' %}</a>
                     </div>
+                  </form>
                 </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="menteeLogin" role="dialog">
+        <div class="modal-dialog panel panel-default">
+            <!-- Modal content-->
+            <div class="" style="background-color: #f3f3f3; padding: 20px;">
+                <div class="panel-heading center" style="background-color: #ffbe00;">
+                    <h1>{% trans 'Login as Mentee' %}</h1>
+                </div>
+                <div class="panel-body">
+                <form role="form" class="form-horizontal" method="post" action="{% url 'login' %}">
+                {% csrf_token %}
 
-                <!-- Mentee signup and login -->
-                <!-- Modal -->
-            <div class="modal fade" id="menteeSignup" role="dialog">
-                <div class="modal-dialog panel panel-default">
-                    <!-- Modal content-->
-                    <div class="" style="background-color: #f3f3f3; padding: 20px;">
-                        <div class="panel-heading center" style="background-color: #ffbe00;">
-                            <h1>{% trans 'Signup as Mentee' %}</h1>
-                        </div>
-                        <div class="panel-body">
-                            <form role="form" class="form-horizontal" method="post" action="{% url 'signup' %}">
-                                {% csrf_token %}
-
-                                  <div class="form-group{% if form.username.errors %} has-error{% endif %} ">
-                                    <label for="{{ form.username.label }}" class="col-md-3 control-label">{% trans 'Username' %}:</label>
-                                    <div class="col-md-8">
-                                      <input class="form-control" type="text" name="username" id="username">
-                                      {% if form.username.help_text %}
-                                        <span class="help-block">{{ form.username.help_text }}</span>
-                                      {% endif %}
-                                      {% for error in form.username.errors %}
-                                        <label class="control-label">{{ error }}</label>
-                                      {% endfor %}
-                                    </div>
-                                  </div>
-
-                                  <div class="form-group{% if form.email.errors %} has-error{% endif %} ">
-                                    <label for="{{ form.email.label }}" class="col-md-3 control-label">{% trans 'Email' %}:</label>
-                                    <div class="col-md-8">
-                                      <input class="form-control" required="" type="text" name="email" id="email">
-                                      {% if form.email.help_text %}
-                                        <span class="help-block">{{ form.email.help_text }}</span>
-                                      {% endif %}
-                                      {% for error in form.email.errors %}
-                                        <label class="control-label">{{ error }}</label>
-                                      {% endfor %}
-                                    </div>
-                                  </div>
-
-                                  <div class="form-group{% if form.password.errors %} has-error{% endif %} ">
-                                    <label for="{{ form.password.label }}" class="col-md-3 control-label">{% trans 'Password' %}:</label>
-                                    <div class="col-md-8">
-                                      <input class="form-control" required="" type="password" name="password" id="password">
-                                      {% if form.password.help_text %}
-                                        <span class="help-block">{{ form.password.help_text }}</span>
-                                      {% endif %}
-                                      {% for error in form.password.errors %}
-                                        <label class="control-label">{{ error }}</label>
-                                      {% endfor %}
-                                    </div>
-                                  </div>
-
-                                  <div class="form-group{% if form.confirm_password.errors %} has-error{% endif %} ">
-                                    <label for="{{ form.confirm_password.label }}" class="col-md-3 control-label">{% trans 'Confirm Password' %}:</label>
-                                    <div class="col-md-8">
-                                      <input class="form-control" required="" type="password" name="confirm_password" id="confirm_password">
-                                      {% if form.confirm_password.help_text %}
-                                        <span class="help-block">{{ form.confirm_password.help_text }}</span>
-                                      {% endif %}
-                                      {% for error in form.confirm_password.errors %}
-                                        <label class="control-label">{{ error }}</label>
-                                      {% endfor %}
-                                    </div>
-                                  </div>
-
-                                  <div class="form-group{% if form.role.errors %} has-error{% endif %} ">
-                                    <div class="col-md-8">
-                                      <input class="form-control" required="" type="hidden" name="role" id="role" value="mentee">
-                                      {% if form.role.help_text %}
-                                        <span class="help-block">{{ form.role.help_text }}</span>
-                                      {% endif %}
-                                      {% for error in form.role.errors %}
-                                        <label class="control-label">{{ error }}</label>
-                                      {% endfor %}
-                                    </div>
-                                  </div>
-
-                                <div class="col-md-3 col-sm-3"></div>
-                                <div class="col-md-9 col-sm-8">
-                                  <button type="submit" class="btn btn-primary">{% trans 'Sign up for Mentor001' %}</button>
-                                  <a href="{% url 'login' %}" class="">{% trans 'Login' %}</a>
-                                </div>
-                              </form>
-                            </div>
-                        </div>
+                  <div class="form-group{% if form.username.errors %} has-error{% endif %} ">
+                    <label for="{{ form.username.label }}" class="col-md-3 col-sm-3 control-label">{% trans 'Username' %}:</label>
+                    <div class="col-md-8 col-sm-8">
+                      <input class="form-control" type="text" name="username" id="username">
+                      {% if form.username.help_text %}
+                        <span class="help-block">{{ form.username.help_text }}</span>
+                      {% endif %}
+                      {% for error in form.username.errors %}
+                        <label class="control-label">{{ error }}</label>
+                      {% endfor %}
                     </div>
-                </div>
+                  </div>
 
-
-                <!-- Modal -->
-                <div class="modal fade" id="menteeLogin" role="dialog">
-                    <div class="modal-dialog panel panel-default">
-                        <!-- Modal content-->
-                        <div class="" style="background-color: #f3f3f3; padding: 20px;">
-                            <div class="panel-heading center" style="background-color: #ffbe00;">
-                                <h1>{% trans 'Login as Mentee' %}</h1>
-                            </div>
-                            <div class="panel-body">
-                            <form role="form" class="form-horizontal" method="post" action="{% url 'login' %}">
-                            {% csrf_token %}
-
-                              <div class="form-group{% if form.username.errors %} has-error{% endif %} ">
-                                <label for="{{ form.username.label }}" class="col-md-3 col-sm-3 control-label">{% trans 'Username' %}:</label>
-                                <div class="col-md-8 col-sm-8">
-                                  <input class="form-control" type="text" name="username" id="username">
-                                  {% if form.username.help_text %}
-                                    <span class="help-block">{{ form.username.help_text }}</span>
-                                  {% endif %}
-                                  {% for error in form.username.errors %}
-                                    <label class="control-label">{{ error }}</label>
-                                  {% endfor %}
-                                </div>
-                              </div>
-
-                              <div class="form-group{% if form.password.errors %} has-error{% endif %} ">
-                                <label for="{{ form.password.label }}" class="col-md-3 col-sm-3 control-label">{% trans 'Password' %}:</label>
-                                <div class="col-md-8 col-sm-8">
-                                  <input class="form-control" type="password" name="password"8id="password">
-                                  {% if form.password.help_text %}
-                                    <span class="help-block">{{ form.password.help_text }}</span>
-                                  {% endif %}
-                                  {% for error in form.password.errors %}
-                                    <label class="control-label">{{ error }}</label>
-                                  {% endfor %}
-                                </div>
-                              </div>
-                              
-                                <div class="col-md-3 col-sm-3"></div>
-                                <div class="col-md-8 col-sm-8">
-                                  <button type="submit" class="btn btn-primary">{% trans 'Login' %}</button>
-                                  <a href="{% url 'signup' %}" class="">{% trans 'Sign up for Mentor001' %}</a>
-                                </div>
-                            </form>
-                            </div>
-                        </div>
+                  <div class="form-group{% if form.password.errors %} has-error{% endif %} ">
+                    <label for="{{ form.password.label }}" class="col-md-3 col-sm-3 control-label">{% trans 'Password' %}:</label>
+                    <div class="col-md-8 col-sm-8">
+                      <input class="form-control" type="password" name="password"8id="password">
+                      {% if form.password.help_text %}
+                        <span class="help-block">{{ form.password.help_text }}</span>
+                      {% endif %}
+                      {% for error in form.password.errors %}
+                        <label class="control-label">{{ error }}</label>
+                      {% endfor %}
                     </div>
+                  </div>
+                  
+                    <div class="col-md-3 col-sm-3"></div>
+                    <div class="col-md-8 col-sm-8">
+                      <button type="submit" class="btn btn-primary">{% trans 'Login' %}</button>
+                      <a href="{% url 'signup' %}" class="">{% trans 'Sign up for Mentor001' %}</a>
+                    </div>
+                </form>
                 </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

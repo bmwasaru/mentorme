@@ -9,13 +9,10 @@
 
     {% cache 500 assets %}
 
-    <!-- <link href="{% static 'assets/fonts/font-awesome.css' %}" rel="stylesheet" type="text/css"> -->
     <link href="{% static 'assets/fonts/elegant-fonts.css' %}" rel="stylesheet" type="text/css">
     <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css'>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.css' %}" type="text/css"> -->
-    <!-- <link rel="stylesheet" href="{% static 'assets/css/zabuto_calendar.min.css' %}" type="text/css"> -->
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap-select.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'assets/revolution/css/settings.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'assets/revolution/css/layers.css' %}" type="text/css">
@@ -172,7 +169,7 @@
 
 <div class="outer-wrapper">
 <div class="page-wrapper">
-
+    {% block nav-header %}
     <header class="navigation" id="top" style="background-color: #ffbe00; height: 70px">
         <div class="container">
             <!--/.secondary-nav-->
@@ -247,6 +244,7 @@
         <!--/.container-->
     </header>
     <!--/.header-->
+    {% endblock nav-header %}
     {% block main %}
     {% endblock main %}
 

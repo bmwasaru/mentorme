@@ -151,7 +151,7 @@ ANYMAIL = {
     "MAILGUN_API_KEY": os.environ.get('MAILGUN_API_KEY'),
 }
 
-CACHE_TTL = 60 * 15
+CACHE_TTL = 60 * 0
 
 # if DEBUG == False:
 # Cache time to live is 15 minutes.

@@ -138,3 +138,31 @@ def update_user_profile(sender, instance, created, **kwargs):
 class UserCode(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     code = models.CharField(max_length=6)
+
+
+class Interest(models.Model):
+    user = models.OneToOneField(
+        User, 
+        blank = True, on_delete = models.CASCADE)
+    stem = models.BooleanField(blank = True, default = False)
+    entrepreneurship = models.BooleanField(blank = True, default = False)
+    career_counseling = models.BooleanField(blank = True, default = False)
+    career_readiness = models.BooleanField(
+        db_column = "career_readiness", 
+        verbose_name = 'career_readiness', 
+        blank = True, default = False)
+    addictions = models.BooleanField(blank = True, default = False)
+
+    class Meta:
+        db_table = "interests"
+
+    def __unicode__(self):
+        return unicode(self.user.username) 
+
+
+class Connection(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    mentor = models.IntegerField(null=False)
+
+    def __unicode__(self):
+        return unicode(self.user)

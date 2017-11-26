@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 from core.choices import EDUCATION_CHOICES, MENTORSHIP_AREAS_CHOICES
 
-from authentication.models import Profile
+from authentication.models import Profile, Interest
 from authentication.choices import GENDER_CHOICES, ROLE_CHOICES
 
 
@@ -36,7 +36,7 @@ class ProfileForm(forms.ModelForm):
         widget=forms.Select(attrs={'class': 'form-control'}), 
         choices=ROLE_CHOICES)
     mentorship_areas = forms.MultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple, 
+        widget=forms.CheckboxSelectMultiple(), 
         choices=MENTORSHIP_AREAS_CHOICES)
     highest_level_of_study = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'form-control'}), 
@@ -90,7 +90,7 @@ class ChangePasswordForm(forms.ModelForm):
         return self.cleaned_data
 
 
-class contact_form(forms.Form):
+class ContactForm(forms.Form):
     sender = forms.EmailField(max_length = 225, required =True, label = '',
         widget = forms.EmailInput(attrs={'class': 'form-control', 
             'placeholder':'Your Email', 'required':'true'}))
@@ -105,3 +105,12 @@ class contact_form(forms.Form):
         'placeholder':'Enter your Message', 'required':'true'
         }), 
         required =True, label='')
+
+
+class InterestForm(forms.ModelForm):
+  class Meta:
+    model = Interest
+    fields = "__all__"
+    widgets = {
+      'user': forms.HiddenInput,
+    }

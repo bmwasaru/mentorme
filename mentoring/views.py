@@ -16,6 +16,7 @@ from django.template.loader import get_template
 
 from mentoring.forms import ContactForm
 from messenger.models import Message
+from authentication.models import Connection
 
 from articles.decorators import user_is_mentor
 
@@ -99,10 +100,12 @@ def mentoring(request):
 def request_mentorship(request):
     if request.method == 'POST':
         from_user = request.user
+        print(from_user.id)
         to_user_username = request.POST.get('to')
+        print(to_user_username)
         try:
             to_user = User.objects.get(username=to_user_username)
-
+            print(to_user.id)
         except Exception:
             try:
                 to_user_username = to_user_username[
@@ -127,3 +130,28 @@ def request_mentorship(request):
                       {'conversations': conversations})
 
 
+def make_connection(request):
+    user = request.user
+    mentor = request.POST.get('to', None)
+    mentor_object = User.objects.get(username=mentor)
+    mentor_id = mentor_object.id
+
+    subject = "Possible mentee connection from Mentor001"
+    message = request.POST.get('message')
+    sender = request.user.email
+    
+    recipient = [mentor_object.email]
+    try:
+        send_mail(subject, message, sender, recipient)
+        new_connection = Connection(
+                user=user,
+                mentor=mentor_id)
+        new_connection.save()
+    except BadHeaderError:
+        return HttpResponse('invalid header found')
+
+    data = {
+        'confirm': 'Connection complete',
+    }
+
+    return redirect('/mentoring/{0}/'.format(mentor))

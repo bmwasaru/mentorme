@@ -14,9 +14,9 @@
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css'>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap-select.min.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'assets/revolution/css/settings.css' %}" type="text/css">
+    <!-- <link rel="stylesheet" href="{% static 'assets/revolution/css/settings.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'assets/revolution/css/layers.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'assets/revolution/css/navigation.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/revolution/css/navigation.css' %}" type="text/css"> -->
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" type="text/css">
 
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
@@ -170,36 +170,43 @@
 <div class="outer-wrapper">
 <div class="page-wrapper">
     {% block nav-header %}
-    <header class="navigation" id="top" style="background-color: #ffbe00; height: 70px">
+    <header class="navigation" id="top" style="background-color: #ffbe00; padding-top: 2px;">
         <div class="container">
             <!--/.secondary-nav-->
-            <div class="main-nav" >
-                <div class="brand"><a href="{% url 'questions' %}"><img src="{% static '/img/mentor.png' %}" alt="" height="60" width="100" style="padding-bottom: 10px"></a></div><!--/.brand-->
-                <nav>
+            <div class="main-nav" style="padding-top: 2px; padding-bottom: 5px">
+                <div class=""><a href="{% url 'questions' %}"><img src="{% static '/img/mentor1.png' %}" alt="" height="50" width="100" ></a></div><!--/.brand-->
+                <nav class="center">
                     <ul>
                         {% if user.is_authenticated %}
 
-                        <li class="nav_item" role="menuitem" ">
-                            <div class="nav_icon glyphicon glyphicon-folder-open" style=""></div>
-                            <a id="nav_help" class="nav" href="{% url 'mentoring' %}"><small>Mentoring</small>
+                        <li>
+                            <a id="nav_help" class="nav" href="{% url 'mentoring' %}">
+                            Mentoring
+                            <!-- <div class="nav_icon glyphicon glyphicon-folder-open" style=""></div> -->
                             </a>               
                         </li>
 
                         <li>
-                            <div class="nav_icon glyphicon glyphicon-folder-open"></div> 
-                            <a class="nav" href="{% url 'articles' %}"><small>Articles</small></a>
+                            <a class="nav" href="{% url 'articles' %}"> 
+                            Articles
+                            <!-- <div class="nav_icon glyphicon glyphicon-folder-open"></div> -->
+                            </a>
                         </li>
 
                         <li>
-                            <div class="nav_icon glyphicon glyphicon-globe"></div> 
-                            <a id="questions" class="nav" href="{% url 'questions' %}"><small>Questions</small></a>
+                            <a id="questions" class="nav" href="{% url 'questions' %}">
+                            Questions
+                            <!-- <div class="nav_icon glyphicon glyphicon-globe"></div>  -->
+                            </a>
                         </li>
                         <!-- <li>
                             <a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span><span class="glyphicon glyphicon-comment platform-glyphicon" style="margin-right: 0em"></span></a>
                         </li> -->
                         <li>
-                            <div class="nav_icon glyphicon glyphicon-bell"></div> 
-                            <a id="nav_help" class="nav" href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications"><small>Alerts</small></a>
+                            <a id="nav_help" class="nav" href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
+                            Alerts
+                            <!-- <div class="nav_icon glyphicon glyphicon-bell"></div> -->
+                            </a> 
                         </li>
                         <!-- <li>
                             <div class="glyphicon glyphicon-bell"></div>
@@ -208,15 +215,10 @@
                         </li> -->
 
                         <li id="nav_help_li" class="nav_item" role="menuitem" aria-labelledby="nav_help">
-                            <div class="nav_icon badge ">
-                                <span id="unread-count">0</span>
-                            </div>
-                            <a id="messages" class="nav" href="{% url 'inbox' %}"><small>Inbox</small></a>
-                        </li>
-
-                        <li class="nav_item" role="menuitem" ">
-                            <div class="nav_icon glyphicon glyphicon-user" style=""></div>
-                            <a id="nav_help" class="nav" href="{% url 'profile' username=user.username  %}"><small>{{ user.username}}</small> </a>               
+                            <a id="messages" class="nav" href="{% url 'inbox' %}">
+                            Inbox
+                            <!-- <div class="nav_icon badge "><span id="unread-count">0</span></div> -->
+                            </a>
                         </li>
 
                         <!-- <li>
@@ -224,16 +226,31 @@
                         </li> -->
 
                         <li class="dropdown">
-                            <div class="nav_icon glyphicon glyphicon-cog"></div>
-                          <a class="nav" style="" href="#" class="dropdown-toggle" data-toggle="dropdown"><small>Settings</small></a>
+                          <a href="#" class="nav dropdown-toggle" data-toggle="dropdown">
+                          {{ user.username}}
+                          <!-- <span class="nav_icon glyphicon glyphicon-cog"></span> -->
+                          </a> 
                           <ul class="dropdown-menu dropdown-menu-right">
                             <li><a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span> Inbox</a></li>
+                            <li><a href="{% url 'profile' username=user.username  %}">{% trans 'Profile' %} </a></li>
                             <li><a href="{% url 'settings' %}">{% trans 'Account Settings' %}</a></li>
                             <li class="divider"></li>
                             <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
                           </ul>
                         </li>
-                        {% endif %}
+                        {% else %}
+                        <li class="nav_item">
+                            <a class="nav" href="{% url 'donate' %}">Donate</a>
+                        </li>
+
+                        <li class="nav_item">
+                            <a class="nav" href="">Events</a>
+                        </li>
+
+                        <li class="nav_item">
+                            <a class="nav" href="">Our Space</a>
+                        </li>
+                        {%endif%}
                         
                     </ul>
                     <div class="nav-toggle"><i class="icon_menu"></i></div>
@@ -282,18 +299,18 @@
     <!-- <script type="text/javascript" src="{% static 'assets/js/zabuto_calendar.min.js' %}"></script> -->
     <script type="text/javascript" src="{% static 'assets/js/jquery.validate.min.js' %}"></script>
 
-    <script type="text/javascript" src="{% static 'assets/revolution/js/jquery.themepunch.tools.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'assets/revolution/js/jquery.themepunch.revolution.min.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'assets/revolution/js/jquery.themepunch.tools.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/revolution/js/jquery.themepunch.revolution.min.js' %}"></script> -->
     <!-- <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.video.min.js' %}"></script> -->
-    <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.slideanims.min.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.slideanims.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.actions.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.layeranimation.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.kenburn.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.navigation.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.migration.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.parallax.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/revolution/js/extensions/revolution.extension.parallax.min.js' %}"></script> -->
 
-    <!-- <script type="text/javascript" src="{% static 'assets/js/custom.js' %}"></script> -->
+    <script type="text/javascript" src="{% static 'assets/js/custom.js' %}"></script>
     
 
 {% endblock body %}

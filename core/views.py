@@ -16,7 +16,8 @@ def index(request):
 
 
 def donate(request):
-    return render(request, 'donate.html')
+    donate = "Working on Lipa na Mpesa form"
+    return render(request, 'donate.html', {'donate': donate})
 
 
 def home(request):

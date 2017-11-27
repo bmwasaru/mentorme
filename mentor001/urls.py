@@ -20,14 +20,15 @@ CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', cache_page(CACHE_TTL)(core_views.home), name='home'),
+    url(r'^donate/$', core_views.donate, name='donate'),
     url(r'^mentors/$', core_views.mentors, name='mentors'),
     url(r'^mentees/$', core_views.mentees, name='mentees'),
     url(r'^setup/$', core_views.initial_setup, name='initial_setup'),
-    url(r'personality_test/$', 
-        core_views.personality_test_view, name = 'personality'),
+    # url(r'personality_test/$', 
+    #     core_views.personality_test_view, name = 'personality'),
     
-    url(r'^index/$', core_views.index, name='index'),   
-    url(r'^donate/$', core_views.donate, name='donate'), 
+    # url(r'^index/$', core_views.index, name='index'),   
+
     # User URLs
     url(r'^account/login',
         auth_views.login, {'template_name': 'core/cover.html'},

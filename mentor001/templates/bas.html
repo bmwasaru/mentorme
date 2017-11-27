@@ -33,151 +33,6 @@
 
     {% block head %}{% endblock %}
 
-    <style>
-        .platform-body{
-            padding-top: 0px; 
-            background-color: #f3f3f3;
-            /*min-height: 350px;*/
-        }
-        .platform-panel{
-            border-left-color: #ffbe00; 
-            border-left-style: solid; 
-            border-left-width: thick;
-        }
-        .platform-tag{
-            background-color: #000;
-        }
-        .platform-category{
-            background-color: #ffbe00;
-        }
-        .platform-glyphicon {
-            font-size: 15px;
-            margin: 0.5em;
-            color: black;
-            
-        }
-        a{
-            color: #ffbe00;
-        }
-        .black-glyph{
-            color: black
-        }
-        a:hover{
-            color: #000;
-        }
-        .btn.btn-primary {
-            background-color: #ffbe00;
-            color: #fff;
-            border: none;
-            padding: 10px 15px;
-        }
-        .btn.btn-primary:hover, .btn.btn-primary:active, .btn.btn-primary:focus {
-            border: 2px solid #ffbe00;
-            background-color: transparent;
-            color: #000;
-        }
-        .btn.btn-default {
-            border: 2px solid #ffbe00;
-            color: #000;
-            background-color: transparent;
-        }
-        .btn.btn-default:hover, .btn.btn-default:active, .btn.btn-default:focus {
-            border: 2px solid #ffbe00;
-            background-color: #ffbe00;
-            color: #fff;
-        }
-        .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
-            z-index: 2;
-            color: #fff;
-            background-color: #ffbe00;
-            border-color: #ffbe00;
-        }
-        .heading h1 {
-            color: #000;
-        }
-        .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
-            z-index: 2;
-            color: #000;
-            cursor: default;
-            background-color: #fff;
-            border-color: #ffbe00;
-        }
-        .story {
-            background: rgb(255, 255, 255);
-            height: 220px;
-            padding: 30px;
-        }
-        .feature-box > i {
-            color: #ffbe00; 
-        }
-        .steps .step figure .bar {
-            background-color: #ffbe00;
-        }
-        .steps .step h3 {
-            color: #ffbe00;
-            font-size: 18px;
-        }
-        h2{
-            color: #ffbe00;
-        }
-        blockquote footer {
-            color: #ffbe00;
-        }
-        .card_up {
-            height: 120px;
-            border-radius: 4px 4px 0px 0px;
-            overflow: hidden;
-            position: 
-        }
-        .dark_cover_bg {
-            /*background-color: #333333 !important;*/
-            background-image: url({% static 'img/mentor.jpg' %});
-            background-size: cover;
-            /*height: 150px;*/
-            /*width: 150px;*/
-
-        }
-        .dark_cover_bg1 {
-            /*background-color: #333333 !important;*/
-            background-image: url({% static 'images/mentees.png' %});
-            background-size: cover;
-        }
-        .avatar {
-            border-radius: 50%;
-            width: 120px;
-            margin: -65px auto 0;
-            border: 5px solid #fff;
-            background: #FFF;
-        }
-        .card img {
-            display: block;
-            max-width: 100%;
-            height: auto;
-            border-radius: 50%;
-        }
-        img {
-            vertical-align: middle;
-            border: 0;
-        }
-        .footer {
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-            margin-bottom: 0;
-            height: 60px;
-            line-height: 60px;
-            background-color: rgb(51, 51, 51); 
-            color: #fff;
-        }
-        html{
-            min-height: 100%;
-            position: relative; 
-        }
-        /*body{
-            margin-bottom: 60px;
-        }*/
-    </style>
-
 </head>
 
 <body class="platform-body">
@@ -257,15 +112,15 @@
                         </li>
                         {% else %}
                         <li class="nav_item">
-                            <a class="nav" href="{% url 'donate' %}">Donate</a>
+                            <a class="nav" href="{% url 'donate' %}">{% trans 'Donate' %}</a>
                         </li>
 
                         <li class="nav_item">
-                            <a class="nav" href="#">Events</a>
+                            <a class="nav" href="#">{% trans 'Events' %}</a>
                         </li>
 
                         <li class="nav_item">
-                            <a class="nav" href="#">Our Space</a>
+                            <a class="nav" href="#">{% trans 'Our Space' %}</a>
                         </li>
                         {%endif%}
                         

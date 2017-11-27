@@ -42,7 +42,7 @@ def home(request):
         context = {
             "send_mail_form":form
         }
-        return render(request, 'index.html', context)
+        return render(request, 'index.html', {'context': context})
 
 
 @login_required

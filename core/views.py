@@ -34,10 +34,7 @@ def home(request):
                 sender = form.cleaned_data['sender']
 
             recipient = ['issaziri@gmail.com']
-            try:
-                send_mail(subject, message, sender, recipient)
-            except BadHeaderError:
-                return HttpResponse('invalid header found')
+            send_mail(subject, message, sender, recipient)
         
         context = {
             "send_mail_form":form

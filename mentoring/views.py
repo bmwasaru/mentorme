@@ -140,6 +140,9 @@ def make_connection(request):
     message = request.POST.get('message')
     sender = request.user.email
     
+    if user != mentor_object:
+            Message.send_message(user, mentor_object, message)
+            
     recipient = [mentor_object.email]
     try:
         send_mail(subject, message, sender, recipient)

@@ -65,19 +65,19 @@
                             </a>
                         </li>
 
-                        <li>
+                        <!-- <li>
                             <a id="questions" class="nav" href="{% url 'questions' %}">
                             Questions
-                            <!-- <div class="nav_icon glyphicon glyphicon-globe"></div>  -->
+                            <div class="nav_icon glyphicon glyphicon-globe"></div> 
                             </a>
-                        </li>
+                        </li> -->
                         <!-- <li>
                             <a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span><span class="glyphicon glyphicon-comment platform-glyphicon" style="margin-right: 0em"></span></a>
                         </li> -->
                         <li>
-                            <a id="nav_help" class="nav" href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
-                            Alerts
-                            <!-- <div class="nav_icon glyphicon glyphicon-bell"></div> -->
+                            <a class="nav" href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
+                            <!-- Alerts -->
+                            <div class="nav_icon glyphicon glyphicon-bell"></div>
                             </a> 
                         </li>
                         <!-- <li>
@@ -86,12 +86,12 @@
                             <small>Not</small></a>
                         </li> -->
 
-                        <li id="nav_help_li" class="nav_item" role="menuitem" aria-labelledby="nav_help">
+                        <!-- <li id="nav_help_li" class="nav_item" role="menuitem" aria-labelledby="nav_help">
                             <a id="messages" class="nav" href="{% url 'inbox' %}">
                             Inbox
-                            <!-- <div class="nav_icon badge "><span id="unread-count">0</span></div> -->
+                            <div class="nav_icon badge "><span id="unread-count">0</span></div>
                             </a>
-                        </li>
+                        </li> -->
 
                         <!-- <li>
                             <a href="{% url 'profile' username=user.username %}"><span class="glyphicon glyphicon glyphicon-user platform-glyphicon"></span></a>
@@ -139,8 +139,9 @@
     <script src="{% static 'js/notifications.js' %}"></script>
     <script src="{% static 'js/check_messages.js' %}"></script>
 
+    <script type="text/javascript" src="{% static 'js/bootstrap-select.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'assets/js/jquery-migrate-1.2.1.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'assets/js/bootstrap-select.min.js' %}"></script>
+    
     <!-- <script type="text/javascript" src="{% static 'assets/js/zabuto_calendar.min.js' %}"></script> -->
     <script type="text/javascript" src="{% static 'assets/js/jquery.validate.min.js' %}"></script>
 

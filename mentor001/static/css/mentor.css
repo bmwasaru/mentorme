@@ -30,9 +30,9 @@ main .container {
 }
 
 #notifications {
-  font-size: 1.5em;
-  padding: 13px;
-  color: #dddddd;
+  font-size: 1em;
+  /*padding: 13px;*/
+  color: white;
 }
 
 #notifications.new-notifications {

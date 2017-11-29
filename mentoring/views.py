@@ -141,7 +141,7 @@ def make_connection(request):
     sender = request.user.email
     
     if user != mentor_object:
-            Message.send_message(user, mentor_object, message)
+        Message.send_message(user, mentor_object, message)
             
     recipient = [mentor_object.email]
     try:

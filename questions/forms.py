@@ -15,7 +15,7 @@ class QuestionForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=255,
         required=False,
-        help_text='Use spaces to separate the tags, such as "asp.net mvc5 javascript"')  # noqa: E501
+        help_text='Use spaces to separate the tags')  # noqa: E501
     category = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'form-control'}),
         choices = MENTORSHIP_AREAS_CHOICES, 
@@ -25,7 +25,7 @@ class QuestionForm(forms.ModelForm):
 
     class Meta:
         model = Question
-        fields = ['title', 'description', 'tags']
+        fields = ['title', 'description', 'tags', 'category']
 
 
 class AnswerForm(forms.ModelForm):

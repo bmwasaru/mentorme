@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="ThemeStarz">
 
-    {% cache 500 assets %}
-
+    <!-- {% cache 500 assets %} -->
     <link href="{% static 'assets/fonts/elegant-fonts.css' %}" rel="stylesheet" type="text/css">
     <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css'>
@@ -24,10 +23,10 @@
     <link href="{% static 'css/mentor.css' %}?v=1" rel="stylesheet" type="text/css">
     <link href="{% static 'css/chatbubble.css' %}?v=1" rel="stylesheet" type="text/css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     
-    {% endcache %}
+    <!-- {% endcache %} -->
     
     <title>{% block title %}Mentor 001{% endblock %}</title>
 

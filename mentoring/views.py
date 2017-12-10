@@ -25,7 +25,7 @@ from django.db.models import Q
 @login_required
 def u_profile(request, username):
     page_user = get_object_or_404(User, username=username)
-    return render(request, 'mentoring/_profile.html', {
+    return render(request, 'mentoring/profile.html', {
         'page_user': page_user
         })
 
@@ -33,7 +33,7 @@ def u_profile(request, username):
 @login_required
 def u_education(request):
     users = Education.objects.filter(user=request.user)
-    return redirect(request, 'mentoring/_education.html', {'users': users})
+    return redirect(request, 'mentoring/education.html', {'users': users})
 
 
 @login_required
@@ -51,7 +51,7 @@ def u_inbox(request):
             if conversation['user'].username == active_conversation:
                 conversation['unread'] = 0
 
-    return render(request, 'mentoring/_profile.html', {
+    return render(request, 'mentoring/profile.html', {
         'messages': messages,
         'conversations': conversations,
         'active': active_conversation
@@ -69,7 +69,7 @@ def u_messages(request, username):
         if conversation['user'].username == username:
             conversation['unread'] = 0
 
-    return render(request, 'mentoring/_profile.html', {
+    return render(request, 'mentoring/profile.html', {
         'messages': messages,
         'conversations': conversations,
         'active': active_conversation
@@ -84,15 +84,24 @@ def mentoring(request):
             condition |= Q(profile__mentorship_areas__icontains=string)
 
     if request.user.profile.role=='mentor':
-        users_list = User.objects.filter(condition,
-            profile__role='mentee').order_by('username')[:6]
-        return render(request, 
-            'mentoring/_mentors.html', 
-            {'users_list': users_list})
+        connections = Connection.objects.filter(mentor=request.user.id)
+        print(connections)
+        if connections:
+            for con in connections:
+                for item in con:
+                    users_list = User.objects.filter(id=item)
+                    return render(request, 
+                        'mentoring/mentors.html', 
+                        {'users_list': users_list})
+        else:
+            users_list = messages.add_message(request, messages.SUCCESS, 
+                'Sorry we do not have mentees for you.')
+            return render(request, 'mentoring/mentors.html', {'users_list': users_list})
     else:
         users_list = User.objects.filter(condition, 
             profile__role='mentor')[:6]
-        return render(request, 'mentoring/_mentees.html', 
+        print(users_list)
+        return render(request, 'mentoring/mentees.html', 
             {'users_list': users_list})
 
 
@@ -126,7 +135,7 @@ def request_mentorship(request):
 
     else:
         conversations = Message.get_conversations(user=request.user)
-        return render(request, 'mentoring/_profile.html',
+        return render(request, 'mentoring/profile.html',
                       {'conversations': conversations})
 
 

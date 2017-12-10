@@ -163,6 +163,7 @@ class Interest(models.Model):
 class Connection(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     mentor = models.IntegerField(null=False)
+    status = models.IntegerField(null=False, default=0)
 
     def __unicode__(self):
         return unicode(self.user)

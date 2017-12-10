@@ -103,39 +103,6 @@ def mentoring(request):
 
 
 @login_required
-def request_mentorship(request):
-    if request.method == 'POST':
-        from_user = request.user
-        print(from_user.id)
-        to_user_username = request.POST.get('to')
-        print(to_user_username)
-        try:
-            to_user = User.objects.get(username=to_user_username)
-            print(to_user.id)
-        except Exception:
-            try:
-                to_user_username = to_user_username[
-                    to_user_username.rfind('(')+1:len(to_user_username)-1]
-                to_user = User.objects.get(username=to_user_username)
-
-            except Exception:
-                return redirect('/mentoring/request_mentorship/')
-
-        message = request.POST.get('message')
-        if len(message.strip()) == 0:
-            return redirect('/mentoring/request_mentorship/')
-
-        if from_user != to_user:
-            Message.send_message(from_user, to_user, message)
-
-        return redirect('/mentoring/{0}/'.format(to_user_username))
-
-    else:
-        conversations = Message.get_conversations(user=request.user)
-        return render(request, 'mentoring/profile.html',
-                      {'conversations': conversations})
-
-
 def make_connection(request):
     user = request.user
     mentor = request.POST.get('to', None)
@@ -151,12 +118,14 @@ def make_connection(request):
             
     recipient = [mentor_object.email]
     try:
+        if user.profile.role == 'mentor':
+            new_connection = Connection(user=user, mentor=mentor_id, status=1)
+            new_connection.save()
+        else:
+            new_connection = Connection(user=user, mentor=mentor_id)
+            new_connection.save()
         send_mail(subject, message, sender, recipient)
-        new_connection = Connection(
-                user=user,
-                mentor=mentor_id)
-        new_connection.save()
-    except BadHeaderError:
+    except Exception:
         return HttpResponse('invalid header found')
 
     data = {
@@ -164,3 +133,53 @@ def make_connection(request):
     }
 
     return redirect('/mentoring/{0}/'.format(mentor))
+
+
+@login_required
+def connections(request):
+    user = request.user
+    if user.profile.role == 'mentor':
+        con = list(Connection.objects.values_list('mentor', flat=True).filter(
+            user=user.id, status=1))
+        connections = User.objects.filter(pk__in=con)
+        return render(request, 'mentoring/connections.html', 
+            {'connections': connections})
+    else:
+        con = list(Connection.objects.values_list('user', flat=True).filter(
+            mentor=user.id, status=1))
+        connections = User.objects.filter(pk__in=con)
+        return render(request, 'mentoring/connections.html', 
+            {'connections': connections})
+
+# @login_required
+# def request_mentorship(request):
+#     if request.method == 'POST':
+#         from_user = request.user
+#         print(from_user.id)
+#         to_user_username = request.POST.get('to')
+#         print(to_user_username)
+#         try:
+#             to_user = User.objects.get(username=to_user_username)
+#             print(to_user.id)
+#         except Exception:
+#             try:
+#                 to_user_username = to_user_username[
+#                     to_user_username.rfind('(')+1:len(to_user_username)-1]
+#                 to_user = User.objects.get(username=to_user_username)
+
+#             except Exception:
+#                 return redirect('/mentoring/request_mentorship/')
+
+#         message = request.POST.get('message')
+#         if len(message.strip()) == 0:
+#             return redirect('/mentoring/request_mentorship/')
+
+#         if from_user != to_user:
+#             Message.send_message(from_user, to_user, message)
+
+#         return redirect('/mentoring/{0}/'.format(to_user_username))
+
+#     else:
+#         conversations = Message.get_conversations(user=request.user)
+#         return render(request, 'mentoring/profile.html',
+#                       {'conversations': conversations})

@@ -84,13 +84,11 @@ def mentoring(request):
             condition |= Q(profile__mentorship_areas__icontains=string)
 
     if request.user.profile.role=='mentor':
-        connections = Connection.objects.values_list('user').distinct().filter(mentor=request.user.id)
+        connections = list(Connection.objects.values_list(
+            'user', flat=True).filter(mentor=request.user.id).distinct())
         if connections:
-            for con in connections:
-                for item in con:
-                    users_list = User.objects.filter(id=item)
-                    print(users_list)
-                    return render(request, 
+            users_list = User.objects.filter(pk__in=connections)
+            return render(request, 
                         'mentoring/mentors.html', 
                         {'users_list': users_list})
         else:
@@ -100,7 +98,6 @@ def mentoring(request):
     else:
         users_list = User.objects.filter(condition, 
             profile__role='mentor')[:6]
-        print(users_list)
         return render(request, 'mentoring/mentees.html', 
             {'users_list': users_list})
 

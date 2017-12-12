@@ -25,50 +25,19 @@
       </div>
 
       <div class="col-md-8 col-sm-8">
-
         <!-- Modal -->
           <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog">
-            
               <!-- Modal content-->
               <div class="modal-content">
                 <div class="content" style="padding: 15px;">
-
-                  <!-- {% if messages %}
-                  <div class="conversation">
-                    <div class="talk-bubble" style="height: 300px; overflow-y:scroll; background-color: #f3f3f3">
-                      <div class="talktext" style="width: 100%">
-                        {% for message in messages %}
-                          <li>
-                            <div class="talk-bubble tri-right round left-top" style="margin-left: 2px; ">
-                              <div class="talktext" style="margin-left: 10px; padding-bottom: 0px;">
-                                <h5>
-                                  <small class="pull-right">
-                                    {{ message.date|date:'N d G:i' }}
-                                  </small>
-                                  <a href="{% url 'profile' message.from_user.username %}">
-                                    {{ page_user.from_user.profile.get_screen_name }}
-                                  </a>
-                                </h5>
-                                {{ message.message | linebreaks }}</div>
-                            </div>
-                            </li>
-                        {% endfor %}
-                      </div>
-                    </div> 
-                  </div>
-                  {% else %}
-                    <h4>Your inbox is empty!</h4>
-                  {% endif %} -->
-
                   <form  method="post" action="{% url 'make_connection' %}">
                     {% csrf_token %}
                     <div class="form-group">
                         <input type="hidden" id="to" name="to" value="{{ page_user.username }}">
                     
                         <textarea class="form-control" id="message" name="message" placeholder="Type your message here" rows="4" style="border-style: ;"></textarea>
-
-                        <button type="submit" class="btn btn-primary width-100">Request for mentorship</button>
+                        <button type="submit" class="btn btn-primary width-100">Connect</button>
                     </div>
                   </form>
                   <script src="{% static 'js/messages.typehead.js' %}"></script>
@@ -76,7 +45,6 @@
               </div>
             </div>
           </div>
-
            <!-- <div class="container" > -->
             <div class="" id="accordion">
               <div class="panel panel-default">
@@ -92,36 +60,8 @@
                   </div>
                 </div>
               </div>
-              <!-- <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"><span class="glyphicon glyphicon glyphicon-plus platform-glyphicon"></span>My Messages</a>
-                  </h4>
-                </div>
-                <div id="collapse2" class="panel-collapse collapse">
-                  <div class="panel-body">
-                  <a class="btn btn-primary" style="margin-top: 2em" data-toggle="modal" data-target="#myModal" >Message this person</a><br><br>
-                  </div>
-                </div>
-              </div> 
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"><span class="glyphicon glyphicon glyphicon-plus platform-glyphicon"></span>My Milestones</a>
-                  </h4>
-                </div>
-                <div id="collapse3" class="panel-collapse collapse">
-                  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
-                </div>
-              </div>-->
             </div>  
-          <!-- </div> -->
-
-          <!-- <a class="btn btn-primary" style="margin-top: 2em" data-toggle="modal" data-target="#myModal" >Message this person</a><br><br> -->
-
-         
+          <!-- </div> -->         
       </div>
     </div>
   </div>

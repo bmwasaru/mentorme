@@ -5,3 +5,4 @@ staticfiles
 .idea
 mentor001/local_settings.py
 media/
+.sample.code.py

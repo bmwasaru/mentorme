@@ -9,15 +9,20 @@ from django.core.mail import send_mail, BadHeaderError
 
 from .forms import (ChangePasswordForm, ProfileForm, ContactForm, InterestForm)
 from authentication.models import Profile, Connection
+import os
+from PIL import Image
+
+
+def image_resize(image):
+    size_300=(300,300)
+    img = Image.open(image)
+    fn, fext = os.path.splitext(image)
+    img.thumbnail(size_300)
+    img.save('media/profiles/{}_300{}'.format(fn, fext))
 
 
 def index(request):
     return render(request, 'core/includes/cover.html')
-
-
-# def donate(request):
-#     donate = "Working on Lipa na Mpesa form"
-#     return render(request, 'donate.html', {'donate': donate})
 
 
 def home(request):
@@ -99,6 +104,7 @@ def initial_setup(request):
                 user.profile.highest_level_of_study = form.cleaned_data.get('highest_level_of_study')
                 user.profile.profile_picture = form.cleaned_data.get('profile_picture')
                 user.profile.is_previously_logged_in = True
+                # image_resize(user.profile.profile_picture)
                 user.save()
                 messages.add_message(request,
                                      messages.SUCCESS,
@@ -139,6 +145,7 @@ def settings(request):
             user.profile.location = form.cleaned_data.get('location')
             user.profile.highest_level_of_study = form.cleaned_data.get('highest_level_of_study')
             user.profile.profile_picture = form.cleaned_data.get('profile_picture')
+            # image_resize(user.profile.profile_picture)
             user.save()
             messages.add_message(request,
                                  messages.SUCCESS,
@@ -179,165 +186,3 @@ def password(request):
         form = ChangePasswordForm(instance=user)
 
     return render(request, 'core/password.html', {'form': form})
-
-
-def personality_test_view(request):
-    # form_interest = interest_form
-    # form_dynamic = dynamic_form
-    form_interest= InterestForm
-    
-    user = request.user.username
-
-    if request.method == 'POST':
-        # form1= interest_form(request.POST)
-        # form2= language_form(request.POST)
-        form3= InterestForm(request.POST)
-
-        if form3.is_valid():
-            # form1_instance = form1.save(commit=False)
-            # form2_instance = form2.save(commit=False)
-            form3_instance = form3.save(commit=False)
-
-            # form1_instance.user = User.objects.get(username=user)
-            # form2_instance.user = User.objects.get(username=user)
-            form3_instance.user = User.objects.get(username=user)
-
-            # form1_instance.save()
-            # form2_instance.save()
-            form3_instance.save()
-
-            return redirect('initial_setup')
-
-        else: 
-            #find the appropriate step for if there is an error
-            pass
-
-
-    context = {
-        'user':user,
-        'interest_form': form_interest,
-        # 'dynamic_form': form_dynamic,
-        # 'language_form': form_language,
-    }
-    return render(request, 'core/includes/personality_test.html', context)
-
-
-@login_required
-def find_match(request):
-    user = request.user
-    matches = []
-
-    ### FINDING MATCHES BASED ON INTERESTS ########
-
-    #get the users's interests, languages and dynamics values
-    user_interests = Interest.objects.filter(user=user)
-    # user_languages = Language.objects.filter(user=user)
-    # user_dynamics = Dynamic.objects.filter(user = user)
-    user_connections = Connection.objects.filter(user = user)
-
-    #finding previous mentor connections
-    connections_list = list(user_connections.values())
-    connected_mentor_ids = []
-    for item in connections_list:
-        items = item
-        connected_mentor_ids.append(items['mentor'])
-    
-    #getting the names of the user's interests
-    user_interest_list,user_interest_dict = object_to_list(user_interests)
-
-    #use the field names as filter for the rest of the users and return the user objects
-    match_on_interest = Interest.objects.all().exclude(user = user).filter(**user_interest_dict)
-    
-    #loop through all the users and get their laguages.
-    for match in match_on_interest:
-        match_username = match.user
-        match_user = User.objects.filter(username=match_username)
-        
-        #getting profile pictures of various matches
-        try:
-            match_profile_pic = Userprofile.objects.get(user=match_user)
-            if match_profile_pic is not None:
-                match_profile_pic_url = match_profile_pic.profile_pic
-            else:
-                match_profile_pic = None
-        except:
-            match_profile_pic_url = None
-            pass
-
-        #gathering specific match info like username, id, interests, and languages
-        match_name = match.user.first_name + ' ' + match.user.last_name
-        match_id = match.user.id
-        match_languages_object = Language.objects.filter(user = match_username)
-        languages_list = list(match_languages_object.values())
-        for item in languages_list:
-            del item['user_id']
-            del item['id']
-            languages_dict = {key : value for key, value in item.iteritems() if value == True}
-        
-        match_languages = []
-        for key in languages_dict:
-            match_languages.append(key)
-
-        match_info = {
-            'id':match_id,
-            'username':match_username,
-            'name': match_name,
-            'profile_pic':match_profile_pic_url,
-            'interests': user_interest_list,
-            'languages': match_languages,
-        }
-        if match_id not in connected_mentor_ids:
-            matches.append(match_info)
-
-
-## code to hand newsletter subscritions
-    form = newsletter_subscription_form() 
-    if request.method == 'POST':
-        form = newsletter_subscription_form(request.POST)
-        if form.is_valid():
-            subject = "Newsletter Subscription"
-            message = "I wat to subscribe to your newsletters" 
-            sender = form.cleaned_data['email']
-
-        recipient = ['issaziri@gmail.com']
-        try:
-            send_mail(subject, message, sender, recipient)
-        except BadHeaderError:
-            return HttpResponse('invalid header found')
-
-###### FINDING MATCHES BASED ON PERSONALITY ###########
-
-
-    #context dictionary from the retrieved data and send to the template
-    context = {
-        "matches":matches,
-        "subscription_form":form
-    }
-    return render(request, 'mainapp/find_match.html', context)
-
-
-def make_connection(request):
-    user = request.user
-    mentor = request.GET.get('mentor_username', None)
-    mentor_id = request.GET.get('mentor_id', None)
-    mentor_object = User.objects.get(username=mentor)
-
-    subject = "Possible mentee connection from Machus Mentor"
-    message = request.GET.get('message')
-    sender = request.user.email
-    
-    recipient = [mentor_object.email]
-    try:
-        send_mail(subject, message, sender, recipient)
-        new_connection = Connection(
-                user=user,
-                mentor=mentor_id)
-        new_connection.save()
-    except BadHeaderError:
-        return HttpResponse('invalid header found')
-
-    data = {
-        'confirm': 'Connection complete',
-    }
-
-    return JsonResponse(data)

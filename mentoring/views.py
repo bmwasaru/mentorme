@@ -5,22 +5,18 @@ from django.contrib.auth.models import User
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
-
-# from core.forms import ProfileForm, EducationForm, ExperienceForm, MentorshipAreaForm
-# from authentication.models import Profile
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 from django.shortcuts import redirect
 from django.template import Context
 from django.template.loader import get_template
+from django.db.models import Q
 
 from mentoring.forms import ContactForm
 from messenger.models import Message
 from authentication.models import Connection
-
 from articles.decorators import user_is_mentor
 
-from django.db.models import Q
 
 @login_required
 def u_profile(request, username):
@@ -149,37 +145,4 @@ def connections(request):
             mentor=user.id, status=1))
         connections = User.objects.filter(pk__in=con)
         return render(request, 'mentoring/connections.html', 
-            {'connections': connections})
-
-# @login_required
-# def request_mentorship(request):
-#     if request.method == 'POST':
-#         from_user = request.user
-#         print(from_user.id)
-#         to_user_username = request.POST.get('to')
-#         print(to_user_username)
-#         try:
-#             to_user = User.objects.get(username=to_user_username)
-#             print(to_user.id)
-#         except Exception:
-#             try:
-#                 to_user_username = to_user_username[
-#                     to_user_username.rfind('(')+1:len(to_user_username)-1]
-#                 to_user = User.objects.get(username=to_user_username)
-
-#             except Exception:
-#                 return redirect('/mentoring/request_mentorship/')
-
-#         message = request.POST.get('message')
-#         if len(message.strip()) == 0:
-#             return redirect('/mentoring/request_mentorship/')
-
-#         if from_user != to_user:
-#             Message.send_message(from_user, to_user, message)
-
-#         return redirect('/mentoring/{0}/'.format(to_user_username))
-
-#     else:
-#         conversations = Message.get_conversations(user=request.user)
-#         return render(request, 'mentoring/profile.html',
-#                       {'conversations': conversations})
+            {'connections': connections})  

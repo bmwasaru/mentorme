@@ -228,11 +228,12 @@ body {
 blockquote {
   margin-bottom: 0;
   border: none;
+  padding: 10px 0px 20px 20px;
 }
 blockquote p {
   display: inline-block;
   font-size: 18px;
-  margin-bottom: 10px;
+  /*margin-bottom: 10px;*/
   position: relative;
 }
 blockquote footer {

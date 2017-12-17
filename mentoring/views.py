@@ -138,11 +138,11 @@ def connections(request):
         con = list(Connection.objects.values_list('mentor', flat=True).filter(
             user=user.id, status=1))
         connections = User.objects.filter(pk__in=con)
-        return render(request, 'mentoring/connections.html', 
+        return render(request, 'mentoring/mentors.html', 
             {'connections': connections})
     else:
         con = list(Connection.objects.values_list('user', flat=True).filter(
             mentor=user.id, status=1))
         connections = User.objects.filter(pk__in=con)
-        return render(request, 'mentoring/connections.html', 
+        return render(request, 'mentoring/mentees.html', 
             {'connections': connections})  

@@ -1,20 +1,39 @@
 {% load staticfiles %}
 {% load i18n %}
-<div class="talk-bubble col-md-12" style="height: 360px; overflow-y:scroll; background-color: #e6e6e6">
+<div class="talk-bubble col-md-12" style="height: 360px; overflow-y:scroll;">
   <div class="talktext">
-    <ul>
-      <b>Date joined</b>: {{ page_user.date_joined }}<br>
-      <b>Gender</b>: {{ page_user.profile.gender }}<br>
-      <b>Location</b>: {{ page_user.profile.location }}<br>
-      <b>Highest level of Education</b>: {{ page_user.profile.highest_level_of_study }}<br>
-      <b>Biography</b>: {{ page_user.profile.bio|linebreaks}}<br>
-      <b>Areas I would like mentorship in</b>
-        {% for item in page_user.profile.mentorship_areas %}
-        <li style="list-style-type: ;">
-          {{ item }}
-          
-        {% endfor %} <br>
-        
-     </ul> 
+    <div class="col-md-2">
+      <b>Date joined</b>:
+    </div>
+    <div class="col-md-10">
+      {{ page_user.date_joined }}
+    </div>
+    <div class="col-md-2">
+      <b>Gender</b>:
+    </div>
+    <div class="col-md-10">
+       {{ page_user.profile.gender }}
+    </div>
+    <div class="col-md-2">
+      <b>Location</b>:
+    </div>
+    <div class="col-md-10">
+      {{ page_user.profile.location }}
+    </div>
+    <div class="col-md-2">
+      <b>Biography</b>:
+    </div>
+    <div class="col-md-10">
+      {{ page_user.profile.bio|linebreaks}}
+    </div>
+    <div class="col-md-2">
+      <b>Areas I would like mentorship in</b>:
+    </div>
+    <div class="col-md-10">
+      {% for item in page_user.profile.mentorship_areas %}
+      <li style="list-style-type: none;">
+        {{ item }}
+      {% endfor %}
+    </div>
   </div>
 </div>

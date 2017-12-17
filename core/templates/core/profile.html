@@ -16,10 +16,10 @@
         <h1>{{ page_user.profile.get_screen_name }} {% if page_user.get_full_name %}<small>({{ page_user.username }})</small>{% endif %}</h1>
       </div>
       <div class="profile">
-        <div class="col-md-4 col-sm-4">
+        <div class="col-md-3 col-sm-3">
           <img class="img-responsive picture" src="{{ page_user.profile.profile_picture.url }}" style=""><br></a><br><br>
         </div>
-        <div class="col-md-8 col-sm-8" style="margin-bottom: 2em;">
+        <div class="col-md-9 col-sm-9" style="margin-bottom: 2em;">
             {% include 'core/includes/partial_profile.html' %}
         </div>
       </div>

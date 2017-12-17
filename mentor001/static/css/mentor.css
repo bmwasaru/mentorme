@@ -145,7 +145,7 @@ main .container {
         }
         .story {
             background: rgb(255, 255, 255);
-            height: 220px;
+            /*height: 220px;*/
             padding: 30px;
         }
         .feature-box > i {

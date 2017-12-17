@@ -5,8 +5,10 @@ from django.utils import timezone
 
 
 class Milestone(models.Model):
-    user = models.ForeignKey(
-        User, null=True, related_name='milestone', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True, 
+        related_name='milestone', on_delete=models.CASCADE)
+    # to_user = models.ForeignKey(User, related_name='+', 
+    #     on_delete=models.CASCADE, default=2)
     milestone = models.CharField(max_length=128, default='')
     created_at = models.DateTimeField(auto_now=True)
     finished_at = models.DateTimeField(null=True)
@@ -18,14 +20,16 @@ class Milestone(models.Model):
     def __str__(self):
         return self.milestone
 
-    def count(self):
-        return self.milestone.count()
+    def count(user):
+        return Milestone.objects.filter(user=request.user)
 
-    def count_finished(self):
-        return self.milestone.fiter(is_finished=True).count()
+    def count_finished(user):
+        return Milestone.objects.filter(user=request.user, 
+            is_finished=True).count()
 
-    def count_open(self):
-        return self.milestone.fiter(is_finished=False).count()
+    def count_open(user):
+        return Milestone.objects.filter(user=request.user, 
+            is_finished=False).count()
 
     def close(self):
         self.is_finished = True

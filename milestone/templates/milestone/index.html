@@ -1,28 +1,30 @@
-{% extends "milestone/base.html" %}
-
+{% extends "bas.html" %}
 {% load static %}
 
-{% block js %}
+{% block head %}
 <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
 <script src="{% static 'milestone/js/lists.js' %}"></script>
-{% endblock %}
 
-{% block body %}
-<section class="header">
-  <h2 class="title">Milestones.</h2>
+<style>
+  li{
+    list-style: none;
+  }
+</style>
+
+{% endblock head %}
+
+{% block main %}
+<div class="container">
   <div class="row">
-    <div class="three columns value-prop"></div>
-    <div class="six columns">
+    <div class="col-md-6 col-md-offset-3">
       <form action="{% url 'add' %}" method=post>
         {% csrf_token %}
           {{ context.form }}
-          <input type="submit" class="button button-primary" value="Start one now">
+          <input type="submit" class="btn btn-primary" value="Start one now">
       </form>
     </div>
-  </div>
-  <div class="row">
-    <div class="one-half column open-todos">
-      <h6 class="docs-header open-todos">{{ context.count_open }} open</h6>
+    <div class="col-md-6">
+      <h2 class="heading">{{ context.milestones.count_open }} open</h2>
       <ul>
         {% for todo in context.milestones.all %}
           {% if not todo.is_finished %}
@@ -31,16 +33,16 @@
         {% endfor %}
       </ul>
     </div>
-    <div class="one-half column finished-todos">
-      <h6 class="docs-header finished-todos">{{ count_finished }} finished</h6>
+    <div class="col-md-6">
+      <h2 class="heading">{{ context.milestones.count_finished }} finished</h2>
       <ul>
         {% for todo in context.milestones.all %}
           {% if todo.is_finished %}
-          <li><input type="checkbox" id="checkbox" data-todo-id="{{ todo.id }}" checked="checked"> {{ todo.milestone }}</li>
+          <li style="text-decoration: line-through;"><input type="checkbox" id="checkbox" data-todo-id="{{ todo.id }}" checked="checked"> {{ todo.milestone }}</li>
           {% endif %}
         {% endfor %}
       </ul>
-    </div>
-  </div>  
-</section>
-{% endblock %}
+    </div> 
+  </div>
+</div>
+{% endblock main %}

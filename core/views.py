@@ -41,10 +41,7 @@ def home(request):
             recipient = ['issaziri@gmail.com']
             send_mail(subject, message, sender, recipient)
         
-        context = {
-            "send_mail_form":form
-        }
-        return render(request, 'index.html', {'context': context})
+        return render(request, 'index.html', {'form': form})
 
 
 @login_required

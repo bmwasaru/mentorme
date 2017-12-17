@@ -105,18 +105,18 @@
         <div class="container" >
             
             <div class="row">
-                <div class="col-md-6 col-sm-6 ">
-                    <h3 class="">We'd love to hear from you!</h3>
+                <div class="col-md-8 col-md-offset-2 col-sm-8 ">
+                    <h3 class="center">We'd love to hear from you!</h3>
                     <form action="" method="POST">
                         {% csrf_token %}
                         <div class="form-group">
-                            {{ send_mail_form.sender }}
+                            {{ form.sender }}
                         </div>
                         <div class="form-group">
-                            {{ send_mail_form.subject }}
+                            {{ form.subject }}
                         </div> 
                         <div class="form-group">
-                            {{ send_mail_form.message }}
+                            {{ form.message }}
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary width-100">Send Me</button>
@@ -125,12 +125,12 @@
                     <!--/ form-->
                 </div>
                 <!--/ .col-md-10-->
-                <div class="col-md-6 col-sm-6 center" style="padding-top: 70px">
+                <!-- <div class="col-md-6 col-sm-6 center" style="padding-top: 70px">
                     <h3><b>Mentor001</b></h3>
                     <h3><b>Swahilipot Hub,</b></h3>
                     <h3><b>Next to Mombasa Hospital</b></h3>
                     <h3><b>+254798428055</b></h3>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="bg bg-color-neutral opacity-50"></div>    

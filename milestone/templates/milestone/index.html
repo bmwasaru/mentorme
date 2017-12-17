@@ -1,0 +1,46 @@
+{% extends "milestone/base.html" %}
+
+{% load static %}
+
+{% block js %}
+<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+<script src="{% static 'milestone/js/lists.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+<section class="header">
+  <h2 class="title">Milestones.</h2>
+  <div class="row">
+    <div class="three columns value-prop"></div>
+    <div class="six columns">
+      <form action="{% url 'add' %}" method=post>
+        {% csrf_token %}
+          {{ context.form }}
+          <input type="submit" class="button button-primary" value="Start one now">
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="one-half column open-todos">
+      <h6 class="docs-header open-todos">{{ context.count_open }} open</h6>
+      <ul>
+        {% for todo in context.milestones.all %}
+          {% if not todo.is_finished %}
+            <li><input type="checkbox" id="checkbox" data-todo-id="{{ todo.id }}"> {{ todo.milestone }}</li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="one-half column finished-todos">
+      <h6 class="docs-header finished-todos">{{ count_finished }} finished</h6>
+      <ul>
+        {% for todo in context.milestones.all %}
+          {% if todo.is_finished %}
+          <li><input type="checkbox" id="checkbox" data-todo-id="{{ todo.id }}" checked="checked"> {{ todo.milestone }}</li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>  
+</section>
+{% endblock %}

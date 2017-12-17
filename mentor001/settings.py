@@ -38,11 +38,13 @@ INSTALLED_APPS = [
     'questions',
     'messenger',
     'search',
-    'milestones',
     'multiselectfield',
     'taggit',
     'articles',
     'mentoring',
+    'milestone',
+    'rest_framework',
+    'api',
     # 'debug_toolbar',
 ]
 

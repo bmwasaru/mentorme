@@ -85,15 +85,23 @@ urlpatterns = [
     url(r'^i18n/', include('django.conf.urls.i18n', namespace='i18n')),
     url(r'^articles/', include('articles.urls')),
     url(r'^u/(?P<username>[\w@.-]+)/$', core_views.profile, name='profile'),
+
+    url(r'^api/', include('api.urls')),
+    url(r'^api-auth/', include('rest_framework.urls')),
+
 ]
 
 urlpatterns += [
-    url(r'^milestones/', include('milestones.urls')),
+    url(r'^milestone/', include('milestone.urls')),
 ]
 
 urlpatterns += [
     url(r'^mentoring/', include('mentoring.urls')),
 ]
+
+# urlpatterns += [
+#     url('', include('lists.urls'))
+# ]
 
 admin.site.site_title = 'Mentor001 Adminstration'
 admin.site.site_header = 'Mentor001 Adminstration'

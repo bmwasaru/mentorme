@@ -1,3 +1,7 @@
+from django.conf import settings
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
+from django.views.decorators.cache import cache_page
+
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
@@ -11,10 +15,13 @@ from .forms import (ChangePasswordForm, ProfileForm, ContactForm, InterestForm)
 from authentication.models import Profile, Connection
 
 
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
+
 def index(request):
     return render(request, 'core/includes/cover.html')
 
 
+@cache_page(CACHE_TTL)
 def home(request):
     if request.user.is_authenticated():
         # TODO: return milestones

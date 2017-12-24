@@ -12,25 +12,19 @@
                 <!--/ .col-md-3-->
                 <div class="panel panel-default col-md-5 col-sm-5" style="padding: 20px; margin: 10px">
                     <div class="center">
-                        <!-- <div class="card_up dark_cover_bg">
-                            <div class="card img avatar"><img src="{% static 'images/mentors.jpg' %}" alt=""></div>
-                        </div> -->
                         <h2 style="margin-bottom: 0px;"><b>Mentors</b></h2><hr>
                         <p>People who have been mentored through this platform and feel are capable of mentoring others are given the opportunity to apply fo the mentor status in one simple step</p><hr>
                         <a class="btn btn-primary" data-toggle="modal" data-target="#mentorSignup">Join us. Become a Mentor</a>
-                        <a class="btn btn-default" data-toggle="modal" data-target="#mentorLogin">Login<i class="arrow_right"></i></a>
+                        <a class="btn btn-default" data-toggle="modal" data-target="#platformLogin">Login<i class="arrow_right"></i></a>
                     </div>
                 </div>
                 <!--/ .col-md-3-->
                 <div class="panel panel-default col-md-5 col-sm-5" style="padding: 20px; margin: 10px">
                     <div class="center">
-                        <!-- <div class="card_up dark_cover_bg1 ">
-                            <div class= "avatar card img "><img src="{% static 'images/mentees.png' %}" alt=""></div>
-                        </div> -->
                         <h2 style="margin-bottom: 0px;"><b>Mentees</b></h2><hr>
                         <p>This platform allows you to find a mentor in any field in Technology. The possible mentors are vetted and assessed and are matched with you based on your personality.</p><hr>
                         <a class="btn btn-default" data-toggle="modal" data-target="#menteeSignup">Join us. Become a Mentee</a>
-                        <a class="btn btn-primary" data-toggle="modal" data-target="#menteeLogin">Login<i class="arrow_right"></i></a>
+                        <a class="btn btn-primary" data-toggle="modal" data-target="#platformLogin">Login<i class="arrow_right"></i></a>
                     </div>
                 </div>
                 <!--/ .col-md-3-->
@@ -118,19 +112,12 @@
                         <div class="form-group">
                             {{ form.message }}
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary width-100">Send Me</button>
+                        <div class="form-group center">
+                            <button type="submit" class="btn btn-primary">Send Me</button>
                         </div>
                     </form>
                     <!--/ form-->
                 </div>
-                <!--/ .col-md-10-->
-                <!-- <div class="col-md-6 col-sm-6 center" style="padding-top: 70px">
-                    <h3><b>Mentor001</b></h3>
-                    <h3><b>Swahilipot Hub,</b></h3>
-                    <h3><b>Next to Mombasa Hospital</b></h3>
-                    <h3><b>+254798428055</b></h3>
-                </div> -->
             </div>
         </div>
         <div class="bg bg-color-neutral opacity-50"></div>    
@@ -259,12 +246,12 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="mentorLogin" role="dialog">
+    <div class="modal fade" id="platformLogin" role="dialog">
         <div class="modal-dialog panel panel-default">
             <!-- Modal content-->
             <div class="" style="background-color: #f3f3f3; padding: 20px;">
                 <div class="panel-heading center" style="background-color: #ffbe00;">
-                    <h1>{% trans 'Login as Mentor' %}</h1>
+                    <h1>{% trans 'Login to Mentor001' %}</h1>
                 </div>
                 <div class="panel-body">
                 <form role="form" class="form-horizontal" method="post" action="{% url 'login' %}">
@@ -390,55 +377,6 @@
                       <a href="{% url 'login' %}" class="">{% trans 'Login' %}</a>
                     </div>
                   </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="menteeLogin" role="dialog">
-        <div class="modal-dialog panel panel-default">
-            <!-- Modal content-->
-            <div class="" style="background-color: #f3f3f3; padding: 20px;">
-                <div class="panel-heading center" style="background-color: #ffbe00;">
-                    <h1>{% trans 'Login as Mentee' %}</h1>
-                </div>
-                <div class="panel-body">
-                <form role="form" class="form-horizontal" method="post" action="{% url 'login' %}">
-                {% csrf_token %}
-
-                  <div class="form-group{% if form.username.errors %} has-error{% endif %} ">
-                    <label for="{{ form.username.label }}" class="col-md-3 col-sm-3 control-label">{% trans 'Username' %}:</label>
-                    <div class="col-md-8 col-sm-8">
-                      <input class="form-control" type="text" name="username" id="username">
-                      {% if form.username.help_text %}
-                        <span class="help-block">{{ form.username.help_text }}</span>
-                      {% endif %}
-                      {% for error in form.username.errors %}
-                        <label class="control-label">{{ error }}</label>
-                      {% endfor %}
-                    </div>
-                  </div>
-
-                  <div class="form-group{% if form.password.errors %} has-error{% endif %} ">
-                    <label for="{{ form.password.label }}" class="col-md-3 col-sm-3 control-label">{% trans 'Password' %}:</label>
-                    <div class="col-md-8 col-sm-8">
-                      <input class="form-control" type="password" name="password"8id="password">
-                      {% if form.password.help_text %}
-                        <span class="help-block">{{ form.password.help_text }}</span>
-                      {% endif %}
-                      {% for error in form.password.errors %}
-                        <label class="control-label">{{ error }}</label>
-                      {% endfor %}
-                    </div>
-                  </div>
-                  
-                    <div class="col-md-3 col-sm-3"></div>
-                    <div class="col-md-8 col-sm-8">
-                      <button type="submit" class="btn btn-primary">{% trans 'Login' %}</button>
-                      <a href="{% url 'signup' %}" class="">{% trans 'Sign up for Mentor001' %}</a>
-                    </div>
-                </form>
                 </div>
             </div>
         </div>

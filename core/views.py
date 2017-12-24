@@ -9,16 +9,6 @@ from django.core.mail import send_mail, BadHeaderError
 
 from .forms import (ChangePasswordForm, ProfileForm, ContactForm, InterestForm)
 from authentication.models import Profile, Connection
-import os
-from PIL import Image
-
-
-def image_resize(image):
-    size_300=(300,300)
-    img = Image.open(image)
-    fn, fext = os.path.splitext(image)
-    img.thumbnail(size_300)
-    img.save('media/profiles/{}_300{}'.format(fn, fext))
 
 
 def index(request):

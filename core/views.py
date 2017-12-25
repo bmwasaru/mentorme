@@ -98,7 +98,6 @@ def initial_setup(request):
                 user.profile.highest_level_of_study = form.cleaned_data.get('highest_level_of_study')
                 user.profile.profile_picture = form.cleaned_data.get('profile_picture')
                 user.profile.is_previously_logged_in = True
-                # image_resize(user.profile.profile_picture)
                 user.save()
                 messages.add_message(request,
                                      messages.SUCCESS,
@@ -139,12 +138,10 @@ def settings(request):
             user.profile.location = form.cleaned_data.get('location')
             user.profile.highest_level_of_study = form.cleaned_data.get('highest_level_of_study')
             user.profile.profile_picture = form.cleaned_data.get('profile_picture')
-            # image_resize(user.profile.profile_picture)
             user.save()
             messages.add_message(request,
                                  messages.SUCCESS,
                                  'Your profile was successfully edited.')
-
     else:
         form = ProfileForm(instance=user, initial={
             'first_name': user.first_name,
@@ -175,7 +172,6 @@ def password(request):
             messages.add_message(request, messages.SUCCESS,
                                  'Your password was successfully changed.')
             return redirect('password')
-
     else:
         form = ChangePasswordForm(instance=user)
 

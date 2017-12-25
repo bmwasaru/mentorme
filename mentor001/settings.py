@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'debug_toolbar',
+    'imagekit',
 ]
 
 MIDDLEWARE = [

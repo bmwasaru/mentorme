@@ -15,12 +15,12 @@ class QuestionForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=255,
         required=False,
-        help_text='Use spaces to separate the tags, such as "asp.net mvc5 javascript"')  # noqa: E501
+        help_text='Use spaces to separate the tags, such as "food music business"')  # noqa: E501
     category = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'form-control'}),
-        choices = CATEGORY_CHOICES, 
-        label="", 
-        initial='', 
+        choices=CATEGORY_CHOICES,
+        label="",
+        initial='',
         required=True)
 
     class Meta:

@@ -21,30 +21,35 @@
       <h1>{% trans "Articles" %}</h1>
     </div>
 
-    {% for article in articles %}
-    <div class="col-md-4 col-sm-4 panel" style="padding: 20px; margin: 10px; min-height: 100px;">
-      <div class="info">
-        <span class="date">
-          <span class="glyphicon glyphicon-calendar"></span>
-          {{ article.create_date }}
-        </span>
-        <span class="user">
-          <a href="{% url 'profile' article.create_user.username %}"><img src="{{ article.create_user.profile.profile_picture.url }}"></a>
-          <a href="{% url 'profile' article.create_user.username %}">{{ article.create_user.profile.get_screen_name }}</a>
-        </span>
-        <span class="comments">
-          <span class="glyphicon glyphicon-comment"></span>
-          {{ article.get_comments.count }} Comments
-        </span>
-      </div>
-      <p><a href="{% url 'article' article.slug %}">{{ article.title }}</a></p>
-      {% if article.tags.names %}
-        <div class="tags">
-          {% for tag in article.tags.names %}
-            <a href="{% url 'tag' tag %}"><span class="label label-default">{{ tag }}</span></a>
-          {% endfor %}
+    {% for article in articles %} 
+    <div class="col-md-4 col-sm-4">   
+      <article class="blog-post" ">
+        <h2><a href="{% url 'article' article.slug %}">{{ article.title|truncatechars:50 }}</a></h2>
+        <div class="content">
+          {{ article.get_content_as_markdown|safe|linebreaks|truncatechars:50 }}
         </div>
-      {% endif %}
+        <div class="info">
+          <span class="date">
+            <span class="glyphicon glyphicon-calendar"></span>
+            {{ article.create_date }}
+          </span>
+          <span class="user">
+            <a href="{% url 'profile' article.create_user.username %}"><img src="{{ article.create_user.profile.profile_picture.url }}"></a>
+            <a href="{% url 'profile' article.create_user.username %}">{{ article.create_user.profile.get_screen_name }}</a>
+          </span>
+          <span class="comments">
+            <span class="glyphicon glyphicon-comment"></span>
+            {{ article.get_comments.count }} Comments
+          </span>
+        </div>
+        {% if article.tags.names %}
+          <div class="tags">
+            {% for tag in article.tags.names %}
+              <a href="{% url 'tag' tag %}"><span class="label label-default">{{ tag }}</span></a>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </article>
     </div>
     {% empty %}
       <h4 class="no-data">{% trans 'There is no published article yet' %}. {% if user.profile.role == 'mentor' %}<a href="{% url 'write' %}">{% trans 'Be the first one to publish' %}!</a>{% endif %}</h4>
@@ -66,4 +71,5 @@
 
 </div>
 {% endblock main %}
+
     

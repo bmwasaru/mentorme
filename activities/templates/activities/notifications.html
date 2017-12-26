@@ -19,7 +19,7 @@
   <ul class="all-notifications">
     {% for notification in notifications %}
       <li class="clearfix">
-        <a href="{% url 'profile' notification.from_user.username %}"><img src="{{ notification.from_user.profile.get_gravatar }}" class="user-picture"></a>
+        <a href="{% url 'profile' notification.from_user.username %}"><img src="{{ notification.from_user.profile.profile_picture.url }}" class="user-picture"></a>
         <div>
           <small>{{ notification.date|naturaltime }}</small>
           <p>{{ notification|safe }}</p>

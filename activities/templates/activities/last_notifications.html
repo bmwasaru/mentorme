@@ -4,7 +4,7 @@
 <ul>
   {% for notification in notifications %}
     <li class="clearfix">
-      <img src="{{ notification.from_user.profile.get_gravatar }}" class="user-picture">
+      <img src="{{ notification.from_user.profile.profile_picture.url }}" class="user-picture">
       <p>{{ notification|safe }}</p>
       <p><small>{{ notification.date|naturaltime }}</small></p>
     </li>

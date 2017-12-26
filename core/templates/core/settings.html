@@ -15,7 +15,7 @@
     <div class="col-md-3">
       {% include 'core/partial_settings_menu.html' with active='profile' %}
     </div>
-    <div class="col-md-9 panel" style="background-color: transparent;">
+    <div class="col-md-8 panel" style="background-color: transparent; padding-left: 50px; padding-right: 50px;">
       {% if messages %}
         {% for message in messages %}
           <div class="alert alert-success alert-dismissable">
@@ -28,8 +28,8 @@
         {% csrf_token %}
         {% for field in form.visible_fields %}
           <div class="form-group{% if field.errors %} has-error{% endif %}">
-            <label for="{{ field.label }}" class="col-sm-2 control-label">{{ field.label }}</label>
-            <div class="col-sm-10">
+            <label for="{{ field.label }}" class="control-label">{{ field.label }}</label>
+            <div class="">
               {{ field }}
               {% if field.help_text %}
                 <span class="help-block">{{ field.help_text }}</span>
@@ -48,7 +48,7 @@
           </p>
         {% endif %}
         <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
+          <div class="">
             <button type="submit" class="btn btn-primary">{% trans 'Save' %}</button>
           </div>
         </div>

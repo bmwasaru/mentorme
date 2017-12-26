@@ -25,28 +25,34 @@ class Profile(models.Model):
     gender = models.CharField(
         max_length=6, 
         choices=GENDER_CHOICES, 
-        default='')
+        default=''
+        )
     role = models.CharField(
         max_length=6, 
         blank=False, 
         default='mentee', 
-        choices=ROLE_CHOICES)
+        choices=ROLE_CHOICES
+        )
     phone_number = models.CharField(max_length=32, default='')
     mentorship_areas = MultiSelectField(
         choices=MENTORSHIP_AREAS_CHOICES, 
         max_choices=3, 
-        default='')
+        default=''
+        )
     highest_level_of_study = models.CharField(
         max_length=255, 
         choices=EDUCATION_CHOICES, 
-        default='')
+        default=''
+        )
     is_previously_logged_in = models.CharField(max_length=5, default=False)
     email_confirmed = models.BooleanField(default=False)
     profile_picture = ProcessedImageField(
         upload_to='profiles', 
         processors=[ResizeToFill(300, 300)], 
         format='JPEG', 
-        options={'quality': 99})
+        options={'quality': 99},
+        default=DEFAULT,
+        )
 
     def is_mentor(self):
         return self.role == 'mentor'

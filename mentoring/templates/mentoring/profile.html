@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block title %}
+  {{ page_user.profile.get_screen_name }}
+{% endblock %}
+
+{% block head %}
+  <link href="{% static 'css/profile.css' %}" rel="stylesheet">
+  <script src="{% static 'js/jquery.bullseye-1.0-min.js' %}"></script>
+  <link href="{% static 'css/messages.css' %}" rel="stylesheet">
+  <script src="{% static 'js/messages.js' %}"></script>
+  <script src="{% static 'js/jquery.typeahead.bundle.js' %}"></script>
+{% endblock head %}
+
+{% block main %}
+<div class="container">
+  <div class="row">
+      <div class="heading">
+        <h1>{{ page_user.profile.get_screen_name }} {% if page_user.get_full_name %}<small>({{ page_user.username }})</small>{% endif %}</h1>
+      </div>
+      <div class="col-md-3 col-sm-3">
+        <img class="img-responsive picture" src="{{ page_user.profile.profile_picture.url }}" style=""><br></a><br><br>
+      </div>
+
+      <div class="col-md-9 col-sm-9">
+        <!-- Modal -->
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="content" style="padding: 15px;">
+                  <form  method="post" action="{% url 'make_connection' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="hidden" id="to" name="to" value="{{ page_user.username }}">
+                    
+                        <textarea class="form-control" id="message" name="message" placeholder="Type your message here" rows="4" style="border-style: ;"></textarea>
+                        <button type="submit" class="btn btn-primary width-100">Connect</button>
+                    </div>
+                  </form>
+                  <script src="{% static 'js/messages.typehead.js' %}"></script>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            
+            <div id="collapse1" class="panel-collapse collapse in">
+              <div class="panel-body">
+                {% include 'core/includes/partial_profile.html' %}
+              </div>
+            </div>
+          </div>
+
+          <a class="btn btn-default" href="" data-toggle="modal" data-target="#myModal" >I'd like to connect</a><br>
+      </div>
+    </div>
+  </div>
+{% endblock main %}

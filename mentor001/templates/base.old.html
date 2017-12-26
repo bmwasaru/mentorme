@@ -1,0 +1,144 @@
+{% load staticfiles i18n %}<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Mentor 001{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/mentor.css' %}?v=1" rel="stylesheet">
+    <link href="{% static 'css/chatbubble.css' %}?v=1" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/mentor001.js' %}"></script>        
+    <style>
+      panel-body{
+        padding: 10px;
+      }
+      .panel > .panel-heading {
+        color: #fff;
+        background-color: #4267b2;
+      }
+      /*a{
+        color: #fff;
+      }*/
+      .btn-primary{
+        background-color: #29487d;
+      }
+      .navbar-brand{
+        color: #fff;
+      }
+      body{
+        /*background-image: url("{% static 'img/sidebar-3.jpg' %}");*/
+        background-color: #f3f3f3;
+      }
+      /*.navbar-default.navbar-nav>li>a {
+          color: #777;
+      }*/
+      .tab-pane{
+          height:10px;
+          overflow-y:scroll;
+      }
+      /*.tooltip-arrow,*/ .blue-tooltip + .tooltip > .tooltip-inner {
+        background-color: #4267b2;
+      }
+      .form-group.required .control-label:after {
+        content:"*";
+        color:red;
+      }
+    </style>                                              
+    {% block head %}{% endblock %}
+  </head>
+  <body style="overflow: auto; padding-bottom: 50px;">
+    {% block body %}
+      <header>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background-color:#4267b2;">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a style="color: #fff" class="navbar-brand" href="{% url 'questions' %}">Mentor001</a>
+            </div>
+            <div class="collapse navbar-collapse" id="menu">
+              <ul class="nav navbar-nav">
+
+              </ul>
+                {% if not hide_search %}
+                  <form class="navbar-form navbar-left" role="search" action="{% url 'search' %}">
+                    <div class="input-group" style="width:250px">
+                      <input type="text" class="form-control" name="q" placeholder="Search">
+                      <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                      </span>
+                    </div>
+                  </form>
+              {% endif %}
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a style="color: #fff" href="{% url 'mentoring' %}">{% trans 'Mentoring' %}</a></li>
+                  <!-- <li><a style="color: #fff" href="{% url 'mentees' %}">{% trans 'Mentees' %}</a></li> -->
+                  <li><a style="color: #fff" href="{% url 'questions' %}">{% trans 'Forum' %}</a></li>
+                  <li><a style="color: #fff" href="{% url 'inbox' %}"><sup><span class="badge pull-right" id="unread-count">0</span></sup> Inbox </a></li>
+                  <li>
+                    <a href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
+                      <span class="glyphicon glyphicon-bell"></span>
+                    </a>
+                  </li>
+                <li>
+                  <a style="color: #fff" href="{% url 'profile' username=user.username %}">{{ user.profile.get_screen_name }}</a>
+                </li>
+                <li class="dropdown">
+                  <a style="color: #fff" href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+{#                    <li><a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span> Inbox</a></li>#}
+                    <li><a href="{% url 'settings' %}">{% trans 'Account Settings' %}</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <main>
+        <div class="container">
+          {% block main %}
+          {% endblock main %}
+        </div>
+
+      </main>
+      <script src="{% static 'js/notifications.js' %}"></script>
+      <script src="{% static 'js/check_messages.js' %}"></script>
+    {% endblock body %}
+
+    <!-- <div style="margin-top: 20px">
+      <div class="copyright">
+          <div class="container">
+            <div class="col-md-6">
+              <p>© 2016 - All Rights with Mentor001</p>
+            </div>
+            <div class="col-md-6">
+              <ul class="bottom_ul">
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Faq's</a></li>
+                <li><a href="#">Contact us</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    </div> -->
+    
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    </script>
+
+  </body>
+</html>

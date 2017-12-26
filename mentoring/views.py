@@ -5,27 +5,23 @@ from django.contrib.auth.models import User
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
-
-# from core.forms import ProfileForm, EducationForm, ExperienceForm, MentorshipAreaForm
-# from authentication.models import Profile
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 from django.shortcuts import redirect
 from django.template import Context
 from django.template.loader import get_template
+from django.db.models import Q
 
 from mentoring.forms import ContactForm
 from messenger.models import Message
 from authentication.models import Connection
-
 from articles.decorators import user_is_mentor
 
-from django.db.models import Q
 
 @login_required
 def u_profile(request, username):
     page_user = get_object_or_404(User, username=username)
-    return render(request, 'mentoring/_profile.html', {
+    return render(request, 'mentoring/profile.html', {
         'page_user': page_user
         })
 
@@ -33,7 +29,7 @@ def u_profile(request, username):
 @login_required
 def u_education(request):
     users = Education.objects.filter(user=request.user)
-    return redirect(request, 'mentoring/_education.html', {'users': users})
+    return redirect(request, 'mentoring/education.html', {'users': users})
 
 
 @login_required
@@ -51,7 +47,7 @@ def u_inbox(request):
             if conversation['user'].username == active_conversation:
                 conversation['unread'] = 0
 
-    return render(request, 'mentoring/_profile.html', {
+    return render(request, 'mentoring/profile.html', {
         'messages': messages,
         'conversations': conversations,
         'active': active_conversation
@@ -69,7 +65,7 @@ def u_messages(request, username):
         if conversation['user'].username == username:
             conversation['unread'] = 0
 
-    return render(request, 'mentoring/_profile.html', {
+    return render(request, 'mentoring/profile.html', {
         'messages': messages,
         'conversations': conversations,
         'active': active_conversation
@@ -84,52 +80,25 @@ def mentoring(request):
             condition |= Q(profile__mentorship_areas__icontains=string)
 
     if request.user.profile.role=='mentor':
-        users_list = User.objects.filter(condition,
-            profile__role='mentee').order_by('username')[:6]
-        return render(request, 
-            'mentoring/_mentors.html', 
-            {'users_list': users_list})
+        connections = list(Connection.objects.values_list(
+            'user', flat=True).filter(mentor=request.user.id).distinct())
+        if connections:
+            users_list = User.objects.filter(pk__in=connections)
+            return render(request, 
+                        'mentoring/mentors.html', 
+                        {'users_list': users_list})
+        else:
+            users_list = messages.add_message(request, messages.SUCCESS, 
+                'Sorry we do not have mentees for you.')
+            return render(request, 'mentoring/mentors.html', {'users_list': users_list})
     else:
         users_list = User.objects.filter(condition, 
             profile__role='mentor')[:6]
-        return render(request, 'mentoring/_mentees.html', 
+        return render(request, 'mentoring/mentees.html', 
             {'users_list': users_list})
 
 
 @login_required
-def request_mentorship(request):
-    if request.method == 'POST':
-        from_user = request.user
-        print(from_user.id)
-        to_user_username = request.POST.get('to')
-        print(to_user_username)
-        try:
-            to_user = User.objects.get(username=to_user_username)
-            print(to_user.id)
-        except Exception:
-            try:
-                to_user_username = to_user_username[
-                    to_user_username.rfind('(')+1:len(to_user_username)-1]
-                to_user = User.objects.get(username=to_user_username)
-
-            except Exception:
-                return redirect('/mentoring/request_mentorship/')
-
-        message = request.POST.get('message')
-        if len(message.strip()) == 0:
-            return redirect('/mentoring/request_mentorship/')
-
-        if from_user != to_user:
-            Message.send_message(from_user, to_user, message)
-
-        return redirect('/mentoring/{0}/'.format(to_user_username))
-
-    else:
-        conversations = Message.get_conversations(user=request.user)
-        return render(request, 'mentoring/_profile.html',
-                      {'conversations': conversations})
-
-
 def make_connection(request):
     user = request.user
     mentor = request.POST.get('to', None)
@@ -141,16 +110,18 @@ def make_connection(request):
     sender = request.user.email
     
     if user != mentor_object:
-            Message.send_message(user, mentor_object, message)
+        Message.send_message(user, mentor_object, message)
             
     recipient = [mentor_object.email]
     try:
+        if user.profile.role == 'mentor':
+            new_connection = Connection(user=user, mentor=mentor_id, status=1)
+            new_connection.save()
+        else:
+            new_connection = Connection(user=user, mentor=mentor_id)
+            new_connection.save()
         send_mail(subject, message, sender, recipient)
-        new_connection = Connection(
-                user=user,
-                mentor=mentor_id)
-        new_connection.save()
-    except BadHeaderError:
+    except Exception:
         return HttpResponse('invalid header found')
 
     data = {
@@ -158,3 +129,20 @@ def make_connection(request):
     }
 
     return redirect('/mentoring/{0}/'.format(mentor))
+
+
+@login_required
+def connections(request):
+    user = request.user
+    if user.profile.role == 'mentor':
+        con = list(Connection.objects.values_list('mentor', flat=True).filter(
+            user=user.id, status=1))
+        connections = User.objects.filter(pk__in=con)
+        return render(request, 'mentoring/mentors.html', 
+            {'connections': connections})
+    else:
+        con = list(Connection.objects.values_list('user', flat=True).filter(
+            mentor=user.id, status=1))
+        connections = User.objects.filter(pk__in=con)
+        return render(request, 'mentoring/mentees.html', 
+            {'connections': connections})  

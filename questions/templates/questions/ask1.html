@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% block main %}
+<div class="container">
+	<div class="row">
+		<ol class="breadcrumb">
+			<li><a href="{% url 'questions' %}">{% trans 'Questions' %}</a></li>
+			<li class="active">{% trans 'Ask Question'  %}</li>
+		</ol>
+		<form action="{% url 'ask' %}" method="post" class="form-horizontal" role="form">
+			{% csrf_token %}
+			{% for field in form.visible_fields %}
+			  <div class="form-group{% if field.errors %} has-error{% endif %}">
+			    <label for="{{ field.label }}" class="col-sm-2 control-label">{{ field.label }}</label>
+			    <div class="col-sm-8">
+			      {{ field }}
+			    </div>
+			  </div>
+			{% endfor %}
+			<div class="form-group">
+			  <div class="col-sm-offset-2 col-sm-8">
+			    <button type="submit" class="btn btn-primary">{% trans 'Post Your Question' %}</button>
+			    <a href="{% url 'questions' %}" class="btn btn-default">{% trans 'Cancel' %}</a>
+			  </div>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}

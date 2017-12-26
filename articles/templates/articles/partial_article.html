@@ -1,4 +1,3 @@
-<div class="panel pane-default" style="padding: 20px">
 <article class="blog-post" ">
   <h2><a href="{% url 'article' article.slug %}">{{ article.title }}</a></h2>
   <div class="info">
@@ -7,7 +6,7 @@
       {{ article.create_date }}
     </span>
     <span class="user">
-      <a href="{% url 'profile' article.create_user.username %}"><img src="{{ article.create_user.profile.get_picture }}"></a>
+      <a href="{% url 'profile' article.create_user.username %}"><img src="{{ article.create_user.profile.profile_picture.url }}"></a>
       <a href="{% url 'profile' article.create_user.username %}">{{ article.create_user.profile.get_screen_name }}</a>
     </span>
     <span class="comments">
@@ -26,4 +25,3 @@
     </div>
   {% endif %}
 </article>
-</div>

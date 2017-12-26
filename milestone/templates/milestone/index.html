@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+<script src="{% static 'milestone/js/lists.js' %}"></script>
+
+<style>
+  li{
+    list-style: none;
+  }
+</style>
+
+{% endblock head %}
+
+{% block main %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <form action="{% url 'index' %}" method=post>
+        {% csrf_token %}
+          {{ context.form }}
+          <input type="submit" class="btn btn-primary" value="Start one now">
+      </form>
+    </div>
+    <div class="col-md-6">
+      <h2 class="heading">{{ context.milestones.count_open }} open</h2>
+      <ul>
+        {% for todo in context.milestones.all %}
+          {% if not todo.is_finished %}
+            <li><input type="checkbox" id="checkbox" data-todo-id="{{ todo.id }}"> {{ todo.milestone }}</li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <h2 class="heading">{{ context.milestones.count_finished }} finished</h2>
+      <ul>
+        {% for todo in context.milestones.all %}
+          {% if todo.is_finished %}
+          <li style="text-decoration: line-through;"><input type="checkbox" id="checkbox" data-todo-id="{{ todo.id }}" checked="checked"> {{ todo.milestone }}</li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div> 
+  </div>
+</div>
+{% endblock main %}

@@ -1,7 +1,7 @@
 from django import forms
 
 from questions.models import Answer, Question
-from core.choices import CATEGORY_CHOICES
+from core.choices import MENTORSHIP_AREAS_CHOICES
 
 
 class QuestionForm(forms.ModelForm):
@@ -15,17 +15,26 @@ class QuestionForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=255,
         required=False,
+<<<<<<< HEAD
         help_text='Use spaces to separate the tags, such as "food music business"')  # noqa: E501
     category = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'form-control'}),
         choices=CATEGORY_CHOICES,
         label="",
         initial='',
+=======
+        help_text='Use spaces to separate the tags')  # noqa: E501
+    category = forms.ChoiceField(
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        choices = MENTORSHIP_AREAS_CHOICES, 
+        label="", 
+        initial='', 
+>>>>>>> 825551a32bc9f555df48207ad8f59ac1ae5da6da
         required=True)
 
     class Meta:
         model = Question
-        fields = ['title', 'description', 'tags']
+        fields = ['title', 'description', 'tags', 'category']
 
 
 class AnswerForm(forms.ModelForm):

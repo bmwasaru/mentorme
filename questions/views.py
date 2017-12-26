@@ -86,12 +86,12 @@ def ask(request):
             return redirect('/questions/')
 
         else:
-            return render(request, 'questions/ask.html', {'form': form})
+            return render(request, 'questions/ask1.html', {'form': form})
 
     else:
         form = QuestionForm()
 
-    return render(request, 'questions/ask.html', {'form': form})
+    return render(request, 'questions/ask1.html', {'form': form})
 
 
 @login_required

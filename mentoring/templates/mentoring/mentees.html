@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block title %}{% trans 'Mentors' %}{% endblock %}
+
+{% block head %}
+  <link href="{% static 'css/mentors.css' %}" rel="stylesheet">
+{% endblock head %}
+
+{% block main %}
+  <div class="container">
+      <div class="heading">
+        <h1>Mentors availlable for you</h1>
+      </div>
+      
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      {% for user in users_list %}
+        <div class="col-md-4">
+            <div class="story panel panel-default" >
+                <div class="image"><img src="{{ user.profile.profile_picture.url }}" alt=""></div>
+                <blockquote ">
+                    <a href="{% url 'u_profile' user.username %}">{{ user.profile.get_screen_name }}</a>
+                    <br>
+                    <b>Mentorship areas:</b>
+                    {% for item in user.profile.mentorship_areas %}
+                      <li style="list-style-type: none;">
+                        {{ item }}
+                      </li> 
+                    {% endfor %}
+                </blockquote>
+            </div>
+        </div>
+      {% endfor %}
+  </div>
+{% endblock main %}
+            

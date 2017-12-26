@@ -3,14 +3,14 @@ from django.db import models
 
 import markdown
 from activities.models import Activity
-from core.choices import CATEGORY_CHOICES
+from core.choices import MENTORSHIP_AREAS_CHOICES
 
 
 class Question(models.Model):
     user = models.ForeignKey(User)
     title = models.CharField(max_length=255)
     description = models.TextField(max_length=2000)
-    category = models.CharField(max_length=255, choices=CATEGORY_CHOICES, default='')
+    category = models.CharField(max_length=255, choices=MENTORSHIP_AREAS_CHOICES, default='')
     create_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now_add=True)
     favorites = models.IntegerField(default=0)

@@ -39,18 +39,22 @@ INSTALLED_APPS = [
     'questions',
     'messenger',
     'search',
-    'milestones',
     'multiselectfield',
     'taggit',
     'articles',
     'mentoring',
     # 'debug_toolbar',
     'raven.contrib.django.raven_compat',
+    'milestone',
+    'rest_framework',
+    'api',
+    'debug_toolbar',
+    'imagekit',
 ]
 
 MIDDLEWARE = [
     'django.middleware.cache.UpdateCacheMiddleware',
-    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -153,7 +157,7 @@ ANYMAIL = {
     "MAILGUN_API_KEY": os.environ.get('MAILGUN_API_KEY'),
 }
 
-CACHE_TTL = 60 * 0
+CACHE_TTL = 60*15
 
 # if DEBUG == False:
 # Cache time to live is 15 minutes.

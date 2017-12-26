@@ -1,144 +1,133 @@
-{% load staticfiles i18n %}<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}Mentor 001{% endblock %}</title>
-    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+{% load staticfiles i18n %}
+{% load cache %}
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="AthmanZiri">
+
+    <!-- {% cache 500 assets %} -->
+    <link href="{% static 'assets/fonts/elegant-fonts.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900' rel='stylesheet' type='text/css'>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{% static 'css/mentor.css' %}?v=1" rel="stylesheet">
-    <link href="{% static 'css/chatbubble.css' %}?v=1" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="{% static 'js/mentor001.js' %}"></script>        
-    <style>
-      panel-body{
-        padding: 10px;
-      }
-      .panel > .panel-heading {
-        color: #fff;
-        background-color: #4267b2;
-      }
-      /*a{
-        color: #fff;
-      }*/
-      .btn-primary{
-        background-color: #29487d;
-      }
-      .navbar-brand{
-        color: #fff;
-      }
-      body{
-        /*background-image: url("{% static 'img/sidebar-3.jpg' %}");*/
-        background-color: #f3f3f3;
-      }
-      /*.navbar-default.navbar-nav>li>a {
-          color: #777;
-      }*/
-      .tab-pane{
-          height:10px;
-          overflow-y:scroll;
-      }
-      /*.tooltip-arrow,*/ .blue-tooltip + .tooltip > .tooltip-inner {
-        background-color: #4267b2;
-      }
-      .form-group.required .control-label:after {
-        content:"*";
-        color:red;
-      }
-    </style>                                              
-    {% block head %}{% endblock %}
-  </head>
-  <body style="overflow: auto; padding-bottom: 50px;">
-    {% block body %}
-      <header>
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background-color:#4267b2;">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a style="color: #fff" class="navbar-brand" href="{% url 'questions' %}">Mentor001</a>
-            </div>
-            <div class="collapse navbar-collapse" id="menu">
-              <ul class="nav navbar-nav">
+    <!-- <link rel="stylesheet" href="{% static 'assets/css/bootstrap-select.min.css' %}" type="text/css"> -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" type="text/css">
 
-              </ul>
-                {% if not hide_search %}
-                  <form class="navbar-form navbar-left" role="search" action="{% url 'search' %}">
-                    <div class="input-group" style="width:250px">
-                      <input type="text" class="form-control" name="q" placeholder="Search">
-                      <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                      </span>
-                    </div>
-                  </form>
-              {% endif %}
-              <ul class="nav navbar-nav navbar-right">
-                  <li><a style="color: #fff" href="{% url 'mentoring' %}">{% trans 'Mentoring' %}</a></li>
-                  <!-- <li><a style="color: #fff" href="{% url 'mentees' %}">{% trans 'Mentees' %}</a></li> -->
-                  <li><a style="color: #fff" href="{% url 'questions' %}">{% trans 'Forum' %}</a></li>
-                  <li><a style="color: #fff" href="{% url 'inbox' %}"><sup><span class="badge pull-right" id="unread-count">0</span></sup> Inbox </a></li>
-                  <li>
-                    <a href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
-                      <span class="glyphicon glyphicon-bell"></span>
-                    </a>
-                  </li>
-                <li>
-                  <a style="color: #fff" href="{% url 'profile' username=user.username %}">{{ user.profile.get_screen_name }}</a>
-                </li>
-                <li class="dropdown">
-                  <a style="color: #fff" href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-{#                    <li><a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span> Inbox</a></li>#}
-                    <li><a href="{% url 'settings' %}">{% trans 'Account Settings' %}</a></li>
-                    <li class="divider"></li>
-                    <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </header>
-      <main>
-        <div class="container">
-          {% block main %}
-          {% endblock main %}
-        </div>
-
-      </main>
-      <script src="{% static 'js/notifications.js' %}"></script>
-      <script src="{% static 'js/check_messages.js' %}"></script>
-    {% endblock body %}
-
-    <!-- <div style="margin-top: 20px">
-      <div class="copyright">
-          <div class="container">
-            <div class="col-md-6">
-              <p>© 2016 - All Rights with Mentor001</p>
-            </div>
-            <div class="col-md-6">
-              <ul class="bottom_ul">
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Faq's</a></li>
-                <li><a href="#">Contact us</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-    </div> -->
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
     
-    <script>
-    $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-    </script>
+    <link href="{% static 'css/mentor.css' %}?v=1" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/chatbubble.css' %}?v=1" rel="stylesheet" type="text/css">
 
-  </body>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
+    <!-- {% endcache %} -->
+    
+    <title>{% block title %}Mentor 001{% endblock %}</title>
+
+    {% block head %}{% endblock %}
+
+</head>
+
+<body class="platform-body">
+{% block body %}
+<div class="overlay"></div>
+
+<div class="outer-wrapper">
+<div class="page-wrapper">
+    {% block nav-header %}
+    <header class="navigation" id="top" style="background-color: #ffbe00; padding-top: 2px;">
+        <div class="container">
+            <!--/.secondary-nav-->
+            <div class="main-nav" style="padding-top: 2px; padding-bottom: 5px">
+                <div class=""><a href="{% url 'questions' %}"><img src="{% static '/img/mentor1.png' %}" alt="" height="50" width="100" ></a></div><!--/.brand-->
+                <nav class="center">
+                    <ul>
+                        {% if user.is_authenticated %}
+
+                        <li>
+                            <a id="nav_help" class="nav" href="{% url 'mentoring' %}">
+                            Mentoring
+                            </a>               
+                        </li>
+
+                        <li>
+                            <a class="nav" href="{% url 'articles' %}"> 
+                            Articles
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav" href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
+                            <!-- Alerts -->
+                            <div class="nav_icon glyphicon glyphicon-bell"></div>
+                            </a> 
+                        </li>
+
+                        <li class="dropdown">
+                          <a href="#" class="nav dropdown-toggle" data-toggle="dropdown">
+                          {{ user.username}}
+                          </a> 
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span> Inbox</a></li>
+                            <li><a href="{% url 'profile' username=user.username  %}">{% trans 'Profile' %} </a></li>
+                            <li><a href="{% url 'settings' %}">{% trans 'Account Settings' %}</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
+                          </ul>
+                        </li>
+                        
+                        {%endif%}
+                        
+                    </ul>
+                    <div class="nav-toggle"><i class="icon_menu"></i></div>
+                </nav>
+            </div>
+            <!--/.main-nav-->
+        </div>
+        <!--/.container-->
+    </header>
+    <!--/.header-->
+    {% endblock nav-header %}
+    {% block main %}
+    {% endblock main %}
+
+    <!-- footer area -->
+    <footer style="padding: 30px 0px; background-color: #252422; color: #DDDDDD; display: block;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="links">
+                                <h4>Where to find us</h4>
+                                <p>Swahilipot Hub, Next to Mombasa Hospital.</p>
+                                <p>Email: info@mentor001.com</p>
+                                <p>Mobile: 0798428055</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+    <!-- end footer area -->
+
+    </div>
+    </div>
+
+    <script src="{% static 'js/mentor001.js' %}"></script> 
+    <script src="{% static 'js/notifications.js' %}"></script>
+    <script src="{% static 'js/check_messages.js' %}"></script>
+
+    <!-- <script type="text/javascript" src="{% static 'js/bootstrap-select.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery-migrate-1.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery.validate.min.js' %}"></script> -->
+    <script type="text/javascript" src="{% static 'assets/js/custom.js' %}"></script>
+    
+
+{% endblock body %}
+</body>
 </html>

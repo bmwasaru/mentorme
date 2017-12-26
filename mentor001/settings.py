@@ -1,5 +1,6 @@
 import os
 import dj_database_url
+import raven
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'articles',
     'mentoring',
     # 'debug_toolbar',
+    'raven.contrib.django.raven_compat',
 ]
 
 MIDDLEWARE = [
@@ -167,7 +169,7 @@ CACHES = {
         "KEY_PREFIX": "mentor001"
     }
 }
-    
+
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
@@ -182,3 +184,10 @@ CELERY_TIMEZONE = 'Africa/Nairobi'
 
 AFRICAS_TALKING_USERNAME = os.environ.get('AFRICAS_TALKING_USERNAME')
 AFRICAS_TALKING_API_KEY = os.environ.get('AFRICAS_TALKING_API_KEY')
+
+RAVEN_CONFIG = {
+    'dsn': os.environ.get('SENTRY_DNS'),
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    'release': 'https://github.com/Mentor001/platform',
+}

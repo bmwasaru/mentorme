@@ -3,6 +3,6 @@ venv
 staticfiles
 .env
 .idea
-mentor001/local_settings.py
+mentorme/local_settings.py
 media/
 .sample.code.py

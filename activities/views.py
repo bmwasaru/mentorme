@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from activities.models import Notification
-from mentor001.decorators import ajax_required
+from mentorme.decorators import ajax_required
 
 
 @login_required

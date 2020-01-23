@@ -69,7 +69,7 @@ MIDDLEWARE = [
 
 INTERNAL_IPS = '127.0.0.1'
 
-ROOT_URLCONF = 'mentor001.urls'
+ROOT_URLCONF = 'mentorme.urls'
 
 TEMPLATES = [
     {
@@ -89,7 +89,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'mentor001.wsgi.application'
+WSGI_APPLICATION = 'mentorme.wsgi.application'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -170,7 +170,7 @@ CACHES = {
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient"
         },
-        "KEY_PREFIX": "mentor001"
+        "KEY_PREFIX": "mentorme"
     }
 }
 

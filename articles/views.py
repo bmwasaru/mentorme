@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 import markdown
 from articles.forms import ArticleForm
 from articles.models import Article, ArticleComment
-from mentor001.decorators import ajax_required
+from mentorme.decorators import ajax_required
 from articles.decorators import UserIsMentorMixin, user_is_mentor
 
 

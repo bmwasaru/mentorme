@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
-from mentor001.decorators import ajax_required
+from mentorme.decorators import ajax_required
 from .models import Milestone
 from .forms import MilestoneForm
 

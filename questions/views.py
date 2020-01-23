@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.cache import cache_page
 
 from activities.models import Activity
-from mentor001.decorators import ajax_required
+from mentorme.decorators import ajax_required
 from questions.forms import AnswerForm, QuestionForm
 from questions.models import Answer, Question, Tag
 

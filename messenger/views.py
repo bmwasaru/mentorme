@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import redirect, render
 
-from mentor001.decorators import ajax_required
+from mentorme.decorators import ajax_required
 from messenger.models import Message
 
 

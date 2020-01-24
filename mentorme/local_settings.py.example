@@ -1,5 +1,7 @@
 from mentor001.settings import *
 
+INSTALLED_APP += ["debug_toolbar"]
+
 SECRET_KEY="random_long_string"
 
 DEBUG = True

@@ -6,7 +6,6 @@ import raven
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
@@ -43,12 +42,10 @@ INSTALLED_APPS = [
     'taggit',
     'articles',
     'mentoring',
-    # 'debug_toolbar',
     'raven.contrib.django.raven_compat',
     'milestone',
     'rest_framework',
     'api',
-    'debug_toolbar',
     'imagekit',
 ]
 
@@ -157,7 +154,7 @@ ANYMAIL = {
     "MAILGUN_API_KEY": os.environ.get('MAILGUN_API_KEY'),
 }
 
-CACHE_TTL = 60*15
+CACHE_TTL = 60 * 15
 
 # if DEBUG == False:
 # Cache time to live is 15 minutes.
@@ -173,7 +170,6 @@ CACHES = {
         "KEY_PREFIX": "mentorme"
     }
 }
-
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"

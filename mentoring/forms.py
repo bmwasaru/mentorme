@@ -21,6 +21,6 @@ class ContactForm(forms.Form):
 
 
 class MentorshipForm(forms.ModelForm):
-	class Meta:
-		model = Mentorship
-		fields = ['mentor', 'mentee', 'status']
+    class Meta:
+        model = Mentorship
+        fields = ['mentor', 'mentee', 'status']

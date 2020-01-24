@@ -1,74 +1,94 @@
-    <header class="navigation" id="top" style="background-color: #ffbe00; height: 70px">
-        <div class="container">
-            <!--/.secondary-nav-->
-            <div class="main-nav" >
-                <div class="brand"><a href="{% url 'questions' %}"><img src="{% static '/img/mentor.png' %}" alt="" height="60" width="100" style="padding-bottom: 10px"></a></div><!--/.brand-->
-                <nav>
-                    <ul>
-                        {% if user.is_authenticated %}
+<header class="navigation" id="top" style="background-color: #ffbe00; height: 70px">
+    <div class="container">
+        <!--/.secondary-nav-->
+        <div class="main-nav">
+            <div class="brand"><a href="{% url 'questions' %}"><img src="{% static '/img/mentor.png' %}" alt=""
+                                                                    height="60" width="100"
+                                                                    style="padding-bottom: 10px"></a></div>
+            <!--/.brand-->
+            <nav>
+                <ul>
+                    {% if user.is_authenticated %}
 
-                        <li class="nav_item" role="menuitem" ">
-                            <div class="nav_icon glyphicon glyphicon-folder-open" style=""></div>
-                            <a id="nav_help" class="nav" href="{% url 'mentoring' %}"><small>Mentoring</small>
-                            </a>               
-                        </li>
+                    <li class="nav_item" role="menuitem"
+                    ">
+                    <div class="nav_icon glyphicon glyphicon-folder-open" style=""></div>
+                    <a id="nav_help" class="nav" href="{% url 'mentoring' %}">
+                        <small>Mentoring</small>
+                    </a>
+                    </li>
 
-                        <li>
-                            <div class="nav_icon glyphicon glyphicon-folder-open"></div> 
-                            <a class="nav" href="{% url 'articles' %}"><small>Articles</small></a>
-                        </li>
+                    <li>
+                        <div class="nav_icon glyphicon glyphicon-folder-open"></div>
+                        <a class="nav" href="{% url 'articles' %}">
+                            <small>Articles</small>
+                        </a>
+                    </li>
 
-                        <li>
-                            <div class="nav_icon glyphicon glyphicon-globe"></div> 
-                            <a id="questions" class="nav" href="{% url 'questions' %}"><small>Questions</small></a>
-                        </li>
-                        <!-- <li>
-                            <a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span><span class="glyphicon glyphicon-comment platform-glyphicon" style="margin-right: 0em"></span></a>
-                        </li> -->
-                        <li>
-                            <div class="nav_icon glyphicon glyphicon-bell"></div> 
-                            <a id="nav_help" class="nav" href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications"><small>Alerts</small></a>
-                        </li>
-                        <!-- <li>
-                            <div class="glyphicon glyphicon-bell"></div>
-                            <a class="nav" href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
-                            <small>Not</small></a>
-                        </li> -->
+                    <li>
+                        <div class="nav_icon glyphicon glyphicon-globe"></div>
+                        <a id="questions" class="nav" href="{% url 'questions' %}">
+                            <small>Questions</small>
+                        </a>
+                    </li>
+                    <!-- <li>
+                        <a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span><span class="glyphicon glyphicon-comment platform-glyphicon" style="margin-right: 0em"></span></a>
+                    </li> -->
+                    <li>
+                        <div class="nav_icon glyphicon glyphicon-bell"></div>
+                        <a id="nav_help" class="nav" href="#" id="notifications" data-container="body"
+                           data-toggle="popover" data-placement="bottom" title="Notifications">
+                            <small>Alerts</small>
+                        </a>
+                    </li>
+                    <!-- <li>
+                        <div class="glyphicon glyphicon-bell"></div>
+                        <a class="nav" href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
+                        <small>Not</small></a>
+                    </li> -->
 
-                        <li id="nav_help_li" class="nav_item" role="menuitem" aria-labelledby="nav_help">
-                            <div class="nav_icon badge ">
-                                <span id="unread-count">0</span>
-                            </div>
-                            <a id="messages" class="nav" href="{% url 'inbox' %}"><small>Inbox</small></a>
-                        </li>
+                    <li id="nav_help_li" class="nav_item" role="menuitem" aria-labelledby="nav_help">
+                        <div class="nav_icon badge ">
+                            <span id="unread-count">0</span>
+                        </div>
+                        <a id="messages" class="nav" href="{% url 'inbox' %}">
+                            <small>Inbox</small>
+                        </a>
+                    </li>
 
-                        <li class="nav_item" role="menuitem" ">
-                            <div class="nav_icon glyphicon glyphicon-user" style=""></div>
-                            <a id="nav_help" class="nav" href="{% url 'profile' username=user.username  %}"><small>{{ user.username}}</small> </a>               
-                        </li>
+                    <li class="nav_item" role="menuitem"
+                    ">
+                    <div class="nav_icon glyphicon glyphicon-user" style=""></div>
+                    <a id="nav_help" class="nav" href="{% url 'profile' username=user.username  %}">
+                        <small>{{ user.username}}</small>
+                    </a>
+                    </li>
 
-                        <!-- <li>
-                            <a href="{% url 'profile' username=user.username %}"><span class="glyphicon glyphicon glyphicon-user platform-glyphicon"></span></a>
-                        </li> -->
+                    <!-- <li>
+                        <a href="{% url 'profile' username=user.username %}"><span class="glyphicon glyphicon glyphicon-user platform-glyphicon"></span></a>
+                    </li> -->
 
-                        <li class="dropdown">
-                            <div class="nav_icon glyphicon glyphicon-cog"></div>
-                          <a class="nav" style="" href="#" class="dropdown-toggle" data-toggle="dropdown"><small>Settings</small></a>
-                          <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span> Inbox</a></li>
+                    <li class="dropdown">
+                        <div class="nav_icon glyphicon glyphicon-cog"></div>
+                        <a class="nav" style="" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <small>Settings</small>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span>
+                                Inbox</a></li>
                             <li><a href="{% url 'settings' %}">{% trans 'Account Settings' %}</a></li>
                             <li class="divider"></li>
                             <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
-                          </ul>
-                        </li>
-                        {% endif %}
-                        
-                    </ul>
-                    <div class="nav-toggle"><i class="icon_menu"></i></div>
-                </nav>
-            </div>
-            <!--/.main-nav-->
+                        </ul>
+                    </li>
+                    {% endif %}
+
+                </ul>
+                <div class="nav-toggle"><i class="icon_menu"></i></div>
+            </nav>
         </div>
-        <!--/.container-->
-    </header>
-    <!--/.header-->
+        <!--/.main-nav-->
+    </div>
+    <!--/.container-->
+</header>
+<!--/.header-->

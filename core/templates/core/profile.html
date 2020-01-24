@@ -5,24 +5,28 @@
 {% block title %}{{ page_user.profile.get_screen_name }}{% endblock %}
 
 {% block head %}
-  <link href="{% static 'css/profile.css' %}" rel="stylesheet">
-  <script src="{% static 'js/jquery.bullseye-1.0-min.js' %}"></script>
+<link href="{% static 'css/profile.css' %}" rel="stylesheet">
+<script src="{% static 'js/jquery.bullseye-1.0-min.js' %}"></script>
 {% endblock head %}
 
 {% block main %}
 <div class="container">
-  <div class="row">
-      <div class="heading">
-        <h1>{{ page_user.profile.get_screen_name }} {% if page_user.get_full_name %}<small>({{ page_user.username }})</small>{% endif %}</h1>
-      </div>
-      <div class="profile">
-        <div class="col-md-3 col-sm-3">
-          <img class="img-responsive picture" src="{{ page_user.profile.profile_picture.url }}" style=""><br></a><br><br>
+    <div class="row">
+        <div class="heading">
+            <h1>{{ page_user.profile.get_screen_name }} {% if page_user.get_full_name %}
+                <small>({{ page_user.username }})</small>
+                {% endif %}
+            </h1>
         </div>
-        <div class="col-md-9 col-sm-9" style="margin-bottom: 2em;">
-            {% include 'core/includes/partial_profile.html' %}
+        <div class="profile">
+            <div class="col-md-3 col-sm-3">
+                <img class="img-responsive picture" src="{{ page_user.profile.profile_picture.url }}" style=""><br></a>
+                <br><br>
+            </div>
+            <div class="col-md-9 col-sm-9" style="margin-bottom: 2em;">
+                {% include 'core/includes/partial_profile.html' %}
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 {% endblock main %}

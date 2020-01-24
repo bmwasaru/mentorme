@@ -11,6 +11,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
 from authentication.tokens import account_activation_token
 
+
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -19,7 +20,7 @@ def signup(request):
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
             user = User.objects.create_user(username=username, password=password,
-                                     email=email)
+                                            email=email)
             user.refresh_from_db()
             user.profile.role = form.cleaned_data.get('role')
             user.save()

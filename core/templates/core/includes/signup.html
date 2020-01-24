@@ -1,71 +1,73 @@
 {% load staticfiles %}
 {% load i18n %}
-		<div class="modal fade" id="signin-modal-mentor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    	  <div class="modal-dialog" style="margin-top:160px;">
+<div class="modal fade" id="signin-modal-mentor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true" style="display: none;">
+    <div class="modal-dialog" style="margin-top:160px;">
 
-			<div class="loginmodal-container">
-				<h1 class="highlighted">Join Us. Become a <strong>Mentor </strong> </h1><br>
+        <div class="loginmodal-container">
+            <h1 class="highlighted">Join Us. Become a <strong>Mentor </strong></h1><br>
 
-				  <form action="{% url 'signup' %}" method="post" role="form">
-				  	{% csrf_token %}
-				  	<div class="md-input {% if form.username.errors %} has-error{% endif %}">
-	                    <input class="md-form-control" required="" type="username" name="username" id="username">
-	                    {% for error in form.username.errors %}
-				            <label class="control-label">{{ error }}</label>
-				          {% endfor %}
-	                    <span class="highlight"></span>
-	                    <span class="bar"></span>
-	                    <label>{% trans 'Username' %}</label>
-                    </div>
+            <form action="{% url 'signup' %}" method="post" role="form">
+                {% csrf_token %}
+                <div class="md-input {% if form.username.errors %} has-error{% endif %}">
+                    <input class="md-form-control" required="" type="username" name="username" id="username">
+                    {% for error in form.username.errors %}
+                    <label class="control-label">{{ error }}</label>
+                    {% endfor %}
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{% trans 'Username' %}</label>
+                </div>
 
-                    <div class="md-input {% if form.email.errors %} has-error{% endif %}">
-	                    <input class="md-form-control" required="" type="email" name="email" id="username">
-	                    {% for error in form.email.errors %}
-				            <label class="control-label">{{ error }}</label>
-				          {% endfor %}
-	                    <span class="highlight"></span>
-	                    <span class="bar"></span>
-	                    <label>{% trans 'Email' %}</label>
-                    </div>
+                <div class="md-input {% if form.email.errors %} has-error{% endif %}">
+                    <input class="md-form-control" required="" type="email" name="email" id="username">
+                    {% for error in form.email.errors %}
+                    <label class="control-label">{{ error }}</label>
+                    {% endfor %}
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{% trans 'Email' %}</label>
+                </div>
 
-                    <div class="md-input {% if form.role.errors %} has-error{% endif %}">
-	                    <input class="md-form-control" required="" type="hidden" name="role" id="role" value="mentor">
-	                    {% for error in form.role.errors %}
-				            <label class="control-label">{{ error }}</label>
-				          {% endfor %}
-	                    <span class="highlight"></span>
-	                    <span class="bar"></span>
-	                    <label>{% trans 'Role' %}</label>
-                    </div>
+                <div class="md-input {% if form.role.errors %} has-error{% endif %}">
+                    <input class="md-form-control" required="" type="hidden" name="role" id="role" value="mentor">
+                    {% for error in form.role.errors %}
+                    <label class="control-label">{{ error }}</label>
+                    {% endfor %}
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{% trans 'Role' %}</label>
+                </div>
 
-                    <div class="md-input {% if form.password.errors %} has-error{% endif %}">
-	                    <input class="md-form-control" required="" type="password" name="password" id="password">
-	                    {% for error in form.password.errors %}
-				            <label class="control-label">{{ error }}</label>
-				          {% endfor %}
-	                    <span class="highlight"></span>
-	                    <span class="bar"></span>
-	                    <label>{% trans 'Password' %}</label>
-                    </div>
+                <div class="md-input {% if form.password.errors %} has-error{% endif %}">
+                    <input class="md-form-control" required="" type="password" name="password" id="password">
+                    {% for error in form.password.errors %}
+                    <label class="control-label">{{ error }}</label>
+                    {% endfor %}
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{% trans 'Password' %}</label>
+                </div>
 
-                    <div class="md-input {% if form.confirm_password.errors %} has-error{% endif %}">
-	                    <input class="md-form-control" required="" type="password" name="confirm_password" id="confirm_password">
-	                    {% for error in form.confirm_password.errors %}
-				            <label class="control-label">{{ error }}</label>
-				          {% endfor %}
-	                    <span class="highlight"></span>
-	                    <span class="bar"></span>
-	                    <label>{% trans 'Confirm Password' %}</label>
-                    </div>
-					<div class="signin_div">
-						<button class="btn btn-primary" type="submit">SIGN IN</button>
-					</div>
+                <div class="md-input {% if form.confirm_password.errors %} has-error{% endif %}">
+                    <input class="md-form-control" required="" type="password" name="confirm_password"
+                           id="confirm_password">
+                    {% for error in form.confirm_password.errors %}
+                    <label class="control-label">{{ error }}</label>
+                    {% endfor %}
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{% trans 'Confirm Password' %}</label>
+                </div>
+                <div class="signin_div">
+                    <button class="btn btn-primary" type="submit">SIGN IN</button>
+                </div>
 
-				  </form>
+            </form>
 
-				  <div class="login-help">
-					 <a href="#" style="float:right;">Forgot Password? </a>
-				  </div>
-				</div>
-			</div>
-		</div>
+            <div class="login-help">
+                <a href="#" style="float:right;">Forgot Password? </a>
+            </div>
+        </div>
+    </div>
+</div>

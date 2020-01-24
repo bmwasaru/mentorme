@@ -29,7 +29,7 @@ def search(request):
         results['users'] = User.objects.filter(
             Q(username__icontains=querystring) | Q(
                 first_name__icontains=querystring) | Q(
-                    last_name__icontains=querystring))
+                last_name__icontains=querystring))
         count['questions'] = results['questions'].count()
         count['users'] = results['users'].count()
 

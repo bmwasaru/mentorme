@@ -23,36 +23,36 @@ class Profile(models.Model):
     location = models.CharField(max_length=50, default='')
     bio = models.TextField(default='')
     gender = models.CharField(
-        max_length=6, 
-        choices=GENDER_CHOICES, 
+        max_length=6,
+        choices=GENDER_CHOICES,
         default=''
-        )
+    )
     role = models.CharField(
-        max_length=6, 
-        blank=False, 
-        default='mentee', 
+        max_length=6,
+        blank=False,
+        default='mentee',
         choices=ROLE_CHOICES
-        )
+    )
     phone_number = models.CharField(max_length=32, default='')
     mentorship_areas = MultiSelectField(
-        choices=MENTORSHIP_AREAS_CHOICES, 
-        max_choices=3, 
+        choices=MENTORSHIP_AREAS_CHOICES,
+        max_choices=3,
         default=''
-        )
+    )
     highest_level_of_study = models.CharField(
-        max_length=255, 
-        choices=EDUCATION_CHOICES, 
+        max_length=255,
+        choices=EDUCATION_CHOICES,
         default=''
-        )
+    )
     is_previously_logged_in = models.CharField(max_length=5, default=False)
     email_confirmed = models.BooleanField(default=False)
     profile_picture = ProcessedImageField(
-        upload_to='profiles', 
-        processors=[ResizeToFill(300, 300)], 
-        format='JPEG', 
+        upload_to='profiles',
+        processors=[ResizeToFill(300, 300)],
+        format='JPEG',
         options={'quality': 99},
         default=DEFAULT,
-        )
+    )
 
     def is_mentor(self):
         return self.role == 'mentor'
@@ -161,22 +161,22 @@ class UserCode(models.Model):
 
 class Interest(models.Model):
     user = models.OneToOneField(
-        User, 
-        blank = True, on_delete = models.CASCADE)
-    stem = models.BooleanField(blank = True, default = False)
-    entrepreneurship = models.BooleanField(blank = True, default = False)
-    career_counseling = models.BooleanField(blank = True, default = False)
+        User,
+        blank=True, on_delete=models.CASCADE)
+    stem = models.BooleanField(blank=True, default=False)
+    entrepreneurship = models.BooleanField(blank=True, default=False)
+    career_counseling = models.BooleanField(blank=True, default=False)
     career_readiness = models.BooleanField(
-        db_column = "career_readiness", 
-        verbose_name = 'career_readiness', 
-        blank = True, default = False)
-    addictions = models.BooleanField(blank = True, default = False)
+        db_column="career_readiness",
+        verbose_name='career_readiness',
+        blank=True, default=False)
+    addictions = models.BooleanField(blank=True, default=False)
 
     class Meta:
         db_table = "interests"
 
     def __unicode__(self):
-        return unicode(self.user.username) 
+        return unicode(self.user.username)
 
 
 class Connection(models.Model):

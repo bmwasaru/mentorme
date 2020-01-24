@@ -5,7 +5,6 @@ from milestone.models import Milestone
 
 
 class MilestoneSerializer(serializers.ModelSerializer):
-
     user = serializers.ReadOnlyField(source='user.username')
 
     class Meta:

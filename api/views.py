@@ -3,6 +3,7 @@ from rest_framework import permissions, viewsets
 from api.serializers import MilestoneSerializer
 from milestone.models import Milestone
 
+
 class IsCreatorOrReadOnly(permissions.BasePermission):
     """
     Object-level permission to only allow owners of an object to edit it.
@@ -24,7 +25,6 @@ class IsCreatorOrReadOnly(permissions.BasePermission):
 
 
 class MilestoneViewSet(viewsets.ModelViewSet):
-
     queryset = Milestone.objects.all()
     serializer_class = MilestoneSerializer
     permission_classes = (IsCreatorOrReadOnly,)

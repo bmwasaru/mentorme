@@ -8,7 +8,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -21,7 +20,9 @@ class Migration(migrations.Migration):
             name='Activity',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('activity_type', models.CharField(choices=[('F', 'Favorite'), ('L', 'Like'), ('U', 'Up Vote'), ('D', 'Down Vote')], max_length=1)),
+                ('activity_type',
+                 models.CharField(choices=[('F', 'Favorite'), ('L', 'Like'), ('U', 'Up Vote'), ('D', 'Down Vote')],
+                                  max_length=1)),
                 ('date', models.DateTimeField(auto_now_add=True)),
                 ('question', models.IntegerField(blank=True, null=True)),
                 ('answer', models.IntegerField(blank=True, null=True)),
@@ -37,12 +38,18 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('date', models.DateTimeField(auto_now_add=True)),
-                ('notification_type', models.CharField(choices=[('F', 'Favorited'), ('A', 'Answered'), ('W', 'Accepted Answer'), ('S', 'Also Answered')], max_length=1)),
+                ('notification_type', models.CharField(
+                    choices=[('F', 'Favorited'), ('A', 'Answered'), ('W', 'Accepted Answer'), ('S', 'Also Answered')],
+                    max_length=1)),
                 ('is_read', models.BooleanField(default=False)),
-                ('answer', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='questions.Answer')),
-                ('from_user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='+', to=settings.AUTH_USER_MODEL)),
-                ('question', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='questions.Question')),
-                ('to_user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='+', to=settings.AUTH_USER_MODEL)),
+                ('answer', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE,
+                                             to='questions.Answer')),
+                ('from_user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='+',
+                                                to=settings.AUTH_USER_MODEL)),
+                ('question', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE,
+                                               to='questions.Question')),
+                ('to_user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='+',
+                                              to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'ordering': ('-date',),

@@ -47,7 +47,7 @@ class SignUpForm(forms.ModelForm):
         max_length=30,
         required=True,
         # help_text='Usernames may contain alphanumeric, _ and . characters'
-        )  # noqa: E261
+    )  # noqa: E261
     email = forms.CharField(
         widget=forms.EmailInput(attrs={'class': 'md-form-control'}),
         # help_text='Required. Inform a valid email address.',

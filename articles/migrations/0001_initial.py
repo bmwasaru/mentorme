@@ -10,7 +10,6 @@ import taggit.managers
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -29,9 +28,14 @@ class Migration(migrations.Migration):
                 ('status', models.CharField(choices=[('D', 'Draft'), ('P', 'Published')], default='D', max_length=1)),
                 ('create_date', models.DateTimeField(auto_now_add=True)),
                 ('update_date', models.DateTimeField(auto_now=True)),
-                ('create_user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('tags', taggit.managers.TaggableManager(help_text='A comma-separated list of tags.', through='taggit.TaggedItem', to='taggit.Tag', verbose_name='Tags')),
-                ('update_user', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to=settings.AUTH_USER_MODEL)),
+                ('create_user',
+                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('tags', taggit.managers.TaggableManager(help_text='A comma-separated list of tags.',
+                                                         through='taggit.TaggedItem', to='taggit.Tag',
+                                                         verbose_name='Tags')),
+                ('update_user',
+                 models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+',
+                                   to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'verbose_name_plural': 'Articles',

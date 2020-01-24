@@ -8,7 +8,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('authentication', '0018_auto_20171023_1304'),
@@ -38,7 +37,8 @@ class Migration(migrations.Migration):
                 ('php', models.BooleanField(default=False)),
                 ('ruby', models.BooleanField(default=False)),
                 ('sql', models.BooleanField(default=False)),
-                ('user', models.OneToOneField(blank=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('user', models.OneToOneField(blank=True, on_delete=django.db.models.deletion.CASCADE,
+                                              to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'db_table': 'languages',

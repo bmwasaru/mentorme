@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^setup/$', core_views.initial_setup, name='initial_setup'),
     # url(r'personality_test/$', 
     #     core_views.personality_test_view, name = 'personality'),
-    
+
     # url(r'^index/$', core_views.index, name='index'),   
 
     # User URLs
@@ -36,8 +36,8 @@ urlpatterns = [
         auth_views.logout, {'next_page': '/'},
         name='logout'),
     url(r'^account/signup/$', mentor_auth_views.signup, name='signup'),
-    url(r'^account/account_activation_sent/$', 
-        mentor_auth_views.account_activation_sent, 
+    url(r'^account/account_activation_sent/$',
+        mentor_auth_views.account_activation_sent,
         name='account_activation_sent'),
     url(r'^account/activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         mentor_auth_views.activate, name='activate'),
@@ -106,11 +106,11 @@ urlpatterns += [
 admin.site.site_title = 'Mentor001 Adminstration'
 admin.site.site_header = 'Mentor001 Adminstration'
 
-
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
     import debug_toolbar
+
     urlpatterns = [
-        url(r'^__debug__/', include(debug_toolbar.urls)),
-    ] + urlpatterns
+                      url(r'^__debug__/', include(debug_toolbar.urls)),
+                  ] + urlpatterns

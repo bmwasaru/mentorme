@@ -15,7 +15,7 @@ class Activity(models.Model):
         (DOWN_VOTE, 'Down Vote'),
     )
 
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
     activity_type = models.CharField(max_length=1, choices=ACTIVITY_TYPES)
     date = models.DateTimeField(auto_now_add=True)
     question = models.IntegerField(null=True, blank=True)
@@ -54,12 +54,12 @@ class Notification(models.Model):
     _COMMENTED_TEMPLATE = '<a href="/{0}/">{1}</a> commented on your article: <a href="/articles/{2}/">{3}</a>'
     _ALSO_COMMENTED_TEMPLATE = '<a href="/{0}/">{1}</a> also commentend your article: <a href="/articles/{2}/">{3}</a>'
 
-    from_user = models.ForeignKey(User, related_name='+')
-    to_user = models.ForeignKey(User, related_name='+')
+    from_user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='+')
+    to_user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='+')
     date = models.DateTimeField(auto_now_add=True)
-    question = models.ForeignKey('questions.Question', null=True, blank=True)
-    answer = models.ForeignKey('questions.Answer', null=True, blank=True)
-    article = models.ForeignKey('articles.Article', null=True, blank=True)
+    question = models.ForeignKey('questions.Question', on_delete=models.PROTECT, null=True, blank=True)
+    answer = models.ForeignKey('questions.Answer', on_delete=models.PROTECT, null=True, blank=True)
+    article = models.ForeignKey('articles.Article', on_delete=models.PROTECT, null=True, blank=True)
     notification_type = models.CharField(max_length=1,
                                          choices=NOTIFICATION_TYPES)
     is_read = models.BooleanField(default=False)
@@ -104,14 +104,14 @@ class Notification(models.Model):
                 escape(self.from_user.profile.get_screen_name()),
                 self.article.slug,
                 escape(self.get_summary(self.article.title))
-                )
+            )
         elif self.notification_type == self.ALSO_COMMENTED:
             return self._ALSO_COMMENTED_TEMPLATE.format(
                 escape(self.from_user.username),
                 escape(self.from_user.profile.get_screen_name()),
                 self.article.slug,
                 escape(self.get_summary(self.article.title))
-                )
+            )
         else:
             return 'Ooops! Something went wrong.'
 

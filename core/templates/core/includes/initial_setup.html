@@ -7,35 +7,36 @@
 
 {% block main %}
 <div class="container">
-<div class="row">
-    <div class="col-md-3 col-sm-3"></div>
+    <div class="row">
+        <div class="col-md-3 col-sm-3"></div>
 
-    <div class="col-md-6 col-sm-6 panel panel-default" style="background-color: transparent; margin-top: 20px;">
-      <div class="panel-body">
-        <h2><strong>{% trans 'Initial Account Setup' %}</strong></h2>
-          <form role="form" class="form-horizontal" method="post" enctype="multipart/form-data" action="{% url 'initial_setup' %}">
-            {% csrf_token %}
-            {% for field in form.visible_fields %}
-              <div class="form-group{% if field.errors %} has-error{% endif %} ">
-                <label for="{{ field.label }}" class="col-md-3 control-label">{{ field.label }}:</label>
-                <div class="col-md-9">
-                  {{ field }}
-                  {% if field.help_text %}
-                    <span class="help-block">{{ field.help_text }}</span>
-                  {% endif %}
-                  {% for error in field.errors %}
-                    <label class="control-label">{{ error }}</label>
-                  {% endfor %}
-                </div>
-              </div>
-            {% endfor %}
-            <div class="col-md-3 col-sm-3"></div>
-            <div class="col-md-9 col-sm-9">
-                <button type="submit" class="btn btn-primary">{% trans 'Next' %}</button>
+        <div class="col-md-6 col-sm-6 panel panel-default" style="background-color: transparent; margin-top: 20px;">
+            <div class="panel-body">
+                <h2><strong>{% trans 'Initial Account Setup' %}</strong></h2>
+                <form role="form" class="form-horizontal" method="post" enctype="multipart/form-data"
+                      action="{% url 'initial_setup' %}">
+                    {% csrf_token %}
+                    {% for field in form.visible_fields %}
+                    <div class="form-group{% if field.errors %} has-error{% endif %} ">
+                        <label for="{{ field.label }}" class="col-md-3 control-label">{{ field.label }}:</label>
+                        <div class="col-md-9">
+                            {{ field }}
+                            {% if field.help_text %}
+                            <span class="help-block">{{ field.help_text }}</span>
+                            {% endif %}
+                            {% for error in field.errors %}
+                            <label class="control-label">{{ error }}</label>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="col-md-3 col-sm-3"></div>
+                    <div class="col-md-9 col-sm-9">
+                        <button type="submit" class="btn btn-primary">{% trans 'Next' %}</button>
+                    </div>
+                </form>
             </div>
-          </form>
-      </div>
-    </div>
+        </div>
     </div>
 </div>
 {% endblock main %}

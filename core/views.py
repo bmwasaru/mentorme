@@ -14,8 +14,8 @@ from django.core.mail import send_mail, BadHeaderError
 from .forms import (ChangePasswordForm, ProfileForm, ContactForm, InterestForm)
 from authentication.models import Profile, Connection
 
-
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
+
 
 def index(request):
     return render(request, 'core/includes/cover.html')
@@ -32,12 +32,12 @@ def home(request):
             form = ContactForm(request.POST)
             if form.is_valid():
                 subject = form.cleaned_data['subject']
-                message = form.cleaned_data['message'] 
+                message = form.cleaned_data['message']
                 sender = form.cleaned_data['sender']
 
             recipient = ['issaziri@gmail.com']
             send_mail(subject, message, sender, recipient)
-        
+
         return render(request, 'index.html', {'form': form})
 
 

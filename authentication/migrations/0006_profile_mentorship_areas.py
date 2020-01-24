@@ -7,7 +7,6 @@ import multiselectfield.db.fields
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('authentication', '0005_profile_education_description'),
     ]
@@ -16,6 +15,10 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='profile',
             name='mentorship_areas',
-            field=multiselectfield.db.fields.MultiSelectField(choices=[('no preference', 'No Preference'), ('academic assistance', 'Academic Assistance'), ('emotional support', 'Emotional Support'), ('entrepreneurship', 'Entrepreneurship'), ('career counceling', 'Career Counceling'), ('interview assistance', 'Interview Assistance')], default='', max_length=107),
+            field=multiselectfield.db.fields.MultiSelectField(
+                choices=[('no preference', 'No Preference'), ('academic assistance', 'Academic Assistance'),
+                         ('emotional support', 'Emotional Support'), ('entrepreneurship', 'Entrepreneurship'),
+                         ('career counceling', 'Career Counceling'), ('interview assistance', 'Interview Assistance')],
+                default='', max_length=107),
         ),
     ]

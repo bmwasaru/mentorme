@@ -9,7 +9,6 @@ import multiselectfield.db.fields
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('authentication', '0017_auto_20170924_0910'),
@@ -21,12 +20,23 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('code', models.CharField(max_length=6)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    'user',
+                    models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.AlterField(
             model_name='profile',
             name='mentorship_areas',
-            field=multiselectfield.db.fields.MultiSelectField(choices=[('academic_assistance', 'Academic Assistance'), ('entrepreneurship', 'Entrepreneurship (Having difficulties being your own boss?)'), ('career_counseling', 'Career Counseling'), ('career_readiness', 'Career readiness (Interviews or Job hunting)'), ('grief_loss', 'Coping with grief and loss'), ('addictions', 'Coping with addictions'), ('abuse', 'Trauma and Abuse'), ('no_preference', 'Prefer not to answer')], default='', max_length=113),
+            field=multiselectfield.db.fields.MultiSelectField(choices=[('academic_assistance', 'Academic Assistance'), (
+                'entrepreneurship', 'Entrepreneurship (Having difficulties being your own boss?)'),
+                                                                       ('career_counseling', 'Career Counseling'), (
+                                                                           'career_readiness',
+                                                                           'Career readiness (Interviews or Job hunting)'),
+                                                                       ('grief_loss', 'Coping with grief and loss'),
+                                                                       ('addictions', 'Coping with addictions'),
+                                                                       ('abuse', 'Trauma and Abuse'),
+                                                                       ('no_preference', 'Prefer not to answer')],
+                                                              default='', max_length=113),
         ),
     ]

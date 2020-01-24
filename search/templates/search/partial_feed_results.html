@@ -3,22 +3,22 @@
 
 <h2>{% trans 'Feed' %}</h2>
 {% if results %}
-  <ul class="feed-results">
+<ul class="feed-results">
     {% for feed in results %}
-      <li feed-id="{{ feed.pk }}">
+    <li feed-id="{{ feed.pk }}">
         <a href="{% url 'profile' feed.user.username %}">
-          <img src="{{ feed.user.profile.get_picture }}" class="pull-left">
+            <img src="{{ feed.user.profile.get_picture }}" class="pull-left">
         </a>
         <div class="post">
-          <h3>
-            <a href="{% url 'profile' feed.user.username %}">{{ feed.user.profile.get_screen_name }}</a>
-            <small>{{ feed.date|naturaltime }}</small>
-          </h3>
-          <p>{{ feed.linkfy_post|safe }}</p>
+            <h3>
+                <a href="{% url 'profile' feed.user.username %}">{{ feed.user.profile.get_screen_name }}</a>
+                <small>{{ feed.date|naturaltime }}</small>
+            </h3>
+            <p>{{ feed.linkfy_post|safe }}</p>
         </div>
-      </li>
+    </li>
     {% endfor %}
-  </ul>
+</ul>
 {% else %}
-  <h4 class="no-result">{% trans 'No feed found' %} :(</h4>
+<h4 class="no-result">{% trans 'No feed found' %} :(</h4>
 {% endif %}

@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('authentication', '0003_auto_20170714_1445'),
     ]
@@ -15,6 +14,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='profile',
             name='education',
-            field=models.CharField(choices=[('primary', 'Primary'), ('secondary', 'Secondary'), ('certificate', 'Certificate'), ('diploma', 'Diploma'), ('undergraduate', 'Undergraduate'), ('postgraduate', 'Postgraduate')], default='secondary', max_length=50),
+            field=models.CharField(
+                choices=[('primary', 'Primary'), ('secondary', 'Secondary'), ('certificate', 'Certificate'),
+                         ('diploma', 'Diploma'), ('undergraduate', 'Undergraduate'), ('postgraduate', 'Postgraduate')],
+                default='secondary', max_length=50),
         ),
     ]

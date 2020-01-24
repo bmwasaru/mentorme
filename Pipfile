@@ -1,0 +1,23 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+django = "*"
+django-restframework = "*"
+psycopg2-binary = "*"
+whitenoise = "*"
+django-multiselectfield = "*"
+djangorestframework = "*"
+six = "*"
+django-imagekit = "*"
+django-taggit = "*"
+django-autoslug = "*"
+python-memcached = "*"
+django-redis = "*"
+
+[requires]
+python_version = "3.6"

@@ -4,198 +4,212 @@
 
 {% block body %}
 <div class="main">
-	<div class="content visible-md visible-lg visible-sm visible-xs">
+    <div class="content visible-md visible-lg visible-sm visible-xs">
 
-	<div class="col-md-5">
-		<div class="card">
-			<div class="card_up dark_cover_bg"></div>
-			<div class="avatar">
-				<img src=" {% static 'images/mentors.jpg' %} " alt="Sample avatar image.">
-			</div>
-			<div class="card-block">
-				<h4 class="card_title">Mentors</h4>
-				<hr/>
-				<p>
-				<i style="font-size:20px;">"</i> We all carry the seeds of greatness within us, but we need an image as a point of focus in order that they may sprout.
-				<i style="font-size:20px;">" <br><br><b><small>Epictetus</small></b> </i>
-				</p>
-				<hr />
-				<p>
-					<button class="btn btn-primary" data-toggle="modal" data-target="#signin-modal-mentor" >Join Us. Become a <strong>Mentor </strong> </h5></button>
-					<button class="btn btn-primary" data-toggle="modal" data-target="#login-modal-mentor" >SIGN IN</button>
-				</p>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-md-5">
-		<div class="card right" >
-			<div class="card_up brick_cover_bg"></div>
-			<div class="avatar">
-				<img src="{% static 'images/mentees.png' %} " alt="Sample avatar image.">
-			</div>
-			<div class="card-block">
-				<h4 class="card_title">Mentees</h4>
-				<hr/>
-				<p>
-				<i style="font-size:20px;">"</i> Nobody can go back and start a new beginning, but anyone can start today and make a new ending.
-				<i style="font-size:20px;">" <br><br><b><small>Maria Robinson</small></b> </i>
-				</p>
-				<hr/>
-				<p>
-				    <button class="btn btn-primary" data-toggle="modal" data-target="#signin-modal-mentee">Join Us. Become a <strong>Mentee</strong></h5></button>
-
-                   <button class="btn btn-primary" data-toggle="modal" data-target="#login-modal-mentee" >SIGN IN</button>
-				</p>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="modal fade" id="login-modal-mentee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-  <div class="modal-dialog" style="margin-top:160px;">
-		<div class="loginmodal-container">
-		<h1>Login to Your Mentee Account</h1><br>
-		  <form method="post" action="{% url 'login' %}" role="form">
-		  {% csrf_token %}
-            <div class="md-input {% if form.username.errors %} has-error{% endif %}">
-                <input class="md-form-control" required="" type="text" name="username">
-                {% for error in form.username.errors %}
-		            <label class="control-label">{{ error }}</label>
-		          {% endfor %}
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label for="username">{% trans 'Username' %}</label>
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card_up dark_cover_bg"></div>
+                <div class="avatar">
+                    <img src=" {% static 'images/mentors.jpg' %} " alt="Sample avatar image.">
+                </div>
+                <div class="card-block">
+                    <h4 class="card_title">Mentors</h4>
+                    <hr/>
+                    <p>
+                        <i style="font-size:20px;">"</i> We all carry the seeds of greatness within us, but we need an
+                        image as a point of focus in order that they may sprout.
+                        <i style="font-size:20px;">" <br><br><b>
+                            <small>Epictetus</small>
+                        </b> </i>
+                    </p>
+                    <hr/>
+                    <p>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#signin-modal-mentor">Join Us.
+                            Become a <strong>Mentor </strong> </h5></button>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#login-modal-mentor">SIGN IN
+                        </button>
+                    </p>
+                </div>
             </div>
+        </div>
 
-            <div class="md-input {% if form.password.errors %} has-error{% endif %}">
-                <input class="md-form-control" required="" type="password" name="password" id="password">
-                {% for error in form.password.errors %}
-		            <label class="control-label">{{ error }}</label>
-		          {% endfor %}
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>{% trans 'Password' %}</label>
+        <div class="col-md-5">
+            <div class="card right">
+                <div class="card_up brick_cover_bg"></div>
+                <div class="avatar">
+                    <img src="{% static 'images/mentees.png' %} " alt="Sample avatar image.">
+                </div>
+                <div class="card-block">
+                    <h4 class="card_title">Mentees</h4>
+                    <hr/>
+                    <p>
+                        <i style="font-size:20px;">"</i> Nobody can go back and start a new beginning, but anyone can
+                        start today and make a new ending.
+                        <i style="font-size:20px;">" <br><br><b>
+                            <small>Maria Robinson</small>
+                        </b> </i>
+                    </p>
+                    <hr/>
+                    <p>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#signin-modal-mentee">Join Us.
+                            Become a <strong>Mentee</strong></h5></button>
+
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#login-modal-mentee">SIGN IN
+                        </button>
+                    </p>
+                </div>
             </div>
-			<div class="signin_div">
-				<button class="btn btn-primary" type="submit">{% trans 'SIGN IN' %}</button>
-			</div>
-		  </form>
+        </div>
+    </div>
 
-		  <div class="login-help">
-			 <a href="#" style="float:right;">Forgot Password? </a>
-		  </div>
-		</div>
-	</div>
-</div>
+    <div class="modal fade" id="login-modal-mentee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="margin-top:160px;">
+            <div class="loginmodal-container">
+                <h1>Login to Your Mentee Account</h1><br>
+                <form method="post" action="{% url 'login' %}" role="form">
+                    {% csrf_token %}
+                    <div class="md-input {% if form.username.errors %} has-error{% endif %}">
+                        <input class="md-form-control" required="" type="text" name="username">
+                        {% for error in form.username.errors %}
+                        <label class="control-label">{{ error }}</label>
+                        {% endfor %}
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label for="username">{% trans 'Username' %}</label>
+                    </div>
 
-<div class="modal fade" id="login-modal-mentor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-  <div class="modal-dialog" style="margin-top:160px;">
-		<div class="loginmodal-container">
-		<h1>Login to Your Mentor Account</h1><br>
-		<form method="post" action="{% url 'login' %}" role="form">
-		  {% csrf_token %}
-            <div class="md-input {% if form.username.errors %} has-error{% endif %}">
-                <input class="md-form-control" required="" type="text" name="username">
-                {% for error in form.username.errors %}
-		            <label class="control-label">{{ error }}</label>
-		          {% endfor %}
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label for="username">{% trans 'Username' %}</label>
+                    <div class="md-input {% if form.password.errors %} has-error{% endif %}">
+                        <input class="md-form-control" required="" type="password" name="password" id="password">
+                        {% for error in form.password.errors %}
+                        <label class="control-label">{{ error }}</label>
+                        {% endfor %}
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>{% trans 'Password' %}</label>
+                    </div>
+                    <div class="signin_div">
+                        <button class="btn btn-primary" type="submit">{% trans 'SIGN IN' %}</button>
+                    </div>
+                </form>
+
+                <div class="login-help">
+                    <a href="#" style="float:right;">Forgot Password? </a>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <div class="md-input {% if form.password.errors %} has-error{% endif %}">
-                <input class="md-form-control" required="" type="password" name="password" id="password">
-                {% for error in form.password.errors %}
-		            <label class="control-label">{{ error }}</label>
-		          {% endfor %}
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>{% trans 'Password' %}</label>
+    <div class="modal fade" id="login-modal-mentor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="margin-top:160px;">
+            <div class="loginmodal-container">
+                <h1>Login to Your Mentor Account</h1><br>
+                <form method="post" action="{% url 'login' %}" role="form">
+                    {% csrf_token %}
+                    <div class="md-input {% if form.username.errors %} has-error{% endif %}">
+                        <input class="md-form-control" required="" type="text" name="username">
+                        {% for error in form.username.errors %}
+                        <label class="control-label">{{ error }}</label>
+                        {% endfor %}
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label for="username">{% trans 'Username' %}</label>
+                    </div>
+
+                    <div class="md-input {% if form.password.errors %} has-error{% endif %}">
+                        <input class="md-form-control" required="" type="password" name="password" id="password">
+                        {% for error in form.password.errors %}
+                        <label class="control-label">{{ error }}</label>
+                        {% endfor %}
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>{% trans 'Password' %}</label>
+                    </div>
+                    <div class="signin_div">
+                        <button class="btn btn-primary" type="submit">{% trans 'SIGN IN' %}</button>
+                    </div>
+                </form>
+
+                <div class="login-help">
+                    <a href="#" style="float:right;">Forgot Password? </a>
+                </div>
             </div>
-			<div class="signin_div">
-				<button class="btn btn-primary" type="submit">{% trans 'SIGN IN' %}</button>
-			</div>
-		  </form>
+        </div>
+    </div>
 
-		  <div class="login-help">
-			 <a href="#" style="float:right;">Forgot Password? </a>
-		  </div>
-		</div>
-	</div>
-</div>
+    {% include 'core/includes/signup.html' %}
 
-{% include 'core/includes/signup.html' %}
+    <div class="modal fade" id="signin-modal-mentee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" style="display: none;">
+        <div class="modal-dialog" style="margin-top:160px;">
+            <div class="loginmodal-container">
+                <h1 class="highlighted">Join Us. Become a <strong>Mentee </strong></h1><br>
 
-<div class="modal fade" id="signin-modal-mentee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-  <div class="modal-dialog" style="margin-top:160px;">
-		<div class="loginmodal-container">
-		<h1 class="highlighted">Join Us. Become a <strong>Mentee </strong> </h1><br>
+                <form action="{% url 'signup' %}" method="post" role="form">
+                    {% csrf_token %}
+                    <div class="md-input {% if form.username.errors %} has-error{% endif %}">
+                        <input class="md-form-control" required="" type="username" name="username" id="username">
+                        {% for error in form.username.errors %}
+                        <label class="control-label">{{ error }}</label>
+                        {% endfor %}
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>{% trans 'Username' %}</label>
+                    </div>
 
-		  <form action="{% url 'signup' %}" method="post" role="form">
-		  	{% csrf_token %}
-		  	<div class="md-input {% if form.username.errors %} has-error{% endif %}">
-                <input class="md-form-control" required="" type="username" name="username" id="username">
-                {% for error in form.username.errors %}
-		            <label class="control-label">{{ error }}</label>
-		          {% endfor %}
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>{% trans 'Username' %}</label>
+                    <div class="md-input {% if form.email.errors %} has-error{% endif %}">
+                        <input class="md-form-control" required="" type="email" name="email" id="username">
+                        {% for error in form.email.errors %}
+                        <label class="control-label">{{ error }}</label>
+                        {% endfor %}
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>{% trans 'Email' %}</label>
+                    </div>
+
+                    <div class="md-input {% if form.role.errors %} has-error{% endif %}">
+                        <input class="md-form-control" required="" type="hidden" name="role" id="role" value="mentee">
+                        {% for error in form.role.errors %}
+                        <label class="control-label">{{ error }}</label>
+                        {% endfor %}
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>{% trans 'Role' %}</label>
+                    </div>
+
+                    <div class="md-input {% if form.password.errors %} has-error{% endif %}">
+                        <input class="md-form-control" required="" type="password" name="password" id="password">
+                        {% for error in form.password.errors %}
+                        <label class="control-label">{{ error }}</label>
+                        {% endfor %}
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>{% trans 'Password' %}</label>
+                    </div>
+
+                    <div class="md-input {% if form.confirm_password.errors %} has-error{% endif %}">
+                        <input class="md-form-control" required="" type="password" name="confirm_password"
+                               id="confirm_password">
+                        {% for error in form.confirm_password.errors %}
+                        <label class="control-label">{{ error }}</label>
+                        {% endfor %}
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>{% trans 'Confirm Password' %}</label>
+                    </div>
+                    <div class="signin_div">
+                        <button class="btn btn-primary" type="submit">SIGN IN</button>
+                    </div>
+
+                </form>
+
+                <div class="login-help">
+                    <a href="#" style="float:right;">Forgot Password? </a>
+                </div>
             </div>
-
-            <div class="md-input {% if form.email.errors %} has-error{% endif %}">
-                <input class="md-form-control" required="" type="email" name="email" id="username">
-                {% for error in form.email.errors %}
-		            <label class="control-label">{{ error }}</label>
-		          {% endfor %}
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>{% trans 'Email' %}</label>
-            </div>
-
-            <div class="md-input {% if form.role.errors %} has-error{% endif %}">
-	            <input class="md-form-control" required="" type="hidden" name="role" id="role" value="mentee">
-	            {% for error in form.role.errors %}
-		            <label class="control-label">{{ error }}</label>
-		          {% endfor %}
-	            <span class="highlight"></span>
-	            <span class="bar"></span>
-	            <label>{% trans 'Role' %}</label>
-	        </div>
-
-            <div class="md-input {% if form.password.errors %} has-error{% endif %}">
-                <input class="md-form-control" required="" type="password" name="password" id="password">
-                {% for error in form.password.errors %}
-		            <label class="control-label">{{ error }}</label>
-		          {% endfor %}
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>{% trans 'Password' %}</label>
-            </div>
-
-            <div class="md-input {% if form.confirm_password.errors %} has-error{% endif %}">
-                <input class="md-form-control" required="" type="password" name="confirm_password" id="confirm_password">
-                {% for error in form.confirm_password.errors %}
-		            <label class="control-label">{{ error }}</label>
-		          {% endfor %}
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>{% trans 'Confirm Password' %}</label>
-            </div>
-			<div class="signin_div">
-				<button class="btn btn-primary" type="submit">SIGN IN</button>
-			</div>
-
-		  </form>
-
-		  <div class="login-help">
-			 <a href="#" style="float:right;">Forgot Password? </a>
-		  </div>
-		</div>
-	</div>
-</div>
+        </div>
+    </div>
 </div>
 {% endblock %}
 

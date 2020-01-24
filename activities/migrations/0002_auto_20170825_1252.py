@@ -7,7 +7,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('articles', '0001_initial'),
         ('activities', '0001_initial'),
@@ -17,11 +16,14 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='notification',
             name='article',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='articles.Article'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE,
+                                    to='articles.Article'),
         ),
         migrations.AlterField(
             model_name='notification',
             name='notification_type',
-            field=models.CharField(choices=[('F', 'Favorited'), ('A', 'Answered'), ('W', 'Accepted Answer'), ('E', 'Edited Article'), ('C', 'Commented'), ('D', 'Also Commented'), ('S', 'Also Answered')], max_length=1),
+            field=models.CharField(
+                choices=[('F', 'Favorited'), ('A', 'Answered'), ('W', 'Accepted Answer'), ('E', 'Edited Article'),
+                         ('C', 'Commented'), ('D', 'Also Commented'), ('S', 'Also Answered')], max_length=1),
         ),
     ]

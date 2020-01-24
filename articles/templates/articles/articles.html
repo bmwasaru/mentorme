@@ -3,71 +3,75 @@
 {% load i18n %}
 
 {% block head %}
-  <link href="{% static 'css/articles.css' %}" rel="stylesheet">
+<link href="{% static 'css/articles.css' %}" rel="stylesheet">
 {% endblock head %}
 
 {% block title %} {% trans 'Articles' %} {% endblock %}
 
 {% block main %}
 <div class="container">
-  <div class="row">
-    <div class="heading">
-      {% if user.profile.role == 'mentor' %}
-        <a href="{% url 'write' %}" class="btn btn-primary pull-right">
-          <span class="glyphicon glyphicon-pencil"></span> {% trans 'Write Article' %}
-        </a>
-        <a href="{% url 'drafts' %}" class="btn btn-default pull-right" style="margin-right: .8em">{% trans 'Drafts' %}</a>
-      {% endif %}
-      <h1>{% trans "Articles" %}</h1>
-    </div>
-
-    {% for article in articles %} 
-    <div class="col-md-4 col-sm-4">   
-      <article class="blog-post" ">
-        <h2><a href="{% url 'article' article.slug %}">{{ article.title|truncatechars:50 }}</a></h2>
-        <div class="content">
-          {{ article.get_content_as_markdown|safe|linebreaks|truncatechars:50 }}
+    <div class="row">
+        <div class="heading">
+            {% if user.profile.role == 'mentor' %}
+            <a href="{% url 'write' %}" class="btn btn-primary pull-right">
+                <span class="glyphicon glyphicon-pencil"></span> {% trans 'Write Article' %}
+            </a>
+            <a href="{% url 'drafts' %}" class="btn btn-default pull-right" style="margin-right: .8em">{% trans 'Drafts'
+                %}</a>
+            {% endif %}
+            <h1>{% trans "Articles" %}</h1>
         </div>
-        <div class="info">
+
+        {% for article in articles %}
+        <div class="col-md-4 col-sm-4">
+            <article class="blog-post"
+            ">
+            <h2><a href="{% url 'article' article.slug %}">{{ article.title|truncatechars:50 }}</a></h2>
+            <div class="content">
+                {{ article.get_content_as_markdown|safe|linebreaks|truncatechars:50 }}
+            </div>
+            <div class="info">
           <span class="date">
             <span class="glyphicon glyphicon-calendar"></span>
             {{ article.create_date }}
           </span>
-          <span class="user">
-            <a href="{% url 'profile' article.create_user.username %}"><img src="{{ article.create_user.profile.profile_picture.url }}"></a>
+                <span class="user">
+            <a href="{% url 'profile' article.create_user.username %}"><img
+                    src="{{ article.create_user.profile.profile_picture.url }}"></a>
             <a href="{% url 'profile' article.create_user.username %}">{{ article.create_user.profile.get_screen_name }}</a>
           </span>
-          <span class="comments">
+                <span class="comments">
             <span class="glyphicon glyphicon-comment"></span>
             {{ article.get_comments.count }} Comments
           </span>
+            </div>
+            {% if article.tags.names %}
+            <div class="tags">
+                {% for tag in article.tags.names %}
+                <a href="{% url 'tag' tag %}"><span class="label label-default">{{ tag }}</span></a>
+                {% endfor %}
+            </div>
+            {% endif %}
+            </article>
         </div>
-        {% if article.tags.names %}
-          <div class="tags">
-            {% for tag in article.tags.names %}
-              <a href="{% url 'tag' tag %}"><span class="label label-default">{{ tag }}</span></a>
-            {% endfor %}
-          </div>
-        {% endif %}
-      </article>
-    </div>
-    {% empty %}
-      <h4 class="no-data">{% trans 'There is no published article yet' %}. {% if user.profile.role == 'mentor' %}<a href="{% url 'write' %}">{% trans 'Be the first one to publish' %}!</a>{% endif %}</h4>
-    {% endfor %}  
-  </div>
-
-  {% include 'paginator.html' with paginator=articles %}
-
-  <div class="row">
-    <section id="sidebar" class="sidebar">
-      <aside id="categories">
-        <h4>{% trans 'Popular Tags' %}</h4>
-        {% for tag, count in popular_tags %}
-          <a href="{% url 'tag' tag %}"><span class="label label-default">{{ count }} {{ tag }}</span></a>
+        {% empty %}
+        <h4 class="no-data">{% trans 'There is no published article yet' %}. {% if user.profile.role == 'mentor' %}<a
+                href="{% url 'write' %}">{% trans 'Be the first one to publish' %}!</a>{% endif %}</h4>
         {% endfor %}
-      </aside>
-    </section>
-  </div>
+    </div>
+
+    {% include 'paginator.html' with paginator=articles %}
+
+    <div class="row">
+        <section id="sidebar" class="sidebar">
+            <aside id="categories">
+                <h4>{% trans 'Popular Tags' %}</h4>
+                {% for tag, count in popular_tags %}
+                <a href="{% url 'tag' tag %}"><span class="label label-default">{{ count }} {{ tag }}</span></a>
+                {% endfor %}
+            </aside>
+        </section>
+    </div>
 
 </div>
 {% endblock main %}

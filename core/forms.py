@@ -30,24 +30,24 @@ class ProfileForm(forms.ModelForm):
         max_length=75,
         required=False)
     gender = forms.ChoiceField(
-        widget=forms.Select(attrs={'class': 'form-control'}), 
+        widget=forms.Select(attrs={'class': 'form-control'}),
         choices=GENDER_CHOICES)
     role = forms.ChoiceField(
-        widget=forms.Select(attrs={'class': 'form-control'}), 
+        widget=forms.Select(attrs={'class': 'form-control'}),
         choices=ROLE_CHOICES)
     mentorship_areas = forms.MultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple(), 
+        widget=forms.CheckboxSelectMultiple(),
         choices=MENTORSHIP_AREAS_CHOICES)
     highest_level_of_study = forms.ChoiceField(
-        widget=forms.Select(attrs={'class': 'form-control'}), 
+        widget=forms.Select(attrs={'class': 'form-control'}),
         choices=EDUCATION_CHOICES)
 
     class Meta:
         model = Profile
-        fields = ['first_name', 'last_name', 'email', 'phone_number', 
-        'gender', 'location', 'role', 'mentorship_areas', 'bio',
-        'highest_level_of_study', 'profile_picture']
-        
+        fields = ['first_name', 'last_name', 'email', 'phone_number',
+                  'gender', 'location', 'role', 'mentorship_areas', 'bio',
+                  'highest_level_of_study', 'profile_picture']
+
         widgets = {
             'bio': forms.Textarea(
                 attrs={'cols': 30, 'rows': 10, 'class': 'form-control'}),
@@ -91,26 +91,26 @@ class ChangePasswordForm(forms.ModelForm):
 
 
 class ContactForm(forms.Form):
-    sender = forms.EmailField(max_length = 225, required =True, label = '',
-        widget = forms.EmailInput(attrs={'class': 'form-control', 
-            'placeholder':'Your Email', 'required':'true'}))
-    
-    subject = forms.CharField(max_length = 100, required =True, label='',
-        widget = forms.TextInput(attrs={'class': 'form-control', 
-            'placeholder':'Subject', 'require':'true'}))
-    
-    message = forms.CharField(widget = forms.Textarea(attrs={
-        'class': 'form-control', 
+    sender = forms.EmailField(max_length=225, required=True, label='',
+                              widget=forms.EmailInput(attrs={'class': 'form-control',
+                                                             'placeholder': 'Your Email', 'required': 'true'}))
+
+    subject = forms.CharField(max_length=100, required=True, label='',
+                              widget=forms.TextInput(attrs={'class': 'form-control',
+                                                            'placeholder': 'Subject', 'require': 'true'}))
+
+    message = forms.CharField(widget=forms.Textarea(attrs={
+        'class': 'form-control',
         'rows': 4,
-        'placeholder':'Enter your Message', 'required':'true'
-        }), 
-        required =True, label='')
+        'placeholder': 'Enter your Message', 'required': 'true'
+    }),
+        required=True, label='')
 
 
 class InterestForm(forms.ModelForm):
-  class Meta:
-    model = Interest
-    fields = "__all__"
-    widgets = {
-      'user': forms.HiddenInput,
-    }
+    class Meta:
+        model = Interest
+        fields = "__all__"
+        widgets = {
+            'user': forms.HiddenInput,
+        }

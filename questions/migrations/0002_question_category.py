@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('questions', '0001_initial'),
     ]
@@ -15,6 +14,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='question',
             name='category',
-            field=models.CharField(choices=[('tech', 'Tech'), ('arts', 'Arts'), ('programming', 'Programming'), ('web_development', 'Web Development'), ('actor', 'Actor'), ('actress', 'Actress'), ('law', 'Law'), ('medicine', 'Medicine')], default='', max_length=255),
+            field=models.CharField(choices=[('tech', 'Tech'), ('arts', 'Arts'), ('programming', 'Programming'),
+                                            ('web_development', 'Web Development'), ('actor', 'Actor'),
+                                            ('actress', 'Actress'), ('law', 'Law'), ('medicine', 'Medicine')],
+                                   default='', max_length=255),
         ),
     ]

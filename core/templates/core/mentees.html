@@ -5,32 +5,33 @@
 {% block title %}{% trans 'Mentees' %}{% endblock %}
 
 {% block head %}
-  <link href="{% static 'css/mentors.css' %}" rel="stylesheet">
+<link href="{% static 'css/mentors.css' %}" rel="stylesheet">
 {% endblock head %}
 
 {% block main %}
-  <div class="page-header">
+<div class="page-header">
     <h1>Mentees</h1>
-  </div>
+</div>
 
-    <div class="row">
-      {% for user in users %}
-        <div class="col-md-2 col-sm-4 col-xs-6">
-        <a href="{% url 'profile' user.username %}" data-toggle="tooltip" data-placement="auto" title="{{ user.profile.get_screen_name }}" class="blue-tooltip">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <img class="img-responsive picture" src="{{ user.profile.profile_picture.url }}">
+<div class="row">
+    {% for user in users %}
+    <div class="col-md-2 col-sm-4 col-xs-6">
+        <a href="{% url 'profile' user.username %}" data-toggle="tooltip" data-placement="auto"
+           title="{{ user.profile.get_screen_name }}" class="blue-tooltip">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <img class="img-responsive picture" src="{{ user.profile.profile_picture.url }}">
+                </div>
             </div>
-          </div>
-          </a>
-        </div>
-      {% endfor %}
+        </a>
     </div>
+    {% endfor %}
+</div>
 
-    <div class="row">
-      <div class="col-md-12">
+<div class="row">
+    <div class="col-md-12">
         {% include 'paginator.html' with paginator=users %}
-      </div>
     </div>
+</div>
 
 {% endblock main %}

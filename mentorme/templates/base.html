@@ -16,15 +16,15 @@
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" type="text/css">
 
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
-    
+
     <link href="{% static 'css/mentor.css' %}?v=1" rel="stylesheet" type="text/css">
     <link href="{% static 'css/chatbubble.css' %}?v=1" rel="stylesheet" type="text/css">
 
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    
+
     <!-- {% endcache %} -->
-    
+
     <title>{% block title %}Mentor 001{% endblock %}</title>
 
     {% block head %}{% endblock %}
@@ -36,97 +36,101 @@
 <div class="overlay"></div>
 
 <div class="outer-wrapper">
-<div class="page-wrapper">
-    {% block nav-header %}
-    <header class="navigation" id="top" style="background-color: #ffbe00; padding-top: 2px;">
-        <div class="container">
-            <!--/.secondary-nav-->
-            <div class="main-nav" style="padding-top: 2px; padding-bottom: 5px">
-                <div class=""><a href="{% url 'questions' %}"><img src="{% static '/img/mentor1.png' %}" alt="" height="50" width="100" ></a></div><!--/.brand-->
-                <nav class="center">
-                    <ul>
-                        {% if user.is_authenticated %}
+    <div class="page-wrapper">
+        {% block nav-header %}
+        <header class="navigation" id="top" style="background-color: #ffbe00; padding-top: 2px;">
+            <div class="container">
+                <!--/.secondary-nav-->
+                <div class="main-nav" style="padding-top: 2px; padding-bottom: 5px">
+                    <div class=""><a href="{% url 'questions' %}"><img src="{% static '/img/mentor1.png' %}" alt=""
+                                                                       height="50" width="100"></a></div><!--/.brand-->
+                    <nav class="center">
+                        <ul>
+                            {% if user.is_authenticated %}
 
-                        <li>
-                            <a id="nav_help" class="nav" href="{% url 'mentoring' %}">
-                            Mentoring
-                            </a>               
-                        </li>
+                            <li>
+                                <a id="nav_help" class="nav" href="{% url 'mentoring' %}">
+                                    Mentoring
+                                </a>
+                            </li>
 
-                        <li>
-                            <a class="nav" href="{% url 'articles' %}"> 
-                            Articles
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav" href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
-                            <!-- Alerts -->
-                            <div class="nav_icon glyphicon glyphicon-bell"></div>
-                            </a> 
-                        </li>
+                            <li>
+                                <a class="nav" href="{% url 'articles' %}">
+                                    Articles
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav" href="#" id="notifications" data-container="body" data-toggle="popover"
+                                   data-placement="bottom" title="Notifications">
+                                    <!-- Alerts -->
+                                    <div class="nav_icon glyphicon glyphicon-bell"></div>
+                                </a>
+                            </li>
 
-                        <li class="dropdown">
-                          <a href="#" class="nav dropdown-toggle" data-toggle="dropdown">
-                          {{ user.username}}
-                          </a> 
-                          <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span> Inbox</a></li>
-                            <li><a href="{% url 'profile' username=user.username  %}">{% trans 'Profile' %} </a></li>
-                            <li><a href="{% url 'settings' %}">{% trans 'Account Settings' %}</a></li>
-                            <li class="divider"></li>
-                            <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
-                          </ul>
-                        </li>
-                        
-                        {%endif%}
-                        
-                    </ul>
-                    <div class="nav-toggle"><i class="icon_menu"></i></div>
-                </nav>
+                            <li class="dropdown">
+                                <a href="#" class="nav dropdown-toggle" data-toggle="dropdown">
+                                    {{ user.username}}
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="{% url 'inbox' %}"><span class="badge pull-right"
+                                                                          id="unread-count">0</span> Inbox</a></li>
+                                    <li><a href="{% url 'profile' username=user.username  %}">{% trans 'Profile' %} </a>
+                                    </li>
+                                    <li><a href="{% url 'settings' %}">{% trans 'Account Settings' %}</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
+                                </ul>
+                            </li>
+
+                            {%endif%}
+
+                        </ul>
+                        <div class="nav-toggle"><i class="icon_menu"></i></div>
+                    </nav>
+                </div>
+                <!--/.main-nav-->
             </div>
-            <!--/.main-nav-->
-        </div>
-        <!--/.container-->
-    </header>
-    <!--/.header-->
-    {% endblock nav-header %}
-    {% block main %}
-    {% endblock main %}
+            <!--/.container-->
+        </header>
+        <!--/.header-->
+        {% endblock nav-header %}
+        {% block main %}
+        {% endblock main %}
 
-    <!-- footer area -->
-    <footer style="padding: 30px 0px; background-color: #252422; color: #DDDDDD; display: block;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10 col-sm-10 col-xs-12">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                            <div class="links">
-                                <h4>Where to find us</h4>
-                                <p>Swahilipot Hub, Next to Mombasa Hospital.</p>
-                                <p>Email: info@mentor001.com</p>
-                                <p>Mobile: 0798428055</p>
+        <!-- footer area -->
+        <footer style="padding: 30px 0px; background-color: #252422; color: #DDDDDD; display: block;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-sm-10 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="links">
+                                    <h4>Where to find us</h4>
+                                    <p>Swahilipot Hub, Next to Mombasa Hospital.</p>
+                                    <p>Email: info@mentor001.com</p>
+                                    <p>Mobile: 0798428055</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
-
-        </div>
-    </footer>
-    <!-- end footer area -->
+        </footer>
+        <!-- end footer area -->
 
     </div>
-    </div>
+</div>
 
-    <script src="{% static 'js/mentor001.js' %}"></script> 
-    <script src="{% static 'js/notifications.js' %}"></script>
-    <script src="{% static 'js/check_messages.js' %}"></script>
+<script src="{% static 'js/mentor001.js' %}"></script>
+<script src="{% static 'js/notifications.js' %}"></script>
+<script src="{% static 'js/check_messages.js' %}"></script>
 
-    <!-- <script type="text/javascript" src="{% static 'js/bootstrap-select.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'assets/js/jquery-migrate-1.2.1.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'assets/js/jquery.validate.min.js' %}"></script> -->
-    <script type="text/javascript" src="{% static 'assets/js/custom.js' %}"></script>
-    
+<!-- <script type="text/javascript" src="{% static 'js/bootstrap-select.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/jquery-migrate-1.2.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/jquery.validate.min.js' %}"></script> -->
+<script type="text/javascript" src="{% static 'assets/js/custom.js' %}"></script>
+
 
 {% endblock body %}
 </body>

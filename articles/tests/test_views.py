@@ -11,6 +11,7 @@ class TestViews(TestCase):
     Includes tests for all the functionality
     associated with Views
     """
+
     def setUp(self):
         self.client = Client()
         self.other_client = Client()

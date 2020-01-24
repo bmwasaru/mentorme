@@ -9,7 +9,6 @@ import multiselectfield.db.fields
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -21,10 +20,15 @@ class Migration(migrations.Migration):
             name='Education',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('level_of_study', models.CharField(choices=[('primary', 'Primary'), ('secondary', 'Secondary'), ('certificate', 'Certificate'), ('diploma', 'Diploma'), ('undergraduate', 'Undergraduate'), ('postgraduate', 'Postgraduate')], max_length=255)),
+                ('level_of_study', models.CharField(
+                    choices=[('primary', 'Primary'), ('secondary', 'Secondary'), ('certificate', 'Certificate'),
+                             ('diploma', 'Diploma'), ('undergraduate', 'Undergraduate'),
+                             ('postgraduate', 'Postgraduate')], max_length=255)),
                 ('institution_name', models.CharField(max_length=255)),
                 ('field_of_study', models.CharField(max_length=255)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    'user',
+                    models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'verbose_name': 'Education_background',
@@ -39,7 +43,9 @@ class Migration(migrations.Migration):
                 ('industry', models.CharField(max_length=255)),
                 ('job_title', models.CharField(max_length=255)),
                 ('job_description', models.TextField()),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    'user',
+                    models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'verbose_name': 'Experience',
@@ -50,8 +56,17 @@ class Migration(migrations.Migration):
             name='MentorshipArea',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('mentorship_areas', multiselectfield.db.fields.MultiSelectField(choices=[('academic_assistance', 'Academic Assistance'), ('entrepreneurship', 'Entrepreneurship (Having difficulties being your own boss?)'), ('career_counceling', 'Career Counceling'), ('career_readiness', 'Career readiness (Interviews or Job hunting)'), ('grief_loss', 'Coping with grief and loss'), ('addictions', 'Coping with addictions'), ('abuse', 'Trauma and Abuse'), ('no_preference', 'Prefere not to answer')], default='', max_length=113)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('mentorship_areas', multiselectfield.db.fields.MultiSelectField(
+                    choices=[('academic_assistance', 'Academic Assistance'),
+                             ('entrepreneurship', 'Entrepreneurship (Having difficulties being your own boss?)'),
+                             ('career_counceling', 'Career Counceling'),
+                             ('career_readiness', 'Career readiness (Interviews or Job hunting)'),
+                             ('grief_loss', 'Coping with grief and loss'), ('addictions', 'Coping with addictions'),
+                             ('abuse', 'Trauma and Abuse'), ('no_preference', 'Prefere not to answer')], default='',
+                    max_length=113)),
+                (
+                    'user',
+                    models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'verbose_name': 'Mentorship Area',

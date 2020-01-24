@@ -8,7 +8,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('milestone', '0002_auto_20171213_2003'),
@@ -18,6 +17,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='milestone',
             name='to_user',
-            field=models.ForeignKey(default=2, on_delete=django.db.models.deletion.CASCADE, related_name='+', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(default=2, on_delete=django.db.models.deletion.CASCADE, related_name='+',
+                                    to=settings.AUTH_USER_MODEL),
         ),
     ]

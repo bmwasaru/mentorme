@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('authentication', '0013_profile_mentorship_areas'),
     ]
@@ -15,6 +14,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='profile',
             name='highest_level_of_study',
-            field=models.CharField(choices=[('primary', 'Primary'), ('secondary', 'Secondary'), ('certificate', 'Certificate'), ('diploma', 'Diploma'), ('undergraduate', 'Undergraduate'), ('postgraduate', 'Postgraduate')], default='', max_length=255),
+            field=models.CharField(
+                choices=[('primary', 'Primary'), ('secondary', 'Secondary'), ('certificate', 'Certificate'),
+                         ('diploma', 'Diploma'), ('undergraduate', 'Undergraduate'), ('postgraduate', 'Postgraduate')],
+                default='', max_length=255),
         ),
     ]

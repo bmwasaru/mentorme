@@ -5,37 +5,37 @@
 {% block title %}{{ article.title }}{% endblock %}
 
 {% block head %}
-  <link href="{% static 'css/articles.css' %}" rel="stylesheet">
-  <script src="{% static 'js/articles.js' %}"></script>
+<link href="{% static 'css/articles.css' %}" rel="stylesheet">
+<script src="{% static 'js/articles.js' %}"></script>
 {% endblock head %}
 
 {% block main %}
 <div class="container">
-<div class="row">
-  <ol class="breadcrumb">
-    {% if article.create_user == request.user %}
-    <div>
-      <a href="{% url 'edit_article' article.pk %}" class="btn btn-primary pull-right">
-        <span class="glyphicon glyphicon-pencil"></span> {% trans "Edit Article" %}
-      </a>
+    <div class="row">
+        <ol class="breadcrumb">
+            {% if article.create_user == request.user %}
+            <div>
+                <a href="{% url 'edit_article' article.pk %}" class="btn btn-primary pull-right">
+                    <span class="glyphicon glyphicon-pencil"></span> {% trans "Edit Article" %}
+                </a>
+            </div>
+            {% endif %}
+            <li><a href="{% url 'articles' %}">{% trans 'Articles' %}</a></li>
+            <li class="active">{% trans 'Article' %}</li>
+        </ol>
+
+        <div class="col-md-1 col-sm-1">
+
+        </div>
+
+        <div class="col-md-10 col-sm-10">
+            {% include 'articles/partial_article.html' with article=article %}
+            {% include 'articles/partial_article_comments.html' with article=article %}
+        </div>
+
+        <div class="col-md-1 col-sm-1">
+
+        </div>
     </div>
-  {% endif %}
-    <li><a href="{% url 'articles' %}">{% trans 'Articles' %}</a></li>
-    <li class="active">{% trans 'Article' %}</li>
-  </ol>
-  
-  <div class="col-md-1 col-sm-1">
-    
-  </div>
-
-  <div class="col-md-10 col-sm-10">
-    {% include 'articles/partial_article.html' with article=article %}
-    {% include 'articles/partial_article_comments.html' with article=article %}
-  </div>
-
-  <div class="col-md-1 col-sm-1">
-    
-  </div>
-</div>
 </div>
 {% endblock main %}

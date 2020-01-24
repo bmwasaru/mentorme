@@ -7,7 +7,6 @@ import imagekit.models.fields
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('authentication', '0023_connection_status'),
     ]

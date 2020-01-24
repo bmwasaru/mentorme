@@ -15,22 +15,23 @@ class QuestionForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=255,
         required=False,
-<<<<<<< HEAD
-        help_text='Use spaces to separate the tags, such as "food music business"')  # noqa: E501
+           << << << < HEAD
+    help_text = 'Use spaces to separate the tags, such as "food music business"')  # noqa: E501
     category = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'form-control'}),
         choices=CATEGORY_CHOICES,
         label="",
         initial='',
-=======
-        help_text='Use spaces to separate the tags')  # noqa: E501
+               == == == =
+    help_text = 'Use spaces to separate the tags')  # noqa: E501
     category = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'form-control'}),
-        choices = MENTORSHIP_AREAS_CHOICES, 
-        label="", 
-        initial='', 
->>>>>>> 825551a32bc9f555df48207ad8f59ac1ae5da6da
-        required=True)
+        choices=MENTORSHIP_AREAS_CHOICES,
+        label="",
+        initial='',
+               >> >> >> > 825551
+    a32bc9f555df48207ad8f59ac1ae5da6da
+    required = True)
 
     class Meta:
         model = Question

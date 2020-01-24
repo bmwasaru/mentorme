@@ -2,26 +2,26 @@
 {% load staticfiles %}
 
 {% block head %}
-  <link href="{% static 'css/messages.css' %}" rel="stylesheet">
-  <script src="{% static 'js/messages.js' %}"></script>
-  <script src="{% static 'js/jquery.typeahead.bundle.js' %}"></script>
+<link href="{% static 'css/messages.css' %}" rel="stylesheet">
+<script src="{% static 'js/messages.js' %}"></script>
+<script src="{% static 'js/jquery.typeahead.bundle.js' %}"></script>
 {% endblock head %}
 
 {% block main %}
 <div class="container">
-<div class="row">
-  <div class="heading">
-    <a href="{% url 'new_message' %}" class="btn btn-primary pull-right">New message</a>
-    <h1>{% block page_header %}{% endblock %}</h1>
-  </div>
-  
-    <div class="col-md-3 col-sm-3">
-      {% include 'messenger/includes/partial_conversations.html' with conversations=conversations active=active %}
+    <div class="row">
+        <div class="heading">
+            <a href="{% url 'new_message' %}" class="btn btn-primary pull-right">New message</a>
+            <h1>{% block page_header %}{% endblock %}</h1>
+        </div>
+
+        <div class="col-md-3 col-sm-3">
+            {% include 'messenger/includes/partial_conversations.html' with conversations=conversations active=active %}
+        </div>
+        <div class="col-md-9 col-sm-9">
+            {% block container %}
+            {% endblock container %}
+        </div>
     </div>
-    <div class="col-md-9 col-sm-9">
-      {% block container %}
-      {% endblock container %}
-    </div>
-  </div>
-  </div>
+</div>
 {% endblock main %}

@@ -23,7 +23,7 @@ def u_profile(request, username):
     page_user = get_object_or_404(User, username=username)
     return render(request, 'mentoring/profile.html', {
         'page_user': page_user
-        })
+    })
 
 
 @login_required
@@ -51,7 +51,7 @@ def u_inbox(request):
         'messages': messages,
         'conversations': conversations,
         'active': active_conversation
-        })
+    })
 
 
 @login_required
@@ -69,7 +69,7 @@ def u_messages(request, username):
         'messages': messages,
         'conversations': conversations,
         'active': active_conversation
-        })
+    })
 
 
 @login_required
@@ -77,25 +77,25 @@ def mentoring(request):
     strings = list(request.user.profile.mentorship_areas)
     condition = Q(profile__mentorship_areas__icontains=strings[0])
     for string in strings[1:]:
-            condition |= Q(profile__mentorship_areas__icontains=string)
+        condition |= Q(profile__mentorship_areas__icontains=string)
 
-    if request.user.profile.role=='mentor':
+    if request.user.profile.role == 'mentor':
         connections = list(Connection.objects.values_list(
             'user', flat=True).filter(mentor=request.user.id).distinct())
         if connections:
             users_list = User.objects.filter(pk__in=connections)
-            return render(request, 
-                        'mentoring/mentors.html', 
-                        {'users_list': users_list})
+            return render(request,
+                          'mentoring/mentors.html',
+                          {'users_list': users_list})
         else:
-            users_list = messages.add_message(request, messages.SUCCESS, 
-                'Sorry we do not have mentees for you.')
+            users_list = messages.add_message(request, messages.SUCCESS,
+                                              'Sorry we do not have mentees for you.')
             return render(request, 'mentoring/mentors.html', {'users_list': users_list})
     else:
-        users_list = User.objects.filter(condition, 
-            profile__role='mentor')[:6]
-        return render(request, 'mentoring/mentees.html', 
-            {'users_list': users_list})
+        users_list = User.objects.filter(condition,
+                                         profile__role='mentor')[:6]
+        return render(request, 'mentoring/mentees.html',
+                      {'users_list': users_list})
 
 
 @login_required
@@ -108,10 +108,10 @@ def make_connection(request):
     subject = "Possible mentee connection from Mentor001"
     message = request.POST.get('message')
     sender = request.user.email
-    
+
     if user != mentor_object:
         Message.send_message(user, mentor_object, message)
-            
+
     recipient = [mentor_object.email]
     try:
         if user.profile.role == 'mentor':
@@ -138,11 +138,11 @@ def connections(request):
         con = list(Connection.objects.values_list('mentor', flat=True).filter(
             user=user.id, status=1))
         connections = User.objects.filter(pk__in=con)
-        return render(request, 'mentoring/mentors.html', 
-            {'connections': connections})
+        return render(request, 'mentoring/mentors.html',
+                      {'connections': connections})
     else:
         con = list(Connection.objects.values_list('user', flat=True).filter(
             mentor=user.id, status=1))
         connections = User.objects.filter(pk__in=con)
-        return render(request, 'mentoring/mentees.html', 
-            {'connections': connections})  
+        return render(request, 'mentoring/mentees.html',
+                      {'connections': connections})

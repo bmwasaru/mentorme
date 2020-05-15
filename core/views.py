@@ -23,7 +23,7 @@ def index(request):
 
 @cache_page(CACHE_TTL)
 def home(request):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         # TODO: return milestones
         return HttpResponseRedirect('/questions/')
     else:

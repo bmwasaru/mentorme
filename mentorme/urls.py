@@ -30,41 +30,12 @@ urlpatterns = [
 
     # User URLs
     url(r'^account/login',
-        auth_views.login, {'template_name': 'core/cover.html'},
+        auth_views.auth_login, {'template_name': 'core/cover.html'},
         name='login'),
     url(r'^account/logout',
-        auth_views.logout, {'next_page': '/'},
+        auth_views.auth_logout, {'next_page': '/'},
         name='logout'),
     url(r'^account/signup/$', mentor_auth_views.signup, name='signup'),
-    url(r'^account/account_activation_sent/$',
-        mentor_auth_views.account_activation_sent,
-        name='account_activation_sent'),
-    url(r'^account/activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-        mentor_auth_views.activate, name='activate'),
-
-    url(r'^account/forgot_pass/$', auth_views.password_reset, {
-        'template_name': 'authentication/password_reset.html',
-        'email_template_name': 'authentication/password_reset_email.html'
-    }, "forgot_password"),
-    url(
-        r'^account/forgot_pass_confirm/(?P<uidb64>[^/]+)/(?P<token>[^/]+)/$',
-        auth_views.password_reset_confirm, {
-            'template_name': 'authentication/password_reset_confirm.html',
-            'post_reset_redirect': '/account/forgot_pass_complete/'
-        },
-        name='password_reset_confirm'),
-    url(
-        r'^account/forgot_pass_done/',
-        auth_views.password_reset_done,
-        {'template_name': 'authentication/password_reset_done.html'},
-        name='password_reset_done'),
-    url(r'^account/forgot_pass_complete/', auth_views.password_reset_complete,
-        {'template_name': 'authentication/password_reset_complete.html'}),
-    url(
-        r'^account/forgot_pass_confirm/(?P<uidb64>[^/]+)/(?P<token>[^/]+)/$',
-        auth_views.password_reset_confirm,
-        {'template_name': 'authentication/password_reset_confirm.html'},
-        name='password_reset_confirm'),
     url(r'^settings/$', core_views.settings, name='settings'),
     url(r'^settings/password/$', core_views.password, name='password'),
     url(r'^questions/', include('questions.urls'), name='questions'),
@@ -82,7 +53,6 @@ urlpatterns = [
         activities_views.check_notifications,
         name='check_notifications'),
     url(r'^search/$', search_views.search, name='search'),
-    url(r'^i18n/', include('django.conf.urls.i18n', namespace='i18n')),
     url(r'^articles/', include('articles.urls')),
     url(r'^u/(?P<username>[\w@.-]+)/$', core_views.profile, name='profile'),
 
@@ -99,12 +69,8 @@ urlpatterns += [
     url(r'^mentoring/', include('mentoring.urls')),
 ]
 
-# urlpatterns += [
-#     url('', include('lists.urls'))
-# ]
-
-admin.site.site_title = 'Mentor001 Adminstration'
-admin.site.site_header = 'Mentor001 Adminstration'
+admin.site.site_title = 'MentorMe Adminstration'
+admin.site.site_header = 'MentorMe Adminstration'
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

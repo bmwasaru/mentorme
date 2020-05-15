@@ -6,7 +6,6 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-django = "*"
 django-restframework = "*"
 psycopg2-binary = "*"
 whitenoise = "*"
@@ -18,6 +17,7 @@ django-taggit = "*"
 django-autoslug = "*"
 python-memcached = "*"
 django-redis = "*"
+django-debug-toolbar = "*"
 
 [requires]
 python_version = "3.6"

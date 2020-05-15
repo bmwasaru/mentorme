@@ -22,14 +22,12 @@ def search(request):
             search_type = 'questions'
 
         count = {}
-        results = {}
-        results['questions'] = Question.objects.filter(
+        results = {'questions': Question.objects.filter(
             Q(title__icontains=querystring) | Q(
-                description__icontains=querystring))
-        results['users'] = User.objects.filter(
+                description__icontains=querystring)), 'users': User.objects.filter(
             Q(username__icontains=querystring) | Q(
                 first_name__icontains=querystring) | Q(
-                last_name__icontains=querystring))
+                last_name__icontains=querystring))}
         count['questions'] = results['questions'].count()
         count['users'] = results['users'].count()
 

@@ -1,6 +1,7 @@
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import LoginView
 from django.conf import settings
 from django.core.cache.backends.base import DEFAULT_TIMEOUT
 
@@ -30,7 +31,7 @@ urlpatterns = [
 
     # User URLs
     url(r'^account/login',
-        auth_views.auth_login, {'template_name': 'core/cover.html'},
+        LoginView.as_view(template_name="core/cover.html"),
         name='login'),
     url(r'^account/logout',
         auth_views.auth_logout, {'next_page': '/'},

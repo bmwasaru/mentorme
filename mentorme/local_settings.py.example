@@ -1,6 +1,6 @@
-from mentor001.settings import *
+from mentorme.settings import *
 
-INSTALLED_APP += ["debug_toolbar"]
+INSTALLED_APPS += ["debug_toolbar"]
 
 SECRET_KEY="random_long_string"
 

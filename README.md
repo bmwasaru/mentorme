@@ -13,7 +13,7 @@ or via ssh
     git clone git@github.com:bmwasaru/mentorme.git
 
 ### 2 Install dependencies
-On the project root there is a requirements.pip file. Make sure you install all the required dependencies before running Mentor001
+On the project root there is a Pipfile file. Make sure you install all the required dependencies before running the web server
 
     pipenv shell
     pipenv install

@@ -42,7 +42,7 @@
             <div class="container">
                 <!--/.secondary-nav-->
                 <div class="main-nav" style="padding-top: 2px; padding-bottom: 5px">
-                    <div class=""><a href="{% url 'questions' %}"><img src="{% static '/img/mentor1.png' %}" alt=""
+                    <div class=""><a href="{% url 'questions' %}"><img src="{% static 'img/mentor1.png' %}" alt=""
                                                                        height="50" width="100"></a></div><!--/.brand-->
                     <nav class="center">
                         <ul>
@@ -78,7 +78,7 @@
                                     </li>
                                     <li><a href="{% url 'settings' %}">{% trans 'Account Settings' %}</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
+                                    <li><form method="post" action="{% url 'logout' %}">{% csrf_token %}<button type="submit" class="btn btn-link">{% trans 'Log out' %}</button></form></li>
                                 </ul>
                             </li>
 

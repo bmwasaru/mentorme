@@ -1,20 +1,19 @@
 from mentorme.settings import *
 
-INSTALLED_APPS += ["debug_toolbar"]
-
-SECRET_KEY="random_long_string"
-
+SECRET_KEY = "replace-with-a-generated-secret-key"
 DEBUG = True
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db_name',
-        'USER': 'db_user',
-        'PASSWORD': 'db_user_password',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
+if "debug_toolbar" not in INSTALLED_APPS:
+    INSTALLED_APPS += ["debug_toolbar"]
+if "debug_toolbar.middleware.DebugToolbarMiddleware" not in MIDDLEWARE:
+    MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
 
+# SQLite is the default for local development. To use PostgreSQL, set DATABASE_URL
+# before starting Django or override DATABASES here (PostgreSQL 15+).
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+CACHES = {'default': {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'}}
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+STORAGES = {
+    'default': {'BACKEND': 'django.core.files.storage.FileSystemStorage'},
+    'staticfiles': {'BACKEND': 'django.contrib.staticfiles.storage.StaticFilesStorage'},
+}

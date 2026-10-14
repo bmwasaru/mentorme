@@ -95,8 +95,7 @@
                         </a>
                     </li>
                     <li>
-                        <a style="color: #fff" href="{% url 'profile' username=user.username %}">{{
-                            user.profile.get_screen_name }}</a>
+                        <a style="color: #fff" href="{% url 'profile' username=user.username %}">{{ user.profile.get_screen_name }}</a>
                     </li>
                     <li class="dropdown">
                         <a style="color: #fff" href="#" class="dropdown-toggle" data-toggle="dropdown"><b
@@ -108,7 +107,7 @@
                             #}
                             <li><a href="{% url 'settings' %}">{% trans 'Account Settings' %}</a></li>
                             <li class="divider"></li>
-                            <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
+                            <li><form method="post" action="{% url 'logout' %}">{% csrf_token %}<button type="submit" class="btn btn-link">{% trans 'Log out' %}</button></form></li>
                         </ul>
                     </li>
                 </ul>

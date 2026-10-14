@@ -3,10 +3,10 @@ from __future__ import unicode_literals
 from django.contrib.auth.models import User
 from django.db import models
 from autoslug import AutoSlugField
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.db.models import Count
 
-import markdown
+from mentorme.markdown import render_markdown
 from taggit.managers import TaggableManager
 
 
@@ -38,7 +38,7 @@ class Article(models.Model):
         return self.title
 
     def get_content_as_markdown(self):
-        return markdown.markdown(self.content, safe_mode='escape')
+        return render_markdown(self.content)
 
     @staticmethod
     def get_published():
@@ -67,7 +67,7 @@ class Article(models.Model):
             return self.content
 
     def get_summary_as_markdown(self):
-        return markdown.markdown(self.get_summary(), safe_mode='escape')
+        return render_markdown(self.get_summary())
 
     def get_comments(self):
         return ArticleComment.objects.filter(article=self)
@@ -88,4 +88,4 @@ class ArticleComment(models.Model):
         return '{0} - {1}'.format(self.user.username, self.article.title)
 
     def get_comment_as_markdown(self):
-        return markdown.markdown(self.comment, safe_mode='escape')
+        return render_markdown(self.comment)

@@ -1,8 +1,9 @@
+{% load static i18n %}
 <header class="navigation" id="top" style="background-color: #ffbe00; height: 70px">
     <div class="container">
         <!--/.secondary-nav-->
         <div class="main-nav">
-            <div class="brand"><a href="{% url 'questions' %}"><img src="{% static '/img/mentor.png' %}" alt=""
+            <div class="brand"><a href="{% url 'questions' %}"><img src="{% static 'img/mentor.png' %}" alt=""
                                                                     height="60" width="100"
                                                                     style="padding-bottom: 10px"></a></div>
             <!--/.brand-->
@@ -78,7 +79,7 @@
                                 Inbox</a></li>
                             <li><a href="{% url 'settings' %}">{% trans 'Account Settings' %}</a></li>
                             <li class="divider"></li>
-                            <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
+                            <li><form method="post" action="{% url 'logout' %}">{% csrf_token %}<button type="submit" class="btn btn-link">{% trans 'Log out' %}</button></form></li>
                         </ul>
                     </li>
                     {% endif %}

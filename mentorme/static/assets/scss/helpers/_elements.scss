@@ -40,7 +40,7 @@ h5 { font-size: 16px; }
 
 hr { border-color: rgba(0,0,0,.1);
   &.triangle { position: relative;
-    &:after { background-image: url("../img/triangle-down.png"); height: 23px; width: 46px; content: ""; left: 0; right: 0; margin: 0 auto; position: absolute; top: -1px; }
+    &:after { background-image: url("../img/triangle-down.svg"); height: 23px; width: 46px; content: ""; left: 0; right: 0; margin: 0 auto; position: absolute; top: -1px; }
   }
 }
 

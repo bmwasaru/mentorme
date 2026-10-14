@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
-from bootcamp.articles.models import Article, ArticleComment
+from articles.models import Article, ArticleComment
 
 
 class TestModels(TestCase):

@@ -1,9 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.http import HttpResponseBadRequest
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.test import Client, TestCase
 
-from bootcamp.articles.models import Article
+from articles.models import Article
 
 
 class TestViews(TestCase):
@@ -25,6 +25,8 @@ class TestViews(TestCase):
             email='other_test@gmail.com',
             password='top_secret'
         )
+        self.user.profile.role = 'mentor'
+        self.user.profile.save()
         self.client.login(username='test_user', password='top_secret')
         self.other_client.login(
             username='other_test_user', password='top_secret')

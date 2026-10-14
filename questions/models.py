@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-import markdown
+from mentorme.markdown import render_markdown
 from activities.models import Activity
 from core.choices import MENTORSHIP_AREAS_CHOICES
 
@@ -42,7 +42,7 @@ class Question(models.Model):
         return Answer.objects.get(question=self, is_accepted=True)
 
     def get_description_as_markdown(self):
-        return markdown.markdown(self.description, safe_mode='escape')
+        return render_markdown(self.description)
 
     def get_description_preview(self):
         if len(self.description) > 255:
@@ -51,8 +51,7 @@ class Question(models.Model):
             return self.description
 
     def get_description_preview_as_markdown(self):
-        return markdown.markdown(self.get_description_preview(),
-                                 safe_mode='escape')
+        return render_markdown(self.get_description_preview())
 
     def calculate_favorites(self):
         favorites = Activity.objects.filter(activity_type=Activity.FAVORITE,
@@ -133,7 +132,7 @@ class Answer(models.Model):
         return voters
 
     def get_description_as_markdown(self):
-        return markdown.markdown(self.description, safe_mode='escape')
+        return render_markdown(self.description)
 
 
 class Tag(models.Model):
@@ -144,7 +143,7 @@ class Tag(models.Model):
         verbose_name = 'Tag'
         verbose_name_plural = 'Tags'
         unique_together = (('tag', 'question'),)
-        index_together = [['tag', 'question'], ]
+        indexes = [models.Index(fields=['tag', 'question'], name='questions_tag_question_idx')]
 
     def __str__(self):
         return self.tag

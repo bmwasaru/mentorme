@@ -2,8 +2,9 @@
 
 MentorMe is a mentorship platform for mentors and mentees. Mentors publish articles,
 mentees ask forum questions and request mentorship, and the activities app tracks
-notifications. The intended onboarding is invitation only; the existing signup
-behavior is unchanged by the framework upgrade.
+notifications. Mentees sign up with a phone number and verify a six-digit SMS code before logging
+in. Mentors sign up with email and remain inactive until an administrator manually
+verifies and activates their account. Invitation gating remains a separate feature.
 
 The project uses Django 6.1.2 and requires Python 3.12 or newer. It is tested with
 Python 3.14. Dependencies, including transitive dependencies, are pinned in
@@ -88,3 +89,27 @@ sessions still use Redis; Celery workers can start with `celery -A mentorme work
 Validation has been performed on SQLite. Verify migrations and service integration
 against your deployment's PostgreSQL database, Redis, Mailgun, and SMS provider
 before rollout.
+
+## Signup and verification
+
+Mentees enter their phone number in international format (e.g. `+254700000000`).
+Signup creates an inactive account and sends a six-digit SMS through Africa's
+Talking using `AFRICAS_TALKING_USERNAME` and `AFRICAS_TALKING_API_KEY`. Delivery runs
+during signup, so it does not require a Celery worker. The verification page is
+linked to the signup session; keep using the same browser until verification is
+complete. A valid code activates the account and redirects to login.
+
+Codes are stored as hashes, expire after 10 minutes, and allow five incorrect
+attempts. Sending a replacement code requires waiting one minute and invalidates
+the previous code. SMS failures keep the account inactive and show a retry option.
+A working SMS provider configuration is required to complete this flow locally.
+
+Mentors provide their email and see a pending approval page. After contacting and
+verifying a mentor, an administrator can use **Users → Role: mentor → Active: No**,
+select the reviewed account, and choose **Activate mentors after manual verification**.
+The action only activates mentors. Users cannot change their own role during setup
+or through profile settings. Apply the new verification migration before rollout:
+
+```sh
+python manage.py migrate
+```

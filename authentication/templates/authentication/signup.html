@@ -20,12 +20,13 @@
 
             <div class="panel-body">
                 <h2>{% trans 'Account Signup' %}</h2>
+                <p>Mentees verify their phone number by SMS. Mentors provide an email address and wait for administrator approval.</p>
                 <hr/>
                 <form role="form" class="form-horizontal" method="post" action="{% url 'signup' %}">
                     {% csrf_token %}
                     {% for field in form.visible_fields %}
                     <div class="form-group{% if field.errors %} has-error{% endif %} ">
-                        <label for="{{ field.label }}" class="col-md-3 control-label">{{ field.label }}:</label>
+                        <label for="{{ field.id_for_label }}" class="col-md-3 control-label">{{ field.label }}:</label>
                         <div class="col-md-9">
                             {{ field }}
                             {% if field.help_text %}
@@ -48,4 +49,25 @@
     </div>
 </div>
 {% endblock main %}
+
+{% block head %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const role = document.getElementById('id_role');
+    const phone = document.getElementById('id_phone_number');
+    const email = document.getElementById('id_email');
+    function updateContactFields() {
+        const mentee = role.value === 'mentee';
+        phone.required = mentee;
+        email.required = !mentee;
+        phone.closest('.form-group').hidden = !mentee;
+        email.closest('.form-group').hidden = mentee;
+        phone.disabled = !mentee;
+        email.disabled = mentee;
+    }
+    role.addEventListener('change', updateContactFields);
+    updateContactFields();
+});
+</script>
+{% endblock %}
 

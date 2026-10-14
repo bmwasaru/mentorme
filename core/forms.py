@@ -32,9 +32,6 @@ class ProfileForm(forms.ModelForm):
     gender = forms.ChoiceField(
         widget=forms.Select(attrs={'class': 'form-control'}),
         choices=GENDER_CHOICES)
-    role = forms.ChoiceField(
-        widget=forms.Select(attrs={'class': 'form-control'}),
-        choices=ROLE_CHOICES)
     mentorship_areas = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple(),
         choices=MENTORSHIP_AREAS_CHOICES)
@@ -45,7 +42,7 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['first_name', 'last_name', 'email', 'phone_number',
-                  'gender', 'location', 'role', 'mentorship_areas', 'bio',
+                  'gender', 'location', 'mentorship_areas', 'bio',
                   'highest_level_of_study', 'profile_picture']
 
         widgets = {

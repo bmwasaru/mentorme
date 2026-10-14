@@ -158,14 +158,14 @@
                         <label>{% trans 'Username' %}</label>
                     </div>
 
-                    <div class="md-input {% if form.email.errors %} has-error{% endif %}">
-                        <input class="md-form-control" required="" type="email" name="email" id="username">
-                        {% for error in form.email.errors %}
+                    <div class="md-input {% if form.phone_number.errors %} has-error{% endif %}">
+                        <input class="md-form-control" required="" type="tel" name="phone_number" id="mentee_phone_number" placeholder="+254700000000">
+                        {% for error in form.phone_number.errors %}
                         <label class="control-label">{{ error }}</label>
                         {% endfor %}
                         <span class="highlight"></span>
                         <span class="bar"></span>
-                        <label>{% trans 'Email' %}</label>
+                        <label>{% trans 'Phone number' %}</label>
                     </div>
 
                     <div class="md-input {% if form.role.errors %} has-error{% endif %}">

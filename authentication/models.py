@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils import timezone
 
 from .choices import GENDER_CHOICES, ROLE_CHOICES
 from core.choices import EDUCATION_CHOICES, MENTORSHIP_AREAS_CHOICES
@@ -156,7 +157,10 @@ def update_user_profile(sender, instance, created, **kwargs):
 
 class UserCode(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    code = models.CharField(max_length=6)
+    # Store a password hash rather than the SMS code itself.
+    code = models.CharField(max_length=128)
+    issued_at = models.DateTimeField(default=timezone.now)
+    attempts = models.PositiveSmallIntegerField(default=0)
 
 
 class Interest(models.Model):

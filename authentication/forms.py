@@ -1,6 +1,9 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+import re
+
+from authentication.models import Profile
 
 from .choices import ROLE_CHOICES
 
@@ -48,14 +51,18 @@ class SignUpForm(forms.ModelForm):
         required=True,
         # help_text='Usernames may contain alphanumeric, _ and . characters'
     )  # noqa: E261
-    email = forms.CharField(
+    email = forms.EmailField(
         widget=forms.EmailInput(attrs={'class': 'md-form-control'}),
         # help_text='Required. Inform a valid email address.',
-        required=True,
+        required=False,
         max_length=75)
+    phone_number = forms.CharField(
+        required=False, max_length=32,
+        widget=forms.TextInput(attrs={'type': 'tel', 'autocomplete': 'tel'}),
+        help_text='Mentees: enter your phone number with country code, e.g. +254700000000.')
     role = forms.ChoiceField(
         choices=ROLE_CHOICES,
-        initial='',
+        initial='mentee',
         widget=forms.Select(attrs={'class': 'md-form-control'}),
         required=True,
     )
@@ -69,7 +76,7 @@ class SignUpForm(forms.ModelForm):
     class Meta:
         model = User
         exclude = ['last_login', 'date_joined']
-        fields = ['username', 'email', 'role', 'password', 'confirm_password', ]
+        fields = ['username', 'role', 'phone_number', 'email', 'password', 'confirm_password']
 
     def __init__(self, *args, **kwargs):
         super(SignUpForm, self).__init__(*args, **kwargs)
@@ -81,9 +88,28 @@ class SignUpForm(forms.ModelForm):
 
     def clean(self):
         super(SignUpForm, self).clean()
+        role = self.cleaned_data.get('role')
+        if role == 'mentor' and not self.cleaned_data.get('email'):
+            self.add_error('email', 'An email address is required for mentors.')
+        if role == 'mentee':
+            phone = re.sub(r'[\s()\-]', '', self.cleaned_data.get('phone_number', ''))
+            if not re.fullmatch(r'\+[1-9][0-9]{7,14}', phone):
+                self.add_error('phone_number', 'Enter a phone number with country code, e.g. +254700000000.')
+            elif Profile.objects.filter(phone_number=phone).exists():
+                self.add_error('phone_number', 'An account with this phone number already exists.')
+            else:
+                self.cleaned_data['phone_number'] = phone
         password = self.cleaned_data.get('password')
         confirm_password = self.cleaned_data.get('confirm_password')
         if password and password != confirm_password:
             self._errors['password'] = self.error_class(
                 ['Passwords don\'t match'])
         return self.cleaned_data
+
+
+class VerificationForm(forms.Form):
+    code = forms.RegexField(
+        regex=r'^[0-9]{6}$', max_length=6, min_length=6,
+        label='Verification code',
+        widget=forms.TextInput(attrs={'inputmode': 'numeric', 'autocomplete': 'one-time-code'}),
+        error_messages={'invalid': 'Enter the six-digit code sent to your phone.'})

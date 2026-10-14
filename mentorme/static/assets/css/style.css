@@ -289,7 +289,7 @@ hr.triangle {
   position: relative;
 }
 hr.triangle:after {
-  background-image: url("../img/triangle-down.png");
+  background-image: url("../img/triangle-down.svg");
   height: 23px;
   width: 46px;
   content: "";

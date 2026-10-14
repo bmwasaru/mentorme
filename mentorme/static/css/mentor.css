@@ -172,7 +172,7 @@ main .container {
         }
         .dark_cover_bg {
             /*background-color: #333333 !important;*/
-            background-image: url({% static 'img/mentor.jpg' %});
+            background-image: url('../img/mentor.jpg');
             background-size: cover;
             /*height: 150px;*/
             /*width: 150px;*/
@@ -180,7 +180,7 @@ main .container {
         }
         .dark_cover_bg1 {
             /*background-color: #333333 !important;*/
-            background-image: url({% static 'images/mentees.png' %});
+            background-image: url('../images/mentees.png');
             background-size: cover;
         }
         .avatar {

@@ -41,8 +41,7 @@
                 {% for todo in context.milestones.all %}
                 {% if todo.is_finished %}
                 <li style="text-decoration: line-through;"><input type="checkbox" id="checkbox"
-                                                                  data-todo-id="{{ todo.id }}" checked="checked"> {{
-                    todo.milestone }}
+                                                                  data-todo-id="{{ todo.id }}" checked="checked"> {{ todo.milestone }}
                 </li>
                 {% endif %}
                 {% endfor %}

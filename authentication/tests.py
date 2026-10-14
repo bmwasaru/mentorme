@@ -1,62 +1,67 @@
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-from django.test import Client
-
-from django_webtest import WebTest
+from django.contrib.auth.models import User
+from django.test import TestCase
+from django.urls import reverse
+from unittest.mock import patch
 
 from authentication.models import Profile
 
 
-class Signup(WebTest):
-
-    def test_signup_redirect_to_settings(self):
-        signup_page = self.app.get('/signup/')
-        signup_form = signup_page.form
-        self.assertNotIn(
-            'User with this Username already exists.',
-            signup_form.text
-        )
-        signup_form['username'] = 'bmwasaru'
-        signup_form['email'] = 'bmwasaru@gmail.com'
-        signup_form['password'] = 'u937riehf44'
-        signup_form['confirm_password'] = 'u937riehf44'
-        response = signup_form.submit()
-        self.assertEqual(response.status_code, 200)
-        self.assertIn('/settings/', response.location)
-
-
-class Login(WebTest):
-    """Tests for user login and logout"""
-
-    def setUp(self):
-        User.objects.create(
-            username="bmwasaru", password="u937riehf44", is_active=True)
+class AuthenticationTests(TestCase):
+    def test_signup_creates_user_and_profile(self):
+        response = self.client.post(reverse('signup'), {
+            'username': 'new_member', 'email': 'member@example.com',
+            'role': 'mentee', 'password': 'a-long-test-password',
+            'confirm_password': 'a-long-test-password',
+        })
+        self.assertRedirects(response, reverse('login'))
+        user = User.objects.get(username='new_member')
+        self.assertEqual(user.profile.role, 'mentee')
+        self.assertTrue(user.check_password('a-long-test-password'))
 
     def test_login(self):
-        user = authenticate(username="bmwasaru", password="u937riehf44")
-        self.assertTrue(user and user.is_active)
+        user = User.objects.create_user(username='member', password='test-password')
+        self.assertEqual(authenticate(username='member', password='test-password'), user)
+        response = self.client.post(reverse('login'), {
+            'username': 'member', 'password': 'test-password',
+        })
+        self.assertRedirects(response, reverse('initial_setup'), fetch_redirect_response=False)
+        self.assertEqual(self.client.session['_auth_user_id'], str(user.pk))
 
-    def test_logout(self):
-        self.client = Client()
-        username = "bmwasaru"
-        password = "u937riehf44"
-        self.client.login(username=username, password=password)
-        # check that the user is logged in
-        self.assertEqual(1, self.client.session.get('_auth_user_id'))
+    def test_logout_requires_post(self):
+        user = User.objects.create_user(username='member', password='test-password')
+        self.client.force_login(user)
+        self.assertEqual(self.client.get(reverse('logout')).status_code, 405)
+        self.assertIn('_auth_user_id', self.client.session)
+        self.assertRedirects(self.client.post(reverse('logout')), '/')
+        self.assertNotIn('_auth_user_id', self.client.session)
+        self.assertRedirects(self.client.get(reverse('questions')), '/?next=/questions/')
 
-        # logout the user
-        self.client.logout()
-        self.assertNotEqual(1, self.client.session.get('_auth_user_id'))
-        questions_page = self.app.get('/questions/')
-        self.assertIn('Log in', questions_page.content)
+    def test_user_creation_creates_profile(self):
+        user = User.objects.create_user(username='member')
+        self.assertTrue(Profile.objects.filter(user=user).exists())
 
+    def test_activation_token_invalid_after_confirmation(self):
+        from authentication.tokens import account_activation_token
+        user = User.objects.create_user(username='member')
+        token = account_activation_token.make_token(user)
+        self.assertTrue(account_activation_token.check_token(user, token))
+        user.profile.email_confirmed = True
+        user.profile.save()
+        self.assertFalse(account_activation_token.check_token(user, token))
 
-class ProfileCreateWhenUserIsCreated(WebTest):
-    """
-    Test that a user profile is create on user creation
-    """
-
-    def test_user_creation_creates_user_profile(self):
-        u = User.objects.create(username="bmwasaru")
-        u.save()
-        self.assert_(list(Profile.objects.filter(user__username="bmwasaru")))
+    def test_sms_task_with_current_sdk(self):
+        from authentication.models import UserCode
+        from authentication.tasks import send_verification_code_sms
+        from mentorme import celery_app
+        celery_app.autodiscover_tasks(force=True)
+        user = User.objects.create_user(username='member')
+        user.profile.phone_number = '+254700000000'
+        user.profile.save()
+        with patch('authentication.tasks.africastalking.initialize'), \
+                patch('authentication.tasks.africastalking.SMS') as sms, \
+                patch('authentication.tasks.generate_random_code', return_value='123456'):
+            sms.send.return_value = {'SMSMessageData': {'Recipients': [{'statusCode': 101}]}}
+            send_verification_code_sms(user)
+            sms.send.assert_called_once_with('Your verification code is 123456', ['+254700000000'])
+            self.assertEqual(UserCode.objects.get(user=user).code, '123456')

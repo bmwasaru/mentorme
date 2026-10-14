@@ -48,8 +48,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="selected-picture">
-                                <p>{% trans 'Crop the profile picture and then click on the' %} <strong>{% trans 'Save
-                                    Picture' %}</strong> {% trans 'button' %}</p>
+                                <p>{% trans 'Crop the profile picture and then click on the' %} <strong>{% trans 'Save Picture' %}</strong> {% trans 'button' %}</p>
                                 <img src="{% get_media_prefix %}profile_pictures/{{ user.username }}_tmp.jpg?_={% now 'U' %}"
                                      id="crop-picture">
                                 <input type="hidden" id="x" name="x"/>

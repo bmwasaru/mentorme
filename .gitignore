@@ -6,3 +6,4 @@ staticfiles
 mentorme/local_settings.py
 media/
 .sample.code.py
+db.sqlite3

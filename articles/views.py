@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 
-import markdown
+from mentorme.markdown import render_markdown
 from articles.forms import ArticleForm
 from articles.models import Article, ArticleComment
 from mentorme.decorators import ajax_required
@@ -87,7 +87,7 @@ def preview(request):
             content = request.POST.get('content')
             html = 'Nothing to display :('
             if len(content.strip()) > 0:
-                html = markdown.markdown(content, safe_mode='escape')
+                html = render_markdown(content)
 
             return HttpResponse(html)
 

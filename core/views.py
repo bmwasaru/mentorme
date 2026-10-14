@@ -89,7 +89,6 @@ def initial_setup(request):
                 user.first_name = form.cleaned_data.get('first_name')
                 user.last_name = form.cleaned_data.get('last_name')
                 user.profile.gender = form.cleaned_data.get('gender')
-                user.profile.role = form.cleaned_data.get('role')
                 user.profile.phone_number = form.cleaned_data.get('phone_number')
                 user.profile.mentorship_areas = form.cleaned_data.get('mentorship_areas')
                 user.email = form.cleaned_data.get('email')
@@ -109,7 +108,6 @@ def initial_setup(request):
                 'first_name': user.first_name,
                 'last_name': user.last_name,
                 'gender': user.profile.gender,
-                'role': user.profile.role,
                 'phone_number': user.profile.phone_number,
                 'mentorship_areas': user.profile.mentorship_areas,
                 'email': user.email,
@@ -130,7 +128,6 @@ def settings(request):
             user.first_name = form.cleaned_data.get('first_name')
             user.last_name = form.cleaned_data.get('last_name')
             user.profile.gender = form.cleaned_data.get('gender')
-            user.profile.role = form.cleaned_data.get('role')
             user.profile.phone_number = form.cleaned_data.get('phone_number')
             user.profile.mentorship_areas = form.cleaned_data.get('mentorship_areas')
             user.email = form.cleaned_data.get('email')
@@ -149,7 +146,6 @@ def settings(request):
             'gender': user.profile.gender,
             'phone_number': user.profile.phone_number,
             'mentorship_areas': user.profile.mentorship_areas,
-            'role': user.profile.role,
             'email': user.email,
             'bio': user.profile.bio,
             'location': user.profile.location,

@@ -1,4 +1,4 @@
-import random
+import secrets
 
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 
@@ -16,4 +16,4 @@ account_activation_token = AccountActivationTokenGenerator()
 
 def generate_random_code():
     """Generate 6 digit random code"""
-    return str(random.randrange(100000, 999999))
+    return str(secrets.randbelow(900000) + 100000)

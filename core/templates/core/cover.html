@@ -19,7 +19,8 @@
             {% endif %}
 
             <div class="panel-body">
-                <h2>{% trans 'Account Signup' %}</h2>
+                <h2>{% trans 'Login' %}</h2>
+                {% for message in messages %}<div class="alert alert-info">{{ message }}</div>{% endfor %}
                 <hr/>
                 <form role="form" class="form-horizontal" method="post" action="{% url 'login' %}">
                     {% csrf_token %}

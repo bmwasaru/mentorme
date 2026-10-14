@@ -210,7 +210,7 @@
                         <div class="form-group{% if form.email.errors %} has-error{% endif %} ">
                             <label for="{{ form.email.label }}" class="col-md-3 control-label">{% trans 'Email' %}:</label>
                             <div class="col-md-8">
-                                <input class="form-control" required="" type="text" name="email" id="email">
+                                <input class="form-control" required="" type="email" name="email" id="email">
                                 {% if form.email.help_text %}
                                 <span class="help-block">{{ form.email.help_text }}</span>
                                 {% endif %}
@@ -346,14 +346,14 @@
                             </div>
                         </div>
 
-                        <div class="form-group{% if form.email.errors %} has-error{% endif %} ">
-                            <label for="{{ form.email.label }}" class="col-md-3 control-label">{% trans 'Email' %}:</label>
+                        <div class="form-group{% if form.phone_number.errors %} has-error{% endif %} ">
+                            <label for="{{ form.phone_number.label }}" class="col-md-3 control-label">{% trans 'Phone number' %}:</label>
                             <div class="col-md-8">
-                                <input class="form-control" required="" type="text" name="email" id="email">
-                                {% if form.email.help_text %}
-                                <span class="help-block">{{ form.email.help_text }}</span>
+                                <input class="form-control" required="" type="tel" name="phone_number" id="mentee_phone_number" placeholder="+254700000000">
+                                {% if form.phone_number.help_text %}
+                                <span class="help-block">{{ form.phone_number.help_text }}</span>
                                 {% endif %}
-                                {% for error in form.email.errors %}
+                                {% for error in form.phone_number.errors %}
                                 <label class="control-label">{{ error }}</label>
                                 {% endfor %}
                             </div>

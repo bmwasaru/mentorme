@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block main %}
+<div class="container">
+    <div class="col-md-6 col-md-offset-3 panel panel-default">
+        <div class="panel-body">
+            <h2>Verify your phone number</h2>
+            <p>Enter the six-digit code sent to your phone. The code expires in 10 minutes.</p>
+            {% for message in messages %}<div class="alert alert-info">{{ message }}</div>{% endfor %}
+            <form method="post" action="{% url 'verify_account' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-primary" type="submit">Verify account</button>
+            </form>
+            <hr>
+            <form method="post" action="{% url 'verify_account' %}">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="resend">
+                <button class="btn btn-link" type="submit">Send another code</button>
+                <p>Please wait a minute between requests.</p>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

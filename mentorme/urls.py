@@ -37,6 +37,7 @@ urlpatterns = [
         LogoutView.as_view(next_page='/'),
         name='logout'),
     re_path(r'^account/signup/$', mentor_auth_views.signup, name='signup'),
+    re_path(r'^account/verify/$', mentor_auth_views.verify_account, name='verify_account'),
     re_path(r'^settings/$', core_views.settings, name='settings'),
     re_path(r'^settings/password/$', core_views.password, name='password'),
     re_path(r'^questions/', include('questions.urls'), name='questions'),

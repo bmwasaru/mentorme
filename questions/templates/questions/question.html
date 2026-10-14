@@ -40,6 +40,7 @@
                                 <a href="{% url 'profile' question.user.username %}" class="username">{{ question.user.profile.get_screen_name }}</a>
                                 <small class="asked">asked {{ question.update_date|naturaltime }}</small>
                                 <h3>{{ question.title }}</h3>
+                                {% include 'questions/partial_owner_actions.html' %}
                             </div>
                             <div class="question-description">
                                 {{ question.get_description_as_markdown|safe|linebreaks }}

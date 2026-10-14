@@ -14,6 +14,8 @@ urlpatterns = [
     re_path(r'^answer/accept/$', views.accept, name='accept'),
     re_path(r'^answer/vote/$', views.vote, name='vote'),
     re_path(r'^(\d+)/$', views.question, name='question'),
+    re_path(r'^(?P<pk>\d+)/edit/$', views.edit_question, name='edit_question'),
+    re_path(r'^(?P<pk>\d+)/delete/$', views.delete_question, name='delete_question'),
     re_path(r'^category/(?P<category>[\w@.-]+)/$', views.category, name='category'),
     re_path(r'^tag/(?P<tag>[\w@.-]+)/$', views.tag, name='tag'),
 ]

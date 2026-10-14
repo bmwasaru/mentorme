@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans 'Edit question' %}{% endblock %}
+{% block main %}
+<div class="container">
+    <h1>{% trans 'Edit question' %}</h1>
+    <form action="{% url 'edit_question' question.pk %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">{% trans 'Save changes' %}</button>
+        <a href="{% url 'question' question.pk %}" class="btn btn-default">{% trans 'Cancel' %}</a>
+    </form>
+</div>
+{% endblock %}

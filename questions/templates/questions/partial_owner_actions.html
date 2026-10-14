@@ -1,0 +1,7 @@
+{% load i18n %}
+{% if request.user.pk == question.user_id %}
+<p class="question-actions">
+    <a href="{% url 'edit_question' question.pk %}" class="btn btn-default btn-sm">{% trans 'Edit question' %}</a>
+    <a href="{% url 'delete_question' question.pk %}" class="btn btn-danger btn-sm">{% trans 'Delete question' %}</a>
+</p>
+{% endif %}

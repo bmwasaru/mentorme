@@ -1,12 +1,14 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Q
+from django.db import transaction
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect, render
 
-from django.views.decorators.cache import cache_page
+from django.utils import timezone
+from django.views.decorators.http import require_http_methods
 
-from activities.models import Activity
+from activities.models import Activity, Notification
 from mentorme.decorators import ajax_required
 from questions.forms import AnswerForm, QuestionForm
 from questions.models import Answer, Question, Tag
@@ -52,7 +54,6 @@ def unanswered(request):
 
 
 @login_required
-@cache_page(60 * 2)
 def all(request):
     questions = Question.objects.all()
     return _questions(request, questions, 'all')
@@ -102,6 +103,48 @@ def question(request, pk):
         'question': question,
         'form': form
     })
+
+
+@login_required
+@require_http_methods(['GET', 'POST'])
+def edit_question(request, pk):
+    question = get_object_or_404(Question, pk=pk)
+    if question.user_id != request.user.pk:
+        return HttpResponseForbidden()
+    form = QuestionForm(
+        request.POST if request.method == 'POST' else None,
+        instance=question,
+        initial={'tags': ' '.join(question.get_tags().values_list('tag', flat=True))},
+    )
+    if request.method == 'POST' and form.is_valid():
+        with transaction.atomic():
+            question = form.save(commit=False)
+            question.update_date = timezone.now()
+            question.save()
+            question.get_tags().delete()
+            question.create_tags(form.cleaned_data['tags'])
+        return redirect('question', question.pk)
+    return render(request, 'questions/edit.html', {'form': form, 'question': question})
+
+
+@login_required
+@require_http_methods(['GET', 'POST'])
+def delete_question(request, pk):
+    question = get_object_or_404(Question, pk=pk)
+    if question.user_id != request.user.pk:
+        return HttpResponseForbidden()
+    if request.method == 'POST':
+        with transaction.atomic():
+            answers = question.get_answers()
+            answer_ids = list(answers.values_list('pk', flat=True))
+            # These relations use PROTECT; activities store integer IDs.
+            Notification.objects.filter(Q(question=question) | Q(answer_id__in=answer_ids)).delete()
+            Activity.objects.filter(Q(question=question.pk) | Q(answer__in=answer_ids)).delete()
+            answers.delete()
+            question.get_tags().delete()
+            question.delete()
+        return redirect('questions')
+    return render(request, 'questions/confirm_delete.html', {'question': question})
 
 
 @login_required

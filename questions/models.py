@@ -69,8 +69,7 @@ class Question(models.Model):
         return favoriters
 
     def create_tags(self, tags):
-        tags = tags.strip()
-        tag_list = tags.split(' ')
+        tag_list = tags.split()
         for tag in tag_list:
             t, created = Tag.objects.get_or_create(tag=tag.lower(),
                                                    question=self)

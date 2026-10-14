@@ -27,6 +27,7 @@
                     <b><a href="{% url 'question' question.pk %}">{{ question.title }}</a></b>
                 </h3>
             </figure>
+            {% include 'questions/partial_owner_actions.html' %}
             <div class="question-description">
                 {{ question.get_description_preview_as_markdown|safe|linebreaks }}
             </div>

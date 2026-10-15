@@ -1,5 +1,5 @@
 <div class="send-message">
-    <!-- <img src="{{ user.profile.get_picture }}" class="picture"> -->
+    <!-- {% include "core/includes/avatar.html" with avatar_profile=user.profile only %} -->
     <div style="margin-top: .3em">
         <form role="form" method="post" action="{% url 'send_message' %}" id="send">
             {% csrf_token %}

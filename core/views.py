@@ -95,7 +95,6 @@ def initial_setup(request):
                 user.profile.bio = form.cleaned_data.get('bio')
                 user.profile.location = form.cleaned_data.get('location')
                 user.profile.highest_level_of_study = form.cleaned_data.get('highest_level_of_study')
-                user.profile.profile_picture = form.cleaned_data.get('profile_picture')
                 user.profile.is_previously_logged_in = True
                 user.save()
                 messages.add_message(request,
@@ -114,7 +113,6 @@ def initial_setup(request):
                 'bio': user.profile.bio,
                 'location': user.profile.location,
                 'highest_level_of_study': user.profile.highest_level_of_study,
-                'profile_picture': user.profile.profile_picture,
             })
         return render(request, 'core/includes/initial_setup.html', {'form': form})
 
@@ -123,7 +121,7 @@ def initial_setup(request):
 def settings(request):
     user = request.user
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES)
+        form = ProfileForm(request.POST)
         if form.is_valid():
             user.first_name = form.cleaned_data.get('first_name')
             user.last_name = form.cleaned_data.get('last_name')
@@ -134,7 +132,6 @@ def settings(request):
             user.profile.bio = form.cleaned_data.get('bio')
             user.profile.location = form.cleaned_data.get('location')
             user.profile.highest_level_of_study = form.cleaned_data.get('highest_level_of_study')
-            user.profile.profile_picture = form.cleaned_data.get('profile_picture')
             user.save()
             messages.add_message(request,
                                  messages.SUCCESS,
@@ -150,7 +147,6 @@ def settings(request):
             'bio': user.profile.bio,
             'location': user.profile.location,
             'highest_level_of_study': user.profile.highest_level_of_study,
-            'profile_picture': user.profile.profile_picture,
         })
     return render(request, 'core/settings.html', {'form': form})
 

@@ -20,7 +20,7 @@
            title="{{ user.profile.get_screen_name }}" style="background-color: green">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <img class="img-responsive picture" src="{{ user.profile.profile_picture.url }}" style="">
+                    {% include "core/includes/avatar.html" with avatar_profile=user.profile avatar_size="large" only %}
                     {% if user.profile.is_mentee %}
                     <a href="{%  url 'request-mentorship' user.id %}">
                         <button type="button" class="btn btn-default glyphicon glyphicon-plus">Request Mentorship

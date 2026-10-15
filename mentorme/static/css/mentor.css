@@ -217,3 +217,28 @@ main .container {
         /*body{
             margin-bottom: 60px;
         }*/
+
+/* Shared name-based avatars across the platform. */
+span.profile-initials {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    margin-right: 0.35em;
+    border-radius: 50%;
+    background-color: #ffbe00;
+    color: #252422;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    vertical-align: middle;
+}
+span.profile-initials--large {
+    width: 128px;
+    height: 128px;
+    font-size: 42px;
+    margin-bottom: 1rem;
+}

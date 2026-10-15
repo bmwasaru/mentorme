@@ -7,7 +7,7 @@
     {% for question in results %}
     <li question-id="{{ question.pk }}">
         <h5>
-            <img src="{{ question.user.profile.get_picture }}" class="result-user">
+            {% include "core/includes/avatar.html" with avatar_profile=question.user.profile only %}
             <a href="{% url 'profile' question.user.username %}">
                 {{ question.user.get_screen_name }}
             </a>

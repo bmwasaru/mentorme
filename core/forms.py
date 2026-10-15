@@ -43,7 +43,7 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ['first_name', 'last_name', 'email', 'phone_number',
                   'gender', 'location', 'mentorship_areas', 'bio',
-                  'highest_level_of_study', 'profile_picture']
+                  'highest_level_of_study']
 
         widgets = {
             'bio': forms.Textarea(

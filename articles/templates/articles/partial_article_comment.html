@@ -1,8 +1,7 @@
 {% load humanize %}
 
 <div class="comment">
-    <a href="{% url 'profile' comment.user.username %}"><img src="{{ comment.user.profile.get_picture }}"
-                                                             class="comment-portrait"></a>
+    <a href="{% url 'profile' comment.user.username %}">{% include "core/includes/avatar.html" with avatar_profile=comment.user.profile avatar_class="pull-left" only %}</a>
     <div class="comment-text">
         <h5>
             <a href="{% url 'profile' comment.user.username %}">{{ comment.user.profile.get_screen_name }}</a>

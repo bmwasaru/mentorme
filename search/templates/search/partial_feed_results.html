@@ -7,7 +7,7 @@
     {% for feed in results %}
     <li feed-id="{{ feed.pk }}">
         <a href="{% url 'profile' feed.user.username %}">
-            <img src="{{ feed.user.profile.get_picture }}" class="pull-left">
+            {% include "core/includes/avatar.html" with avatar_profile=feed.user.profile avatar_class="pull-left" only %}
         </a>
         <div class="post">
             <h3>

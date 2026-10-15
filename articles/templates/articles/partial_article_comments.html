@@ -7,7 +7,7 @@
         {% csrf_token %}
         <input type="hidden" name="article" value="{{ article.pk }}">
         <div class="user-portrait clearfix">
-            <img src="{{ user.profile.get_picture }}">
+            {% include "core/includes/avatar.html" with avatar_profile=user.profile only %}
         </div>
         <div class="comment-input clearfix">
             <textarea class="form-control" rows="1" placeholder="{% trans 'Write a comment...' %}" name="comment"

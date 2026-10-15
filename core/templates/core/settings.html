@@ -24,7 +24,9 @@
                 </div>
                 {% endfor %}
                 {% endif %}
-                <form role="form" class="form-horizontal" method="post" enctype="multipart/form-data"
+                {% include 'core/includes/avatar.html' with avatar_profile=user.profile only %}
+                <p>Your avatar uses your name's initials. Update your name below to change it.</p>
+                <form role="form" class="form-horizontal" method="post"
                       action="{% url 'settings' %}">
                     {% csrf_token %}
                     {% for field in form.visible_fields %}

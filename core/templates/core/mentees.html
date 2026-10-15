@@ -20,7 +20,7 @@
            title="{{ user.profile.get_screen_name }}" class="blue-tooltip">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <img class="img-responsive picture" src="{{ user.profile.profile_picture.url }}">
+                    {% include "core/includes/avatar.html" with avatar_profile=user.profile avatar_size="large" only %}
                 </div>
             </div>
         </a>

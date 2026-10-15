@@ -18,8 +18,7 @@
             {% for con in connections %}
             <div class="col-md-4">
                 <div class="story panel panel-default" style="background-color: #fff">
-                    <div class="image" style="height: 100px; width: 100px"><img
-                            src="{{ con.profile.profile_picture.url }}" alt=""></div>
+                    <div class="image" style="height: 100px; width: 100px">{% include "core/includes/avatar.html" with avatar_profile=con.profile avatar_size="large" only %}</div>
                     <blockquote style="margin-left: 50px;">
                         <h4><a href="{% url 'u_profile' con.username %}">{{ con.profile.get_screen_name }}</a></h4>
                         <h4>Needs Mentoship in:</h4>

@@ -1,5 +1,4 @@
-import hashlib
-from urllib.parse import urlencode
+import re
 
 from django.contrib.auth.models import User
 from django.db import models
@@ -53,6 +52,8 @@ class Profile(models.Model):
         format='JPEG',
         options={'quality': 99},
         default=DEFAULT,
+        # Retain legacy file references, but do not expose uploads in forms.
+        editable=False,
     )
 
     def is_mentor(self):
@@ -67,12 +68,14 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
-    def get_gravatar(self):
-        gravatar_url = 'https://www.gravatar.com/avatar/{0}?{1}'.format(
-            hashlib.md5(self.user.email.lower().encode('utf-8')).hexdigest(),
-            urlencode({'s': '256'})
-        )
-        return gravatar_url
+    def get_initials(self):
+        names = self.user.get_full_name().split()
+        if names:
+            return (names[0][0] + (names[-1][0] if len(names) > 1 else '')).upper()[:2]
+        words = re.findall(r'[^\W_]+', self.user.username, flags=re.UNICODE)
+        if len(words) > 1:
+            return (words[0][0] + words[-1][0]).upper()[:2]
+        return (words[0][:2].upper() if words else '?')[:2]
 
     def get_screen_name(self):
         if self.user.get_full_name():

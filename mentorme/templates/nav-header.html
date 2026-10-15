@@ -36,15 +36,15 @@
                         <a href="{% url 'inbox' %}"><span class="badge pull-right" id="unread-count">0</span><span class="glyphicon glyphicon-comment platform-glyphicon" style="margin-right: 0em"></span></a>
                     </li> -->
                     <li>
-                        <div class="nav_icon glyphicon glyphicon-bell"></div>
-                        <a id="nav_help" class="nav" href="#" id="notifications" data-container="body"
+                        <div class="nav_icon glyphicon glyphicon-bell"></div><span id="notification-count" class="badge" aria-live="polite" style="display:none"></span>
+                        <a class="nav" href="{% url 'notifications' %}" id="notifications" data-count-url="{% url 'check_notifications' %}" data-preview-url="{% url 'last_notifications' %}" aria-label="Notifications" aria-expanded="false" data-container="body"
                            data-toggle="popover" data-placement="bottom" title="Notifications">
                             <small>Alerts</small>
                         </a>
                     </li>
                     <!-- <li>
                         <div class="glyphicon glyphicon-bell"></div>
-                        <a class="nav" href="#" id="notifications" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
+                        <a class="nav" href="{% url 'notifications' %}" id="notifications" data-count-url="{% url 'check_notifications' %}" data-preview-url="{% url 'last_notifications' %}" aria-label="Notifications" aria-expanded="false" data-container="body" data-toggle="popover" data-placement="bottom" title="Notifications">
                         <small>Not</small></a>
                     </li> -->
 

@@ -158,8 +158,8 @@ def answer(request):
             answer.question = form.cleaned_data.get('question')
             answer.description = form.cleaned_data.get('description')
             answer.save()
-            user.profile.notify_answered(answer.question)
-            user.profile.notify_also_answered(answer.question)
+            user.profile.notify_answered(answer.question, answer)
+            user.profile.notify_also_answered(answer.question, answer)
             return redirect('/questions/{0}/'.format(answer.question.pk))
         else:
             question = form.cleaned_data.get('question')

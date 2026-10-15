@@ -12,7 +12,7 @@
 <div class="container">
     <div class="row">
         <div class="heading">
-            <h1>Mentees availlable for you</h1>
+            <h1>Your mentees</h1>
         </div>
 
         {% if messages %}
@@ -25,6 +25,16 @@
         {% endif %}
 
         <div class="content">
+            {% for mentorship_request in pending_requests %}
+            <div class="panel panel-default" style="padding: 15px">
+                <p><a href="{% url 'profile' mentorship_request.user.username %}">{{ mentorship_request.user.profile.get_screen_name }}</a> requested mentorship.</p>
+                <form method="post" action="{% url 'respond_connection' mentorship_request.pk %}">
+                    {% csrf_token %}
+                    <button class="btn btn-primary" name="decision" value="accept">Accept request</button>
+                    <button class="btn btn-default" name="decision" value="decline">Decline request</button>
+                </form>
+            </div>
+            {% endfor %}
             {% for user in users_list %}
             <div class="col-md-4">
                 <div class="story panel panel-default">
@@ -45,4 +55,4 @@
     </div>
 </div>
 {% endblock main %}
-            
+

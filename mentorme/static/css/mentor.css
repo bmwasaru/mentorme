@@ -242,3 +242,13 @@ span.profile-initials--large {
     font-size: 42px;
     margin-bottom: 1rem;
 }
+
+/* Notification inbox and dropdown states. */
+.notification-item { list-style: none; padding: 12px; border-bottom: 1px solid #ddd; }
+.notification-item.notification-unread { background: #fff7da; border-left: 3px solid #bd8900; }
+.notification-status { margin-left: 8px; font-size: 12px; color: #705000; }
+.notification-target.btn-link { padding: 4px 0; text-align: left; white-space: normal; }
+.notification-item small { color: #666; }
+.notification-preview, .all-notifications { padding: 0; margin-top: 12px; }
+.answer[id] { scroll-margin-top: 80px; }
+.answer:target { outline: 2px solid #bd8900; background: #fff7da; }

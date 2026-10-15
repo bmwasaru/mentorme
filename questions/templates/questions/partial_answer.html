@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load humanize %}
 
-<div class="row answer" answer-id="{{ answer.id }}">
+<div id="answer-{{ answer.pk }}" class="row answer" answer-id="{{ answer.id }}">
     {% csrf_token %}
     <div class="col-md-1 options">
         <span class="glyphicon glyphicon-thumbs-up vote up-vote{% if user in answer.get_up_voters %} voted{% endif %}"

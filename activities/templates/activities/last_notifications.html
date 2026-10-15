@@ -1,17 +1,8 @@
-{% load i18n %}
-{% load humanize %}
-
-<ul>
+<ul class="notification-preview">
     {% for notification in notifications %}
-    <li class="clearfix">
-        {% include "core/includes/avatar.html" with avatar_profile=notification.from_user.profile avatar_class="pull-left" only %}
-        <p>{{ notification|safe }}</p>
-        <p>
-            <small>{{ notification.date|naturaltime }}</small>
-        </p>
-    </li>
+        {% include 'activities/partial_notification.html' %}
     {% empty %}
-    <li style="text-align: center">{% trans 'You have no unread notification' %}</li>
+    <li>You have no unread notifications.</li>
     {% endfor %}
-    <li style="text-align: center"><a href="{% url 'notifications' %}">{% trans 'See all' %}</a></li>
+    <li><a href="{% url 'notifications' %}">See all notifications</a></li>
 </ul>

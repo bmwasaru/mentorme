@@ -60,10 +60,10 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="nav" href="#" id="notifications" data-container="body" data-toggle="popover"
+                                <a class="nav" href="{% url 'notifications' %}" id="notifications" data-count-url="{% url 'check_notifications' %}" data-preview-url="{% url 'last_notifications' %}" aria-label="Notifications" aria-expanded="false" data-container="body" data-toggle="popover"
                                    data-placement="bottom" title="Notifications">
                                     <!-- Alerts -->
-                                    <div class="nav_icon glyphicon glyphicon-bell"></div>
+                                    <div class="nav_icon glyphicon glyphicon-bell"></div><span id="notification-count" class="badge" aria-live="polite" style="display:none"></span>
                                 </a>
                             </li>
 

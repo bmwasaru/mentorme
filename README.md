@@ -113,3 +113,23 @@ or through profile settings. Apply the new verification migration before rollout
 ```sh
 python manage.py migrate
 ```
+
+## Notifications
+
+Opening the bell preview or notification inbox leaves notifications unread. Use
+**Mark as read**, **Mark all as read**, or open a notification's content to mark it
+read. These actions require POST and CSRF protection and only affect the signed-in
+recipient. The bell displays the full unread count; its preview shows five items.
+Polling pauses while the browser tab is hidden.
+
+Notifications cover forum and article interactions, new mentorship requests,
+accepted or declined requests, and administrator approval of mentor accounts.
+Mentors accept or decline pending requests on the Mentoring page. Repeated request
+submissions and repeated decisions do not create duplicate events. Approval
+notifications are generated both by the bulk admin action and by activating a
+mentor through the admin user edit form. Notifications are delivered in-app.
+
+Profile and content destinations use named routes. New answer notifications open
+the relevant answer; legacy notifications without an answer reference still open
+the question. Apply the new notification and connection migrations with
+`python manage.py migrate` before deploying.

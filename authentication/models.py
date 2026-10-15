@@ -97,14 +97,14 @@ class Profile(models.Model):
                 to_user=question.user,
                 question=question).delete()
 
-    def notify_answered(self, question):
+    def notify_answered(self, question, answer=None):
         if self.user != question.user:
             Notification(notification_type=Notification.ANSWERED,
                          from_user=self.user,
                          to_user=question.user,
-                         question=question).save()
+                         question=question, answer=answer).save()
 
-    def notify_also_answered(self, question):
+    def notify_also_answered(self, question, answer=None):
         answers = question.get_answers()
         users = []
         for answer in answers:
@@ -114,7 +114,7 @@ class Profile(models.Model):
         for user in users:
             Notification(notification_type=Notification.ALSO_ANSWERED,
                          from_user=self.user, to_user=User(id=user),
-                         question=question).save()
+                         question=question, answer=answer).save()
 
     def notify_accepted(self, answer):
         if self.user != answer.user:
@@ -189,7 +189,12 @@ class Interest(models.Model):
 class Connection(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     mentor = models.IntegerField(null=False)
-    status = models.IntegerField(null=False, default=0)
+    PENDING = 0
+    ACCEPTED = 1
+    DECLINED = 2
+    status = models.IntegerField(default=PENDING, choices=[
+        (PENDING, 'Pending'), (ACCEPTED, 'Accepted'), (DECLINED, 'Declined'),
+    ])
 
     def __unicode__(self):
         return unicode(self.user)

@@ -51,7 +51,7 @@ class UpgradeCompatibilityTests(TestCase):
         answer.refresh_from_db()
         self.assertTrue(answer.is_accepted)
         self.assertEqual(self.client.get(reverse('notifications')).status_code, 200)
-        self.assertFalse(Notification.objects.filter(to_user=self.mentee, is_read=False).exists())
+        self.assertTrue(Notification.objects.filter(to_user=self.mentee, is_read=False).exists())
 
     def test_ajax_messaging(self):
         response = self.client.post(reverse('send_message'), {

@@ -11,6 +11,13 @@ from django.shortcuts import redirect
 from django.template import Context
 from django.template.loader import get_template
 from django.db.models import Q
+from django.db import transaction
+from django.http import HttpResponseBadRequest, HttpResponseForbidden
+from django.views.decorators.http import require_POST
+from activities.models import Notification
+import logging
+
+logger = logging.getLogger(__name__)
 
 from mentoring.forms import ContactForm
 from messenger.models import Message
@@ -74,75 +81,78 @@ def u_messages(request, username):
 
 @login_required
 def mentoring(request):
-    strings = list(request.user.profile.mentorship_areas)
-    condition = Q(profile__mentorship_areas__icontains=strings[0])
-    for string in strings[1:]:
-        condition |= Q(profile__mentorship_areas__icontains=string)
-
     if request.user.profile.role == 'mentor':
-        connections = list(Connection.objects.values_list(
-            'user', flat=True).filter(mentor=request.user.id).distinct())
-        if connections:
-            users_list = User.objects.filter(pk__in=connections)
-            return render(request,
-                          'mentoring/mentors.html',
-                          {'users_list': users_list})
-        else:
-            users_list = messages.add_message(request, messages.SUCCESS,
-                                              'Sorry we do not have mentees for you.')
-            return render(request, 'mentoring/mentors.html', {'users_list': users_list})
-    else:
-        users_list = User.objects.filter(condition,
-                                         profile__role='mentor')[:6]
-        return render(request, 'mentoring/mentees.html',
-                      {'users_list': users_list})
+        accepted = Connection.objects.filter(mentor=request.user.pk, status=Connection.ACCEPTED)
+        return render(request, 'mentoring/mentors.html', {
+            'users_list': User.objects.filter(pk__in=accepted.values('user')).select_related('profile'),
+            'pending_requests': Connection.objects.filter(
+                mentor=request.user.pk, status=Connection.PENDING,
+            ).select_related('user__profile'),
+        })
+    condition = Q()
+    for area in request.user.profile.mentorship_areas:
+        condition |= Q(profile__mentorship_areas__icontains=area)
+    users = User.objects.filter(condition, profile__role='mentor', is_active=True).select_related('profile')[:6]
+    return render(request, 'mentoring/mentees.html', {'users_list': users})
 
 
 @login_required
+@require_POST
 def make_connection(request):
-    user = request.user
-    mentor = request.POST.get('to', None)
-    mentor_object = User.objects.get(username=mentor)
-    mentor_id = mentor_object.id
+    if request.user.profile.role != 'mentee':
+        return HttpResponseForbidden()
+    mentor = get_object_or_404(User, username=request.POST.get('to'),
+                               profile__role='mentor', is_active=True)
+    message = request.POST.get('message', '').strip()
+    if not message or mentor.pk == request.user.pk:
+        return HttpResponseBadRequest()
+    with transaction.atomic():
+        # Serialize repeat submissions for this mentee without altering legacy rows.
+        User.objects.select_for_update().get(pk=request.user.pk)
+        connection = Connection.objects.filter(user=request.user, mentor=mentor.pk).exclude(
+            status=Connection.DECLINED,
+        ).first()
+        created = connection is None
+        if created:
+            connection = Connection.objects.create(user=request.user, mentor=mentor.pk)
+            Message.send_message(request.user, mentor, message)
+            Notification.objects.create(from_user=request.user, to_user=mentor,
+                                        connection=connection,
+                                        notification_type=Notification.MENTORSHIP_REQUESTED)
+    if created:
+        try:
+            send_mail('New mentorship request from MentorMe', message, request.user.email, [mentor.email])
+        except Exception:
+            logger.warning('Mentorship request email failed for connection %s', connection.pk)
+    return redirect('u_profile', username=mentor.username)
 
-    subject = "Possible mentee connection from Mentor001"
-    message = request.POST.get('message')
-    sender = request.user.email
 
-    if user != mentor_object:
-        Message.send_message(user, mentor_object, message)
-
-    recipient = [mentor_object.email]
-    try:
-        if user.profile.role == 'mentor':
-            new_connection = Connection(user=user, mentor=mentor_id, status=1)
-            new_connection.save()
-        else:
-            new_connection = Connection(user=user, mentor=mentor_id)
-            new_connection.save()
-        send_mail(subject, message, sender, recipient)
-    except Exception:
-        return HttpResponse('invalid header found')
-
-    data = {
-        'confirm': 'Connection complete',
-    }
-
-    return redirect('/mentoring/{0}/'.format(mentor))
+@login_required
+@require_POST
+def respond_connection(request, pk):
+    if request.user.profile.role != 'mentor':
+        return HttpResponseForbidden()
+    status = {'accept': Connection.ACCEPTED, 'decline': Connection.DECLINED}.get(request.POST.get('decision'))
+    if status is None:
+        return HttpResponseBadRequest()
+    with transaction.atomic():
+        connection = get_object_or_404(Connection.objects.select_for_update(), pk=pk, mentor=request.user.pk)
+        if connection.status == Connection.PENDING:
+            connection.status = status
+            connection.save(update_fields=['status'])
+            Notification.objects.create(
+                from_user=request.user, to_user=connection.user, connection=connection,
+                notification_type=(Notification.MENTORSHIP_ACCEPTED if status == Connection.ACCEPTED
+                                   else Notification.MENTORSHIP_DECLINED),
+            )
+    return redirect('mentoring')
 
 
 @login_required
 def connections(request):
-    user = request.user
-    if user.profile.role == 'mentor':
-        con = list(Connection.objects.values_list('mentor', flat=True).filter(
-            user=user.id, status=1))
-        connections = User.objects.filter(pk__in=con)
-        return render(request, 'mentoring/mentors.html',
-                      {'connections': connections})
+    if request.user.profile.role == 'mentor':
+        ids = Connection.objects.filter(mentor=request.user.pk, status=Connection.ACCEPTED).values('user')
     else:
-        con = list(Connection.objects.values_list('user', flat=True).filter(
-            mentor=user.id, status=1))
-        connections = User.objects.filter(pk__in=con)
-        return render(request, 'mentoring/mentees.html',
-                      {'connections': connections})
+        ids = Connection.objects.filter(user=request.user, status=Connection.ACCEPTED).values('mentor')
+    users = User.objects.filter(pk__in=ids).select_related('profile')
+    return render(request, 'mentoring/connections.html', {'connections': users})

@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.utils.html import escape
+from django.urls import reverse
 
 
 class Activity(models.Model):
@@ -37,6 +37,10 @@ class Notification(models.Model):
     EDITED_ARTICLE = 'E'
     ALSO_COMMENTED = 'D'
     COMMENTED = 'C'
+    MENTORSHIP_REQUESTED = 'M'
+    MENTORSHIP_ACCEPTED = 'Y'
+    MENTORSHIP_DECLINED = 'N'
+    MENTOR_APPROVED = 'V'
     NOTIFICATION_TYPES = (
         (FAVORITED, 'Favorited'),
         (ANSWERED, 'Answered'),
@@ -45,14 +49,11 @@ class Notification(models.Model):
         (COMMENTED, 'Commented'),
         (ALSO_COMMENTED, 'Also Commented'),
         (ALSO_ANSWERED, 'Also Answered'),
+        (MENTORSHIP_REQUESTED, 'Mentorship Requested'),
+        (MENTORSHIP_ACCEPTED, 'Mentorship Accepted'),
+        (MENTORSHIP_DECLINED, 'Mentorship Declined'),
+        (MENTOR_APPROVED, 'Mentor Approved'),
     )
-
-    _FAVORITED_TEMPLATE = '<a href="/{0}/">{1}</a> favorited your question: <a href="/questions/{2}/">{3}</a>'  # noqa: E501
-    _ANSWERED_TEMPLATE = '<a href="/{0}/">{1}</a> answered your question: <a href="/questions/{2}/">{3}</a>'  # noqa: E501
-    _ACCEPTED_ANSWER_TEMPLATE = '<a href="/{0}/">{1}</a> accepted your answer: <a href="/questions/{2}/">{3}</a>'  # noqa: E501
-    _ALSO_ANSWERED_TEMPLATE = '<a href="/{0}/">{1}</a> also answered question:: <a href="/questions/{2}/">{3}</a>'
-    _COMMENTED_TEMPLATE = '<a href="/{0}/">{1}</a> commented on your article: <a href="/articles/{2}/">{3}</a>'
-    _ALSO_COMMENTED_TEMPLATE = '<a href="/{0}/">{1}</a> also commentend your article: <a href="/articles/{2}/">{3}</a>'
 
     from_user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='+')
     to_user = models.ForeignKey(User, on_delete=models.PROTECT, related_name='+')
@@ -60,6 +61,7 @@ class Notification(models.Model):
     question = models.ForeignKey('questions.Question', on_delete=models.PROTECT, null=True, blank=True)
     answer = models.ForeignKey('questions.Answer', on_delete=models.PROTECT, null=True, blank=True)
     article = models.ForeignKey('articles.Article', on_delete=models.PROTECT, null=True, blank=True)
+    connection = models.ForeignKey('authentication.Connection', on_delete=models.SET_NULL, null=True, blank=True)
     notification_type = models.CharField(max_length=1,
                                          choices=NOTIFICATION_TYPES)
     is_read = models.BooleanField(default=False)
@@ -67,58 +69,40 @@ class Notification(models.Model):
     class Meta:
         verbose_name = 'Notification'
         verbose_name_plural = 'Notifications'
-        ordering = ('-date',)
+        ordering = ('-date', '-pk')
+        indexes = [models.Index(fields=['to_user', 'is_read', '-date'], name='notification_unread_idx')]
+
+    def get_target_url(self):
+        if self.answer_id:
+            return reverse('question', args=[self.answer.question_id]) + f'#answer-{self.answer_id}'
+        if self.question_id:
+            return reverse('question', args=[self.question_id])
+        if self.article_id:
+            return reverse('article', args=[self.article.slug])
+        if self.notification_type == self.MENTORSHIP_ACCEPTED:
+            return reverse('connections')
+        if self.notification_type in {self.MENTORSHIP_REQUESTED,
+                                      self.MENTORSHIP_DECLINED, self.MENTOR_APPROVED}:
+            return reverse('mentoring')
+        return reverse('notifications')
+
+    def get_message(self):
+        title = self.question.title if self.question_id else ''
+        article = self.article.title if self.article_id else ''
+        messages = {
+            self.FAVORITED: f'favorited your question: {title}',
+            self.ANSWERED: f'answered your question: {title}',
+            self.ACCEPTED_ANSWER: 'accepted your answer',
+            self.ALSO_ANSWERED: f'also answered: {title}',
+            self.COMMENTED: f'commented on your article: {article}',
+            self.ALSO_COMMENTED: f'also commented on: {article}',
+            self.EDITED_ARTICLE: f'edited an article: {article}',
+            self.MENTORSHIP_REQUESTED: 'requested mentorship from you',
+            self.MENTORSHIP_ACCEPTED: 'accepted your mentorship request',
+            self.MENTORSHIP_DECLINED: 'declined your mentorship request',
+            self.MENTOR_APPROVED: 'approved your mentor account. You can now use the platform.',
+        }
+        return messages.get(self.notification_type, 'sent you a notification')
 
     def __str__(self):
-        if self.notification_type == self.FAVORITED:
-            return self._FAVORITED_TEMPLATE.format(
-                escape(self.from_user.username),
-                escape(self.from_user.profile.get_screen_name()),
-                self.question.pk,
-                escape(self.get_summary(self.question.title))
-            )
-        elif self.notification_type == self.ANSWERED:
-            return self._ANSWERED_TEMPLATE.format(
-                escape(self.from_user.username),
-                escape(self.from_user.profile.get_screen_name()),
-                self.question.pk,
-                escape(self.get_summary(self.question.title))
-            )
-        elif self.notification_type == self.ACCEPTED_ANSWER:
-            return self._ACCEPTED_ANSWER_TEMPLATE.format(
-                escape(self.from_user.username),
-                escape(self.from_user.profile.get_screen_name()),
-                self.answer.question.pk,
-                escape(self.get_summary(self.answer.description))
-            )
-        elif self.notification_type == self.ALSO_ANSWERED:
-            return self._ALSO_ANSWERED_TEMPLATE.format(
-                escape(self.from_user.username),
-                escape(self.from_user.profile.get_screen_name()),
-                self.question.pk,
-                escape(self.get_summary(self.question.title))
-            )
-        elif self.notification_type == self.COMMENTED:
-            return self._COMMENTED_TEMPLATE.format(
-                escape(self.from_user.username),
-                escape(self.from_user.profile.get_screen_name()),
-                self.article.slug,
-                escape(self.get_summary(self.article.title))
-            )
-        elif self.notification_type == self.ALSO_COMMENTED:
-            return self._ALSO_COMMENTED_TEMPLATE.format(
-                escape(self.from_user.username),
-                escape(self.from_user.profile.get_screen_name()),
-                self.article.slug,
-                escape(self.get_summary(self.article.title))
-            )
-        else:
-            return 'Ooops! Something went wrong.'
-
-    def get_summary(self, value):
-        summary_size = 50
-        if len(value) > summary_size:
-            return '{0}...'.format(value[:summary_size])
-
-        else:
-            return value
+        return f'{self.from_user.profile.get_screen_name()} {self.get_message()}'

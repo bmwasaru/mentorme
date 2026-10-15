@@ -1,0 +1,19 @@
+{% load humanize %}
+<li class="notification-item clearfix{% if not notification.is_read %} notification-unread{% endif %}">
+    <a href="{% url 'profile' notification.from_user.username %}" class="notification-actor">
+        {% include 'core/includes/avatar.html' with avatar_profile=notification.from_user.profile avatar_class='pull-left' only %}
+        {{ notification.from_user.profile.get_screen_name }}
+    </a>
+    {% if not notification.is_read %}<strong class="notification-status">Unread</strong>{% endif %}
+    <form method="post" action="{% url 'open_notification' notification.pk %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-link notification-target">{{ notification.get_message }}</button>
+    </form>
+    <small>{{ notification.date|naturaltime }}</small>
+    {% if not notification.is_read %}
+    <form method="post" action="{% url 'mark_notification_read' notification.pk %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-link btn-sm">Mark as read</button>
+    </form>
+    {% endif %}
+</li>
